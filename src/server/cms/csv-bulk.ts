@@ -1,0 +1,506 @@
+import { randomUUID } from "node:crypto";
+import { createSupabaseServiceClient } from "@/server/supabase/clients";
+
+type EntityKey =
+  | "courses"
+  | "paths"
+  | "workshops"
+  | "commands"
+  | "combos"
+  | "resources"
+  | "problem-solver"
+  | "practice-decks"
+  | "flashcards"
+  | "quiz-questions"
+  | "certificates";
+
+type EntityConfig = {
+  label: string;
+  table: string;
+  columns: string[];
+  sample: Record<string, string>;
+  mapRow: (row: Record<string, string>) => Record<string, unknown>;
+};
+
+function slugify(value: string, fallback: string): string {
+  const slug = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return slug || fallback;
+}
+
+function list(value: string): string[] {
+  return value.split("|").map((item) => item.trim()).filter(Boolean);
+}
+
+function bool(value: string, fallback = false): boolean {
+  const normalized = value.trim().toLowerCase();
+  if (["true", "yes", "1", "published"].includes(normalized)) return true;
+  if (["false", "no", "0", "draft"].includes(normalized)) return false;
+  return fallback;
+}
+
+function int(value: string, fallback = 0): number {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function text(row: Record<string, string>, key: string, fallback = ""): string {
+  return (row[key] || fallback).trim();
+}
+
+function optionalId(row: Record<string, string>, prefix: string, titleKey = "title") {
+  return text(row, "id") || `${prefix}-${slugify(text(row, titleKey), randomUUID().slice(0, 8))}`;
+}
+
+const CONFIGS: Record<EntityKey, EntityConfig> = {
+  courses: {
+    label: "Courses",
+    table: "addition_courses",
+    columns: ["id", "title", "software", "summary", "course_promise", "learning_outcome", "category", "level", "access_level", "status", "draft", "image", "modules"],
+    sample: {
+      id: "course-rhino-foundations",
+      title: "Rhino Foundations",
+      software: "Rhino",
+      summary: "A practical beginner course for clean Rhino modelling.",
+      course_promise: "Model simple architectural geometry with a reliable workflow.",
+      learning_outcome: "Create and edit clean curves, surfaces and solids.",
+      category: "Core course",
+      level: "Beginner",
+      access_level: "Free",
+      status: "Draft",
+      draft: "true",
+      image: "",
+      modules: "Getting Started|Core Commands|Practice Project",
+    },
+    mapRow: (row) => ({
+      id: optionalId(row, "course"),
+      type: "course",
+      title: text(row, "title", "Untitled course"),
+      software: text(row, "software"),
+      summary: text(row, "summary"),
+      course_promise: text(row, "course_promise"),
+      learning_outcome: text(row, "learning_outcome"),
+      category: text(row, "category"),
+      level: text(row, "level"),
+      access_level: text(row, "access_level", "Free"),
+      status: text(row, "status", bool(text(row, "draft"), true) ? "Draft" : "Published"),
+      draft: bool(text(row, "draft"), true),
+      image: text(row, "image"),
+      modules: list(text(row, "modules")).map((title, index) => ({
+        id: `module-${index + 1}-${slugify(title, "module")}`,
+        title,
+        lessons: [],
+      })),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  paths: {
+    label: "Learning Paths",
+    table: "addition_learning_paths",
+    columns: ["id", "title", "slug", "description", "outcome", "level", "audience", "software", "image", "course_ids", "published", "sort_order"],
+    sample: {
+      id: "path-rhino-beginner",
+      title: "Rhino Beginner Path",
+      slug: "rhino-beginner",
+      description: "A guided path for new Rhino learners.",
+      outcome: "Build confidence with modelling basics.",
+      level: "explorer",
+      audience: "Architecture and design students",
+      software: "Rhino",
+      image: "",
+      course_ids: "course-rhino-foundations",
+      published: "false",
+      sort_order: "1",
+    },
+    mapRow: (row) => ({
+      id: optionalId(row, "path"),
+      title: text(row, "title", "Untitled path"),
+      slug: text(row, "slug") || slugify(text(row, "title"), "path"),
+      description: text(row, "description"),
+      outcome: text(row, "outcome"),
+      level: text(row, "level", "explorer"),
+      audience: text(row, "audience"),
+      software: list(text(row, "software")),
+      image: text(row, "image"),
+      course_ids: list(text(row, "course_ids")),
+      published: bool(text(row, "published")),
+      sort_order: int(text(row, "sort_order")),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  workshops: {
+    label: "Live Workshops",
+    table: "addition_workshops",
+    columns: ["id", "title", "date", "time", "timezone", "duration", "format", "location", "price", "price_pence", "capacity", "upcoming", "track", "level", "week", "software", "image", "description", "learn", "included", "principles", "stripe_payment_link"],
+    sample: {
+      id: "",
+      title: "Rhino Clean Modelling Workshop",
+      date: "2026-06-01",
+      time: "18:00",
+      timezone: "Europe/London",
+      duration: "2 hours",
+      format: "online",
+      location: "Zoom",
+      price: "£49",
+      price_pence: "4900",
+      capacity: "20",
+      upcoming: "true",
+      track: "Rhino",
+      level: "Beginner",
+      week: "1",
+      software: "Rhino",
+      image: "",
+      description: "A live workshop on clean Rhino modelling.",
+      learn: "Clean curves|Reliable surfaces|Common fixes",
+      included: "Recording|Exercise file",
+      principles: "Model cleanly|Check edges",
+      stripe_payment_link: "",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      title: text(row, "title", "Untitled workshop"),
+      date: text(row, "date"),
+      time: text(row, "time", "09:00"),
+      timezone: text(row, "timezone", "Europe/London"),
+      duration: text(row, "duration"),
+      format: text(row, "format", "online"),
+      location: text(row, "location"),
+      price: text(row, "price"),
+      price_pence: int(text(row, "price_pence")),
+      capacity: int(text(row, "capacity"), 12),
+      upcoming: bool(text(row, "upcoming"), true),
+      track: text(row, "track"),
+      level: text(row, "level"),
+      week: int(text(row, "week"), 1),
+      software: list(text(row, "software")),
+      image: text(row, "image"),
+      description: text(row, "description"),
+      learn: list(text(row, "learn")),
+      included: list(text(row, "included")),
+      principles: list(text(row, "principles")),
+      stripe_payment_link: text(row, "stripe_payment_link") || null,
+    }),
+  },
+  commands: {
+    label: "Command Library",
+    table: "addition_commands",
+    columns: ["id", "name", "software", "menu", "description", "shortcut", "addon", "difficulty", "tags", "intent_categories", "object_types", "outcomes", "icon", "gif", "source"],
+    sample: {
+      id: "",
+      name: "Loft",
+      software: "Rhino",
+      menu: "Surface > Loft",
+      description: "Creates a surface through selected profile curves.",
+      shortcut: "",
+      addon: "",
+      difficulty: "beginner",
+      tags: "surface|curves",
+      intent_categories: "Create",
+      object_types: "Curve|Surface",
+      outcomes: "Surface",
+      icon: "",
+      gif: "",
+      source: "",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      name: text(row, "name", "Untitled command"),
+      software: text(row, "software"),
+      menu: text(row, "menu"),
+      description: text(row, "description"),
+      shortcut: text(row, "shortcut"),
+      addon: text(row, "addon"),
+      difficulty: text(row, "difficulty", "beginner"),
+      tags: list(text(row, "tags")),
+      intent_categories: list(text(row, "intent_categories")),
+      object_types: list(text(row, "object_types")),
+      outcomes: list(text(row, "outcomes")),
+      icon: text(row, "icon"),
+      gif: text(row, "gif"),
+      source: text(row, "source"),
+    }),
+  },
+  combos: {
+    label: "Workflow Combos",
+    table: "addition_courses",
+    columns: ["id", "title", "software", "description", "difficulty", "commands", "tags", "draft", "image"],
+    sample: {
+      id: "",
+      title: "Create a clean lofted surface",
+      software: "Rhino",
+      description: "Build a controlled surface from clean profile curves.",
+      difficulty: "beginner",
+      commands: "Curve:Draw profiles|Rebuild:Clean point count|Loft:Create surface|Join:Close result",
+      tags: "surface modelling|workflow",
+      draft: "true",
+      image: "",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      type: "combo",
+      title: text(row, "title", "Untitled combo"),
+      software: text(row, "software"),
+      description: text(row, "description"),
+      difficulty: text(row, "difficulty", "beginner"),
+      commands: list(text(row, "commands")).map((item) => {
+        const [name, ...note] = item.split(":");
+        return { name: name.trim(), note: note.join(":").trim() };
+      }),
+      tags: list(text(row, "tags")),
+      draft: bool(text(row, "draft"), true),
+      image: text(row, "image"),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  resources: {
+    label: "Resources",
+    table: "addition_resources",
+    columns: ["id", "title", "type", "software", "file_url", "external_url", "description", "access_level", "linked_lessons", "linked_courses", "status", "tags"],
+    sample: {
+      id: "",
+      title: "Rhino Loft Exercise File",
+      type: "Exercise file",
+      software: "Rhino",
+      file_url: "",
+      external_url: "",
+      description: "Starter file for loft practice.",
+      access_level: "Free",
+      linked_lessons: "",
+      linked_courses: "course-rhino-foundations",
+      status: "Draft",
+      tags: "exercise|rhino",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      title: text(row, "title", "Untitled resource"),
+      type: text(row, "type", "Link"),
+      software: text(row, "software"),
+      file_url: text(row, "file_url"),
+      external_url: text(row, "external_url"),
+      description: text(row, "description"),
+      access_level: text(row, "access_level", "Free"),
+      linked_lessons: list(text(row, "linked_lessons")),
+      linked_courses: list(text(row, "linked_courses")),
+      status: text(row, "status", "Draft"),
+      tags: list(text(row, "tags")),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  "problem-solver": {
+    label: "Problem Solver",
+    table: "addition_problem_solver",
+    columns: ["id", "question", "alternative_phrasings", "software", "intent", "difficulty", "short_answer", "detailed_answer", "linked_commands", "linked_combos", "linked_lessons", "linked_courses", "common_mistakes", "tags", "frequency", "status"],
+    sample: {
+      id: "",
+      question: "Why is my loft twisted?",
+      alternative_phrasings: "Loft is rotating|Surface is twisted",
+      software: "Rhino",
+      intent: "Troubleshooting",
+      difficulty: "beginner",
+      short_answer: "Check curve direction and seam alignment before lofting.",
+      detailed_answer: "Use Dir to inspect curve direction, align seams, then rebuild if needed.",
+      linked_commands: "Loft|Dir|Rebuild",
+      linked_combos: "Create a clean lofted surface",
+      linked_lessons: "",
+      linked_courses: "course-rhino-foundations",
+      common_mistakes: "Mixed curve directions and uneven point counts.",
+      tags: "loft|surface",
+      frequency: "0",
+      status: "Draft",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      question: text(row, "question", "Untitled learner question"),
+      alternative_phrasings: list(text(row, "alternative_phrasings")),
+      software: text(row, "software"),
+      intent: text(row, "intent"),
+      difficulty: text(row, "difficulty", "beginner"),
+      short_answer: text(row, "short_answer"),
+      detailed_answer: text(row, "detailed_answer"),
+      linked_commands: list(text(row, "linked_commands")),
+      linked_combos: list(text(row, "linked_combos")),
+      linked_lessons: list(text(row, "linked_lessons")),
+      linked_courses: list(text(row, "linked_courses")),
+      common_mistakes: text(row, "common_mistakes"),
+      tags: list(text(row, "tags")),
+      frequency: int(text(row, "frequency")),
+      status: text(row, "status", "Draft"),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  "practice-decks": {
+    label: "Practice Tasks",
+    table: "addition_flashcard_decks",
+    columns: ["id", "title", "software", "topic", "description", "sort_order", "published"],
+    sample: { id: "", title: "Rhino Surface Commands", software: "Rhino", topic: "Surfaces", description: "Practice core surface commands.", sort_order: "1", published: "false" },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      title: text(row, "title", "Untitled deck"),
+      software: text(row, "software"),
+      topic: text(row, "topic"),
+      description: text(row, "description"),
+      sort_order: int(text(row, "sort_order")),
+      published: bool(text(row, "published")),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  flashcards: {
+    label: "Flashcards",
+    table: "addition_flashcards",
+    columns: ["id", "deck_id", "front", "back", "hint", "sort_order"],
+    sample: {
+      id: "",
+      deck_id: "paste-flashcard-deck-id-here",
+      front: "What does Loft do?",
+      back: "Creates a surface through selected profile curves.",
+      hint: "Think surface from profiles.",
+      sort_order: "1",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      deck_id: text(row, "deck_id"),
+      front: text(row, "front"),
+      back: text(row, "back"),
+      hint: text(row, "hint"),
+      sort_order: int(text(row, "sort_order")),
+    }),
+  },
+  "quiz-questions": {
+    label: "Quiz Bank",
+    table: "addition_quiz_questions",
+    columns: ["id", "software", "topic", "question_text", "question_type", "options", "correct_answer", "explanation", "difficulty", "tags", "published"],
+    sample: {
+      id: "",
+      software: "Rhino",
+      topic: "Surfaces",
+      question_text: "Which command creates a surface through profile curves?",
+      question_type: "mc",
+      options: "Loft|Trim|Join|Move",
+      correct_answer: "Loft",
+      explanation: "Loft creates a surface through selected profile curves.",
+      difficulty: "beginner",
+      tags: "loft|surface",
+      published: "false",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      software: text(row, "software"),
+      topic: text(row, "topic"),
+      question_text: text(row, "question_text", "Untitled question"),
+      question_type: text(row, "question_type", "mc"),
+      options: list(text(row, "options")),
+      correct_answer: text(row, "correct_answer"),
+      explanation: text(row, "explanation"),
+      difficulty: text(row, "difficulty", "beginner"),
+      tags: list(text(row, "tags")),
+      published: bool(text(row, "published")),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+  certificates: {
+    label: "Certificates",
+    table: "addition_certificates",
+    columns: ["id", "title", "software", "description", "passing_score", "question_ids", "badge_image", "published"],
+    sample: {
+      id: "",
+      title: "Rhino Foundations Certificate",
+      software: "Rhino",
+      description: "Certificate for completing Rhino foundations assessment.",
+      passing_score: "80",
+      question_ids: "",
+      badge_image: "",
+      published: "false",
+    },
+    mapRow: (row) => ({
+      ...(text(row, "id") ? { id: text(row, "id") } : {}),
+      title: text(row, "title", "Untitled certificate"),
+      software: text(row, "software"),
+      description: text(row, "description"),
+      passing_score: int(text(row, "passing_score"), 80),
+      question_ids: list(text(row, "question_ids")),
+      badge_image: text(row, "badge_image"),
+      published: bool(text(row, "published")),
+      updated_at: new Date().toISOString(),
+    }),
+  },
+};
+
+function escapeCsv(value: unknown): string {
+  const textValue = String(value ?? "");
+  if (/[",\n\r]/.test(textValue)) return `"${textValue.replace(/"/g, '""')}"`;
+  return textValue;
+}
+
+function parseCsv(csv: string): Record<string, string>[] {
+  const rows: string[][] = [];
+  let field = "";
+  let row: string[] = [];
+  let quoted = false;
+
+  for (let i = 0; i < csv.length; i += 1) {
+    const char = csv[i];
+    const next = csv[i + 1];
+    if (quoted) {
+      if (char === "\"" && next === "\"") {
+        field += "\"";
+        i += 1;
+      } else if (char === "\"") {
+        quoted = false;
+      } else {
+        field += char;
+      }
+    } else if (char === "\"") {
+      quoted = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (char !== "\r") {
+      field += char;
+    }
+  }
+
+  row.push(field);
+  rows.push(row);
+  const [headers = [], ...body] = rows.filter((items) => items.some((item) => item.trim()));
+  return body.map((items) =>
+    Object.fromEntries(headers.map((header, index) => [header.trim(), (items[index] || "").trim()])),
+  );
+}
+
+export function getCsvTemplate(entity: string): { fileName: string; csv: string } | null {
+  const config = CONFIGS[entity as EntityKey];
+  if (!config) return null;
+  const csv = [
+    config.columns.join(","),
+    config.columns.map((column) => escapeCsv(config.sample[column])).join(","),
+  ].join("\n");
+  return {
+    fileName: `addition-${entity}-template.csv`,
+    csv: `${csv}\n`,
+  };
+}
+
+export async function importCsvRows(entity: string, csv: string): Promise<{ entity: string; imported: number; totalRows: number }> {
+  const config = CONFIGS[entity as EntityKey];
+  if (!config) throw new Error("Unknown CSV import type.");
+
+  const parsedRows = parseCsv(csv);
+  const rows = parsedRows
+    .map((row) => config.mapRow(row))
+    .filter((row) => Object.values(row).some((value) => value !== "" && value !== null && value !== undefined));
+
+  if (!rows.length) return { entity: config.label, imported: 0, totalRows: parsedRows.length };
+
+  const db = createSupabaseServiceClient();
+  const { error } = await db.from(config.table).upsert(rows);
+  if (error) throw new Error(`DB: ${error.message}`);
+  return { entity: config.label, imported: rows.length, totalRows: parsedRows.length };
+}
