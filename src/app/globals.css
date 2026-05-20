@@ -689,6 +689,157 @@ html[data-theme="light"] .sidebar-upnext {
   border-color: rgba(124,58,237,0.2);
 }
 
+/* ── Light mode: fix hardcoded white/rgba(236) text throughout app ─────────── */
+
+/* Command cards */
+html[data-theme="light"] .cmd-card-icon-wrap {
+  background: rgba(0,0,0,0.04);
+}
+html[data-theme="light"] .cmd-card-icon-placeholder {
+  color: var(--rf-sub);
+  border-color: var(--rf-border);
+}
+
+/* Dashboard home — hero panel */
+html[data-theme="light"] .home-hero-course {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .home-hero-module {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .home-hero-lesson {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .home-hero-why {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .home-hero-bar {
+  background: rgba(0,0,0,0.1);
+}
+html[data-theme="light"] .home-hero-progress > span {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .home-hero-duration {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.1);
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .home-hero-eyebrow {
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* Dashboard home — solve panel */
+html[data-theme="light"] .home-solve-title {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .home-solve-sub {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .home-solve-bar {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+}
+html[data-theme="light"] .home-solve-bar svg {
+  color: var(--rf-muted);
+}
+html[data-theme="light"] .home-solve-input {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .home-solve-chips-label {
+  color: var(--rf-muted);
+}
+html[data-theme="light"] .home-solve-chip {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .home-solve-chip:hover {
+  background: var(--accent-subtle);
+  border-color: var(--active-border);
+  color: var(--accent);
+}
+
+/* Dashboard home — tiny goal */
+html[data-theme="light"] .home-tiny {
+  background: rgba(255,215,0,0.06);
+  border-color: rgba(255,170,0,0.2);
+}
+html[data-theme="light"] .home-tiny-body {
+  color: var(--rf-sub);
+}
+
+/* Dashboard home — chips */
+html[data-theme="light"] .home-chip-label {
+  color: var(--rf-muted);
+}
+html[data-theme="light"] .home-chip-name {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .home-chip-date {
+  color: var(--rf-muted);
+}
+html[data-theme="light"] .home-chip:hover {
+  border-color: rgba(0,0,0,0.14);
+}
+
+/* Dashboard home — workshop card overlay (keeps dark since it's a photo overlay) */
+html[data-theme="light"] .home-workshop-card {
+  border-color: rgba(0,0,0,0.1);
+}
+
+/* Path/course cards */
+html[data-theme="light"] .dash-path-card-title,
+html[data-theme="light"] .dash-greeting {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .dash-path-card-sub {
+  color: var(--rf-sub);
+}
+
+/* Workshop detail page */
+html[data-theme="light"] .ws-det-tab-btn {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .ws-det-tab-btn--active {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .ws-det-learn-item {
+  border-color: var(--rf-border);
+}
+html[data-theme="light"] .ws-det-recording-card strong {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .ws-det-recording-card small {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .ws-det-recording-empty {
+  background: rgba(0,0,0,0.02);
+  border-color: var(--rf-border);
+}
+html[data-theme="light"] .ws-det-recording-empty h2 {
+  color: var(--rf-white);
+}
+html[data-theme="light"] .ws-det-recording-empty p {
+  color: var(--rf-sub);
+}
+html[data-theme="light"] .ws-filter-pill {
+  color: var(--rf-sub);
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+}
+html[data-theme="light"] .ws-filter-pill.active {
+  color: var(--accent);
+  border-color: rgba(124,58,237,0.35);
+  background: var(--accent-subtle);
+}
+
+/* General: any element with a hardcoded dark bg in the app shell */
+html[data-theme="light"] .app-shell .sw-track-thumb,
+html[data-theme="light"] .app-shell .ws-cohort-img {
+  background: rgba(0,0,0,0.04);
+}
+
 *,
 *::before,
 *::after {
