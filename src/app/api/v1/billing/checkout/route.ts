@@ -75,29 +75,40 @@ export async function POST(request: Request) {
 
   const origin = new URL(request.url).origin;
   const returnTo = typeof body.returnTo === "string" && body.returnTo.startsWith("/") ? body.returnTo : "/dashboard";
-  const stripe = getStripe();
+  let stripe: Stripe;
+  try {
+    stripe = getStripe();
+  } catch (err) {
+    return errorResponse(err instanceof Error ? err.message : "Stripe init failed", 500);
+  }
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    line_items: [{ price: priceId, quantity: 1 }],
-    client_reference_id: auth.user.id,
-    customer_email: auth.user.email ?? undefined,
-    success_url: `${origin}${returnTo}?checkout=success`,
-    cancel_url: `${origin}${returnTo}?checkout=cancelled`,
-    metadata: {
-      kind: "subscription",
-      plan,
-      interval,
-      userId: auth.user.id,
-    },
-    subscription_data: {
+  let session: Stripe.Checkout.Session;
+  try {
+    session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      line_items: [{ price: priceId, quantity: 1 }],
+      client_reference_id: auth.user.id,
+      customer_email: auth.user.email ?? undefined,
+      success_url: `${origin}${returnTo}?checkout=success`,
+      cancel_url: `${origin}${returnTo}?checkout=cancelled`,
       metadata: {
+        kind: "subscription",
         plan,
         interval,
         userId: auth.user.id,
       },
-    },
-  });
+      subscription_data: {
+        metadata: {
+          plan,
+          interval,
+          userId: auth.user.id,
+        },
+      },
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Stripe session creation failed";
+    return errorResponse(msg, 500);
+  }
 
   if (!session.url) {
     return errorResponse("Stripe did not return a checkout URL.", 500);
