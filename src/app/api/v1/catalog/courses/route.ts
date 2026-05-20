@@ -1,4 +1,6 @@
-import { okResponse, errorResponse } from "@/lib/http";
+import { cachedOkResponse, errorResponse } from "@/lib/http";
+
+export const revalidate = 3600;
 import type { CourseCatalogListItem, CourseType } from "@/domain/catalog";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
 import { toCatalogListItem } from "@/server/catalog/normalize-course";
@@ -26,7 +28,7 @@ export async function GET() {
 
     const courses: CourseCatalogListItem[] = ((data || []) as CourseRow[]).map(toCatalogListItem);
 
-    return okResponse({ courses });
+    return cachedOkResponse({ courses }, 3600, 86400);
   } catch (error) {
     return errorResponse(error instanceof Error ? error.message : "Unknown server error.", 500);
   }

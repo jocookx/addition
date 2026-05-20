@@ -1,8 +1,10 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import type { ComboListItem, ComboStep } from "@/domain/combo";
-import { errorResponse, okResponse } from "@/lib/http";
+import { cachedOkResponse, errorResponse } from "@/lib/http";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
+
+export const revalidate = 3600;
 
 type ComboRow = {
   id: string;
@@ -90,7 +92,7 @@ export async function GET(req: Request) {
       .filter((combo) => combo.title)
       .sort((a, b) => a.title.localeCompare(b.title));
 
-    return okResponse({ combos: filtered, total: filtered.length });
+    return cachedOkResponse({ combos: filtered, total: filtered.length }, 3600, 86400);
   } catch (error) {
     return errorResponse(error instanceof Error ? error.message : "Unknown server error.", 500);
   }

@@ -5,9 +5,14 @@ function authHeaders(token: string): HeadersInit {
   return { "Content-Type": "application/json", Authorization: `Bearer ${token}` };
 }
 
+let pathsCache: Promise<LearningPathListItem[]> | null = null;
+
 export async function getPaths(): Promise<LearningPathListItem[]> {
-  const data = await fetchJson<{ paths: LearningPathListItem[] }>("/api/v1/paths");
-  return data.paths;
+  if (pathsCache) return pathsCache;
+  pathsCache = fetchJson<{ paths: LearningPathListItem[] }>("/api/v1/paths")
+    .then((data) => data.paths)
+    .catch((err) => { pathsCache = null; throw err; });
+  return pathsCache;
 }
 
 export async function getPathDetail(pathId: string): Promise<LearningPathDetail> {

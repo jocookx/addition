@@ -1,4 +1,6 @@
-import { okResponse, errorResponse } from "@/lib/http";
+import { cachedOkResponse, errorResponse } from "@/lib/http";
+
+export const revalidate = 300;
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
 import type { LearningPathListItem } from "@/domain/learning-path";
 
@@ -45,7 +47,7 @@ export async function GET() {
     }))
       .filter((path) => path.courseCount > 0);
 
-    return okResponse({ paths });
+    return cachedOkResponse({ paths }, 300, 3600);
   } catch (err) {
     return errorResponse(err instanceof Error ? err.message : "Unknown error", 500);
   }

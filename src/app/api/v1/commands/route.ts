@@ -2,8 +2,11 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { isLaunchSoftware, normaliseLaunchSoftware } from "@/config/taxonomy";
 import type { CommandListItem } from "@/domain/command";
-import { errorResponse, okResponse } from "@/lib/http";
+import { cachedOkResponse, errorResponse } from "@/lib/http";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
+
+// Cache at the Next.js data-fetch level for 1 hour
+export const revalidate = 3600;
 
 type CommandRow = {
   id: string;
@@ -263,7 +266,8 @@ export async function GET(req: Request) {
     if (software) commands = commands.filter((item) => item.software === software);
     commands.sort((a, b) => a.software.localeCompare(b.software) || a.name.localeCompare(b.name));
 
-    return okResponse({ commands, total: commands.length });
+    // Cache at CDN edge for 1 h, serve stale for up to 24 h while revalidating
+    return cachedOkResponse({ commands, total: commands.length }, 3600, 86400);
   } catch (err) {
     return errorResponse(err instanceof Error ? err.message : "Unknown error", 500);
   }
