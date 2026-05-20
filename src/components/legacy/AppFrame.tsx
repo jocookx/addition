@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { getLearningSummary } from "@/lib/api/learning-summary";
+import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { SOFTWARE_LIST, useSoftwareContext, type SoftwareId } from "@/lib/software-context";
 import { WorkshopCartButton } from "@/components/workshop-cart/WorkshopCartDrawer";
 
@@ -269,6 +270,29 @@ export function AppFrame({
     window.localStorage.setItem("addition-theme", nextTheme);
   }
 
+  const [upgradeError, setUpgradeError] = useState<string | null>(null);
+  const [upgradeBusy, setUpgradeBusy] = useState(false);
+
+  async function handleSidebarUpgrade(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    setUpgradeError(null);
+    setUpgradeBusy(true);
+    try {
+      const supabase = getBrowserSupabaseClient();
+      if (!supabase) throw new Error("Auth not available");
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      if (!token) { router.push("/auth?next=/dashboard"); return; }
+      const url = await getBillingCheckoutUrl("pro", token, "/dashboard");
+      window.location.href = url;
+    } catch (err) {
+      setUpgradeError(err instanceof Error ? err.message : "Could not open checkout. Please try again.");
+    } finally {
+      setUpgradeBusy(false);
+    }
+  }
+
   async function handleLogout() {
     const supabase = getBrowserSupabaseClient();
     if (supabase) await supabase.auth.signOut();
@@ -349,17 +373,32 @@ export function AppFrame({
 
         <div className="sidebar-spacer" />
 
-        <Link href="/dashboard" className={`sidebar-user${isActivePath(currentPath, "/dashboard") ? " sidebar-user--active" : ""}`}>
-          <div className="user-avatar">{initialsFromName(userName, userEmail)}</div>
-          <div className="sidebar-user-info">
-            <strong>{userName || userEmail || "Learner"}</strong>
-            <span className={`plan-pill ${isPro ? "pro" : "free"}`}>{isPro ? "Pro" : "Free"}</span>
-          </div>
-          <svg className="sidebar-user-home-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-        </Link>
+        <div className="sidebar-user-wrap">
+          <Link href="/dashboard" className={`sidebar-user${isActivePath(currentPath, "/dashboard") ? " sidebar-user--active" : ""}`}>
+            <div className="user-avatar">{initialsFromName(userName, userEmail)}</div>
+            <div className="sidebar-user-info">
+              <strong>{userName || userEmail || "Learner"}</strong>
+              <span className={`plan-pill ${isPro ? "pro" : "free"}`}>{isPro ? "Pro" : "Free"}</span>
+            </div>
+            <svg className="sidebar-user-home-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </Link>
+          {!isPro && (
+            <button
+              type="button"
+              className={`sidebar-upgrade-btn${upgradeBusy ? " busy" : ""}`}
+              onClick={(e) => void handleSidebarUpgrade(e)}
+              disabled={upgradeBusy}
+            >
+              {upgradeBusy ? "Opening…" : "Upgrade to Pro →"}
+            </button>
+          )}
+          {upgradeError && (
+            <p className="sidebar-upgrade-error">{upgradeError}</p>
+          )}
+        </div>
 
         <div className="side-nav side-nav-utility">
           <WorkshopCartButton sidebar />

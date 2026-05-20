@@ -589,11 +589,22 @@ function DashboardPageInner() {
     router.push(`/learn?${params}`);
   }, [router]);
 
+  const [upgradeError, setUpgradeError] = useState("");
+  const [upgradeBusy, setUpgradeBusy] = useState(false);
+
   const handleUpgrade = useCallback(async () => {
     const token = session?.access_token;
     if (!token) return;
-    const url = await getBillingCheckoutUrl("pro", token, "/dashboard");
-    window.location.href = url;
+    setUpgradeError("");
+    setUpgradeBusy(true);
+    try {
+      const url = await getBillingCheckoutUrl("pro", token, "/dashboard");
+      window.location.href = url;
+    } catch (err) {
+      setUpgradeError(err instanceof Error ? err.message : "Could not open checkout. Please try again.");
+    } finally {
+      setUpgradeBusy(false);
+    }
   }, [session?.access_token]);
 
   const clearGateway = useCallback(() => {
@@ -698,9 +709,19 @@ function DashboardPageInner() {
             </div>
           )}
           {!isPro && (
-            <button type="button" className="primary-button dash-upgrade-btn" onClick={() => void handleUpgrade()}>
-              Upgrade to Pro
-            </button>
+            <div className="dash-upgrade-wrap">
+              <button
+                type="button"
+                className="primary-button dash-upgrade-btn"
+                onClick={() => void handleUpgrade()}
+                disabled={upgradeBusy}
+              >
+                {upgradeBusy ? "Opening…" : "Upgrade to Pro"}
+              </button>
+              {upgradeError && (
+                <p className="dash-upgrade-error">{upgradeError}</p>
+              )}
+            </div>
           )}
         </header>
 

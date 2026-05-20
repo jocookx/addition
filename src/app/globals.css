@@ -1462,6 +1462,79 @@ textarea::placeholder {
   background: var(--hover-bg);
 }
 
+/* ── Sidebar user section + upgrade button ──────────────────────────────── */
+.sidebar-user-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-upgrade-btn {
+  width: 100%;
+  padding: 7px 12px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid rgba(124,58,237,0.45);
+  background: rgba(124,58,237,0.1);
+  color: rgba(196,181,253,0.95);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.sidebar-upgrade-btn:hover:not(:disabled) {
+  background: rgba(124,58,237,0.2);
+  border-color: rgba(124,58,237,0.65);
+  color: #c4b5fd;
+}
+
+.sidebar-upgrade-btn:disabled,
+.sidebar-upgrade-btn.busy {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sidebar-upgrade-error {
+  margin: 0;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #f87171;
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.25);
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+/* Light mode overrides for upgrade button */
+html[data-theme="light"] .sidebar-upgrade-btn {
+  background: rgba(124,58,237,0.08);
+  border-color: rgba(124,58,237,0.3);
+  color: var(--accent);
+}
+html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
+  background: rgba(124,58,237,0.14);
+  border-color: var(--accent);
+}
+
+/* Dashboard upgrade error */
+.dash-upgrade-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.dash-upgrade-error {
+  margin: 0;
+  font-size: 11px;
+  color: #f87171;
+  max-width: 200px;
+  text-align: right;
+  line-height: 1.4;
+}
+
 .main {
   padding: var(--sp-5) var(--sp-8) var(--sp-8);
   height: 100vh;
