@@ -11,7 +11,7 @@ import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { getLearningSummary } from "@/lib/api/learning-summary";
 import { getPaths, getMyEnrolments } from "@/lib/api/paths";
-import { getWorkshops } from "@/lib/api/workshops";
+import { getMyRegisteredWorkshops } from "@/lib/api/workshops";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
 
@@ -538,7 +538,7 @@ function DashboardPageInner() {
     Promise.all([
       getLearningSummary(token),
       ensureAuthProfile(token),
-      getWorkshops({ upcoming: true }).catch(() => []),
+      getMyRegisteredWorkshops(token).catch(() => []),
     ])
       .then(([s, p, workshops]) => {
         if (canceled) return;

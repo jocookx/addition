@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
+import { getLearningSummary } from "@/lib/api/learning-summary";
 import { SOFTWARE_LIST, useSoftwareContext, type SoftwareId } from "@/lib/software-context";
 import { WorkshopCartButton } from "@/components/workshop-cart/WorkshopCartDrawer";
 
@@ -234,6 +235,28 @@ export function AppFrame({
     if (typeof window === "undefined") return "dark";
     return window.localStorage.getItem("addition-theme") === "light" ? "light" : "dark";
   });
+  const [upNextTitle, setUpNextTitle] = useState<string | null>(null);
+  const [upNextHref, setUpNextHref] = useState("/learn");
+
+  useEffect(() => {
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) return;
+    let canceled = false;
+    void supabase.auth.getSession().then(({ data }) => {
+      const token = data.session?.access_token;
+      if (!token || canceled) return;
+      void getLearningSummary(token).then((summary) => {
+        if (canceled) return;
+        if (summary?.nextUp) {
+          setUpNextTitle(summary.nextUp.title);
+          const p = new URLSearchParams({ course: summary.nextUp.courseId });
+          if (summary.nextUp.nextLessonId) p.set("lesson", summary.nextUp.nextLessonId);
+          setUpNextHref(`/learn?${p.toString()}`);
+        }
+      }).catch(() => {});
+    });
+    return () => { canceled = true; };
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -294,6 +317,17 @@ export function AppFrame({
         ) : null}
 
         <nav className="sidebar-nav">
+          {upNextTitle && (
+            <Link href={upNextHref} className="sidebar-nav-btn sidebar-upnext">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span className="sidebar-upnext-text">
+                <span className="sidebar-upnext-label">Up Next</span>
+                <span className="sidebar-upnext-title">{upNextTitle}</span>
+              </span>
+            </Link>
+          )}
           <Link href="/paths" className={`sidebar-nav-btn${
             ["/skills", "/learn", "/paths", "/combos", "/commands"].some(p => isActivePath(currentPath, p))
               ? " active" : ""

@@ -65,6 +65,16 @@ export async function getWorkshopEmbeddedCheckoutClientSecret(
   return body.clientSecret;
 }
 
+export async function getMyRegisteredWorkshops(
+  accessToken: string,
+): Promise<WorkshopListItem[]> {
+  const body = await fetchJson<{ workshops: WorkshopListItem[] }>(
+    "/api/v1/workshops/my-registrations",
+    { headers: { Authorization: `Bearer ${accessToken}` } },
+  );
+  return body.workshops;
+}
+
 export async function getWorkshopCartCheckoutUrl(
   workshopIds: string[],
   accessToken?: string,

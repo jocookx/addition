@@ -282,7 +282,7 @@ export default function CommandsPage() {
 
         {/* Toolbar */}
         <div className="commands-toolbar">
-          <div className="commands-toolbar-left">
+          <div className="commands-toolbar-right">
             <span className="meta">
               {allCommands.length ? `${filteredCommands.length} commands` : status}
             </span>
