@@ -8536,6 +8536,29 @@ textarea::placeholder {
 
 .dash-path-list { display: flex; flex-direction: column; gap: 12px; }
 
+.dash-ws-list { display: flex; flex-direction: column; gap: 10px; }
+.dash-ws-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px; border-radius: 10px;
+  transition: background 0.15s;
+}
+.dash-ws-row:hover { background: rgba(255,255,255,0.05); }
+.dash-ws-row-img {
+  width: 56px; height: 56px; border-radius: 8px;
+  object-fit: cover; flex-shrink: 0;
+}
+.dash-ws-row-img--empty { background: var(--accent-subtle); }
+.dash-ws-row-body {
+  display: flex; flex-direction: column; gap: 3px;
+  flex: 1; min-width: 0;
+}
+.dash-ws-row-title {
+  font-size: 14px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dash-ws-row-meta { font-size: 12px; color: var(--rf-sub); }
+.dash-ws-row-cta { font-size: 12px; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+
 .dash-workshop-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

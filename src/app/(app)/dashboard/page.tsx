@@ -302,20 +302,41 @@ function WorkshopsTabPanel({ workshops }: { workshops: UpcomingWorkshop[] }) {
   if (!workshops.length) {
     return (
       <div className="dash-tab-empty glass-panel">
-        No upcoming workshops yet. New sessions will appear here when they are published.
+        <p>No upcoming workshops yet.</p>
+        <Link href="/workshops" className="primary-button" style={{ textDecoration: "none", display: "inline-flex", marginTop: 12 }}>
+          Browse workshops →
+        </Link>
       </div>
     );
   }
 
   return (
     <div className="dash-tab-content">
-      <div className="dash-workshop-list">
-        {workshops.map((workshop) => (
-          <WorkshopCard key={workshop.id} ws={workshop} />
-        ))}
+      <div className="dash-ws-list">
+        {workshops.map((ws) => {
+          const date = new Date(ws.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+          const cohortId = ws.id.replace(/^ws-/, "").replace(/-w\d+[a-z]$/, "");
+          return (
+            <Link key={ws.id} href={`/workshops/${cohortId}`} className="dash-ws-row glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
+              {ws.image
+                ? <img className="dash-ws-row-img" src={ws.image} alt="" aria-hidden="true" />
+                : <span className="dash-ws-row-img dash-ws-row-img--empty" aria-hidden="true" />}
+              <div className="dash-ws-row-body">
+                <strong className="dash-ws-row-title">{ws.title}</strong>
+                <span className="dash-ws-row-meta">
+                  {date}
+                  {ws.time ? ` · ${ws.time}${ws.timezone ? ` ${ws.timezone}` : ""}` : ""}
+                  {ws.duration ? ` · ${ws.duration}` : ""}
+                  {ws.price ? ` · ${ws.price}` : ""}
+                </span>
+              </div>
+              <span className="dash-ws-row-cta">View →</span>
+            </Link>
+          );
+        })}
       </div>
       <Link href="/workshops" className="ghost-btn dash-path-browse" style={{ textDecoration: "none" }}>
-        View all workshops
+        View all workshops →
       </Link>
     </div>
   );
