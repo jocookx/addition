@@ -15519,3 +15519,21 @@ html[data-theme="light"] .cmd-list-row:hover { background: rgba(0,0,0,0.04); bor
 html[data-theme="light"] .cmd-list-name { color: rgba(20,20,40,0.90); }
 html[data-theme="light"] .cmd-list-meta { color: rgba(20,20,40,0.40); }
 html[data-theme="light"] .cmd-list-cmd { color: rgba(20,20,40,0.45); }
+
+/* Sentence filter reset button */
+.cmd-sentence-reset {
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+.cmd-sentence-reset:hover { color: rgba(255,255,255,0.70); border-color: rgba(255,255,255,0.18); }
+html[data-theme="light"] .cmd-sentence-reset { border-color: rgba(0,0,0,0.10); color: rgba(0,0,0,0.35); }
+html[data-theme="light"] .cmd-sentence-reset:hover { color: rgba(0,0,0,0.70); border-color: rgba(0,0,0,0.22); }

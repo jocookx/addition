@@ -58,7 +58,7 @@ export default function CommandsPage() {
   // Derive reset inline — when software changes, treat cats as "All" without an effect
   const effectiveTopCat = prevSoftware === activeSoftware ? topCat : "All";
   const effectiveSubCat = prevSoftware === activeSoftware ? subCat : "All";
-  if (prevSoftware !== activeSoftware) setPrevSoftware(activeSoftware);
+  if (prevSoftware !== activeSoftware) { setPrevSoftware(activeSoftware); }
   const [intent, setIntent]         = useState("All");
   const [objectType, setObjectType] = useState("All");
   const [viewMode, setViewMode]     = useState<"grid" | "row">("grid");
@@ -156,27 +156,60 @@ export default function CommandsPage() {
     return sorted.length > 0 ? ["All", ...sorted] : [];
   }, [softwareCommands, effectiveTopCat]);
 
-  /** Intent verbs that actually exist in the current software's data */
+  /**
+   * Intent verbs available given the current objectType selection.
+   * Cascades: pick a noun first → only relevant verbs are shown.
+   */
   const intentOptions = useMemo(() => {
+    const pool = objectType !== "All"
+      ? softwareCommands.filter((c) => c.objectTypes?.includes(objectType))
+      : softwareCommands;
     const values = new Set<string>();
-    softwareCommands.forEach((c) => (c.intentCategories ?? []).forEach((v) => values.add(v)));
+    pool.forEach((c) => (c.intentCategories ?? []).forEach((v) => values.add(v)));
     return Array.from(values).sort();
-  }, [softwareCommands]);
+  }, [softwareCommands, objectType]);
 
-  /** Object types that actually exist in the current software's data */
+  /**
+   * Object types available given the current intent selection.
+   * Cascades: pick a verb first → only objects that verb can act on are shown.
+   */
   const objectTypeOptions = useMemo(() => {
+    const pool = intent !== "All"
+      ? softwareCommands.filter((c) => c.intentCategories?.includes(intent))
+      : softwareCommands;
     const values = new Set<string>();
-    softwareCommands.forEach((c) => (c.objectTypes ?? []).forEach((v) => values.add(v)));
+    pool.forEach((c) => (c.objectTypes ?? []).forEach((v) => values.add(v)));
     return Array.from(values).sort();
-  }, [softwareCommands]);
+  }, [softwareCommands, intent]);
+
+  /**
+   * "From / with" input sources — derived from outcomes of the currently filtered pool.
+   * Only shown when both intent and objectType are selected and there are multiple distinct
+   * outcome values (meaning there IS a meaningful input concept for this combination).
+   *
+   * NOTE: this uses `outcomes` as proxy for input type. When the DB has a dedicated
+   * `inputTypes` column this can be swapped in directly.
+   */
+  const [inputType, setInputType] = useState("All");
+
+  const inputTypeOptions = useMemo(() => {
+    if (intent === "All" || objectType === "All") return [];
+    const pool = softwareCommands
+      .filter((c) => c.intentCategories?.includes(intent) && c.objectTypes?.includes(objectType));
+    const values = new Set<string>();
+    pool.forEach((c) => (c.outcomes ?? []).forEach((v) => values.add(v)));
+    // Only surface the dropdown when there are 2+ distinct input sources
+    return values.size >= 2 ? Array.from(values).sort() : [];
+  }, [softwareCommands, intent, objectType]);
 
   const filteredCommands = useMemo(() => {
     // Non-text filters first
     let pool = softwareCommands;
     if (effectiveTopCat !== "All") pool = pool.filter((c) => getTopCategory(c) === effectiveTopCat);
     if (effectiveSubCat !== "All") pool = pool.filter((c) => getSubCategory(c) === effectiveSubCat);
-    if (intent !== "All")          pool = pool.filter((c) => c.intentCategories?.includes(intent));
-    if (objectType !== "All")      pool = pool.filter((c) => c.objectTypes?.includes(objectType));
+    if (intent !== "All")      pool = pool.filter((c) => c.intentCategories?.includes(intent));
+    if (objectType !== "All") pool = pool.filter((c) => c.objectTypes?.includes(objectType));
+    if (inputType !== "All")  pool = pool.filter((c) => c.outcomes?.includes(inputType));
 
     // Smart text search: rank by relevance, with command-name boost (commands ARE their own title)
     if (query.trim()) {
@@ -406,35 +439,74 @@ export default function CommandsPage() {
           </div>
         </div>
 
-        {/* Intent sentence filter — only shown when the software has intent data */}
+        {/* Intent sentence filter — "I want to [verb] [object] from [input]" */}
         {activeSoftware && !!allCommands.length && (intentOptions.length > 0 || objectTypeOptions.length > 0) && (
           <div className="cmd-sentence-filter">
             <span className="cmd-sentence-word">I want to</span>
-            {intentOptions.length > 0 && (
-              <select
-                id="cmd-intent-select"
-                className="cmd-sentence-select"
-                value={intent}
-                onChange={(e) => { setIntent(e.target.value); setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware); }}
-              >
-                <option value="All">— anything —</option>
-                {intentOptions.map((v) => (
-                  <option key={v} value={v}>{v}</option>
-                ))}
-              </select>
-            )}
+
+            {/* Verb — cascades based on objectType */}
+            <select
+              id="cmd-intent-select"
+              className="cmd-sentence-select"
+              value={intent}
+              onChange={(e) => {
+                setIntent(e.target.value);
+                setInputType("All");
+                setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware);
+              }}
+            >
+              <option value="All">— anything —</option>
+              {intentOptions.map((v) => (
+                <option key={v} value={v}>{v}</option>
+              ))}
+            </select>
+
+            {/* Object/output — cascades based on intent */}
             {objectTypeOptions.length > 0 && (
               <select
                 id="cmd-object-select"
                 className="cmd-sentence-select"
                 value={objectType}
-                onChange={(e) => { setObjectType(e.target.value); setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware); }}
+                onChange={(e) => {
+                  setObjectType(e.target.value);
+                  setInputType("All");
+                  setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware);
+                }}
               >
                 <option value="All">— any object —</option>
                 {objectTypeOptions.map((v) => (
                   <option key={v} value={v}>{v}</option>
                 ))}
               </select>
+            )}
+
+            {/* Input/source — only shown when the verb+object combination has distinct input sources */}
+            {inputTypeOptions.length > 0 && (
+              <>
+                <span className="cmd-sentence-word">from</span>
+                <select
+                  id="cmd-input-select"
+                  className="cmd-sentence-select"
+                  value={inputType}
+                  onChange={(e) => { setInputType(e.target.value); }}
+                >
+                  <option value="All">— anything —</option>
+                  {inputTypeOptions.map((v) => (
+                    <option key={v} value={v}>{v}</option>
+                  ))}
+                </select>
+              </>
+            )}
+
+            {/* Reset — shown when any filter is active */}
+            {(intent !== "All" || objectType !== "All" || inputType !== "All") && (
+              <button
+                type="button"
+                className="cmd-sentence-reset"
+                onClick={() => { setIntent("All"); setObjectType("All"); setInputType("All"); }}
+              >
+                ✕ clear
+              </button>
             )}
           </div>
         )}
