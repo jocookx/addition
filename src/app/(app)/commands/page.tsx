@@ -21,6 +21,16 @@ function cleanCommandName(name: string) {
   return name.split(/\s*\|/)[0]?.trim() || name;
 }
 
+function decodeHtml(str: string): string {
+  return str
+    .replace(/&gt;/g, "›")
+    .replace(/&lt;/g, "<")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#160;/g, " ")
+    .replace(/&#8209;/g, "-");
+}
+
 function getTopCategory(command: CommandListItem): string {
   if (command.software === "Grasshopper") return command.addon || "General";
   const first = command.menu.split(/[>/|]/)[0]?.trim();
@@ -341,9 +351,42 @@ export default function CommandsPage() {
   }
 
   function renderCommandRow(command: CommandListItem) {
-    const cleanName = cleanCommandName(command.name);
+    const name = cleanCommandName(command.name);
     const isLearned = Boolean(learned[command.name]);
     const cardTerms = getSoftwareTerms(command.software);
+    const menuPath = decodeHtml(command.menu || "");
+
+    function AccessChipRow() {
+      if (cardTerms.accessType === "library") {
+        return (
+          <span className="cmd-row-access cmd-row-access--lib">
+            <span aria-hidden="true">⬡</span>
+            {command.addon || command.software}
+          </span>
+        );
+      }
+      if (cardTerms.accessType === "shortcut" && command.shortcut) {
+        const keys = command.shortcut.split(/\s*\+\s*/).filter(Boolean);
+        return (
+          <span className="cmd-row-access cmd-row-access--keys">
+            {keys.map((key, i) => (
+              <span key={`${key}-${i}`} className="tool-key-wrap">
+                {i > 0 && <span className="tool-key-sep" aria-hidden="true">+</span>}
+                <kbd className="tool-key tool-key--sm">{key}</kbd>
+              </span>
+            ))}
+          </span>
+        );
+      }
+      if (cardTerms.accessType === "command-line") {
+        return (
+          <span className="cmd-row-access cmd-row-access--cmd">
+            <span className="cmd-line-prompt">_</span>{name}
+          </span>
+        );
+      }
+      return null;
+    }
 
     return (
       <div
@@ -359,33 +402,13 @@ export default function CommandsPage() {
         <button
           type="button"
           className={`cmd-check ${isLearned ? "checked" : ""}`}
-          aria-label={isLearned ? `Mark ${cleanName} as not learned` : `Mark ${cleanName} as learned`}
+          aria-label={isLearned ? `Mark ${name} as not learned` : `Mark ${name} as learned`}
           aria-pressed={isLearned}
           onClick={(e) => { e.stopPropagation(); toggleLearned(command); }}
         />
-        <span className="cmd-list-name">{cleanName}</span>
-        <span className="cmd-list-meta">{command.menu || "—"}</span>
-        <span className="cmd-list-access">
-          {cardTerms.accessType === "library" ? (
-            <span className="cmd-line-chip cmd-gh-chip cmd-gh-chip--sm">
-              <span className="cmd-gh-chip-icon" aria-hidden="true">⬡</span>
-              {command.addon || command.software}
-            </span>
-          ) : cardTerms.accessType === "shortcut" && command.shortcut ? (
-            <span className="tool-key-combo">
-              {command.shortcut.split(/\s*\+\s*/).filter(Boolean).map((key, i) => (
-                <span key={`${key}-${i}`} className="tool-key-wrap">
-                  {i > 0 && <span className="tool-key-sep" aria-hidden="true">+</span>}
-                  <kbd className="tool-key tool-key--sm">{key}</kbd>
-                </span>
-              ))}
-            </span>
-          ) : cardTerms.accessType === "command-line" ? (
-            <span className="cmd-list-cmd">
-              <span className="cmd-line-prompt">_</span>{cleanName}
-            </span>
-          ) : null}
-        </span>
+        <span className="cmd-list-name">{name}</span>
+        {menuPath && <span className="cmd-list-meta">{menuPath}</span>}
+        <AccessChipRow />
       </div>
     );
   }

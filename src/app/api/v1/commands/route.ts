@@ -87,7 +87,11 @@ async function loadFallbackCommands(): Promise<CommandListItem[]> {
   const root = path.resolve(process.cwd(), "..", "..");
   const dataDir = path.join(root, "data");
   const entries = await fs.readdir(dataDir);
-  const commandCsvs = entries.filter((item) => item.startsWith("commands_") && item.endsWith(".csv"));
+  const commandCsvs = entries.filter((item) =>
+    item.startsWith("commands_") && item.endsWith(".csv") &&
+    // Skip original grasshopper CSV (old schema) — we use commands_grasshopper_enriched.csv
+    item !== "commands_grasshopper.csv"
+  );
   const commands: CommandListItem[] = [];
 
   for (const file of commandCsvs) {
@@ -104,11 +108,11 @@ async function loadFallbackCommands(): Promise<CommandListItem[]> {
         gif: cleanString(row.gif),
         shortcut: cleanString(row.shortcut),
         addon: cleanString(row.addon),
-        tags: row.tags ? row.tags.split(",").map((tag) => cleanString(tag)).filter(Boolean) : [],
-        intentCategories: [],
-        objectTypes: [],
-        outcomes: [],
-        difficulty: "beginner",
+        tags: row.tags ? row.tags.split("|").map((tag) => cleanString(tag)).filter(Boolean) : [],
+        intentCategories: row.intent_categories ? [cleanString(row.intent_categories)] : [],
+        objectTypes:      row.object_types      ? [cleanString(row.object_types)]      : [],
+        outcomes:         row.outcomes          ? [cleanString(row.outcomes)]           : [],
+        difficulty: cleanString(row.difficulty) || "beginner",
       });
     }
   }
