@@ -41,7 +41,7 @@ export async function POST(request: Request) {
   const auth = await requireUserFromRequest(request);
   if (!auth.ok) return auth.response;
 
-  let body: { plan?: unknown; returnTo?: unknown; interval?: unknown };
+  let body: { plan?: unknown; returnTo?: unknown; interval?: unknown; embedded?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -51,6 +51,7 @@ export async function POST(request: Request) {
   const plan = body.plan === "student" ? "student" : body.plan === "pro" ? "pro" : null;
   if (!plan) return errorResponse("plan must be 'pro' or 'student'.", 400);
   const interval = body.interval === "yearly" ? "yearly" : "monthly";
+  const isEmbedded = body.embedded === true;
 
   const { priceId, expected } = getPriceId(plan, interval);
   if (!priceId) {
@@ -82,32 +83,55 @@ export async function POST(request: Request) {
     return errorResponse(err instanceof Error ? err.message : "Stripe init failed", 500);
   }
 
-  let session: Stripe.Checkout.Session;
-  try {
-    session = await stripe.checkout.sessions.create({
-      mode: "subscription",
-      line_items: [{ price: priceId, quantity: 1 }],
-      client_reference_id: auth.user.id,
-      customer_email: auth.user.email ?? undefined,
-      success_url: `${origin}${returnTo}?checkout=success`,
-      cancel_url: `${origin}${returnTo}?checkout=cancelled`,
+  const sessionMeta = {
+    metadata: {
+      kind: "subscription",
+      plan,
+      interval,
+      userId: auth.user.id,
+    },
+    subscription_data: {
       metadata: {
-        kind: "subscription",
         plan,
         interval,
         userId: auth.user.id,
       },
-      subscription_data: {
-        metadata: {
-          plan,
-          interval,
-          userId: auth.user.id,
-        },
-      },
-    });
+    },
+  };
+
+  let session: Stripe.Checkout.Session;
+  try {
+    if (isEmbedded) {
+      session = await stripe.checkout.sessions.create({
+        ui_mode: "embedded",
+        mode: "subscription",
+        line_items: [{ price: priceId, quantity: 1 }],
+        client_reference_id: auth.user.id,
+        customer_email: auth.user.email ?? undefined,
+        return_url: `${origin}${returnTo}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+        ...sessionMeta,
+      });
+    } else {
+      session = await stripe.checkout.sessions.create({
+        mode: "subscription",
+        line_items: [{ price: priceId, quantity: 1 }],
+        client_reference_id: auth.user.id,
+        customer_email: auth.user.email ?? undefined,
+        success_url: `${origin}${returnTo}?checkout=success`,
+        cancel_url: `${origin}${returnTo}?checkout=cancelled`,
+        ...sessionMeta,
+      });
+    }
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Stripe session creation failed";
     return errorResponse(msg, 500);
+  }
+
+  if (isEmbedded) {
+    if (!session.client_secret) {
+      return errorResponse("Stripe did not return a client secret.", 500);
+    }
+    return okResponse({ clientSecret: session.client_secret });
   }
 
   if (!session.url) {

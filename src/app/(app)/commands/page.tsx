@@ -5,13 +5,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { AppFrame } from "@/components/legacy/AppFrame";
-import { CommandDetailModal } from "@/components/legacy/CommandDetailModal";
+import { ToolActionDetailModal } from "@/components/tool-action/ToolActionDetailModal";
 import { TagChips } from "@/components/legacy/TagChips";
 import type { CommandListItem } from "@/domain/command";
 import { getCommands } from "@/lib/api/commands";
 import { getToolkit } from "@/lib/api/toolkit";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { SOFTWARE_LIST, useSoftwareContext } from "@/lib/software-context";
+import { getSoftwareTerms } from "@/lib/software-terminology";
 import { rankBySmartMatch } from "@/lib/search/smart-match";
 import { getCommandGroups } from "@/lib/command-groups";
 
@@ -51,6 +52,7 @@ export default function CommandsPage() {
   const [authBootstrapped, setAuthBootstrapped] = useState(false);
   const [allCommands, setAllCommands] = useState<CommandListItem[]>([]);
   const [activeSoftware, setActiveSoftware] = useSoftwareContext();
+  const terms = getSoftwareTerms(activeSoftware);
   const [topCat, setTopCat] = useState("All");
   const [subCat, setSubCat] = useState("All");
   const [prevSoftware, setPrevSoftware] = useState<string | null>(activeSoftware);
@@ -236,34 +238,57 @@ export default function CommandsPage() {
             {command.menu ? ` | ${command.menu}` : ""}
           </div>
           <TagChips tags={command.tags} />
-          {command.software === "Grasshopper" ? (
-            <div className="cmd-line-chip cmd-gh-chip">
-              <span className="cmd-gh-chip-icon">⬡</span>
-              {command.addon || "Grasshopper"}
-            </div>
-          ) : (
-            <div className="cmd-line-chip">
-              <span className="cmd-line-prompt">_</span>
-              <span className="cmd-line-name">{cleanName}</span>
-              <button
-                type="button"
-                className={`cmd-copy-btn${copiedId === command.id ? " copied" : ""}`}
-                aria-label={`Copy ${cleanName} command`}
-                onClick={(e) => copyCommand(e, command)}
-              >
-                {copiedId === command.id ? (
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                ) : (
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <rect x="4" y="1" width="7" height="8" rx="1" stroke="currentColor" strokeWidth="1.2"/>
-                    <path d="M1 4h2v6a1 1 0 001 1h5v2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                  </svg>
-                )}
-              </button>
-            </div>
-          )}
+          {(() => {
+            const cardTerms = getSoftwareTerms(command.software);
+            if (cardTerms.accessType === "library") {
+              // Grasshopper components, Dynamo nodes — show library chip
+              return (
+                <div className="cmd-line-chip cmd-gh-chip">
+                  <span className="cmd-gh-chip-icon" aria-hidden="true">⬡</span>
+                  {command.addon || command.software}
+                </div>
+              );
+            }
+            if (cardTerms.accessType === "shortcut") {
+              // Shortcuts — show shortcut keys or a "No shortcut" placeholder
+              if (!command.shortcut) return null;
+              const keys = command.shortcut.split(/\s*\+\s*/).filter(Boolean);
+              return (
+                <div className="tool-key-combo" style={{ marginTop: 6 }}>
+                  {keys.map((key, i) => (
+                    <span key={`${key}-${i}`} className="tool-key-wrap">
+                      {i > 0 && <span className="tool-key-sep" aria-hidden="true">+</span>}
+                      <kbd className="tool-key">{key}</kbd>
+                    </span>
+                  ))}
+                </div>
+              );
+            }
+            // Default: command-line chip (Rhino)
+            return (
+              <div className="cmd-line-chip">
+                <span className="cmd-line-prompt">_</span>
+                <span className="cmd-line-name">{cleanName}</span>
+                <button
+                  type="button"
+                  className={`cmd-copy-btn${copiedId === command.id ? " copied" : ""}`}
+                  aria-label={`Copy ${cleanName} command`}
+                  onClick={(e) => copyCommand(e, command)}
+                >
+                  {copiedId === command.id ? (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ) : (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <rect x="4" y="1" width="7" height="8" rx="1" stroke="currentColor" strokeWidth="1.2"/>
+                      <path d="M1 4h2v6a1 1 0 001 1h5v2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+            );
+          })()}
         </div>
       </article>
     );
@@ -273,8 +298,8 @@ export default function CommandsPage() {
 
   return (
     <AppFrame
-      title="Commands"
-      subtitle="Search and browse commands across every software."
+      title={activeSoftware ? `${activeSoftware} ${terms.pageTitle}` : terms.pageTitle}
+      subtitle={activeSoftware ? `Search and browse ${terms.countLabel} for ${activeSoftware}.` : "Search and browse commands across every software."}
       toolbarQuery={query}
       onToolbarQueryChange={setQuery}
     >
@@ -284,7 +309,7 @@ export default function CommandsPage() {
         <div className="commands-toolbar">
           <div className="commands-toolbar-right">
             <span className="meta">
-              {allCommands.length ? `${filteredCommands.length} commands` : status}
+              {allCommands.length ? `${filteredCommands.length} ${terms.countLabel}` : status}
             </span>
           </div>
         </div>
@@ -338,7 +363,7 @@ export default function CommandsPage() {
         {activeSoftware && topCatOptions.length > 1 && (
           <div className="cmd-filter-strip">
             <div className="cmd-filter-row">
-              <label className="cmd-intent-label" htmlFor="cmd-topcat-select">Toolbar</label>
+              <label className="cmd-intent-label" htmlFor="cmd-topcat-select">{terms.menuGroupLabel}</label>
               <select
                 id="cmd-topcat-select"
                 className="cmd-intent-select"
@@ -434,7 +459,7 @@ export default function CommandsPage() {
       </div>
 
       {selected ? (
-        <CommandDetailModal
+        <ToolActionDetailModal
           command={selected}
           commands={allCommands}
           learned={Boolean(learned[selected.name])}

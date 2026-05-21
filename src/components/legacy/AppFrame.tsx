@@ -5,9 +5,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { getLearningSummary } from "@/lib/api/learning-summary";
-import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { SOFTWARE_LIST, useSoftwareContext, type SoftwareId } from "@/lib/software-context";
 import { WorkshopCartButton } from "@/components/workshop-cart/WorkshopCartDrawer";
+import { UpgradeModal } from "@/components/upgrade/UpgradeModal";
 
 type AppFrameProps = {
   children: React.ReactNode;
@@ -270,27 +270,19 @@ export function AppFrame({
     window.localStorage.setItem("addition-theme", nextTheme);
   }
 
-  const [upgradeError, setUpgradeError] = useState<string | null>(null);
-  const [upgradeBusy, setUpgradeBusy] = useState(false);
+  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
+  const [upgradeAccessToken, setUpgradeAccessToken] = useState<string | null>(null);
 
   async function handleSidebarUpgrade(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    setUpgradeError(null);
-    setUpgradeBusy(true);
-    try {
-      const supabase = getBrowserSupabaseClient();
-      if (!supabase) throw new Error("Auth not available");
-      const { data } = await supabase.auth.getSession();
-      const token = data.session?.access_token;
-      if (!token) { router.push("/auth?next=/dashboard"); return; }
-      const url = await getBillingCheckoutUrl("pro", token, "/dashboard");
-      window.location.href = url;
-    } catch (err) {
-      setUpgradeError(err instanceof Error ? err.message : "Could not open checkout. Please try again.");
-    } finally {
-      setUpgradeBusy(false);
-    }
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) { router.push("/auth?next=/dashboard"); return; }
+    const { data } = await supabase.auth.getSession();
+    const token = data.session?.access_token;
+    if (!token) { router.push("/auth?next=/dashboard"); return; }
+    setUpgradeAccessToken(token);
+    setUpgradeModalOpen(true);
   }
 
   async function handleLogout() {
@@ -388,15 +380,11 @@ export function AppFrame({
           {!isPro && (
             <button
               type="button"
-              className={`sidebar-upgrade-btn${upgradeBusy ? " busy" : ""}`}
+              className="sidebar-upgrade-btn"
               onClick={(e) => void handleSidebarUpgrade(e)}
-              disabled={upgradeBusy}
             >
-              {upgradeBusy ? "Opening…" : "Upgrade to Pro →"}
+              Upgrade to Pro →
             </button>
-          )}
-          {upgradeError && (
-            <p className="sidebar-upgrade-error">{upgradeError}</p>
           )}
         </div>
 
@@ -515,6 +503,13 @@ export function AppFrame({
 
         <section id="content-slot">{children}</section>
       </main>
+
+      <UpgradeModal
+        isOpen={upgradeModalOpen}
+        onClose={() => setUpgradeModalOpen(false)}
+        accessToken={upgradeAccessToken}
+        returnTo="/dashboard"
+      />
     </div>
   );
 }

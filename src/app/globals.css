@@ -14959,3 +14959,398 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
     font-size: 20px;
   }
 }
+
+
+/* ── Upgrade / plan selection modal ──────────────────────────────────────── */
+
+.upgrade-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+}
+
+.upgrade-modal {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
+  background: #111113;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  color: #f1f1f1;
+  padding: clamp(28px, 4vw, 44px);
+}
+
+.upgrade-modal--checkout {
+  width: min(560px, 100%);
+  padding: 28px 24px;
+}
+
+.upgrade-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.upgrade-modal-close:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+.upgrade-select-head { margin-bottom: 24px; }
+
+.upgrade-select-title {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.upgrade-select-sub {
+  margin: 0;
+  color: rgba(236, 236, 242, 0.58);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.upgrade-billing-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 24px;
+}
+
+.upgrade-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: rgba(236, 236, 242, 0.55);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+.upgrade-toggle-btn:hover { color: rgba(236, 236, 242, 0.9); }
+.upgrade-toggle-btn.active {
+  border-color: rgba(124, 58, 237, 0.35);
+  background: rgba(124, 58, 237, 0.18);
+  color: #c4b5fd;
+}
+
+.upgrade-toggle-save {
+  display: inline-flex;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(102, 217, 142, 0.18);
+  color: #66d98e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.upgrade-plan-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 560px) {
+  .upgrade-plan-cards { grid-template-columns: 1fr; }
+}
+
+.upgrade-plan-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.032);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+  font-family: var(--font-body);
+}
+.upgrade-plan-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.055);
+}
+.upgrade-plan-card.selected {
+  border-color: rgba(124, 58, 237, 0.55);
+  background: rgba(124, 58, 237, 0.10);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.22), 0 8px 30px rgba(124, 58, 237, 0.10);
+}
+.upgrade-plan-card--student.selected {
+  border-color: rgba(6, 182, 212, 0.45);
+  background: rgba(6, 182, 212, 0.08);
+  box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.20);
+}
+
+.upgrade-plan-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.upgrade-plan-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.upgrade-plan-name { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+
+.upgrade-plan-badge {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.22);
+  color: #c4b5fd;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.upgrade-plan-radio {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  transition: border-color 0.15s, background 0.15s;
+  margin-top: 2px;
+}
+.upgrade-plan-radio--on { border-color: #7c3aed; background: #7c3aed; box-shadow: inset 0 0 0 3px #111113; }
+.upgrade-plan-card--student .upgrade-plan-radio--on { border-color: #06b6d4; background: #06b6d4; }
+
+.upgrade-plan-price-row { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
+
+.upgrade-plan-amount { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+.upgrade-plan-amount--unknown { color: rgba(236, 236, 242, 0.35); }
+.upgrade-plan-per { font-size: 14px; color: rgba(236, 236, 242, 0.48); font-weight: 500; }
+.upgrade-plan-billed-note { font-size: 12px; color: rgba(236, 236, 242, 0.38); margin-left: 4px; }
+
+.upgrade-plan-savings {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(102, 217, 142, 0.14);
+  color: #66d98e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.upgrade-plan-features { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.upgrade-plan-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: rgba(236, 236, 242, 0.72); line-height: 1.4; }
+.upgrade-plan-features li svg { flex-shrink: 0; margin-top: 2px; color: #66d98e; }
+.upgrade-plan-card--student .upgrade-plan-features li svg { color: #67e8f9; }
+
+.upgrade-plan-note { margin: 4px 0 0; padding: 8px 10px; border-radius: 8px; background: rgba(255, 255, 255, 0.04); font-size: 12px; color: rgba(236, 236, 242, 0.45); line-height: 1.4; }
+
+.upgrade-modal-error {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(240, 96, 112, 0.25);
+  background: rgba(240, 96, 112, 0.10);
+  color: #f06070;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.upgrade-select-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.upgrade-continue-btn { min-height: 48px; padding-inline: 24px; font-size: 15px; }
+.upgrade-checkout-wrap { display: flex; flex-direction: column; gap: 16px; }
+
+.upgrade-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(236, 236, 242, 0.60);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  font-family: var(--font-body);
+}
+.upgrade-back-btn:hover { background: rgba(255, 255, 255, 0.07); color: #fff; border-color: rgba(255, 255, 255, 0.18); }
+
+html[data-theme="light"] .upgrade-modal { background: #ffffff; border-color: rgba(0,0,0,0.08); color: #1a1a2e; box-shadow: 0 40px 120px rgba(0,0,0,0.18); }
+html[data-theme="light"] .upgrade-modal-close { border-color: rgba(0,0,0,0.10); background: rgba(0,0,0,0.04); color: rgba(0,0,0,0.45); }
+html[data-theme="light"] .upgrade-modal-close:hover { background: rgba(0,0,0,0.08); color: #000; }
+html[data-theme="light"] .upgrade-select-title { color: #111; }
+html[data-theme="light"] .upgrade-select-sub { color: rgba(20,20,40,0.55); }
+html[data-theme="light"] .upgrade-billing-toggle { border-color: rgba(0,0,0,0.10); background: rgba(0,0,0,0.04); }
+html[data-theme="light"] .upgrade-toggle-btn { color: rgba(20,20,40,0.50); }
+html[data-theme="light"] .upgrade-toggle-btn:hover { color: rgba(20,20,40,0.90); }
+html[data-theme="light"] .upgrade-plan-card { border-color: rgba(0,0,0,0.09); background: rgba(0,0,0,0.025); }
+html[data-theme="light"] .upgrade-plan-card:hover { border-color: rgba(0,0,0,0.18); background: rgba(0,0,0,0.05); }
+html[data-theme="light"] .upgrade-plan-card.selected { border-color: rgba(124,58,237,0.50); background: rgba(124,58,237,0.07); }
+html[data-theme="light"] .upgrade-plan-radio { border-color: rgba(0,0,0,0.20); }
+html[data-theme="light"] .upgrade-plan-radio--on { box-shadow: inset 0 0 0 3px #ffffff; }
+html[data-theme="light"] .upgrade-plan-name { color: #111; }
+html[data-theme="light"] .upgrade-plan-amount { color: #111; }
+html[data-theme="light"] .upgrade-plan-per, html[data-theme="light"] .upgrade-plan-billed-note { color: rgba(20,20,40,0.45); }
+html[data-theme="light"] .upgrade-plan-features li { color: rgba(20,20,40,0.72); }
+html[data-theme="light"] .upgrade-plan-note { background: rgba(0,0,0,0.04); color: rgba(20,20,40,0.45); }
+html[data-theme="light"] .upgrade-back-btn { border-color: rgba(0,0,0,0.10); color: rgba(20,20,40,0.55); }
+html[data-theme="light"] .upgrade-back-btn:hover { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.18); color: #111; }
+
+
+/* ── ToolActionDetailModal — keyboard keys, library paths, intent row ──────── */
+
+/* Keyboard key combo */
+.tool-key-combo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tool-key-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tool-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom-width: 3px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(236, 236, 242, 0.92);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  user-select: none;
+}
+.tool-key-sep {
+  color: rgba(255, 255, 255, 0.30);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Library path breadcrumb (Grasshopper, Dynamo) */
+.tool-library-path {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tool-library-path-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tool-path-sep {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 14px;
+  font-weight: 400;
+}
+.tool-path-part {
+  font-size: 13px;
+  color: rgba(236, 236, 242, 0.85);
+  font-weight: 500;
+}
+
+/* Grasshopper chip variant for modal (slightly larger) */
+.cmd-gh-chip--modal {
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+/* Intent row — what it does / with what / result */
+.tool-intent-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.tool-intent-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+.tool-intent-chip--verb {
+  background: rgba(124, 58, 237, 0.18);
+  color: rgb(167, 139, 250);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+}
+.tool-intent-chip--obj {
+  background: rgba(59, 130, 246, 0.14);
+  color: rgb(147, 197, 253);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+}
+.tool-intent-chip--result {
+  background: rgba(34, 197, 94, 0.12);
+  color: rgb(134, 239, 172);
+  border: 1px solid rgba(34, 197, 94, 0.20);
+}
+.tool-intent-arrow {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 13px;
+}
+
+/* Light mode overrides */
+html[data-theme="light"] .tool-key {
+  border-color: rgba(0, 0, 0, 0.16);
+  border-bottom-color: rgba(0, 0, 0, 0.28);
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(20, 20, 40, 0.85);
+}
+html[data-theme="light"] .tool-key-sep { color: rgba(0, 0, 0, 0.30); }
+html[data-theme="light"] .tool-path-sep { color: rgba(0, 0, 0, 0.28); }
+html[data-theme="light"] .tool-path-part { color: rgba(20, 20, 40, 0.80); }
+html[data-theme="light"] .tool-intent-chip--verb { background: rgba(124, 58, 237, 0.10); color: rgb(109, 40, 217); border-color: rgba(124, 58, 237, 0.20); }
+html[data-theme="light"] .tool-intent-chip--obj { background: rgba(59, 130, 246, 0.10); color: rgb(37, 99, 235); border-color: rgba(59, 130, 246, 0.18); }
+html[data-theme="light"] .tool-intent-chip--result { background: rgba(34, 197, 94, 0.10); color: rgb(21, 128, 61); border-color: rgba(34, 197, 94, 0.18); }
+html[data-theme="light"] .tool-intent-arrow { color: rgba(0, 0, 0, 0.28); }

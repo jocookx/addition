@@ -17,6 +17,8 @@ type CommandRow = {
   source: string | null;
   icon: string | null;
   gif: string | null;
+  shortcut: string | null;
+  addon: string | null;
   tags: string[] | null;
   intent_categories: string[] | null;
   object_types: string[] | null;
@@ -231,7 +233,7 @@ export async function GET(req: Request) {
       const db = createSupabaseServiceClient();
       let query = db
         .from("addition_commands")
-        .select("id,name,software,menu,description,source,icon,gif,tags,intent_categories,object_types,outcomes,difficulty")
+        .select("id,name,software,menu,description,source,icon,gif,shortcut,addon,tags,intent_categories,object_types,outcomes,difficulty")
         .order("software", { ascending: true })
         .order("name", { ascending: true })
         .limit(5000);
@@ -250,8 +252,8 @@ export async function GET(req: Request) {
         source: cleanString(row.source),
         icon: cleanString(row.icon),
         gif: cleanString(row.gif),
-        shortcut: "",
-        addon: "",
+        shortcut: cleanString(row.shortcut),
+        addon: cleanString(row.addon),
         tags: Array.isArray(row.tags) ? row.tags.map((tag) => cleanString(tag)).filter(Boolean) : [],
         intentCategories: Array.isArray(row.intent_categories) ? row.intent_categories : [],
         objectTypes: Array.isArray(row.object_types) ? row.object_types : [],

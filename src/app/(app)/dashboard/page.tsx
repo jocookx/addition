@@ -10,6 +10,7 @@ import type { UserProfile } from "@/domain/user-profile";
 import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { getLearningSummary } from "@/lib/api/learning-summary";
+import { UpgradeModal } from "@/components/upgrade/UpgradeModal";
 import { getPaths, getMyEnrolments } from "@/lib/api/paths";
 import { getMyRegisteredWorkshops } from "@/lib/api/workshops";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
@@ -589,23 +590,7 @@ function DashboardPageInner() {
     router.push(`/learn?${params}`);
   }, [router]);
 
-  const [upgradeError, setUpgradeError] = useState("");
-  const [upgradeBusy, setUpgradeBusy] = useState(false);
-
-  const handleUpgrade = useCallback(async () => {
-    const token = session?.access_token;
-    if (!token) return;
-    setUpgradeError("");
-    setUpgradeBusy(true);
-    try {
-      const url = await getBillingCheckoutUrl("pro", token, "/dashboard");
-      window.location.href = url;
-    } catch (err) {
-      setUpgradeError(err instanceof Error ? err.message : "Could not open checkout. Please try again.");
-    } finally {
-      setUpgradeBusy(false);
-    }
-  }, [session?.access_token]);
+  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
 
   const clearGateway = useCallback(() => {
     setGatewayIntent(null);
@@ -713,14 +698,10 @@ function DashboardPageInner() {
               <button
                 type="button"
                 className="primary-button dash-upgrade-btn"
-                onClick={() => void handleUpgrade()}
-                disabled={upgradeBusy}
+                onClick={() => setUpgradeModalOpen(true)}
               >
-                {upgradeBusy ? "Opening…" : "Upgrade to Pro"}
+                Upgrade to Pro
               </button>
-              {upgradeError && (
-                <p className="dash-upgrade-error">{upgradeError}</p>
-              )}
             </div>
           )}
         </header>
@@ -763,6 +744,12 @@ function DashboardPageInner() {
           onContinue={() => void handleGatewayContinue()}
         />
       )}
+      <UpgradeModal
+        isOpen={upgradeModalOpen}
+        onClose={() => setUpgradeModalOpen(false)}
+        accessToken={session?.access_token ?? null}
+        returnTo="/dashboard"
+      />
     </AppFrame>
   );
 }
