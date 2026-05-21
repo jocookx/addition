@@ -61,6 +61,7 @@ export default function CommandsPage() {
   if (prevSoftware !== activeSoftware) setPrevSoftware(activeSoftware);
   const [intent, setIntent]         = useState("All");
   const [objectType, setObjectType] = useState("All");
+  const [viewMode, setViewMode]     = useState<"grid" | "row">("grid");
   const [query, setQuery] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selected, setSelected] = useState<CommandListItem | null>(null);
@@ -154,6 +155,20 @@ export default function CommandsPage() {
     const sorted = Array.from(values).sort((a, b) => a.localeCompare(b));
     return sorted.length > 0 ? ["All", ...sorted] : [];
   }, [softwareCommands, effectiveTopCat]);
+
+  /** Intent verbs that actually exist in the current software's data */
+  const intentOptions = useMemo(() => {
+    const values = new Set<string>();
+    softwareCommands.forEach((c) => (c.intentCategories ?? []).forEach((v) => values.add(v)));
+    return Array.from(values).sort();
+  }, [softwareCommands]);
+
+  /** Object types that actually exist in the current software's data */
+  const objectTypeOptions = useMemo(() => {
+    const values = new Set<string>();
+    softwareCommands.forEach((c) => (c.objectTypes ?? []).forEach((v) => values.add(v)));
+    return Array.from(values).sort();
+  }, [softwareCommands]);
 
   const filteredCommands = useMemo(() => {
     // Non-text filters first
@@ -292,6 +307,56 @@ export default function CommandsPage() {
     );
   }
 
+  function renderCommandRow(command: CommandListItem) {
+    const cleanName = cleanCommandName(command.name);
+    const isLearned = Boolean(learned[command.name]);
+    const cardTerms = getSoftwareTerms(command.software);
+
+    return (
+      <div
+        key={command.id}
+        className="cmd-list-row"
+        role="button"
+        tabIndex={0}
+        onClick={() => setSelected(command)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(command); }
+        }}
+      >
+        <button
+          type="button"
+          className={`cmd-check ${isLearned ? "checked" : ""}`}
+          aria-label={isLearned ? `Mark ${cleanName} as not learned` : `Mark ${cleanName} as learned`}
+          aria-pressed={isLearned}
+          onClick={(e) => { e.stopPropagation(); toggleLearned(command); }}
+        />
+        <span className="cmd-list-name">{cleanName}</span>
+        <span className="cmd-list-meta">{command.menu || "—"}</span>
+        <span className="cmd-list-access">
+          {cardTerms.accessType === "library" ? (
+            <span className="cmd-line-chip cmd-gh-chip cmd-gh-chip--sm">
+              <span className="cmd-gh-chip-icon" aria-hidden="true">⬡</span>
+              {command.addon || command.software}
+            </span>
+          ) : cardTerms.accessType === "shortcut" && command.shortcut ? (
+            <span className="tool-key-combo">
+              {command.shortcut.split(/\s*\+\s*/).filter(Boolean).map((key, i) => (
+                <span key={`${key}-${i}`} className="tool-key-wrap">
+                  {i > 0 && <span className="tool-key-sep" aria-hidden="true">+</span>}
+                  <kbd className="tool-key tool-key--sm">{key}</kbd>
+                </span>
+              ))}
+            </span>
+          ) : cardTerms.accessType === "command-line" ? (
+            <span className="cmd-list-cmd">
+              <span className="cmd-line-prompt">_</span>{cleanName}
+            </span>
+          ) : null}
+        </span>
+      </div>
+    );
+  }
+
   const noSoftwareSelected = !activeSoftware && !query.trim();
 
   return (
@@ -309,51 +374,68 @@ export default function CommandsPage() {
             <span className="meta">
               {allCommands.length ? `${filteredCommands.length} ${terms.countLabel}` : status}
             </span>
+            <div className="view-toggle" role="group" aria-label="View mode">
+              <button
+                type="button"
+                className={`view-toggle-btn${viewMode === "grid" ? " active" : ""}`}
+                aria-label="Grid view"
+                aria-pressed={viewMode === "grid"}
+                onClick={() => setViewMode("grid")}
+              >
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                  <rect x="9" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                  <rect x="1" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                  <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                </svg>
+              </button>
+              <button
+                type="button"
+                className={`view-toggle-btn${viewMode === "row" ? " active" : ""}`}
+                aria-label="List view"
+                aria-pressed={viewMode === "row"}
+                onClick={() => setViewMode("row")}
+              >
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="1" y="2" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                  <rect x="1" y="7" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                  <rect x="1" y="12" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Intent finder — dropdowns */}
-        {activeSoftware && !!allCommands.length && (
-          <div className="cmd-intent-row">
-            <div className="cmd-intent-group">
-              <label className="cmd-intent-label" htmlFor="cmd-intent-select">What do you want to do?</label>
+        {/* Intent sentence filter — only shown when the software has intent data */}
+        {activeSoftware && !!allCommands.length && (intentOptions.length > 0 || objectTypeOptions.length > 0) && (
+          <div className="cmd-sentence-filter">
+            <span className="cmd-sentence-word">I want to</span>
+            {intentOptions.length > 0 && (
               <select
                 id="cmd-intent-select"
-                className="cmd-intent-select"
+                className="cmd-sentence-select"
                 value={intent}
                 onChange={(e) => { setIntent(e.target.value); setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware); }}
               >
-                <option value="All">All actions</option>
-                <option value="create">Create</option>
-                <option value="edit">Edit</option>
-                <option value="transform">Transform</option>
-                <option value="organise">Organise</option>
-                <option value="document">Document</option>
-                <option value="analyse">Analyse</option>
-                <option value="visualise">Visualise</option>
+                <option value="All">— anything —</option>
+                {intentOptions.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
               </select>
-            </div>
-            <div className="cmd-intent-group">
-              <label className="cmd-intent-label" htmlFor="cmd-object-select">With what?</label>
+            )}
+            {objectTypeOptions.length > 0 && (
               <select
                 id="cmd-object-select"
-                className="cmd-intent-select"
+                className="cmd-sentence-select"
                 value={objectType}
                 onChange={(e) => { setObjectType(e.target.value); setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware); }}
               >
-                <option value="All">All types</option>
-                <option value="curve">Curve</option>
-                <option value="surface">Surface</option>
-                <option value="solid">Solid</option>
-                <option value="subd">SubD</option>
-                <option value="mesh">Mesh</option>
-                <option value="point">Point</option>
-                <option value="annotation">Annotation</option>
-                <option value="layout">Layout</option>
-                <option value="layer">Layers</option>
-                <option value="view">View</option>
+                <option value="All">— any object —</option>
+                {objectTypeOptions.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
               </select>
-            </div>
+            )}
           </div>
         )}
 
@@ -420,6 +502,11 @@ export default function CommandsPage() {
             ? getCommandGroups(activeSoftware, intent, objectType)
             : null;
 
+          const renderItems = (cmds: CommandListItem[]) =>
+            viewMode === "row"
+              ? <div className="commands-list">{cmds.map(renderCommandRow)}</div>
+              : <div className="commands-grid">{cmds.map(renderCommandCard)}</div>;
+
           if (groups) {
             const byName = new Map(filteredCommands.map((c) => [c.name.toLowerCase(), c]));
             const rendered: React.ReactNode[] = [];
@@ -434,24 +521,23 @@ export default function CommandsPage() {
               rendered.push(
                 <div key={`${group.label}-${rendered.length}`} className="cmd-group-section">
                   <p className="cmd-group-label">{group.label}</p>
-                  <div className="commands-grid">{groupCmds.map(renderCommandCard)}</div>
+                  {renderItems(groupCmds)}
                 </div>
               );
             }
-            // Ungrouped remainder
             const remainder = filteredCommands.filter((c) => !used.has(c.name.toLowerCase()));
             if (remainder.length > 0) {
               rendered.push(
                 <div key="other" className="cmd-group-section">
                   <p className="cmd-group-label">Other</p>
-                  <div className="commands-grid">{remainder.map(renderCommandCard)}</div>
+                  {renderItems(remainder)}
                 </div>
               );
             }
             return <>{rendered}</>;
           }
 
-          return <div className="commands-grid">{filteredCommands.map(renderCommandCard)}</div>;
+          return renderItems(filteredCommands);
         })()}
 
       </div>
