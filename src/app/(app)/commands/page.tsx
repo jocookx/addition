@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import { ToolActionDetailModal } from "@/components/tool-action/ToolActionDetailModal";
-import { TagChips } from "@/components/legacy/TagChips";
 import type { CommandListItem } from "@/domain/command";
 import { getCommands } from "@/lib/api/commands";
 import { getToolkit } from "@/lib/api/toolkit";
@@ -237,7 +236,6 @@ export default function CommandsPage() {
             {command.software}
             {command.menu ? ` | ${command.menu}` : ""}
           </div>
-          <TagChips tags={command.tags} />
           {(() => {
             const cardTerms = getSoftwareTerms(command.software);
             if (cardTerms.accessType === "library") {
