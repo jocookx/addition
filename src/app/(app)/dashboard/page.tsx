@@ -5,13 +5,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import type { Session } from "@supabase/supabase-js";
 import type { LearningSummary } from "@/domain/learning-summary";
-import type { LearningPathListItem, PathEnrolment } from "@/domain/learning-path";
+import type { LearningPathListItem, PathEnrolment, PathLevel } from "@/domain/learning-path";
 import type { UserProfile } from "@/domain/user-profile";
 import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { getLearningSummary } from "@/lib/api/learning-summary";
 import { UpgradeModal } from "@/components/upgrade/UpgradeModal";
-import { getPaths, getMyEnrolments } from "@/lib/api/paths";
+import { getPaths, getPathDetail, getMyEnrolments } from "@/lib/api/paths";
 import { getMyRegisteredWorkshops } from "@/lib/api/workshops";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
@@ -33,10 +33,25 @@ type UpcomingWorkshop = {
   price?: string | null;
 };
 
-type ActivePathSummary = {
+type NextPathCourse = {
+  id: string;
   title: string;
+  software: string;
+  percentComplete: number;
+  nextLessonId: string | null;
+  courseIndex: number;
+  totalCourses: number;
+};
+
+type ActivePathSummary = {
+  pathId: string;
+  title: string;
+  level: PathLevel;
   percent: number;
   milestone?: string;
+  completedCourses: number;
+  totalCourses: number;
+  nextCourse: NextPathCourse | null;
 };
 
 const QUICK_SEARCHES = ["Offset walls", "Array windows", "Clean curves", "Export drawings"];
@@ -80,6 +95,74 @@ function isFutureWorkshop(ws: UpcomingWorkshop) {
   return date >= today;
 }
 
+const LEVEL_LABELS: Record<PathLevel, string> = {
+  explorer: "Beginner",
+  improver: "Intermediate",
+  refiner:  "Advanced",
+};
+
+/** Hero when user has an active learning path — shows path + what's next course. */
+function PathHero({ activePath, onContinue }: {
+  activePath: ActivePathSummary;
+  onContinue: (courseId: string, lessonId: string | null) => void;
+}) {
+  const { nextCourse } = activePath;
+  const isStarted = (nextCourse?.percentComplete ?? 0) > 0;
+  return (
+    <div className="home-hero home-path-hero glass-panel">
+      <div className="home-hero-body">
+        {/* Path identity */}
+        <div className="home-path-hero-identity">
+          <span className={`pl-level-badge pl-level-badge--${activePath.level}`}>
+            {LEVEL_LABELS[activePath.level]}
+          </span>
+          <span className="home-path-hero-name">{activePath.title}</span>
+          <span className="home-path-hero-progress-label">
+            {activePath.completedCourses} of {activePath.totalCourses} courses complete
+          </span>
+        </div>
+
+        {nextCourse ? (
+          <>
+            <span className="home-hero-eyebrow">What&apos;s Next</span>
+            <h2 className="home-hero-course">{nextCourse.title}</h2>
+            {nextCourse.software && (
+              <span className="home-hero-module">
+                {nextCourse.software} · Course {nextCourse.courseIndex + 1} of {nextCourse.totalCourses}
+              </span>
+            )}
+            <div className="home-hero-foot">
+              <div className="home-hero-progress">
+                <div className="home-hero-bar">
+                  <span style={{ width: `${nextCourse.percentComplete}%` }} />
+                </div>
+                <span>{isStarted ? `${nextCourse.percentComplete}% complete` : "Not started yet"}</span>
+              </div>
+              <button
+                className="primary-button home-hero-cta"
+                type="button"
+                onClick={() => onContinue(nextCourse.id, nextCourse.nextLessonId)}
+              >
+                {isStarted ? "Resume Course" : "Start Course"} →
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <span className="home-hero-eyebrow">Path Complete</span>
+            <h2 className="home-hero-course">You&apos;ve finished this path</h2>
+            <p className="home-hero-why">All courses complete. Explore another path to keep growing.</p>
+            <Link href="/paths" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
+              Explore Paths →
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Hero when no path is enrolled — shows last active course or browse prompt. */
 function ContinueHero({ course, onContinue }: {
   course: LearningSummary["nextUp"];
   onContinue: (courseId: string, lessonId: string | null) => void;
@@ -91,9 +174,14 @@ function ContinueHero({ course, onContinue }: {
           <span className="home-hero-eyebrow">Start Learning</span>
           <h2 className="home-hero-course">Ready when you are</h2>
           <p className="home-hero-why">Choose a course and start building real skills — one lesson at a time, at your own pace.</p>
-          <Link href="/learn" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
-            Browse Courses →
-          </Link>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
+            <Link href="/learn" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
+              Browse Courses →
+            </Link>
+            <Link href="/paths" className="ghost-btn home-hero-cta" style={{ textDecoration: "none" }}>
+              Join a Path →
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -244,12 +332,6 @@ function WorkshopCard({ ws }: { ws: UpcomingWorkshop | null }) {
 function ProgressTab() {
   return <div className="dash-tab-empty glass-panel">My Progress — coming next.</div>;
 }
-
-const LEVEL_LABELS: Record<string, string> = {
-  explorer: "Beginner",
-  improver: "Intermediate",
-  refiner:  "Advanced",
-};
 
 function PathTab({ token }: { token: string }) {
   const router = useRouter();
@@ -582,16 +664,53 @@ function DashboardPageInner() {
       })
       .catch((e) => { if (!canceled) { setError(e instanceof Error ? e.message : "Failed to load"); setLoading(false); } });
 
-    Promise.all([getPaths(), getMyEnrolments(token)])
-      .then(([paths, enrolments]) => {
+    Promise.all([getPaths(), getMyEnrolments(token), getLearningSummary(token).catch(() => null)])
+      .then(async ([paths, enrolments, earlySum]) => {
         if (canceled) return;
-        const enrolledPathIds = new Set(enrolments.map((enrolment) => enrolment.pathId));
-        const firstPath = paths.find((path) => enrolledPathIds.has(path.id)) ?? null;
-        setActivePath(firstPath ? {
+        const enrolledPathIds = new Set(enrolments.map((e) => e.pathId));
+        const firstPath = paths.find((p) => enrolledPathIds.has(p.id)) ?? null;
+        if (!firstPath) { setActivePath(null); return; }
+
+        // Fetch path detail to get ordered course list
+        const detail = await getPathDetail(firstPath.id).catch(() => null);
+        if (canceled) return;
+
+        // Build progress map from summary courses
+        const sumCourses = earlySum?.courses ?? [];
+        const progMap = new Map(sumCourses.map((c) => [c.courseId, c]));
+
+        const totalCourses = detail?.courses.length ?? 0;
+        const completedCourses = detail?.courses.filter((c) => progMap.get(c.id)?.status === "completed").length ?? 0;
+
+        // Find first non-completed course in path order
+        const nextRaw = detail?.courses.find((c) => progMap.get(c.id)?.status !== "completed") ?? null;
+        const nextProg = nextRaw ? progMap.get(nextRaw.id) : null;
+
+        // nextLessonId: use summary.nextUp if it matches, otherwise null (start from beginning)
+        const nextLessonId = (earlySum?.nextUp?.courseId === nextRaw?.id)
+          ? (earlySum?.nextUp?.nextLessonId ?? null)
+          : null;
+
+        const nextCourse: NextPathCourse | null = nextRaw ? {
+          id: nextRaw.id,
+          title: nextRaw.title,
+          software: nextRaw.software,
+          percentComplete: nextProg?.percentComplete ?? 0,
+          nextLessonId,
+          courseIndex: detail?.courses.indexOf(nextRaw) ?? 0,
+          totalCourses,
+        } : null;
+
+        setActivePath({
+          pathId: firstPath.id,
           title: firstPath.title,
-          percent: 0,
+          level: firstPath.level,
+          percent: totalCourses > 0 ? Math.round((completedCourses / totalCourses) * 100) : 0,
           milestone: firstPath.outcome,
-        } : null);
+          completedCourses,
+          totalCourses,
+          nextCourse,
+        });
       })
       .catch(() => {
         if (!canceled) setActivePath(null);
@@ -739,12 +858,20 @@ function DashboardPageInner() {
           ) : tab === "home" ? (
             <div className="home-layout">
               <div className="home-main">
-                <ContinueHero course={nextUp} onContinue={handleContinue} />
+                {activePath
+                  ? <PathHero activePath={activePath} onContinue={handleContinue} />
+                  : <ContinueHero course={nextUp} onContinue={handleContinue} />
+                }
                 <SolveSection />
               </div>
               <div className="home-side">
-                <TinyGoal onStart={() => nextUp ? handleContinue(nextUp.courseId, nextUp.nextLessonId) : router.push("/learn")} />
-                <PathSection activePath={activePath} />
+                <TinyGoal onStart={() => {
+                  const target = activePath?.nextCourse ?? nextUp;
+                  if (target && "id" in target) handleContinue(target.id, target.nextLessonId);
+                  else if (target && "courseId" in target) handleContinue(target.courseId, target.nextLessonId);
+                  else router.push("/learn");
+                }} />
+                {!activePath && <PathSection activePath={null} />}
                 <WorkshopCard ws={upcomingWorkshop} />
               </div>
             </div>
