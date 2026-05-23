@@ -18,7 +18,7 @@ import { AppFrame } from "@/components/legacy/AppFrame";
 
 // ── Types & helpers ─────────────────────────────────────────────────────────
 
-type DashTab = "home" | "progress" | "path" | "assets" | "workshops";
+type DashTab = "home" | "progress" | "assets" | "workshops";
 type GatewayIntent = "welcome" | "pro" | "student" | "workshop";
 
 type UpcomingWorkshop = {
@@ -162,21 +162,44 @@ function TinyGoal({ onStart }: { onStart: () => void }) {
   );
 }
 
-function PathCard({ activePath }: { activePath: { title: string; percent: number; milestone?: string } | null }) {
+function PathSection({ activePath }: { activePath: { title: string; percent: number; milestone?: string } | null }) {
   if (!activePath) {
     return (
-      <Link href="/paths" className="home-chip glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
-        <span className="home-chip-label">Path</span>
-        <span className="home-chip-action">Choose one →</span>
-      </Link>
+      <div className="home-path-empty glass-panel">
+        <div className="home-path-empty-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+            <path d="M12 7v4M9.5 17.5L12 11M14.5 17.5L12 11"/>
+          </svg>
+        </div>
+        <div className="home-path-empty-body">
+          <span className="home-path-empty-label">Learning Path</span>
+          <p className="home-path-empty-text">Follow a structured path from beginner to expert.</p>
+        </div>
+        <Link href="/paths" className="primary-button home-path-empty-cta" style={{ textDecoration: "none" }}>
+          Join a Learning Path →
+        </Link>
+      </div>
     );
   }
   return (
-    <Link href="/paths" className="home-chip home-chip--path glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
-      <span className="home-chip-label">Path</span>
-      <span className="home-chip-name">{activePath.title}</span>
-      <span className="home-chip-pct">{activePath.percent}%</span>
-    </Link>
+    <div className="home-path-active glass-panel">
+      <div className="home-path-active-head">
+        <span className="home-path-active-label">My Path</span>
+        <Link href="/paths" className="home-path-active-change" style={{ textDecoration: "none" }}>Change →</Link>
+      </div>
+      <p className="home-path-active-title">{activePath.title}</p>
+      {activePath.milestone && (
+        <p className="home-path-active-milestone">{activePath.milestone}</p>
+      )}
+      <div className="home-path-active-progress">
+        <div className="home-path-active-bar"><span style={{ width: `${activePath.percent}%` }} /></div>
+        <span className="home-path-active-pct">{activePath.percent}%</span>
+      </div>
+      <Link href="/paths" className="ghost-btn home-path-active-cta" style={{ textDecoration: "none" }}>
+        Continue Path →
+      </Link>
+    </div>
   );
 }
 
@@ -456,7 +479,6 @@ type TabDef = { id: DashTab; label: string; Icon: () => React.JSX.Element };
 const TABS: TabDef[] = [
   { id: "home",      label: "Home",         Icon: HomeTabIcon },
   { id: "progress",  label: "My Progress",  Icon: ProgressTabIcon },
-  { id: "path",      label: "My Path",      Icon: PathTabIcon },
   { id: "assets",    label: "My Assets",    Icon: AssetsTabIcon },
   { id: "workshops", label: "My Workshops", Icon: WorkshopsTabIcon },
 ];
@@ -650,7 +672,6 @@ function DashboardPageInner() {
 
   // Tab badges
   const badges: Partial<Record<DashTab, number>> = {
-    path: activePath ? 1 : 0,
     workshops: workshopCount,
   };
 
@@ -723,12 +744,11 @@ function DashboardPageInner() {
               </div>
               <div className="home-side">
                 <TinyGoal onStart={() => nextUp ? handleContinue(nextUp.courseId, nextUp.nextLessonId) : router.push("/learn")} />
-                <PathCard activePath={activePath} />
+                <PathSection activePath={activePath} />
                 <WorkshopCard ws={upcomingWorkshop} />
               </div>
             </div>
           ) : tab === "progress"  ? <ProgressTab />
-            : tab === "path"      ? <PathTab token={session?.access_token ?? ""} />
             : tab === "assets"    ? <AssetsTab />
             : tab === "workshops" ? <WorkshopsTabPanel workshops={visibleWorkshops} />
             : null}

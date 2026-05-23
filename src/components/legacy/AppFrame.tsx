@@ -44,7 +44,6 @@ function isActivePath(currentPath: string, href: string): boolean {
 }
 
 const topLevelTabs = [
-  { href: "/paths",    label: "Paths"    },
   { href: "/learn",    label: "Courses"  },
   { href: "/combos",   label: "Combos"   },
   { href: "/commands", label: "Commands" },
@@ -344,7 +343,7 @@ export function AppFrame({
               </span>
             </Link>
           )}
-          <Link href="/paths" className={`sidebar-nav-btn${
+          <Link href="/learn" className={`sidebar-nav-btn${
             ["/skills", "/learn", "/paths", "/combos", "/commands"].some(p => isActivePath(currentPath, p))
               ? " active" : ""
           }`}>
@@ -410,7 +409,7 @@ export function AppFrame({
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           <span>Account</span>
         </Link>
-        <Link href="/paths" className={`mob-nav-btn${
+        <Link href="/learn" className={`mob-nav-btn${
           ["/skills", "/learn", "/paths", "/combos", "/commands"].some(p => isActivePath(currentPath, p))
             ? " active" : ""
         }`}>
