@@ -15798,3 +15798,13 @@ html[data-theme="light"] .home-path-active-change:hover { color: rgba(109,40,217
 html[data-theme="light"] .home-path-hero { border-left-color: rgba(109,40,217,0.4); }
 html[data-theme="light"] .home-path-hero-name { color: rgba(20,20,40,0.55); }
 html[data-theme="light"] .home-path-hero-progress-label { color: rgba(20,20,40,0.35); }
+
+/* ── Route card context line ─────────────────────────────────────────────── */
+.route-card-context {
+  font-size: 11px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.02em;
+  margin-top: -4px;
+  margin-bottom: 4px;
+}
+html[data-theme="light"] .route-card-context { color: rgba(20,20,40,0.35); }

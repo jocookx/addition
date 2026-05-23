@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowRight,
-  BookOpen,
   Box,
   Calendar,
   CheckCircle,
@@ -14,10 +13,7 @@ import {
   ChevronRight,
   GraduationCap,
   Layers,
-  MousePointer,
   PlayCircle,
-  Plus,
-  Route,
   Search,
   Workflow,
 } from "lucide-react";
@@ -117,78 +113,57 @@ const learnSlides = [
   },
 ];
 
-const platformFeatures = [
-  {
-    icon: BookOpen,
-    label: "Commands Library",
-    desc: "Search any software command — what it does, when to use it, and the mistakes to avoid.",
-    tone: "lime",
-  },
-  {
-    icon: Calendar,
-    label: "Live Workshops",
-    desc: "Expert-led sessions with full recordings, resources and follow-up access inside your account.",
-    tone: "amber",
-  },
-  {
-    icon: Route,
-    label: "Learning Paths",
-    desc: "Structured routes from beginner to advanced across tools and creative disciplines.",
-    tone: "violet",
-  },
-  {
-    icon: PlayCircle,
-    label: "Course Library",
-    desc: "Short guided video lessons you can follow and revisit at your own pace.",
-    tone: "cyan",
-  },
-];
+// platformFeatures removed — replaced by platformItems below
 
 const toolItems = [
   "AI Tools", "Rhino", "Grasshopper", "Blender", "Revit",
   "Twinmotion", "Unreal Engine", "Adobe", "Creative Coding", "D5 Render",
 ];
 
-const learningRoutes = [
+const platformItems = [
   {
     num: "01",
-    icon: Calendar,
-    title: "Live Workshops",
-    copy: "Join expert-led live sessions built around practical creative workflows. Ask questions, follow along, keep the recording.",
-    cta: "View Workshops",
-    href: "#workshops",
-    tone: "amber",
-    badge: "Live",
+    icon: Search,
+    title: "Commands",
+    copy: "Search 10,000+ commands across Rhino, Grasshopper, Blender, Revit and more. Know exactly what each command does, when to reach for it, and how to use it confidently.",
+    cta: "Search Commands",
+    href: "/commands",
+    tone: "lime",
+    badge: null,
+    context: "10,000+ commands · 15+ tools",
   },
   {
     num: "02",
+    icon: Workflow,
+    title: "Combos",
+    copy: "Multi-step workflow sequences that chain commands across tools into repeatable creative processes. See how experienced designers actually work.",
+    cta: "Explore Combos",
+    href: "/combos",
+    tone: "cyan",
+    badge: null,
+    context: "Cross-tool · Step-by-step workflows",
+  },
+  {
+    num: "03",
     icon: PlayCircle,
-    title: "Structured Courses",
-    copy: "Build confidence through short guided lessons, recordings and project-based learning at your own pace.",
+    title: "Courses",
+    copy: "Short guided video lessons built around practical skills you can apply straight away. Self-paced, project-based, and revisitable any time.",
     cta: "Browse Courses",
     href: "/catalog",
     tone: "violet",
     badge: null,
-  },
-  {
-    num: "03",
-    icon: Search,
-    title: "Workflow Library",
-    copy: "Find tools, commands, methods and repeatable design systems you can use directly in your own projects.",
-    cta: "Explore Library",
-    href: "/commands",
-    tone: "cyan",
-    badge: null,
+    context: "Self-paced · Video lessons · Progress tracking",
   },
   {
     num: "04",
-    icon: BookOpen,
-    title: "Commands Library",
-    copy: "Search any software command — understand what it does, when to use it and the common mistakes to avoid.",
-    cta: "Browse Commands",
-    href: "/commands",
-    tone: "lime",
-    badge: null,
+    icon: Calendar,
+    title: "Live Workshops",
+    copy: "Expert-led live sessions built around real creative workflows. Join live, ask questions in the room, and keep the full recording and resources in your account.",
+    cta: "View Workshops",
+    href: "#workshops",
+    tone: "amber",
+    badge: "Live",
+    context: "Weekly sessions · Expert instructors · Recordings included",
   },
 ];
 
@@ -376,110 +351,7 @@ function LearnSlider() {
   );
 }
 
-// ─── Platform Section ─────────────────────────────────────────────────────────
-
-function PlatformSection() {
-  return (
-    <section className="section-pad platform-section" id="platform" aria-labelledby="platform-heading">
-      <div className="container">
-        <div className="platform-layout">
-
-          {/* LEFT: copy + feature list */}
-          <div className="platform-copy">
-            <p className="eyebrow">The Platform</p>
-            <h2 id="platform-heading">Everything you need to keep building.</h2>
-            <p className="platform-copy-lede">
-              Live workshops, courses, a commands library and structured learning paths —
-              all in one place, built around how creative designers actually work.
-            </p>
-            <div className="platform-features">
-              {platformFeatures.map(({ icon: Icon, label, desc, tone }) => (
-                <div className={`platform-feature platform-feature--${tone}`} key={label}>
-                  <div className="platform-feature-icon" aria-hidden="true">
-                    <Icon size={17} />
-                  </div>
-                  <div className="platform-feature-text">
-                    <strong>{label}</strong>
-                    <span>{desc}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Link className="btn btn-secondary" href="/auth?mode=signup" style={{ marginTop: "32px", width: "fit-content" }}>
-              Explore the platform <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-
-          {/* RIGHT: CSS product mock */}
-          <div className="platform-mock" aria-hidden="true">
-
-            {/* Card 1 — Command search */}
-            <div className="platform-mock-card platform-mock-card--cmd">
-              <div className="platform-mock-cmd-bar">
-                <Search size={13} />
-                <span>loft</span>
-                <kbd>⌘K</kbd>
-              </div>
-              <div className="platform-mock-cmd-item platform-mock-cmd-item--active">
-                <span className="platform-mock-cmd-tag">Rhino</span>
-                <div className="platform-mock-cmd-text">
-                  <strong>Loft</strong>
-                  <span>Create smooth surfaces between two or more curves</span>
-                </div>
-              </div>
-              <div className="platform-mock-cmd-item platform-mock-cmd-item--dim">
-                <span className="platform-mock-cmd-tag">Rhino</span>
-                <div className="platform-mock-cmd-text">
-                  <strong>Loft Options</strong>
-                  <span>Configure rebuild count and surface style</span>
-                </div>
-              </div>
-              <div className="platform-mock-cmd-item platform-mock-cmd-item--dim">
-                <span className="platform-mock-cmd-tag">GH</span>
-                <div className="platform-mock-cmd-text">
-                  <strong>Loft (Grasshopper)</strong>
-                  <span>Surface component · inputs: curves, options</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 — Workshop booking */}
-            <div className="platform-mock-card platform-mock-card--workshop">
-              <span className="platform-mock-ws-eyebrow">Live Workshop · £35</span>
-              <strong className="platform-mock-ws-title">AI for Architecture</strong>
-              <span className="platform-mock-ws-meta">Wed 22 Jan · 6:00pm GMT · 2 hrs</span>
-              <div className="platform-mock-ws-instructor">
-                <span className="platform-mock-ws-avatar">SC</span>
-                <div>
-                  <small>Instructor</small>
-                  <strong>Sam Clarke</strong>
-                </div>
-              </div>
-              <button type="button" className="platform-mock-ws-btn">Book now</button>
-            </div>
-
-            {/* Card 3 — Learning path progress */}
-            <div className="platform-mock-card platform-mock-card--path">
-              <div className="platform-mock-path-head">
-                <span>Learning Path</span>
-                <strong>62%</strong>
-              </div>
-              <strong className="platform-mock-path-title">Rhino: Beginner to Advanced</strong>
-              <div className="platform-mock-path-bar">
-                <div className="platform-mock-path-fill" />
-              </div>
-              <div className="platform-mock-path-footer">
-                <span>8 of 13 lessons complete</span>
-                <span className="platform-mock-path-resume">Resume →</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// PlatformSection removed — merged into the platform items grid below
 
 // ─── FAQ Section ─────────────────────────────────────────────────────────────
 
@@ -927,10 +799,7 @@ export default function LandingPage() {
         {/* ── 3. Feature Slider (V2 key features adapted) ─────────────────── */}
         <LearnSlider />
 
-        {/* ── 4. Platform Section ──────────────────────────────────────────── */}
-        <PlatformSection />
-
-        {/* ── 5. Workshops (existing card grid) ───────────────────────────── */}
+        {/* ── 4. Workshops ────────────────────────────────────────────────── */}
         <section className="section-pad workshops-section add-workshops-section" id="workshops" aria-labelledby="workshops-heading">
           <div className="container">
             <div className="section-heading scroll-reveal">
@@ -1047,16 +916,16 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ── 6. How You Learn — improved route cards ──────────────────────── */}
-        <section className="section-pad" aria-labelledby="routes-heading">
+        {/* ── 6. What's Inside — Commands · Combos · Courses · Workshops ──── */}
+        <section className="section-pad" id="platform" aria-labelledby="platform-heading">
           <div className="container">
             <div className="section-heading scroll-reveal">
-              <p className="eyebrow">How you learn</p>
-              <h2 id="routes-heading">Four clear ways to build skill.</h2>
-              <p>Choose the learning route that matches the job you need to do next.</p>
+              <p className="eyebrow">The Platform</p>
+              <h2 id="platform-heading">Everything in one place.</h2>
+              <p>Four ways to learn — from quick command lookups to live expert sessions.</p>
             </div>
             <div className="routes-grid">
-              {learningRoutes.map(({ num, icon: Icon, title, copy, cta, href, tone, badge }) => (
+              {platformItems.map(({ num, icon: Icon, title, copy, cta, href, tone, badge, context }) => (
                 <article className={`route-card route-card--${tone}`} key={title}>
                   <div className="route-card-visual" aria-hidden="true">
                     <div className="route-card-bg" />
@@ -1078,6 +947,7 @@ export default function LandingPage() {
                     </div>
                     <h3>{title}</h3>
                     <p>{copy}</p>
+                    {context && <p className="route-card-context">{context}</p>}
                     <Link className="route-card-cta" href={href}>
                       {cta}
                       <ArrowRight size={13} aria-hidden="true" />
@@ -1089,7 +959,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ── 7. Who It's For — bento grid ─────────────────────────────────── */}
+        {/* ── 7. Who It's For ─────────────────────────────────────────────── */}
         <section className="section-pad" aria-labelledby="audience-heading">
           <div className="container">
             <div className="section-heading scroll-reveal">
