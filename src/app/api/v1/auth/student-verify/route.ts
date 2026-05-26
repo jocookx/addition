@@ -177,15 +177,18 @@ export async function POST(request: Request) {
           user_id: userId,
           email,
           status: "approved",
-          method: "email_domain",
           verification_method: "student_email",
           institution: "",
           evidence_path: "",
-          ai_confidence: 1,
-          ai_reason: `Student email domain verified: ${email}`,
+          review_notes: `Student email domain verified: ${email}`,
           reviewed_at: new Date().toISOString(),
         }, { onConflict: "user_id" });
-      if (dbError) console.error("student-verify email-domain DB write failed:", dbError.message);
+      if (dbError) {
+        // DB write failure here is fatal — without an approved record the billing
+        // checkout will 403. Surface as a 500 rather than silently proceeding.
+        console.error("student-verify email-domain DB write failed:", dbError.message);
+        return errorResponse("Could not save verification status. Please try again.", 500);
+      }
       return okResponse({ status: "approved", approved: true });
     }
 
@@ -253,19 +256,21 @@ export async function POST(request: Request) {
         user_id: userId,
         email,
         status,
-        method: "ai_document",
         verification_method: "evidence_upload",
         institution: aiResult.institution || "",
         evidence_path: objectPath,
         evidence_filename: file.name.slice(0, 180),
-        ai_confidence: aiResult.confidence,
-        ai_reason: aiResult.reason,
+        review_notes: `Confidence: ${aiResult.confidence.toFixed(2)}. ${aiResult.reason}`,
         reviewed_at: approved ? new Date().toISOString() : null,
       }, { onConflict: "user_id" });
 
     if (dbError) {
-      // Non-fatal — return result to client even if DB write failed
-      console.error("student-verify DB write failed:", dbError.message);
+      // Fatal for approved case — without an approved record the billing checkout
+      // will 403. For pending, less critical but still log clearly.
+      console.error("student-verify document DB write failed:", dbError.message);
+      if (approved) {
+        return errorResponse("Could not save verification status. Please try again.", 500);
+      }
     }
 
     return okResponse({
