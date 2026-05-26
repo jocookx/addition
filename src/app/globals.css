@@ -10721,11 +10721,14 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   font-weight: 600;
 }
 .adm-portal-nav-icon {
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 16px;
-  text-align: center;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
-  opacity: 0.85;
+  opacity: 0.7;
 }
 .adm-nav-btn-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 
@@ -11790,16 +11793,16 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 .aa-studio-sidebar .adm-portal-nav-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 7px;
   background: rgba(255,255,255,0.045);
   color: rgba(236,236,242,0.62);
-  font-size: 11px;
-  font-weight: 800;
+  padding: 5px;
 }
 
 .aa-studio-sidebar .adm-portal-nav-btn.active .adm-portal-nav-icon {

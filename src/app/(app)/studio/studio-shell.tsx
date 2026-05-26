@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -25,53 +25,75 @@ type AdminTab =
   | "search-insights"
   | "settings";
 
+// ── Nav icons ─────────────────────────────────────────────────────────────────
+const S = { viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" as const, strokeLinejoin: "round" as const, width: 16, height: 16, "aria-hidden": true };
+
+const Icons = {
+  dashboard:      <svg {...S}><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>,
+  courses:        <svg {...S}><path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h9A1.5 1.5 0 0 1 14 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 12.5V3.5z"/><path d="M5 5.5h6M5 8h6M5 10.5h4"/></svg>,
+  paths:          <svg {...S}><circle cx="3" cy="13" r="1.5"/><circle cx="8" cy="3" r="1.5"/><circle cx="13" cy="10" r="1.5"/><path d="M4.1 12.1 6.9 4.4M9.1 4.2 11.9 8.9"/></svg>,
+  workshops:      <svg {...S}><rect x="2" y="4" width="12" height="10" rx="1.5"/><path d="M5 4V2.5M11 4V2.5M2 7h12"/></svg>,
+  instructors:    <svg {...S}><circle cx="8" cy="5.5" r="2.5"/><path d="M2.5 13.5c0-3 2.5-4.5 5.5-4.5s5.5 1.5 5.5 4.5"/></svg>,
+  commands:       <svg {...S}><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 6l-1.5 2L5 10M11 6l1.5 2L11 10M8.5 5.5l-1 5"/></svg>,
+  combos:         <svg {...S}><circle cx="4" cy="4" r="1.5"/><circle cx="12" cy="4" r="1.5"/><circle cx="8" cy="12" r="1.5"/><path d="M5.5 4h5M4 5.5v3a3 3 0 0 0 3 3M12 5.5v3a3 3 0 0 1-3 3"/></svg>,
+  practice:       <svg {...S}><path d="M4 8.5l2.5 2.5 5-5"/><rect x="2" y="2" width="12" height="12" rx="2"/></svg>,
+  resources:      <svg {...S}><path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M10 2v4h3M5 8h6M5 10.5h4"/></svg>,
+  problemSolver:  <svg {...S}><circle cx="8" cy="8" r="6"/><path d="M6 6.5a2 2 0 0 1 3.9.7c0 1.3-2 2-2 2M8 11.5v.5"/></svg>,
+  learners:       <svg {...S}><circle cx="6" cy="5" r="2"/><circle cx="11" cy="5.5" r="1.5"/><path d="M1.5 13c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/><path d="M12.5 10c1.5.3 2.5 1.2 2.5 3"/></svg>,
+  progress:       <svg {...S}><path d="M2 12.5l3.5-4 2.5 2.5 3-5 3 3.5"/><path d="M2 14h12"/></svg>,
+  certificates:   <svg {...S}><circle cx="8" cy="7" r="3.5"/><path d="M5.5 9.5 4 14l4-1.5L12 14l-1.5-4.5"/><path d="M6.5 7l1 1 2-2"/></svg>,
+  analytics:      <svg {...S}><rect x="2" y="9" width="3" height="5" rx=".5"/><rect x="6.5" y="6" width="3" height="8" rx=".5"/><rect x="11" y="3" width="3" height="11" rx=".5"/></svg>,
+  searchInsights: <svg {...S}><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/><path d="M5 7h4M7 5v4"/></svg>,
+  settings:       <svg {...S}><circle cx="8" cy="8" r="2"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.9 3.9l1.1 1.1M11 11l1.1 1.1M3.9 12.1 5 11M11 5l1.1-1.1"/></svg>,
+};
+
 type NavGroup = {
   label: string;
-  items: { id: AdminTab; label: string; icon: string; description: string }[];
+  items: { id: AdminTab; label: string; icon: React.ReactNode; description: string }[];
 };
 
 const NAV_GROUPS: NavGroup[] = [
   {
     label: "Overview",
-    items: [{ id: "dashboard", label: "Dashboard", icon: "D", description: "What needs attention" }],
+    items: [{ id: "dashboard", label: "Dashboard", icon: Icons.dashboard, description: "What needs attention" }],
   },
   {
     label: "Create",
     items: [
-      { id: "courses", label: "Courses", icon: "C", description: "Modules and lessons" },
-      { id: "paths", label: "Learning Paths", icon: "P", description: "Learner journeys" },
-      { id: "workshops", label: "Live Workshops", icon: "W", description: "Events and bookings" },
-      { id: "instructors", label: "Instructors", icon: "I", description: "Tutor profiles" },
+      { id: "courses",     label: "Courses",        icon: Icons.courses,     description: "Modules and lessons" },
+      { id: "paths",       label: "Learning Paths", icon: Icons.paths,       description: "Learner journeys" },
+      { id: "workshops",   label: "Live Workshops", icon: Icons.workshops,   description: "Events and bookings" },
+      { id: "instructors", label: "Instructors",    icon: Icons.instructors, description: "Tutor profiles" },
     ],
   },
   {
     label: "Library",
     items: [
-      { id: "commands", label: "Command Library", icon: "K", description: "Reusable actions" },
-      { id: "combos", label: "Workflow Combos", icon: "F", description: "Reusable recipes" },
-      { id: "practice", label: "Practice Tasks", icon: "T", description: "Tasks and quizzes" },
-      { id: "resources", label: "Resources", icon: "R", description: "Files and links" },
-      { id: "problem-solver", label: "Problem Solver", icon: "Q", description: "Learner questions" },
+      { id: "commands",       label: "Command Library", icon: Icons.commands,      description: "Reusable actions" },
+      { id: "combos",         label: "Workflow Combos", icon: Icons.combos,        description: "Reusable recipes" },
+      { id: "practice",       label: "Practice Tasks",  icon: Icons.practice,      description: "Tasks and quizzes" },
+      { id: "resources",      label: "Resources",       icon: Icons.resources,     description: "Files and links" },
+      { id: "problem-solver", label: "Problem Solver",  icon: Icons.problemSolver, description: "Learner questions" },
     ],
   },
   {
     label: "People",
     items: [
-      { id: "learners", label: "Learners", icon: "L", description: "Accounts and access" },
-      { id: "progress", label: "Progress", icon: "G", description: "Completion data" },
-      { id: "certificates", label: "Certificates", icon: "A", description: "Awards and eligibility" },
+      { id: "learners",     label: "Learners",      icon: Icons.learners,     description: "Accounts and access" },
+      { id: "progress",     label: "Progress",      icon: Icons.progress,     description: "Completion data" },
+      { id: "certificates", label: "Certificates",  icon: Icons.certificates, description: "Awards and eligibility" },
     ],
   },
   {
     label: "Insights",
     items: [
-      { id: "analytics", label: "Analytics", icon: "N", description: "Platform metrics" },
-      { id: "search-insights", label: "Search Insights", icon: "S", description: "Learner demand" },
+      { id: "analytics",       label: "Analytics",       icon: Icons.analytics,       description: "Platform metrics" },
+      { id: "search-insights", label: "Search Insights", icon: Icons.searchInsights,  description: "Learner demand" },
     ],
   },
   {
     label: "System",
-    items: [{ id: "settings", label: "Settings", icon: "O", description: "Platform setup" }],
+    items: [{ id: "settings", label: "Settings", icon: Icons.settings, description: "Platform setup" }],
   },
 ];
 
