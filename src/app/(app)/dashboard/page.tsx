@@ -472,9 +472,9 @@ function GatewayModal({
     },
     student: {
       kicker: "Student access",
-      title: "Finish student verification",
-      body: "Your account is ready. Complete the student access step so discounted Pro can be reviewed.",
-      action: "Continue",
+      title: "Verify your student status",
+      body: "Takes 30 seconds. Use your university email or upload a student ID — we'll confirm your access instantly.",
+      action: "Verify now",
     },
     workshop: {
       kicker: "Workshop booking",
@@ -760,7 +760,7 @@ function DashboardPageInner() {
         return;
       }
       if (gatewayIntent === "student") {
-        router.push("/settings");
+        router.push("/auth?verify=student&next=/dashboard");
         return;
       }
       if (gatewayIntent === "welcome") {

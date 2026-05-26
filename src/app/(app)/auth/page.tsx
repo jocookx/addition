@@ -55,6 +55,7 @@ export default function AuthPage() {
   const [verifyStep, setVerifyStep] = useState<VerifyStep>("idle");
   const [verifyUserId, setVerifyUserId] = useState("");
   const [verifyEmail, setVerifyEmail] = useState("");
+  const [verifyOnLoad, setVerifyOnLoad] = useState(false);
   const [studentVerifyEmail, setStudentVerifyEmail] = useState("");
   const [domainChecked, setDomainChecked] = useState(false);
   const [domainValid, setDomainValid] = useState(false);
@@ -77,6 +78,7 @@ export default function AuthPage() {
       setPlanIntent(rawPlan);
     }
     if (params.get("billing") === "yearly") setBillingInterval("yearly");
+    if (params.get("verify") === "student") setVerifyOnLoad(true);
   }, []);
 
   // ── Auth session listener ──────────────────────────────────────────────────
@@ -100,10 +102,19 @@ export default function AuthPage() {
     if (!token) return;
     if (verifyStep !== "idle") return; // wizard is open — don't redirect
     if (nextPath.includes("/workshops/")) return; // handled separately
+
+    // Student returning via ?verify=student — launch wizard immediately
+    if (verifyOnLoad && session.user) {
+      setVerifyUserId(session.user.id);
+      setVerifyEmail(session.user.email ?? "");
+      setVerifyStep("email");
+      return;
+    }
+
     setInfoMsg("Signing you in…");
     void postLoginBootstrap(token);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session?.access_token, verifyStep]);
+  }, [session?.access_token, verifyStep, verifyOnLoad]);
 
   // ── Workshop redirect ──────────────────────────────────────────────────────
   useEffect(() => {
