@@ -29,22 +29,38 @@ type AdminTab =
 const S = { viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round" as const, strokeLinejoin: "round" as const, width: 16, height: 16, "aria-hidden": true };
 
 const Icons = {
-  dashboard:      <svg {...S}><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>,
-  courses:        <svg {...S}><path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h9A1.5 1.5 0 0 1 14 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 12.5V3.5z"/><path d="M5 5.5h6M5 8h6M5 10.5h4"/></svg>,
-  paths:          <svg {...S}><circle cx="3" cy="13" r="1.5"/><circle cx="8" cy="3" r="1.5"/><circle cx="13" cy="10" r="1.5"/><path d="M4.1 12.1 6.9 4.4M9.1 4.2 11.9 8.9"/></svg>,
-  workshops:      <svg {...S}><rect x="2" y="4" width="12" height="10" rx="1.5"/><path d="M5 4V2.5M11 4V2.5M2 7h12"/></svg>,
-  instructors:    <svg {...S}><circle cx="8" cy="5.5" r="2.5"/><path d="M2.5 13.5c0-3 2.5-4.5 5.5-4.5s5.5 1.5 5.5 4.5"/></svg>,
-  commands:       <svg {...S}><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 6l-1.5 2L5 10M11 6l1.5 2L11 10M8.5 5.5l-1 5"/></svg>,
-  combos:         <svg {...S}><circle cx="4" cy="4" r="1.5"/><circle cx="12" cy="4" r="1.5"/><circle cx="8" cy="12" r="1.5"/><path d="M5.5 4h5M4 5.5v3a3 3 0 0 0 3 3M12 5.5v3a3 3 0 0 1-3 3"/></svg>,
-  practice:       <svg {...S}><path d="M4 8.5l2.5 2.5 5-5"/><rect x="2" y="2" width="12" height="12" rx="2"/></svg>,
-  resources:      <svg {...S}><path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M10 2v4h3M5 8h6M5 10.5h4"/></svg>,
-  problemSolver:  <svg {...S}><circle cx="8" cy="8" r="6"/><path d="M6 6.5a2 2 0 0 1 3.9.7c0 1.3-2 2-2 2M8 11.5v.5"/></svg>,
-  learners:       <svg {...S}><circle cx="6" cy="5" r="2"/><circle cx="11" cy="5.5" r="1.5"/><path d="M1.5 13c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/><path d="M12.5 10c1.5.3 2.5 1.2 2.5 3"/></svg>,
-  progress:       <svg {...S}><path d="M2 12.5l3.5-4 2.5 2.5 3-5 3 3.5"/><path d="M2 14h12"/></svg>,
-  certificates:   <svg {...S}><circle cx="8" cy="7" r="3.5"/><path d="M5.5 9.5 4 14l4-1.5L12 14l-1.5-4.5"/><path d="M6.5 7l1 1 2-2"/></svg>,
-  analytics:      <svg {...S}><rect x="2" y="9" width="3" height="5" rx=".5"/><rect x="6.5" y="6" width="3" height="8" rx=".5"/><rect x="11" y="3" width="3" height="11" rx=".5"/></svg>,
-  searchInsights: <svg {...S}><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/><path d="M5 7h4M7 5v4"/></svg>,
-  settings:       <svg {...S}><circle cx="8" cy="8" r="2"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.9 3.9l1.1 1.1M11 11l1.1 1.1M3.9 12.1 5 11M11 5l1.1-1.1"/></svg>,
+  // Overview — speedometer-style dashboard
+  dashboard:      <svg {...S}><path d="M2.5 11a6 6 0 1 1 11 0"/><path d="M8 5v2.5"/><path d="M5.5 8.5l1.7 1.7"/></svg>,
+  // Courses — screen with play triangle (video learning)
+  courses:        <svg {...S}><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.8l3.5 1.95-3.5 1.95V5.8z" strokeWidth="1.2"/><path d="M5.5 14h5M8 11.5V14"/></svg>,
+  // Paths — stepping stones / waypoint route
+  paths:          <svg {...S}><circle cx="3.5" cy="12.5" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="12.5" cy="3.5" r="1.5"/><path d="M4.6 11.4 6.9 9.1M9.1 6.9l2.3-2.3"/></svg>,
+  // Workshops — calendar with a live broadcast dot
+  workshops:      <svg {...S}><rect x="2" y="4" width="12" height="10" rx="1.5"/><path d="M5 4V2.5M11 4V2.5M2 7h12"/><circle cx="11.5" cy="11" r="1.5" fill="currentColor" strokeWidth="0"/><circle cx="11.5" cy="11" r="2.5" strokeWidth="1" opacity=".4"/></svg>,
+  // Instructors — person with a small teaching board behind them
+  instructors:    <svg {...S}><circle cx="7.5" cy="5.5" r="2.5"/><path d="M2 14c0-3 2.5-4.5 5.5-4.5s5.5 1.5 5.5 4.5"/><path d="M11.5 2h3v3.5h-3zM13 5.5v1.5"/></svg>,
+  // Commands — keyboard (it's literally keyboard shortcuts)
+  commands:       <svg {...S}><rect x="1.5" y="5" width="13" height="8" rx="1.5"/><rect x="3" y="7" width="2" height="1.5" rx=".4"/><rect x="7" y="7" width="2" height="1.5" rx=".4"/><rect x="11" y="7" width="2" height="1.5" rx=".4"/><rect x="5" y="9.5" width="2" height="1.5" rx=".4"/><rect x="9" y="9.5" width="2" height="1.5" rx=".4"/><rect x="4.5" y="2" width="7" height="1.5" rx=".4"/></svg>,
+  // Combos — two inputs merging into one output (recipe/combination)
+  combos:         <svg {...S}><circle cx="3.5" cy="5" r="1.5"/><circle cx="3.5" cy="11" r="1.5"/><circle cx="12.5" cy="8" r="1.5"/><path d="M5 5c2.5 0 3 3 5.5 3M5 11c2.5 0 3-3 5.5-3"/></svg>,
+  // Practice — flashcard being flipped
+  practice:       <svg {...S}><rect x="2" y="4" width="12" height="9" rx="1.5"/><path d="M8 2v2M6.5 6.5h3M6.5 9h2"/><path d="M12 2.5l1 1-1 1" strokeWidth="1.2"/></svg>,
+  // Resources — folder with a download arrow
+  resources:      <svg {...S}><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4H6l1.5 1.5H13A1.5 1.5 0 0 1 14.5 7v5A1.5 1.5 0 0 1 13 13.5H3A1.5 1.5 0 0 1 1.5 12V5.5z"/><path d="M8 7.5v3.5M6.5 9.5 8 11l1.5-1.5"/></svg>,
+  // Problem Solver — lightbulb (insight / solution)
+  problemSolver:  <svg {...S}><path d="M8 2a4 4 0 0 1 2.5 7.1c-.4.4-.5.7-.5 1v.9H6v-.9c0-.3-.1-.6-.5-1A4 4 0 0 1 8 2z"/><path d="M6.5 12.5h3M7.5 14h1"/></svg>,
+  // Learners — graduation cap
+  learners:       <svg {...S}><path d="M8 3.5 1.5 7 8 10.5 14.5 7 8 3.5z"/><path d="M5 8.5v3.5c0 1 1.3 1.5 3 1.5s3-.5 3-1.5V8.5"/><path d="M14.5 7v4"/></svg>,
+  // Progress — upward trend with a finishing flag
+  progress:       <svg {...S}><path d="M2 13l3-3.5 2.5 2 3.5-5.5L14 9"/><path d="M2 15h12"/></svg>,
+  // Certificates — ribbon / rosette award
+  certificates:   <svg {...S}><circle cx="8" cy="6.5" r="3.5"/><path d="M5.5 9 4 14l4-1.5L12 14l-1.5-5"/><path d="M6.5 6.5l1 1 2-2"/></svg>,
+  // Analytics — ascending bar chart
+  analytics:      <svg {...S}><rect x="2" y="9" width="3" height="5" rx=".5"/><rect x="6.5" y="6" width="3" height="8" rx=".5"/><rect x="11" y="3" width="3" height="11" rx=".5"/><path d="M2 2.5h12" strokeWidth="1" opacity=".3"/></svg>,
+  // Search Insights — magnifying glass with a trend line inside
+  searchInsights: <svg {...S}><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/><path d="M4.5 8.5l1.5-2 1.5 1 2-2.5" strokeWidth="1.2"/></svg>,
+  // Settings — gear / cog
+  settings:       <svg {...S}><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>,
 };
 
 type NavGroup = {
