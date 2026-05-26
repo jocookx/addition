@@ -32,12 +32,9 @@ create index if not exists idx_enrollments_user_course
 
 -- ── 3. Commands ───────────────────────────────────────────────────────────────
 -- "Show me all commands for Blender"
+-- Note: addition_commands uses 'software' and 'menu' columns (no 'category')
 create index if not exists idx_commands_software
   on addition_commands(software);
-
--- Combined index for software + category filter
-create index if not exists idx_commands_software_category
-  on addition_commands(software, category);
 
 -- ── 4. Workshops ──────────────────────────────────────────────────────────────
 -- Partial index — only index the upcoming workshops (the tiny live subset)
