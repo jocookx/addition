@@ -348,6 +348,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
     setObjectFilter("All");
     setActiveView("all");
     setPage(1);
+    setSelected(null);
   }
 
   return (
@@ -365,6 +366,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
             onChange={(event) => {
               setQuery(event.target.value);
               setPage(1);
+              setSelected(null);
             }}
             placeholder="Search commands, menus, tags..."
           />
@@ -376,6 +378,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
             onChange={(event) => {
               setSoftwareFilter(event.target.value);
               setPage(1);
+              setSelected(null);
             }}
           >
             {softwareOptions.map((software) => <option key={software}>{software}</option>)}
@@ -386,20 +389,20 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
           <div className="aa-filter-popover-panel">
             <label>
               <span>Level</span>
-              <select value={levelFilter} onChange={(event) => setLevelFilter(event.target.value)}>
+              <select value={levelFilter} onChange={(event) => { setLevelFilter(event.target.value); setSelected(null); }}>
                 <option>All</option>
                 {DIFFICULTY_OPTIONS.map((level) => <option key={level}>{level}</option>)}
               </select>
             </label>
             <label>
               <span>Intent</span>
-              <select value={intentFilter} onChange={(event) => setIntentFilter(event.target.value)}>
+              <select value={intentFilter} onChange={(event) => { setIntentFilter(event.target.value); setSelected(null); }}>
                 {intentOptions.map((intent) => <option key={intent}>{intent}</option>)}
               </select>
             </label>
             <label>
               <span>Object Type</span>
-              <select value={objectFilter} onChange={(event) => setObjectFilter(event.target.value)}>
+              <select value={objectFilter} onChange={(event) => { setObjectFilter(event.target.value); setSelected(null); }}>
                 {objectOptions.map((objectType) => <option key={objectType}>{objectType}</option>)}
               </select>
             </label>
@@ -423,7 +426,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
         columns={commandColumns}
         savedViews={COMMAND_VIEWS}
         activeView={activeView}
-        onViewChange={(view) => setActiveView(view as CommandView)}
+        onViewChange={(view) => { setActiveView(view as CommandView); setSelected(null); }}
         selectedIds={selectedIds}
         onSelectedIdsChange={setSelectedIds}
         onRowClick={(command) => {
