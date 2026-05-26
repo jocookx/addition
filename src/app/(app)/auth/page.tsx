@@ -598,22 +598,30 @@ export default function AuthPage() {
           >
             {logoMark}
 
-            {/* Pill tabs */}
-            <div className="auth-tabs" role="tablist">
+            {/* Mode toggle — same pattern as billing monthly/yearly */}
+            <div className="auth-mode-toggle">
               <button
                 type="button"
-                role="tab"
-                aria-selected={!isSignup}
-                className={`auth-tab${!isSignup ? " is-active" : ""}`}
+                className={!isSignup ? "is-active" : ""}
                 onClick={() => { setMode("signin"); clearMsgs(); setShowEmailFallback(false); }}
               >
                 Sign in
               </button>
               <button
                 type="button"
-                role="tab"
-                aria-selected={isSignup}
-                className={`auth-tab${isSignup ? " is-active" : ""}`}
+                className="auth-mode-switch"
+                aria-label="Toggle sign in / sign up"
+                onClick={() => {
+                  setMode(isSignup ? "signin" : "signup");
+                  clearMsgs();
+                  setShowEmailFallback(false);
+                }}
+              >
+                <span />
+              </button>
+              <button
+                type="button"
+                className={isSignup ? "is-active" : ""}
                 onClick={() => { setMode("signup"); clearMsgs(); setShowEmailFallback(false); }}
               >
                 Sign up
