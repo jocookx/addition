@@ -4,7 +4,10 @@ export const StudioLessonSchema = z
   .object({
     id: z.string().min(1),
     title: z.string().default("Untitled lesson"),
+    /** External / YouTube / Vimeo URL (used when no CF video is present) */
     video: z.string().optional().default(""),
+    /** Cloudflare Stream video UID — preferred over `video` when set */
+    videoId: z.string().optional().default(""),
     image: z.string().optional().default(""),
     content: z.string().optional().default(""),
     durationMin: z.number().int().nullable().optional().default(null),

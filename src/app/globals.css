@@ -11029,6 +11029,284 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   color: #ff8f8f;
 }
 
+/* ── VideoUploadField ────────────────────────────────────────────────────── */
+.vuf-root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Tab switcher */
+.vuf-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.05);
+  padding: 3px;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+
+.vuf-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.vuf-tab:hover { color: rgba(255,255,255,0.75); }
+.vuf-tab.is-active {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+}
+
+/* Drop zone */
+.vuf-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px 20px;
+  border: 2px dashed rgba(255,255,255,0.14);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  color: rgba(255,255,255,0.45);
+  user-select: none;
+}
+
+.vuf-dropzone:hover,
+.vuf-dropzone.is-dragging {
+  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.7);
+}
+
+.vuf-dropzone-main {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+
+.vuf-dropzone-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+}
+
+/* Progress bar */
+.vuf-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vuf-progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+
+.vuf-progress-pct {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255,255,255,0.85);
+}
+
+.vuf-progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.vuf-progress-fill {
+  height: 100%;
+  background: var(--accent, #7c6ee6);
+  border-radius: 4px;
+  transition: width 0.2s ease;
+}
+
+.vuf-cancel-btn {
+  align-self: flex-start;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+.vuf-cancel-btn:hover { color: rgba(255,255,255,0.65); }
+
+/* Processing state */
+.vuf-status-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+}
+
+.vuf-status-card strong {
+  display: block;
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.vuf-status-card span {
+  font-size: 11px;
+}
+
+/* Spinner animation */
+.vuf-spinner {
+  flex-shrink: 0;
+  animation: vuf-spin 1s linear infinite;
+  color: var(--accent, #7c6ee6);
+}
+
+@keyframes vuf-spin { to { transform: rotate(360deg); } }
+
+/* Ready card */
+.vuf-ready-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(34,197,94,0.07);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 10px;
+}
+
+.vuf-thumb-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.vuf-thumb {
+  width: 80px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.vuf-thumb-placeholder {
+  width: 80px;
+  height: 45px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(255,255,255,0.3);
+}
+
+.vuf-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.vuf-ready-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vuf-ready-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--success, #22c55e);
+}
+
+.vuf-ready-duration {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.vuf-ready-id {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vuf-replace-btn {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.vuf-replace-btn:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.3); }
+
+/* Error */
+.vuf-error-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vuf-error-msg {
+  font-size: 12px;
+  color: #ff8f8f;
+  margin: 0;
+}
+
+/* URL tab */
+.vuf-url-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vuf-url-input {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 7px;
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+}
+
+.vuf-url-hint {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+}
+
+.vuf-file-input {
+  display: none;
+}
+
 /* ── Flashcard list ──────────────────────────────────────────────────────── */
 .st-card-add-form {
   border-bottom: 1px solid rgba(255,255,255,0.06);

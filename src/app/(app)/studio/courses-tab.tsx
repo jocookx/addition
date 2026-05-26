@@ -5,6 +5,7 @@ import type { StudioCourse, StudioLesson, StudioModule, StudioPayload } from "@/
 import { LAUNCH_SOFTWARE } from "@/config/taxonomy";
 import { fetchJson } from "@/lib/api/fetch-json";
 import { ImageUploadField } from "./image-upload-field";
+import { VideoUploadField } from "./video-upload-field";
 import {
   AccessBadge,
   AdminDataTable,
@@ -137,8 +138,15 @@ function selectedLessonFrom(payload: StudioPayload | null, selection: LessonSele
   return course && courseModule && lesson ? { course, module: courseModule, lesson } : null;
 }
 
+function lessonHasVideo(lesson: StudioLesson): boolean {
+  return Boolean(
+    (lesson as unknown as Record<string, unknown>).videoId ||
+    lesson.video,
+  );
+}
+
 function courseHasMissingVideo(course: StudioCourse) {
-  return course.modules.some((module) => module.lessons.some((lesson) => !lesson.video));
+  return course.modules.some((module) => module.lessons.some((lesson) => !lessonHasVideo(lesson)));
 }
 
 function courseHasMissingPractice(course: StudioCourse) {
@@ -229,6 +237,7 @@ function templateModules(template: CourseTemplate): StudioModule[] {
         id: makeId("lesson"),
         title,
         video: "",
+        videoId: "",
         image: "",
         content: "",
         durationMin: null,
@@ -538,6 +547,7 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
       id: makeId("lesson"),
       title: "New Lesson",
       video: "",
+      videoId: "",
       image: "",
       content: "",
       durationMin: null,
@@ -1070,7 +1080,7 @@ function CurriculumBuilder({
                       <span className="aa-lesson-number">{moduleIndex + 1}.{lessonIndex + 1}</span>
                       <strong>{lesson.title}</strong>
                       <span>{lesson.durationMin ? `${lesson.durationMin} min` : "No duration"}</span>
-                      <StatusBadge status={getStatus(lesson, lesson.video ? "Draft" : "Needs Video")} />
+                      <StatusBadge status={getStatus(lesson, lessonHasVideo(lesson) ? "Draft" : "Needs Video")} />
                       {missing.length > 0 && <small>{missing[0].label}</small>}
                       <span className="aa-hover-actions" onClick={(event) => event.stopPropagation()}>
                         <button type="button" onClick={() => onMoveLesson(module.id, lesson.id, -1)}>Up</button>
@@ -1098,7 +1108,7 @@ function LessonProductionList({ course, onOpenLesson }: { course: StudioCourse; 
           <button key={lesson.id} type="button" onClick={() => onOpenLesson(module.id, lesson.id)}>
             <strong>{lesson.title}</strong>
             <span>{module.title}</span>
-            <StatusBadge status={getStatus(lesson, lesson.video ? "Draft" : "Needs Video")} />
+            <StatusBadge status={getStatus(lesson, lessonHasVideo(lesson) ? "Draft" : "Needs Video")} />
             <small>{missingHealth(lessonHealth(lesson)).map((item) => item.label).join(", ") || "Ready"}</small>
           </button>
         ))}
@@ -1197,7 +1207,7 @@ function LessonEditorDrawer({
             <span className="aa-breadcrumb">{course.title} / {module.title}</span>
             <h2>{lesson.title}</h2>
             <div className="aa-meta-line">
-              <StatusBadge status={getStatus(lesson, lesson.video ? "Draft" : "Needs Video")} />
+              <StatusBadge status={getStatus(lesson, lessonHasVideo(lesson) ? "Draft" : "Needs Video")} />
               <AccessBadge access={getAccess(lesson)} />
               <span>{lesson.durationMin ? `${lesson.durationMin} min` : "No duration"}</span>
             </div>
@@ -1242,9 +1252,17 @@ function LessonEditorDrawer({
           )}
           {activeTab === "video" && (
             <div className="aa-form-grid">
-              <label className="span-2"><span>Video URL</span><input value={lesson.video ?? ""} onChange={(event) => onPatch({ video: event.target.value })} /></label>
-              <label className="span-2"><span>Short video URL</span><input value={getString(lesson, "shortVideoUrl")} onChange={(event) => onPatch({ shortVideoUrl: event.target.value })} /></label>
-              <div className="span-2"><ImageUploadField accessToken={accessToken} label="Thumbnail image" folder="lesson-images" value={lesson.image ?? ""} onChange={(value) => onPatch({ image: value })} /></div>
+              {/* Cloudflare Stream upload + URL fallback */}
+              <div className="span-2">
+                <VideoUploadField
+                  accessToken={accessToken}
+                  videoId={getString(lesson, "videoId")}
+                  videoUrl={lesson.video ?? ""}
+                  onVideoId={(id) => onPatch({ videoId: id })}
+                  onVideoUrl={(url) => onPatch({ video: url })}
+                />
+              </div>
+              <div className="span-2"><ImageUploadField accessToken={accessToken} label="Thumbnail / poster image" folder="lesson-images" value={lesson.image ?? ""} onChange={(value) => onPatch({ image: value })} /></div>
               <label className="span-2"><span>Captions / transcript</span><textarea rows={6} value={getString(lesson, "transcript")} onChange={(event) => onPatch({ transcript: event.target.value })} /></label>
             </div>
           )}
