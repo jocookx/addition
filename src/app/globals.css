@@ -4895,6 +4895,21 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
     font-size: 13px;
   }
 
+  /* Commands list view — no fixed widths on mobile, hide meta path */
+  .cmd-list-name {
+    flex: 1 1 0;
+    max-width: none;
+  }
+
+  .cmd-list-meta {
+    display: none;
+  }
+
+  .cmd-list-row .cmd-list-icon-wrap {
+    width: 28px;
+    height: 28px;
+  }
+
   .legacy-card-grid {
     grid-template-columns: 1fr;
   }
@@ -15550,15 +15565,51 @@ html[data-theme="light"] .tool-intent-arrow { color: rgba(0, 0, 0, 0.28); }
 
 .cmd-list-row {
   display: grid;
-  grid-template-columns: 24px 1fr 1fr auto;
+  grid-template-columns: 32px 24px 1fr 1fr auto;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 8px 14px;
   border-radius: 10px;
   border: 1px solid transparent;
   cursor: pointer;
   transition: background 0.12s, border-color 0.12s;
   user-select: none;
+}
+
+/* List view icon */
+.cmd-list-icon-wrap {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 7px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cmd-list-icon-sprite {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: auto;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.cmd-list-icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.cmd-list-icon-placeholder {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.04em;
 }
 .cmd-list-row:hover {
   background: rgba(255, 255, 255, 0.04);
@@ -15733,6 +15784,18 @@ html[data-theme="light"] .cmd-sentence-select:hover { border-color: rgba(0,0,0,0
 }
 .cmd-list-row .cmd-check {
   flex-shrink: 0;
+}
+
+.cmd-list-row .cmd-list-icon-wrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 7px;
+  overflow: hidden;
 }
 
 .cmd-list-name {

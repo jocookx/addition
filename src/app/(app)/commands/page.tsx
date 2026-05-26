@@ -388,6 +388,33 @@ export default function CommandsPage() {
       return null;
     }
 
+    const media = command.icon || command.gif;
+
+    function ListIcon() {
+      if (media?.startsWith("sprite:")) {
+        const parts = media.slice(7).split("|");
+        const [url, x, y] = parts;
+        return (
+          <span
+            className="cmd-list-icon-sprite"
+            style={{ backgroundImage: `url(${url})`, backgroundPosition: `${x} ${y}` }}
+            aria-hidden="true"
+          />
+        );
+      }
+      if (media) {
+        return (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="cmd-list-icon-img" src={media} alt="" aria-hidden="true" />
+        );
+      }
+      return (
+        <span className="cmd-list-icon-placeholder" aria-hidden="true">
+          {name.slice(0, 2)}
+        </span>
+      );
+    }
+
     return (
       <div
         key={command.id}
@@ -399,6 +426,7 @@ export default function CommandsPage() {
           if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(command); }
         }}
       >
+        <div className="cmd-list-icon-wrap"><ListIcon /></div>
         <button
           type="button"
           className={`cmd-check ${isLearned ? "checked" : ""}`}
