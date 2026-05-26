@@ -339,6 +339,17 @@ function LearnPageInner() {
     ? (course?.modules[activeMod].lessons.findIndex((l) => l.id === selectedLessonId) ?? -1)
     : -1;
 
+  // ── path context (from ?path= URL param) ─────────────────────────────────
+  const pathParam = searchParams.get("path");
+  const currentPath = pathParam ? (pathDetails[pathParam] ?? null) : null;
+  const currentCourseIndexInPath = currentPath
+    ? currentPath.courses.findIndex((c) => c.id === activeCourseId)
+    : -1;
+  const nextPathCourse = (currentPath && currentCourseIndexInPath >= 0 && currentCourseIndexInPath < currentPath.courses.length - 1)
+    ? currentPath.courses[currentCourseIndexInPath + 1]
+    : null;
+  const courseComplete = pct === 100 && course !== null;
+
   // ── catalog filter ────────────────────────────────────────────────────────
   const activePath = activePathId === "all" ? null : pathDetails[activePathId] ?? null;
   const pathOrderedCatalog = useMemo(() => {
@@ -501,6 +512,41 @@ function LearnPageInner() {
 
         {/* ── Video column ── */}
         <div className="player-video-col">
+
+          {/* ── Course complete banner ── */}
+          {courseComplete && (
+            <div className="course-complete-banner">
+              <div className="course-complete-banner-left">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <div>
+                  <strong>{course!.title} complete</strong>
+                  {nextPathCourse
+                    ? <span>Up next: {nextPathCourse.title}</span>
+                    : currentPath
+                      ? <span>You&apos;ve finished all courses in this path!</span>
+                      : null}
+                </div>
+              </div>
+              {nextPathCourse ? (
+                <button
+                  type="button"
+                  className="primary-button course-complete-cta"
+                  onClick={() => openCourse(nextPathCourse.id)}
+                >
+                  Start next course →
+                </button>
+              ) : currentPath && (
+                <button
+                  type="button"
+                  className="primary-button course-complete-cta"
+                  onClick={() => router.push(`/paths/${currentPath.id}`)}
+                >
+                  View path →
+                </button>
+              )}
+            </div>
+          )}
+
           <div className="video-wrap">
             <button
               type="button"
@@ -571,8 +617,12 @@ function LearnPageInner() {
         {/* ── Sidebar outline ── */}
         <aside className="lesson-panel course-outline">
           <div className="outline-head">
-            <button type="button" className="outline-back-btn" onClick={backToCatalog}>
-              ← Back to courses
+            <button
+              type="button"
+              className="outline-back-btn"
+              onClick={currentPath ? () => router.push(`/paths/${currentPath.id}`) : backToCatalog}
+            >
+              {currentPath ? `← ${currentPath.title}` : "← Back to courses"}
             </button>
           </div>
 

@@ -151,7 +151,7 @@ export default function PathDetailPage() {
                       <strong className="pdet-course-title">{course.title}</strong>
                       <div className="pdet-course-meta">{course.lessonCount} lessons · ~{course.estimatedMinutes} min</div>
                     </div>
-                    <Link href={`/learn?course=${encodeURIComponent(course.id)}`} className="ghost-btn pdet-course-btn">
+                    <Link href={`/learn?course=${encodeURIComponent(course.id)}&path=${encodeURIComponent(pathId)}`} className="ghost-btn pdet-course-btn">
                       {enrolled ? "Open →" : "Preview →"}
                     </Link>
                   </div>
@@ -176,7 +176,7 @@ export default function PathDetailPage() {
               </p>
               {enrolled ? (
                 path.courses[0] && (
-                  <Link href={`/learn?course=${encodeURIComponent(path.courses[0].id)}`} className="primary-button pdet-enrol-btn">
+                  <Link href={`/learn?course=${encodeURIComponent(path.courses[0].id)}&path=${encodeURIComponent(pathId)}`} className="primary-button pdet-enrol-btn">
                     Continue learning →
                   </Link>
                 )
