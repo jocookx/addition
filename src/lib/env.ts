@@ -1,11 +1,17 @@
 import { z } from "zod";
 
+const optionalEnvString = z.preprocess(
+  (value) => typeof value === "string" && value.trim() === "" ? undefined : value,
+  z.string().min(1).optional(),
+);
+
 const RawEnvSchema = z.object({
-  NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).optional(),
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY: z.string().min(1).optional(),
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1).optional(),
-  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
+  NEXT_PUBLIC_SUPABASE_URL: z.string().trim().url(),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: optionalEnvString,
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: optionalEnvString,
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY: optionalEnvString,
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: optionalEnvString,
+  SUPABASE_SERVICE_ROLE_KEY: optionalEnvString,
 });
 
 export type AppEnv = {
@@ -29,11 +35,12 @@ export function getEnv(): AppEnv {
 
   const publicKey =
     parsed.data.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    parsed.data.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
     parsed.data.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
   if (!publicKey) {
     throw new Error(
-      "Invalid environment configuration. Set NEXT_PUBLIC_SUPABASE_ANON_KEY or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY.",
+      "Invalid environment configuration. Set NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY.",
     );
   }
 
