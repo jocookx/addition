@@ -22,6 +22,10 @@ const CSP = [
     "https://*.supabase.in",
     "https://placehold.co",
     "https://images.unsplash.com",
+    // Cloudflare Stream thumbnails
+    "https://videodelivery.net",
+    "https://cloudflarestream.com",
+    "https://*.cloudflarestream.com",
   ].join(" "),
   [
     "connect-src 'self'",
@@ -31,10 +35,29 @@ const CSP = [
     "wss://*.supabase.in",
     "https://api.stripe.com",
     "https://checkout.stripe.com",
+    // Cloudflare Stream TUS upload endpoint + API
+    "https://api.cloudflare.com",
+    "https://upload.videodelivery.net",
+    "https://*.cloudflarestream.com",
   ].join(" "),
-  "frame-src https://js.stripe.com https://checkout.stripe.com https://buy.stripe.com",
+  [
+    "frame-src",
+    "https://js.stripe.com",
+    "https://checkout.stripe.com",
+    "https://buy.stripe.com",
+    // Cloudflare Stream player iframe
+    "https://iframe.cloudflarestream.com",
+    "https://cloudflarestream.com",
+  ].join(" "),
   "font-src 'self' data:",
-  "media-src 'self' blob: https://*.supabase.co https://*.supabase.in",
+  [
+    "media-src 'self' blob:",
+    "https://*.supabase.co",
+    "https://*.supabase.in",
+    // CF Stream HLS/DASH media segments
+    "https://videodelivery.net",
+    "https://*.cloudflarestream.com",
+  ].join(" "),
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' https://checkout.stripe.com https://buy.stripe.com",

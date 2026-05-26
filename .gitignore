@@ -42,6 +42,9 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
-
-.vercel
 .env*.local
+
+# Capacitor native project folders (generated — do not commit)
+# Run: npx cap add ios / npx cap add android to recreate them
+/ios
+/android

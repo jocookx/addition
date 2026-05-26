@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { MobileShell } from "@/components/mobile-shell";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -8,6 +9,11 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  // Extend content into the notch / Dynamic Island area so we can
+  // draw our own header behind the status bar (handled via safe-area CSS)
+  viewportFit: "cover",
+  // Chrome/Android address-bar theme colour
+  themeColor: "#000000",
 };
 
 export const metadata: Metadata = {
@@ -17,10 +23,36 @@ export const metadata: Metadata = {
   },
   description:
     "Learn AI and Digital Design workflows: prompting, Rhino, Grasshopper, Revit, Dynamo, Twinmotion, Unreal Engine, Adobe and AI.",
-  keywords: ["AI and Digital Design", "Rhino", "Grasshopper", "Revit", "Dynamo", "Twinmotion", "Unreal Engine", "Adobe", "AI", "architectural digital design", "command library"],
+  keywords: [
+    "AI and Digital Design",
+    "Rhino",
+    "Grasshopper",
+    "Revit",
+    "Dynamo",
+    "Twinmotion",
+    "Unreal Engine",
+    "Adobe",
+    "AI",
+    "architectural digital design",
+    "command library",
+  ],
   openGraph: {
     siteName: "ADDITION",
     type: "website",
+  },
+  // iOS home-screen web-app behaviour
+  appleWebApp: {
+    capable: true,
+    title: "Addition",
+    statusBarStyle: "black-translucent",
+  },
+  // Android manifest
+  manifest: "/manifest.webmanifest",
+  // Disable automatic phone-number detection
+  formatDetection: {
+    telephone: false,
+    date: false,
+    address: false,
   },
 };
 
@@ -32,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <MobileShell />
         {children}
         <Analytics />
         <SpeedInsights />
