@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import type { Provider, Session, SupabaseClient } from "@supabase/supabase-js";
 import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import type { BillingInterval, BillingPlan } from "@/lib/api/billing";
+import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 
 // ─── Student email domain lists ───────────────────────────────────────────────
@@ -298,9 +299,11 @@ export default function AuthPage() {
       });
       const payload = await response.json().catch(() => ({})) as { error?: string };
       if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Verification failed.");
-      setVerifyStep("approved");
       setVerifyResult({ institution: "" });
       setInfoMsg("");
+      // Email domain verified — go straight to checkout
+      await proceedAfterVerify(true);
+      return;
     } catch (err) {
       setInfoMsg("");
       setErrorMsg(parseError(err));
@@ -349,8 +352,22 @@ export default function AuthPage() {
     }
   }
 
-  function proceedToDashboard() {
-    router.replace("/dashboard?gateway=student");
+  async function proceedAfterVerify(verified: boolean) {
+    // If approved → go to student checkout; pending → welcome dashboard
+    if (verified && supabase) {
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      if (token) {
+        try {
+          const url = await getBillingCheckoutUrl("student", token, "/dashboard");
+          window.location.href = url;
+          return;
+        } catch {
+          // Fall through to dashboard if checkout URL fails
+        }
+      }
+    }
+    router.replace("/dashboard?gateway=welcome");
   }
 
   // ─── Shared logo mark ─────────────────────────────────────────────────────
@@ -430,7 +447,7 @@ export default function AuthPage() {
                 <button
                   type="button"
                   className="auth-inline-link"
-                  onClick={proceedToDashboard}
+                  onClick={() => void proceedAfterVerify(false)}
                   style={{ fontSize: 12, opacity: 0.45, marginTop: 4, textAlign: "center" }}
                 >
                   Skip for now
@@ -482,8 +499,8 @@ export default function AuthPage() {
                     )}
                   </div>
                 </div>
-                <button type="button" className="primary-button auth-submit-btn" onClick={proceedToDashboard}>
-                  Continue to Addition →
+                <button type="button" className="primary-button auth-submit-btn" onClick={() => void proceedAfterVerify(true)}>
+                  Continue to checkout →
                 </button>
               </>
             )}
@@ -500,7 +517,7 @@ export default function AuthPage() {
                     </p>
                   </div>
                 </div>
-                <button type="button" className="primary-button auth-submit-btn" onClick={proceedToDashboard}>
+                <button type="button" className="primary-button auth-submit-btn" onClick={() => void proceedAfterVerify(false)}>
                   Continue to Addition →
                 </button>
               </>
