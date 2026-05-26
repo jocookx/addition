@@ -598,30 +598,22 @@ export default function AuthPage() {
           >
             {logoMark}
 
-            {/* Mode toggle — same pattern as billing monthly/yearly */}
-            <div className="auth-mode-toggle">
+            {/* Tabs — same segment-nav-tabs style as Commands / Combos / Courses */}
+            <div className="segment-nav-tabs" role="tablist">
               <button
                 type="button"
-                className={!isSignup ? "is-active" : ""}
+                role="tab"
+                aria-selected={!isSignup}
+                className={`segment-btn${!isSignup ? " active" : ""}`}
                 onClick={() => { setMode("signin"); clearMsgs(); setShowEmailFallback(false); }}
               >
                 Sign in
               </button>
               <button
                 type="button"
-                className="auth-mode-switch"
-                aria-label="Toggle sign in / sign up"
-                onClick={() => {
-                  setMode(isSignup ? "signin" : "signup");
-                  clearMsgs();
-                  setShowEmailFallback(false);
-                }}
-              >
-                <span />
-              </button>
-              <button
-                type="button"
-                className={isSignup ? "is-active" : ""}
+                role="tab"
+                aria-selected={isSignup}
+                className={`segment-btn${isSignup ? " active" : ""}`}
                 onClick={() => { setMode("signup"); clearMsgs(); setShowEmailFallback(false); }}
               >
                 Sign up
