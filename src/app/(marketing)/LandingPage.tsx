@@ -662,6 +662,29 @@ function WorkshopModal({ cohort, onClose }: { cohort: Cohort; onClose: () => voi
 export default function LandingPage() {
   const router = useRouter();
   const headerRef = useRef<HTMLElement>(null);
+
+  // Synchronously check — before any render — whether we should redirect.
+  // "redirecting" = OAuth code/token in URL → forward to /auth/callback
+  // "checking"    = localStorage has a Supabase token → wait for getSession()
+  // "ready"       = no session hint, render the page immediately
+  const [authState, setAuthState] = useState<"redirecting" | "checking" | "ready">(() => {
+    if (typeof window === "undefined") return "ready";
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("preview") === "1") return "ready";
+    const hash = window.location.hash;
+    if (params.get("code") || hash.includes("access_token")) {
+      window.location.replace("/auth/callback" + window.location.search + hash);
+      return "redirecting";
+    }
+    try {
+      const hasToken = Object.keys(localStorage).some(
+        k => k.startsWith("sb-") && k.endsWith("-auth-token")
+      );
+      if (hasToken) return "checking";
+    } catch { /* localStorage blocked */ }
+    return "ready";
+  });
+
   const [navOpen, setNavOpen] = useState(false);
   const [workshops, setWorkshops] = useState<Cohort[]>([]);
   const [modalItem, setModalItem] = useState<Cohort | null>(null);
@@ -685,23 +708,17 @@ export default function LandingPage() {
   }
 
   useEffect(() => {
-    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "1") return;
-
-    // If OAuth landed here instead of /auth/callback (e.g. implicit flow fallback),
-    // forward the code/hash to the callback page so it is processed correctly.
-    const params = new URLSearchParams(window.location.search);
-    const hash = window.location.hash;
-    if (params.get("code") || hash.includes("access_token")) {
-      window.location.replace("/auth/callback" + window.location.search + hash);
-      return;
-    }
-
+    if (authState === "redirecting") return;
     const supabase = getBrowserSupabaseClient();
-    if (!supabase) return;
+    if (!supabase) { setAuthState("ready"); return; }
     void supabase.auth.getSession().then(({ data }) => {
-      if (data.session) router.replace("/dashboard?gateway=welcome");
+      if (data.session) {
+        router.replace("/dashboard?gateway=welcome");
+      } else {
+        setAuthState("ready");
+      }
     });
-  }, [router]);
+  }, [authState, router]);
 
   useEffect(() => {
     const el = headerRef.current;
@@ -728,6 +745,9 @@ export default function LandingPage() {
     void getWorkshops({ upcoming: true }).then((data) => { if (!canceled) setWorkshops(buildCohorts(data)); });
     return () => { canceled = true; };
   }, []);
+
+  // Don't render until we know the user isn't authenticated / being redirected
+  if (authState !== "ready") return null;
 
   return (
     <>
