@@ -12326,19 +12326,15 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 
 .aa-module-head {
   display: grid;
-  grid-template-columns: auto minmax(180px, 1fr) auto;
+  /* grip | badge | title input | add-lesson btn */
+  grid-template-columns: 28px auto minmax(180px, 1fr) auto;
   align-items: center;
   gap: 10px;
   padding: 12px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.aa-module-head > span {
-  color: rgba(196,181,253,0.86);
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
+/* .aa-module-badge handles module label styling — see below */
 
 .aa-module-head input {
   background: transparent;
@@ -12373,7 +12369,8 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 
 .aa-lesson-row {
   display: grid;
-  grid-template-columns: 54px minmax(160px, 1fr) 100px auto minmax(90px, 0.55fr) auto;
+  /* grip | number | title | duration | status | missing */
+  grid-template-columns: 28px 54px minmax(160px, 1fr) 90px auto minmax(90px, 0.55fr);
   align-items: center;
   gap: 10px;
   width: 100%;
@@ -12382,12 +12379,78 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   border-bottom: 1px solid rgba(255,255,255,0.045);
   background: transparent;
   color: rgba(236,236,242,0.82);
-  padding: 12px;
+  padding: 10px 12px;
   cursor: pointer;
+  user-select: none;
 }
 
 .aa-lesson-row:hover {
   background: rgba(255,255,255,0.035);
+}
+
+.aa-lesson-row.is-dragging {
+  background: rgba(124,58,237,0.08);
+  border-color: rgba(124,58,237,0.25);
+}
+
+.aa-lesson-row.is-overlay {
+  background: rgba(124,58,237,0.14);
+  border: 1px solid rgba(124,58,237,0.35);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+}
+
+.aa-module-section.is-dragging {
+  opacity: 0.4;
+}
+
+.aa-module-section.is-overlay {
+  background: rgba(124,58,237,0.10);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+/* Drag handle — grip dots icon */
+.aa-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  color: rgba(255,255,255,0.22);
+  cursor: grab;
+  flex-shrink: 0;
+  transition: color 0.12s;
+}
+
+.aa-drag-handle:hover,
+.aa-drag-handle:active {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.06);
+}
+
+.aa-drag-handle:active {
+  cursor: grabbing;
+}
+
+.aa-grip-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.aa-add-lesson-btn {
+  white-space: nowrap;
+}
+
+.aa-module-badge {
+  color: rgba(196,181,253,0.86);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .aa-lesson-number {
@@ -12396,10 +12459,9 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   font-weight: 800;
 }
 
+/* Remove old Up/Down hover actions — replaced by drag handles */
 .aa-hover-actions {
-  display: flex;
-  gap: 4px;
-  opacity: 0;
+  display: none;
 }
 
 .aa-empty-row {

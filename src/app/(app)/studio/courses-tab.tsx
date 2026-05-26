@@ -5,7 +5,9 @@ import type { StudioCourse, StudioLesson, StudioModule, StudioPayload } from "@/
 import { LAUNCH_SOFTWARE } from "@/config/taxonomy";
 import { fetchJson } from "@/lib/api/fetch-json";
 import { ImageUploadField } from "./image-upload-field";
-import { VideoUploadField } from "./video-upload-field";
+import { CurriculumBuilder } from "./curriculum-builder";
+import { LessonEditorDrawer } from "./lesson-editor-drawer";
+// VideoUploadField is used inside LessonEditorDrawer — not imported here
 import {
   AccessBadge,
   AdminDataTable,
@@ -589,6 +591,22 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
     });
   }
 
+  function reorderModules(courseId: string, newModules: StudioModule[]) {
+    updatePayload((draft) => {
+      const course = draft.items.find((item) => item.id === courseId);
+      if (course) course.modules = newModules;
+    });
+  }
+
+  function reorderLessons(courseId: string, moduleId: string, newLessons: StudioLesson[]) {
+    updatePayload((draft) => {
+      const courseModule = draft.items
+        .find((item) => item.id === courseId)
+        ?.modules.find((item) => item.id === moduleId);
+      if (courseModule) courseModule.lessons = newLessons;
+    });
+  }
+
   const courses = payload?.items ?? [];
   const softwareOptions = ["All", ...LAUNCH_SOFTWARE];
   const pathOptions = ["All", ...Array.from(new Set(courses.map((course) => getString(course, "pathKind")).filter(Boolean))).sort()];
@@ -858,10 +876,10 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
                     onNewModuleTitle={setNewModuleTitle}
                     onAddModule={() => addModule(selectedCourse.id)}
                     onPatchModule={(moduleId, patch) => updateModule(selectedCourse.id, moduleId, patch)}
-                    onMoveModule={(moduleId, direction) => moveModule(selectedCourse.id, moduleId, direction)}
+                    onReorderModules={(newModules) => reorderModules(selectedCourse.id, newModules)}
+                    onReorderLessons={(moduleId, newLessons) => reorderLessons(selectedCourse.id, moduleId, newLessons)}
                     onAddLesson={(moduleId) => addLesson(selectedCourse.id, moduleId)}
                     onOpenLesson={(moduleId, lessonId) => setLessonSelection({ courseId: selectedCourse.id, moduleId, lessonId })}
-                    onMoveLesson={(moduleId, lessonId, direction) => moveLesson(selectedCourse.id, moduleId, lessonId, direction)}
                   />
                 )}
                 {courseTab === "lessons" && <LessonProductionList course={selectedCourse} onOpenLesson={(moduleId, lessonId) => setLessonSelection({ courseId: selectedCourse.id, moduleId, lessonId })} />}
@@ -1014,89 +1032,7 @@ function CourseOverview({
   );
 }
 
-function CurriculumBuilder({
-  course,
-  newModuleTitle,
-  onNewModuleTitle,
-  onAddModule,
-  onPatchModule,
-  onMoveModule,
-  onAddLesson,
-  onOpenLesson,
-  onMoveLesson,
-}: {
-  course: StudioCourse;
-  newModuleTitle: string;
-  onNewModuleTitle: (title: string) => void;
-  onAddModule: () => void;
-  onPatchModule: (moduleId: string, patch: Partial<StudioModule>) => void;
-  onMoveModule: (moduleId: string, direction: -1 | 1) => void;
-  onAddLesson: (moduleId: string) => void;
-  onOpenLesson: (moduleId: string, lessonId: string) => void;
-  onMoveLesson: (moduleId: string, lessonId: string, direction: -1 | 1) => void;
-}) {
-  return (
-    <section className="aa-panel aa-curriculum-panel">
-      <div className="aa-panel-head aa-panel-head-row">
-        <div><h3>Curriculum Tree</h3><p>Modules and lessons are shown together so the course structure is easy to scan.</p></div>
-        <div className="aa-inline-create">
-          <input value={newModuleTitle} onChange={(event) => onNewModuleTitle(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") onAddModule(); }} placeholder="New module title..." />
-          <button type="button" className="st-create-btn" onClick={onAddModule}>+ Add Module</button>
-        </div>
-      </div>
-
-      {course.modules.length === 0 ? (
-        <EmptyState title="No modules yet" description="Modules group lessons into a clear course structure. Start with one module, then add lessons inside it." action={<button type="button" className="st-create-btn" onClick={onAddModule}>+ Add Module</button>} />
-      ) : (
-        <div className="aa-curriculum-tree">
-          {course.modules.map((module, moduleIndex) => (
-            <article key={module.id} className="aa-module-section">
-              <div className="aa-module-head">
-                <span>Module {moduleIndex + 1}</span>
-                <input value={module.title} onChange={(event) => onPatchModule(module.id, { title: event.target.value })} />
-                <div className="aa-row-actions">
-                  <button type="button" onClick={() => onMoveModule(module.id, -1)}>Up</button>
-                  <button type="button" onClick={() => onMoveModule(module.id, 1)}>Down</button>
-                  <button type="button" onClick={() => onAddLesson(module.id)}>+ Lesson</button>
-                </div>
-              </div>
-              <div className="aa-lesson-rows">
-                {module.lessons.length === 0 ? (
-                  <button type="button" className="aa-empty-row" onClick={() => onAddLesson(module.id)}>No lessons yet. Add the first lesson.</button>
-                ) : module.lessons.map((lesson, lessonIndex) => {
-                  const health = lessonHealth(lesson);
-                  const missing = missingHealth(health);
-                  return (
-                    <div
-                      key={lesson.id}
-                      className="aa-lesson-row"
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => onOpenLesson(module.id, lesson.id)}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") onOpenLesson(module.id, lesson.id);
-                      }}
-                    >
-                      <span className="aa-lesson-number">{moduleIndex + 1}.{lessonIndex + 1}</span>
-                      <strong>{lesson.title}</strong>
-                      <span>{lesson.durationMin ? `${lesson.durationMin} min` : "No duration"}</span>
-                      <StatusBadge status={getStatus(lesson, lessonHasVideo(lesson) ? "Draft" : "Needs Video")} />
-                      {missing.length > 0 && <small>{missing[0].label}</small>}
-                      <span className="aa-hover-actions" onClick={(event) => event.stopPropagation()}>
-                        <button type="button" onClick={() => onMoveLesson(module.id, lesson.id, -1)}>Up</button>
-                        <button type="button" onClick={() => onMoveLesson(module.id, lesson.id, 1)}>Down</button>
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
-  );
-}
+// CurriculumBuilder is now in ./curriculum-builder.tsx (with drag-and-drop)
 
 function LessonProductionList({ course, onOpenLesson }: { course: StudioCourse; onOpenLesson: (moduleId: string, lessonId: string) => void }) {
   const lessons = course.modules.flatMap((module) => module.lessons.map((lesson) => ({ module, lesson })));
@@ -1172,148 +1108,4 @@ function PublishPanel({ course, onPatch }: { course: StudioCourse; onPatch: (pat
   );
 }
 
-function LessonEditorDrawer({
-  accessToken,
-  course,
-  module,
-  lesson,
-  activeTab,
-  onTabChange,
-  onClose,
-  onDelete,
-  onPatch,
-  aiBusy,
-  onGenerate,
-}: {
-  accessToken: string;
-  course: StudioCourse;
-  module: StudioModule;
-  lesson: StudioLesson;
-  activeTab: LessonTab;
-  onTabChange: (tab: LessonTab) => void;
-  onClose: () => void;
-  onDelete: () => void;
-  onPatch: (patch: Partial<StudioLesson> & Record<string, unknown>) => void;
-  aiBusy: AiTask | "";
-  onGenerate: (task: Exclude<AiTask, "course-overview">) => void;
-}) {
-  const health = lessonHealth(lesson);
-  const activeLessonAiTask = aiBusy !== "course-overview" ? aiBusy : "";
-  return (
-    <div className="aa-drawer-backdrop" role="presentation">
-      <aside className="aa-lesson-drawer" aria-label="Lesson editor">
-        <header className="aa-lesson-drawer-head">
-          <div>
-            <span className="aa-breadcrumb">{course.title} / {module.title}</span>
-            <h2>{lesson.title}</h2>
-            <div className="aa-meta-line">
-              <StatusBadge status={getStatus(lesson, lessonHasVideo(lesson) ? "Draft" : "Needs Video")} />
-              <AccessBadge access={getAccess(lesson)} />
-              <span>{lesson.durationMin ? `${lesson.durationMin} min` : "No duration"}</span>
-            </div>
-          </div>
-          <div className="aa-course-actions">
-            <button type="button" className="st-save-btn" onClick={onClose}>Done</button>
-            <MoreMenu>
-              <button type="button">Preview Lesson</button>
-              <button type="button" className="danger" onClick={onDelete}>Delete lesson</button>
-            </MoreMenu>
-          </div>
-        </header>
-
-        <div className="aa-tabs aa-tabs-sticky">
-          {LESSON_TABS.map((tab) => <button key={tab.id} type="button" className={activeTab === tab.id ? "active" : ""} onClick={() => onTabChange(tab.id)}>{tab.label}</button>)}
-        </div>
-
-        <div className="aa-lesson-drawer-body">
-          {activeTab === "plan" && (
-            <>
-              <AiActionBar busy={activeLessonAiTask === "lesson-plan"} label="AI draft lesson plan" onClick={() => onGenerate("lesson-plan")} />
-              <div className="aa-form-grid">
-                <label><span>Lesson title</span><input value={lesson.title} onChange={(event) => onPatch({ title: event.target.value })} /></label>
-                <label><span>Duration</span><input type="number" value={lesson.durationMin ?? ""} onChange={(event) => onPatch({ durationMin: event.target.value ? Number(event.target.value) : null })} /></label>
-                <label><span>Status</span><select value={getStatus(lesson, "Draft")} onChange={(event) => onPatch({ status: event.target.value })}>{STATUS_OPTIONS.map((item) => <option key={item}>{item}</option>)}</select></label>
-                <label><span>Access</span><select value={getAccess(lesson)} onChange={(event) => onPatch({ accessLevel: event.target.value })}>{ACCESS_OPTIONS.map((item) => <option key={item}>{item}</option>)}</select></label>
-                <label className="span-2"><span>Learning outcome</span><textarea rows={3} value={getString(lesson, "learningOutcome")} onChange={(event) => onPatch({ learningOutcome: event.target.value })} /></label>
-                <label className="span-2"><span>Short summary</span><textarea rows={3} value={lesson.content ?? ""} onChange={(event) => onPatch({ content: event.target.value })} /></label>
-              </div>
-            </>
-          )}
-          {activeTab === "script" && (
-            <>
-              <AiActionBar busy={activeLessonAiTask === "lesson-script"} label="AI draft script" onClick={() => onGenerate("lesson-script")} />
-              <div className="aa-script-grid">
-                <label><span>Voiceover</span><textarea rows={16} value={getString(lesson, "voiceover", lesson.content ?? "")} onChange={(event) => onPatch({ voiceover: event.target.value, content: event.target.value })} /></label>
-                <label><span>Screen action</span><textarea rows={16} value={getString(lesson, "screenAction")} onChange={(event) => onPatch({ screenAction: event.target.value })} /></label>
-                <label><span>Short-safe ending</span><textarea rows={4} value={getString(lesson, "shortSafeEnding")} onChange={(event) => onPatch({ shortSafeEnding: event.target.value })} /></label>
-                <label><span>Course CTA</span><textarea rows={4} value={getString(lesson, "courseCta")} onChange={(event) => onPatch({ courseCta: event.target.value })} /></label>
-              </div>
-            </>
-          )}
-          {activeTab === "video" && (
-            <div className="aa-form-grid">
-              {/* Cloudflare Stream upload + URL fallback */}
-              <div className="span-2">
-                <VideoUploadField
-                  accessToken={accessToken}
-                  videoId={getString(lesson, "videoId")}
-                  videoUrl={lesson.video ?? ""}
-                  onVideoId={(id) => onPatch({ videoId: id })}
-                  onVideoUrl={(url) => onPatch({ video: url })}
-                />
-              </div>
-              <div className="span-2"><ImageUploadField accessToken={accessToken} label="Thumbnail / poster image" folder="lesson-images" value={lesson.image ?? ""} onChange={(value) => onPatch({ image: value })} /></div>
-              <label className="span-2"><span>Captions / transcript</span><textarea rows={6} value={getString(lesson, "transcript")} onChange={(event) => onPatch({ transcript: event.target.value })} /></label>
-            </div>
-          )}
-          {activeTab === "steps" && (
-            <>
-              <AiActionBar busy={activeLessonAiTask === "lesson-steps"} label="AI draft steps" onClick={() => onGenerate("lesson-steps")} />
-              <TextAreaBlock label="Ordered steps, key concepts, common mistakes and troubleshooting" value={getString(lesson, "steps")} onChange={(value) => onPatch({ steps: value })} />
-            </>
-          )}
-          {activeTab === "commands" && <TextAreaBlock label="Linked commands" value={getString(lesson, "linkedCommands")} onChange={(value) => onPatch({ linkedCommands: value })} help="Add command names for now. The next iteration can replace this with a command picker." />}
-          {activeTab === "combos" && <TextAreaBlock label="Linked workflow combos" value={getString(lesson, "linkedCombos")} onChange={(value) => onPatch({ linkedCombos: value })} />}
-          {activeTab === "practice" && (
-            <>
-              <AiActionBar busy={activeLessonAiTask === "practice-task"} label="AI draft practice task" onClick={() => onGenerate("practice-task")} />
-              <TextAreaBlock label="Practice task" value={getString(lesson, "practiceTask")} onChange={(value) => onPatch({ practiceTask: value })} />
-            </>
-          )}
-          {activeTab === "resources" && <TextAreaBlock label="Resources and downloads" value={getString(lesson, "resourceNotes")} onChange={(value) => onPatch({ resourceNotes: value })} />}
-          {activeTab === "publish" && (
-            <div className="aa-panel">
-              <div className="aa-panel-head"><h3>Lesson Health</h3><p>Use this checklist before publishing the lesson.</p></div>
-              <ContentHealthSummary items={health} />
-              <HealthChecklist items={health} />
-              <button type="button" className="st-publish-btn" onClick={() => onPatch({ status: "Published" })}>Publish Lesson</button>
-            </div>
-          )}
-        </div>
-      </aside>
-    </div>
-  );
-}
-
-function AiActionBar({ busy, label, onClick }: { busy: boolean; label: string; onClick: () => void }) {
-  return (
-    <div className="aa-ai-action-bar">
-      <div>
-        <strong>AI assistant</strong>
-        <span>Generate a draft, then review and edit before publishing.</span>
-      </div>
-      <button type="button" className="aa-secondary-button" onClick={onClick} disabled={busy}>
-        {busy ? "Generating..." : label}
-      </button>
-    </div>
-  );
-}
-
-function TextAreaBlock({ label, value, help, onChange }: { label: string; value: string; help?: string; onChange: (value: string) => void }) {
-  return (
-    <div className="aa-panel">
-      <div className="aa-panel-head"><h3>{label}</h3>{help && <p>{help}</p>}</div>
-      <textarea rows={18} value={value} onChange={(event) => onChange(event.target.value)} />
-    </div>
-  );
-}
+// LessonEditorDrawer is now in ./lesson-editor-drawer.tsx
