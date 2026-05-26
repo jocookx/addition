@@ -574,6 +574,14 @@ export default function AuthPage() {
 
   return (
     <main className="auth">
+      <button
+        type="button"
+        className="auth-back-btn"
+        onClick={() => router.back()}
+        aria-label="Go back"
+      >
+        ← Back
+      </button>
       <div className="auth-card">
         {mode === "forgot" ? (
           /* ── Forgot password ── */

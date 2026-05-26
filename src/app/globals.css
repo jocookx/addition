@@ -2219,6 +2219,30 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   mask-image: radial-gradient(circle at 50% 0%, black, transparent 76%);
 }
 
+.auth-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.auth-back-btn:hover {
+  background: rgba(255,255,255,0.09);
+  color: #fff;
+}
+
 .auth-card {
   position: relative;
   z-index: 1;
@@ -12220,12 +12244,43 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   min-width: 0;
 }
 
+.aa-course-header,
+.aa-lesson-drawer-head {
+  position: relative;
+}
+
+/* ✕ close button — pinned to top-right of both drawers */
+.aa-drawer-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.12s, color 0.12s;
+  z-index: 1;
+}
+
+.aa-drawer-close:hover {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+
 .aa-course-header {
   display: flex;
   justify-content: space-between;
   align-items: start;
   gap: 18px;
-  padding: 20px;
+  padding: 20px 48px 20px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
   background: rgba(255,255,255,0.018);
 }
@@ -12579,7 +12634,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  padding: 22px;
+  padding: 22px 52px 22px 22px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 

@@ -138,6 +138,7 @@ export function LessonEditorDrawer({
 
         {/* ── Header ── */}
         <header className="aa-lesson-drawer-head">
+          <button type="button" className="aa-drawer-close" onClick={onClose} aria-label="Close">✕</button>
           <div>
             <span className="aa-breadcrumb">
               {course.title} / {module.title}
@@ -154,9 +155,6 @@ export function LessonEditorDrawer({
             </div>
           </div>
           <div className="aa-course-actions">
-            <button type="button" className="st-save-btn" onClick={onClose}>
-              Done
-            </button>
             <MoreMenu>
               <button type="button">Preview Lesson</button>
               <button type="button" className="danger" onClick={onDelete}>

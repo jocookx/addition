@@ -943,6 +943,7 @@ function CourseHeader({
   const publishReady = courseIsPublishReady(course);
   return (
     <header className="aa-course-header">
+      <button type="button" className="aa-drawer-close" onClick={onClose} aria-label="Close">✕</button>
       <div>
         <span className="aa-breadcrumb">Courses / {course.title}</span>
         <h2>{course.title}</h2>
@@ -958,7 +959,6 @@ function CourseHeader({
         <StatusBadge status={courseStatus(course)} />
         <AccessBadge access={getAccess(course)} />
         <SaveStatusIndicator state={saveState} />
-        <button type="button" className="aa-secondary-button" onClick={onClose}>Close</button>
         <button type="button" className="st-save-btn" onClick={onSave}>Save</button>
         <button
           type="button"
