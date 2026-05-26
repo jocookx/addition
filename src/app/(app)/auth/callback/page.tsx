@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
@@ -17,12 +16,12 @@ function getWorkshopCheckoutPath(path: string) {
 
 export default function AuthCallbackPage() {
   const router = useRouter();
-  const [status, setStatus] = useState("Finalizing sign-in...");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const maybeClient = getBrowserSupabaseClient();
     if (!maybeClient) {
-      setStatus("Supabase is not configured.");
+      setErrorMsg("Supabase is not configured.");
       return;
     }
     const supabase = maybeClient;
@@ -45,6 +44,7 @@ export default function AuthCallbackPage() {
         const { data } = await supabase.auth.getSession();
         const token = data.session?.access_token;
         if (!token) throw new Error("No active session found.");
+
         if (nextPath.includes("/workshops/")) {
           router.replace(getWorkshopCheckoutPath(nextPath));
           return;
@@ -64,44 +64,27 @@ export default function AuthCallbackPage() {
         }
         if (!canceled) router.replace("/dashboard?gateway=welcome");
       } catch (error) {
-        if (!canceled) setStatus(parseError(error));
+        if (!canceled) setErrorMsg(parseError(error));
       }
     }
     void run();
 
-    return () => {
-      canceled = true;
-    };
+    return () => { canceled = true; };
   }, [router]);
 
   return (
-    <main style={mainStyle}>
-      <section style={cardStyle}>
-        <h1 style={titleStyle}>Auth Callback</h1>
-        <p style={subStyle}>{status}</p>
-      </section>
+    <main className="auth">
+      <div className="auth-card">
+        <div className="auth-form">
+          <div className="auth-simple-intro">
+            <div className="auth-simple-logo auth-simple-logo--loading" aria-hidden="true">
+              <span className="auth-hourglass" />
+            </div>
+            <h1>Signing you in…</h1>
+          </div>
+          {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
+        </div>
+      </div>
     </main>
   );
 }
-
-const mainStyle: CSSProperties = {
-  maxWidth: 760,
-  margin: "0 auto",
-  padding: "2rem 1.1rem 4rem",
-};
-
-const cardStyle: CSSProperties = {
-  border: "1px solid var(--line)",
-  borderRadius: 16,
-  background: "rgba(12, 17, 24, 0.75)",
-  padding: "1rem",
-};
-
-const titleStyle: CSSProperties = {
-  fontSize: "1.25rem",
-  marginBottom: 6,
-};
-
-const subStyle: CSSProperties = {
-  color: "var(--muted)",
-};

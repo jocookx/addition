@@ -1,26 +1,38 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Provider, Session, SupabaseClient } from "@supabase/supabase-js";
 import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import type { BillingInterval, BillingPlan } from "@/lib/api/billing";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 
+// ─── Student email domain lists ───────────────────────────────────────────────
+const STUDENT_DOMAIN_ENDINGS = [
+  ".edu", ".ac.uk", ".ac.au", ".ac.nz", ".ac.jp", ".ac.in", ".ac.za",
+  ".edu.au", ".edu.sg", ".edu.hk", ".edu.cn", ".edu.my", ".edu.br",
+  ".ac.kr", ".ac.th", ".ac.id", ".ac.tz", ".ac.ug", ".ac.ke",
+];
+const STUDENT_DOMAIN_PREFIXES = ["student.", "students.", "mymail.", "mail.student.", "webmail.student."];
+
+function isStudentDomain(email: string): boolean {
+  const domain = email.toLowerCase().split("@")[1] ?? "";
+  if (!domain || !domain.includes(".")) return false;
+  if (STUDENT_DOMAIN_ENDINGS.some(d => domain.endsWith(d))) return true;
+  if (STUDENT_DOMAIN_PREFIXES.some(p => domain.startsWith(p))) return true;
+  return false;
+}
+
 function parseError(error: unknown): string {
   if (error instanceof Error) return error.message;
   return "Unexpected error.";
 }
 
-function hasLikelyStudentEmail(value: string): boolean {
-  const domain = value.trim().toLowerCase().split("@")[1] || "";
-  return domain.endsWith(".edu") || domain.includes(".ac.") || domain.includes("student.");
-}
-
 function getWorkshopCheckoutPath(path: string) {
   return path.includes("/checkout") ? path : `${path.replace(/\/$/, "")}/checkout`;
 }
+
+type VerifyStep = "idle" | "email" | "upload" | "reviewing" | "approved" | "pending";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -30,20 +42,29 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [institution, setInstitution] = useState("");
-  const [courseOfStudy, setCourseOfStudy] = useState("");
-  const [expectedGraduationDate, setExpectedGraduationDate] = useState("");
-  const [evidencePath, setEvidencePath] = useState("");
-  const [evidenceFilename, setEvidenceFilename] = useState("");
-  const [status, setStatus] = useState("");
+  const [infoMsg, setInfoMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [busy, setBusy] = useState(false);
-  const [uploadBusy, setUploadBusy] = useState(false);
   const [showEmailFallback, setShowEmailFallback] = useState(false);
   const [showBookingFallback, setShowBookingFallback] = useState(false);
   const [nextPath, setNextPath] = useState("/dashboard");
   const [planIntent, setPlanIntent] = useState<"free" | BillingPlan>("free");
   const [billingInterval, setBillingInterval] = useState<BillingInterval>("monthly");
 
+  // ── Student verification wizard state ─────────────────────────────────────
+  const [verifyStep, setVerifyStep] = useState<VerifyStep>("idle");
+  const [verifyUserId, setVerifyUserId] = useState("");
+  const [verifyEmail, setVerifyEmail] = useState("");
+  const [studentVerifyEmail, setStudentVerifyEmail] = useState("");
+  const [domainChecked, setDomainChecked] = useState(false);
+  const [domainValid, setDomainValid] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [verifyResult, setVerifyResult] = useState<{ institution: string } | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function clearMsgs() { setInfoMsg(""); setErrorMsg(""); }
+
+  // ── URL params ─────────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
@@ -58,6 +79,7 @@ export default function AuthPage() {
     if (params.get("billing") === "yearly") setBillingInterval("yearly");
   }, []);
 
+  // ── Auth session listener ──────────────────────────────────────────────────
   useEffect(() => {
     if (!supabase) return;
     const client = supabase;
@@ -72,16 +94,46 @@ export default function AuthPage() {
     };
   }, [supabase]);
 
+  // ── Auto-redirect when session detected (no "Continue" button) ────────────
+  useEffect(() => {
+    const token = session?.access_token;
+    if (!token) return;
+    if (verifyStep !== "idle") return; // wizard is open — don't redirect
+    if (nextPath.includes("/workshops/")) return; // handled separately
+    setInfoMsg("Signing you in…");
+    void postLoginBootstrap(token);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.access_token, verifyStep]);
+
+  // ── Workshop redirect ──────────────────────────────────────────────────────
   useEffect(() => {
     const token = session?.access_token;
     if (!token || !nextPath.includes("/workshops/")) return;
     const checkoutPath = getWorkshopCheckoutPath(nextPath);
     const fallbackTimer = window.setTimeout(() => setShowBookingFallback(true), 2500);
-    setStatus("Opening workshop booking...");
+    setInfoMsg("Opening workshop booking…");
     router.replace(checkoutPath);
     return () => window.clearTimeout(fallbackTimer);
   }, [nextPath, router, session?.access_token]);
 
+  // ── Student email domain check (debounced 300ms) ──────────────────────────
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    const hasAt  = studentVerifyEmail.includes("@");
+    const hasDot = studentVerifyEmail.split("@")[1]?.includes(".");
+    if (!hasAt || !hasDot) {
+      setDomainChecked(false);
+      setDomainValid(false);
+      return;
+    }
+    debounceRef.current = setTimeout(() => {
+      setDomainChecked(true);
+      setDomainValid(isStudentDomain(studentVerifyEmail));
+    }, 300);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [studentVerifyEmail]);
+
+  // ── Bootstrap after login ──────────────────────────────────────────────────
   async function postLoginBootstrap(token: string) {
     if (nextPath.includes("/workshops/")) {
       router.replace(getWorkshopCheckoutPath(nextPath));
@@ -103,75 +155,41 @@ export default function AuthPage() {
     router.replace("/dashboard?gateway=welcome");
   }
 
+  // ── OAuth ──────────────────────────────────────────────────────────────────
   async function signInWithProvider(provider: Provider, label: string) {
-    if (!supabase) {
-      setStatus("Supabase is not configured.");
-      return;
-    }
+    if (!supabase) { setErrorMsg("Supabase is not configured."); return; }
+    clearMsgs();
     setBusy(true);
-    setStatus(`Redirecting to ${label}...`);
+    setInfoMsg(`Redirecting to ${label}…`);
     try {
       const callback = new URL("/auth/callback", window.location.origin);
       callback.searchParams.set("next", nextPath);
-      if (planIntent === "pro" || planIntent === "student") callback.searchParams.set("plan", planIntent);
+      if (planIntent === "pro") callback.searchParams.set("plan", "pro");
+      if (planIntent === "student") callback.searchParams.set("plan", "student");
       if (billingInterval === "yearly") callback.searchParams.set("billing", "yearly");
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
           redirectTo: callback.toString(),
           queryParams: provider === "google"
-            ? {
-                access_type: "offline",
-                prompt: "select_account",
-              }
+            ? { access_type: "offline", prompt: "select_account" }
             : undefined,
         },
       });
       if (error) throw new Error(error.message);
     } catch (err) {
-      setStatus(parseError(err));
+      setInfoMsg("");
+      setErrorMsg(parseError(err));
       setBusy(false);
     }
   }
 
-  async function uploadStudentEvidence(file: File) {
-    if (!email.trim()) {
-      setStatus("Enter your email before uploading evidence.");
-      return;
-    }
-    setUploadBusy(true);
-    setStatus("Uploading student evidence...");
-    try {
-      const form = new FormData();
-      form.set("file", file);
-      form.set("email", email.trim());
-      const response = await fetch("/api/v1/auth/student-evidence", {
-        method: "POST",
-        body: form,
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(typeof payload.error === "string" ? payload.error : "Upload failed.");
-      }
-      setEvidencePath(typeof payload.path === "string" ? payload.path : "");
-      setEvidenceFilename(typeof payload.filename === "string" ? payload.filename : file.name);
-      setStatus("Evidence uploaded. Continue creating your account.");
-    } catch (err) {
-      setEvidencePath("");
-      setEvidenceFilename("");
-      setStatus(parseError(err));
-    } finally {
-      setUploadBusy(false);
-    }
-  }
-
+  // ── Email sign in ──────────────────────────────────────────────────────────
   async function signIn() {
-    if (!supabase) {
-      setStatus("Supabase is not configured.");
-      return;
-    }
+    if (!supabase) { setErrorMsg("Supabase is not configured."); return; }
+    clearMsgs();
     setBusy(true);
-    setStatus("Signing in...");
+    setInfoMsg("Signing in…");
     try {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw new Error(error.message);
@@ -179,43 +197,23 @@ export default function AuthPage() {
       if (!token) throw new Error("No session returned.");
       await postLoginBootstrap(token);
     } catch (err) {
-      setStatus(parseError(err));
+      setInfoMsg("");
+      setErrorMsg(parseError(err));
     } finally {
       setBusy(false);
     }
   }
 
+  // ── Email sign up ──────────────────────────────────────────────────────────
   async function signUp() {
-    if (!supabase) {
-      setStatus("Supabase is not configured.");
-      return;
-    }
-
-    const isStudentSignup = planIntent === "student";
-    const studentEmail = hasLikelyStudentEmail(email);
-    if (isStudentSignup) {
-      if (!institution.trim()) {
-        setStatus("Enter your institution.");
-        return;
-      }
-      if (!courseOfStudy.trim()) {
-        setStatus("Enter what you study.");
-        return;
-      }
-      if (!expectedGraduationDate) {
-        setStatus("Enter your expected graduation date.");
-        return;
-      }
-      if (!studentEmail && !evidencePath) {
-        setStatus("Upload a student card or enrolment evidence if you are not using a student email.");
-        return;
-      }
-    }
-
+    if (!supabase) { setErrorMsg("Supabase is not configured."); return; }
+    clearMsgs();
     setBusy(true);
-    setStatus("Creating account...");
+    setInfoMsg("Creating account…");
     try {
-      const redirectTo = typeof window !== "undefined" ? `${window.location.origin}/auth/callback` : undefined;
+      const redirectTo = typeof window !== "undefined"
+        ? `${window.location.origin}/auth/callback`
+        : undefined;
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -223,264 +221,320 @@ export default function AuthPage() {
           emailRedirectTo: redirectTo,
           data: {
             ...(name.trim() ? { name: name.trim() } : {}),
-            plan: isStudentSignup ? "student" : "free",
-            ...(isStudentSignup
-              ? {
-                  student: {
-                    institution: institution.trim(),
-                    courseOfStudy: courseOfStudy.trim(),
-                    expectedGraduationDate,
-                    verificationMethod: studentEmail ? "student_email" : "evidence_upload",
-                    evidencePath,
-                    evidenceFilename,
-                  },
-                }
-              : {}),
+            plan: planIntent === "student" ? "student" : "free",
           },
         },
       });
       if (error) throw new Error(error.message);
+
+      const userId = data.user?.id ?? "";
+      if (planIntent === "student" && userId) {
+        // Student signup — launch inline verification wizard
+        setVerifyUserId(userId);
+        setVerifyEmail(email.trim());
+        setVerifyStep("email");
+        setInfoMsg("");
+        setBusy(false);
+        return;
+      }
+
       if (data.session?.access_token) {
         await postLoginBootstrap(data.session.access_token);
       } else {
-        setStatus(
-          isStudentSignup
-            ? "Student application created. Check your email to confirm your account."
-            : "Account created. Check your email to confirm, then sign in.",
-        );
+        setInfoMsg("Account created. Check your email to confirm, then sign in.");
       }
     } catch (err) {
-      setStatus(parseError(err));
+      setInfoMsg("");
+      setErrorMsg(parseError(err));
     } finally {
       setBusy(false);
     }
   }
 
+  // ── Password reset ─────────────────────────────────────────────────────────
   async function resetPassword() {
-    if (!supabase) {
-      setStatus("Supabase is not configured.");
-      return;
-    }
-    if (!email.trim()) {
-      setStatus("Enter your email address.");
-      return;
-    }
+    if (!supabase) { setErrorMsg("Supabase is not configured."); return; }
+    if (!email.trim()) { setErrorMsg("Enter your email address."); return; }
+    clearMsgs();
     setBusy(true);
-    setStatus("Sending reset link...");
+    setInfoMsg("Sending reset link…");
     try {
-      const redirectTo = typeof window !== "undefined" ? `${window.location.origin}/auth/callback` : undefined;
+      const redirectTo = typeof window !== "undefined"
+        ? `${window.location.origin}/auth/callback`
+        : undefined;
       const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
       if (error) throw new Error(error.message);
-      setStatus("Check your email. A reset link has been sent.");
+      setInfoMsg("Check your email — a reset link has been sent.");
     } catch (err) {
-      setStatus(parseError(err));
+      setInfoMsg("");
+      setErrorMsg(parseError(err));
     } finally {
       setBusy(false);
     }
   }
 
-  const isSignup = mode === "signup";
-  const isStudentSignup = isSignup && planIntent === "student";
-  const studentEmail = hasLikelyStudentEmail(email);
-  const planLabel = planIntent === "student" ? "Student Pro" : planIntent === "pro" ? "Pro" : "Free";
-  const isOpeningWorkshop = Boolean(session && nextPath.includes("/workshops/"));
-  const workshopCheckoutPath = isOpeningWorkshop ? getWorkshopCheckoutPath(nextPath) : "";
-  const introTitle = isOpeningWorkshop ? "Preparing checkout." : isSignup ? "Welcome to addition." : mode === "forgot" ? "Reset your access." : "Welcome back.";
-  const authIntro = (
+  // ── Student wizard: verify by email domain ─────────────────────────────────
+  async function verifyStudentEmail() {
+    if (!domainValid) return;
+    clearMsgs();
+    setBusy(true);
+    setInfoMsg("Confirming student status…");
+    try {
+      const response = await fetch("/api/v1/auth/student-verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: verifyUserId, email: studentVerifyEmail.trim(), method: "email_domain" }),
+      });
+      const payload = await response.json().catch(() => ({})) as { error?: string };
+      if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Verification failed.");
+      setVerifyStep("approved");
+      setVerifyResult({ institution: "" });
+      setInfoMsg("");
+    } catch (err) {
+      setInfoMsg("");
+      setErrorMsg(parseError(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // ── Student wizard: upload document ───────────────────────────────────────
+  async function uploadVerifyDocument(file: File) {
+    clearMsgs();
+    setVerifyStep("reviewing");
+    setUploadProgress(0);
+
+    const tick = setInterval(() => {
+      setUploadProgress(p => Math.min(p + 7, 72));
+    }, 180);
+
+    try {
+      const form = new FormData();
+      form.set("file", file);
+      form.set("userId", verifyUserId);
+      form.set("email", verifyEmail);
+
+      const response = await fetch("/api/v1/auth/student-verify", {
+        method: "POST",
+        body: form,
+      });
+
+      clearInterval(tick);
+      setUploadProgress(96);
+
+      const payload = await response.json().catch(() => ({})) as {
+        error?: string; approved?: boolean; institution?: string; documentType?: string;
+      };
+      if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Verification failed.");
+
+      setUploadProgress(100);
+      setVerifyResult({ institution: typeof payload.institution === "string" ? payload.institution : "" });
+      setVerifyStep(payload.approved ? "approved" : "pending");
+    } catch (err) {
+      clearInterval(tick);
+      setUploadProgress(0);
+      setVerifyStep("upload");
+      setErrorMsg(parseError(err));
+    }
+  }
+
+  function proceedToDashboard() {
+    router.replace("/dashboard?gateway=student");
+  }
+
+  // ─── Shared logo mark ─────────────────────────────────────────────────────
+  const logoMark = (
     <div className="auth-simple-intro">
-      <div className={`auth-simple-logo${isOpeningWorkshop ? " auth-simple-logo--loading" : ""}`} aria-hidden="true">
-        {isOpeningWorkshop ? <span className="auth-hourglass" /> : "+"}
-      </div>
-      <h1>{introTitle}</h1>
+      <div className="auth-simple-logo" aria-hidden="true">+</div>
     </div>
   );
 
-  return (
-    <main className="auth">
-      <div className="auth-card">
-        {session && nextPath.includes("/workshops/") ? (
-          <div className="auth-form">
-            {authIntro}
-            <p className="auth-form-sub">Opening your workshop booking.</p>
-            {showBookingFallback && (
-              <Link className="primary-button auth-submit-btn" href={workshopCheckoutPath}>
-                Continue to checkout
-              </Link>
-            )}
-          </div>
-        ) : session ? (
-          <div className="auth-form">
-            {authIntro}
-            <h2>You&apos;re in</h2>
-            <p className="auth-form-sub">Signed in as {session.user.email ?? session.user.id}</p>
-            <button type="button" className="primary-button auth-submit-btn" onClick={() => void postLoginBootstrap(session.access_token)}>
-              Continue
-            </button>
-          </div>
-        ) : isSignup ? (
-          <form className="auth-form" onSubmit={(e) => { e.preventDefault(); void signUp(); }}>
-            {authIntro}
+  // ─── Student Verification Wizard ──────────────────────────────────────────
+  if (verifyStep !== "idle") {
+    return (
+      <main className="auth">
+        <div className="auth-card">
+          <div className="auth-form auth-verify-wizard">
+            {logoMark}
+
             <div>
-              <h2>{isStudentSignup ? "Apply for Student Pro" : "Create account"}</h2>
-              <p className="auth-form-sub">
-                <button type="button" className="auth-inline-link" onClick={() => setMode("signin")}>Sign in</button>
+              <h1 style={{ fontSize: 22, margin: "0 0 4px" }}>Verify your student status</h1>
+              <p className="auth-form-sub" style={{ margin: 0 }}>
+                {verifyStep === "email"     && "Enter your university or college email address."}
+                {verifyStep === "upload"    && "Upload a student ID card, enrollment letter, or university card."}
+                {verifyStep === "reviewing" && "Checking your document…"}
+                {verifyStep === "approved"  && "Student status confirmed."}
+                {verifyStep === "pending"   && "Your document is under review."}
               </p>
             </div>
 
-            <button
-              type="button"
-              className="auth-google-btn"
-              onClick={() => void signInWithProvider("google", "Google")}
-              disabled={busy}
-            >
-              <span aria-hidden="true">G</span>
-              Sign up with Google
-            </button>
-            <p className="auth-gateway-note">Recommended. You will continue to the app gateway after Google confirms your account.</p>
-            <div className="auth-divider"><span>or</span></div>
-            <button type="button" className="auth-email-toggle" onClick={() => setShowEmailFallback((value) => !value)}>
-              {showEmailFallback ? "Hide email signup" : "Use email instead"}
-            </button>
-
-            {showEmailFallback && (
+            {/* ── Step: email domain ── */}
+            {verifyStep === "email" && (
               <>
                 <div>
-                  <label htmlFor="signup-name">Full name</label>
+                  <label htmlFor="verify-email">Student email address</label>
                   <input
-                    id="signup-name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Your full name"
-                    autoComplete="name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="signup-email">{isStudentSignup ? "Student email" : "Email"}</label>
-                  <input
-                    id="signup-email"
+                    id="verify-email"
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={isStudentSignup ? "you@university.ac.uk" : "you@example.com"}
+                    value={studentVerifyEmail}
+                    onChange={(e) => setStudentVerifyEmail(e.target.value)}
+                    placeholder="you@university.ac.uk"
                     autoComplete="email"
-                    required
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
+                    autoFocus
                   />
+                  {domainChecked && domainValid  && <p className="auth-domain-ok">✓ Student email recognised</p>}
+                  {domainChecked && !domainValid && <p className="auth-domain-err">This doesn't look like a student email address</p>}
                 </div>
 
-                {isStudentSignup && (
-                  <div className="auth-student-fields">
-                    <div>
-                      <label htmlFor="student-institution">Institution</label>
-                      <input
-                        id="student-institution"
-                        type="text"
-                        value={institution}
-                        onChange={(e) => setInstitution(e.target.value)}
-                        placeholder="University or college"
-                        autoComplete="organization"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="student-course">What do you study?</label>
-                      <input
-                        id="student-course"
-                        type="text"
-                        value={courseOfStudy}
-                        onChange={(e) => setCourseOfStudy(e.target.value)}
-                        placeholder="Architecture, interior design, computational design..."
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="student-graduation">Expected graduation date</label>
-                      <input
-                        id="student-graduation"
-                        type="date"
-                        value={expectedGraduationDate}
-                        onChange={(e) => setExpectedGraduationDate(e.target.value)}
-                        required
-                      />
-                    </div>
-
-                    <div className={`auth-student-verification ${studentEmail ? "is-ok" : ""}`}>
-                      <strong>{studentEmail ? "Student email detected." : "No student email?"}</strong>
-                      <span>
-                        {studentEmail
-                          ? "Confirm your account from the link in your student email."
-                          : "Upload a student card or enrolment evidence for manual review."}
-                      </span>
-                      {!studentEmail && (
-                        <label className="auth-file-upload" htmlFor="student-evidence">
-                          {uploadBusy ? "Uploading..." : evidenceFilename ? `Uploaded: ${evidenceFilename}` : "Upload evidence"}
-                          <input
-                            id="student-evidence"
-                            type="file"
-                            accept="image/jpeg,image/png,image/webp,application/pdf"
-                            disabled={uploadBusy}
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) void uploadStudentEvidence(file);
-                            }}
-                          />
-                        </label>
-                      )}
-                    </div>
-                  </div>
+                {domainValid && (
+                  <button
+                    type="button"
+                    className="primary-button auth-submit-btn"
+                    onClick={() => void verifyStudentEmail()}
+                    disabled={busy}
+                  >
+                    {busy ? "Verifying…" : "Verify & continue →"}
+                  </button>
                 )}
 
-                <div>
-                  <label htmlFor="signup-password">Password</label>
+                <div className="auth-divider"><span>or upload proof instead</span></div>
+
+                <label className="auth-file-upload" htmlFor="verify-doc-email">
+                  Upload student ID or enrollment letter
                   <input
-                    id="signup-password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Min 8 characters"
-                    autoComplete="new-password"
-                    minLength={8}
-                    required
+                    id="verify-doc-email"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,application/pdf"
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) void uploadVerifyDocument(f); }}
                   />
-                </div>
+                </label>
+                <p className="auth-form-sub" style={{ fontSize: 12, marginTop: -8 }}>
+                  JPG, PNG, WebP or PDF · Max 8 MB
+                </p>
 
-                <div className="auth-signup-note">
-                  <strong>{planIntent === "free" ? "Start with a free account." : `Create your ${planLabel} account.`}</strong>
-                  <span>
-                    {planIntent === "free"
-                      ? "Free includes the full command library for every supported software."
-                      : planIntent === "student"
-                        ? "Use a student email or upload evidence. The dashboard gateway will guide the review step."
-                        : "Create your learner account first. The dashboard gateway will open the payment step."}
-                  </span>
-                  {planIntent !== "free" && (
-                    <button type="button" className="auth-inline-link" onClick={() => setPlanIntent("free")}>
-                      Start free instead
-                    </button>
-                  )}
-                </div>
+                {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
+                {infoMsg  && <p className="auth-msg auth-msg--info">{infoMsg}</p>}
 
-                <button type="submit" className="primary-button auth-submit-btn" disabled={busy || uploadBusy}>
-                  {busy ? "Working..." : isStudentSignup ? "Apply for student access" : "Create account"}
+                <button
+                  type="button"
+                  className="auth-inline-link"
+                  onClick={proceedToDashboard}
+                  style={{ fontSize: 12, opacity: 0.45, marginTop: 4, textAlign: "center" }}
+                >
+                  Skip for now
                 </button>
               </>
             )}
 
-            {status && (
-              <div className="meta" style={{ color: status.includes("uploaded") || status.includes("created") ? "var(--success)" : "var(--danger)", fontSize: 13 }}>
-                {status}
-              </div>
+            {/* ── Step: upload ── */}
+            {verifyStep === "upload" && (
+              <>
+                <label className="auth-file-upload" htmlFor="verify-doc-upload">
+                  Choose file to upload
+                  <input
+                    id="verify-doc-upload"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,application/pdf"
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) void uploadVerifyDocument(f); }}
+                  />
+                </label>
+                <p className="auth-form-sub" style={{ fontSize: 12 }}>JPG, PNG, WebP or PDF · Max 8 MB</p>
+                {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
+                <button type="button" className="auth-inline-link" onClick={() => setVerifyStep("email")}>
+                  ← Back
+                </button>
+              </>
             )}
-          </form>
-        ) : mode === "forgot" ? (
-          <form className="auth-form" onSubmit={(e) => { e.preventDefault(); void resetPassword(); }}>
-            {authIntro}
-            <div>
-              <h2>Reset password</h2>
+
+            {/* ── Step: reviewing (progress bar) ── */}
+            {verifyStep === "reviewing" && (
+              <>
+                <div className="auth-verify-progress">
+                  <div className="auth-verify-progress-fill" style={{ width: `${uploadProgress}%` }} />
+                </div>
+                <p className="auth-form-sub" style={{ fontSize: 13 }}>
+                  {uploadProgress < 100 ? `Analysing document… ${uploadProgress}%` : "Almost done…"}
+                </p>
+              </>
+            )}
+
+            {/* ── Step: approved ── */}
+            {verifyStep === "approved" && (
+              <>
+                <div className="auth-verify-result auth-verify-result--ok">
+                  <span aria-hidden="true">✓</span>
+                  <div>
+                    <strong>Student status confirmed</strong>
+                    {verifyResult?.institution && (
+                      <p style={{ margin: 0, fontSize: 13, opacity: 0.8 }}>{verifyResult.institution}</p>
+                    )}
+                  </div>
+                </div>
+                <button type="button" className="primary-button auth-submit-btn" onClick={proceedToDashboard}>
+                  Continue to Addition →
+                </button>
+              </>
+            )}
+
+            {/* ── Step: pending (under review) ── */}
+            {verifyStep === "pending" && (
+              <>
+                <div className="auth-verify-result auth-verify-result--pending">
+                  <span aria-hidden="true">⏳</span>
+                  <div>
+                    <strong>Under review</strong>
+                    <p style={{ margin: 0, fontSize: 13, opacity: 0.8 }}>
+                      You'll hear within 24 hours. Free access granted in the meantime.
+                    </p>
+                  </div>
+                </div>
+                <button type="button" className="primary-button auth-submit-btn" onClick={proceedToDashboard}>
+                  Continue to Addition →
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // ─── Workshop loading state ───────────────────────────────────────────────
+  if (session && nextPath.includes("/workshops/")) {
+    return (
+      <main className="auth">
+        <div className="auth-card">
+          <div className="auth-form">
+            <div className="auth-simple-intro">
+              <div className="auth-simple-logo auth-simple-logo--loading" aria-hidden="true">
+                <span className="auth-hourglass" />
+              </div>
             </div>
+            <h1 style={{ fontSize: 22, margin: "0 0 6px" }}>Preparing checkout.</h1>
+            <p className="auth-form-sub">Opening your workshop booking.</p>
+            {showBookingFallback && (
+              <a className="primary-button auth-submit-btn" href={getWorkshopCheckoutPath(nextPath)}>
+                Continue to checkout
+              </a>
+            )}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // ─── Main auth page ───────────────────────────────────────────────────────
+  const isSignup = mode === "signup";
+
+  return (
+    <main className="auth">
+      <div className="auth-card">
+        {mode === "forgot" ? (
+          /* ── Forgot password ── */
+          <form className="auth-form" onSubmit={(e) => { e.preventDefault(); void resetPassword(); }}>
+            {logoMark}
+            <h1 style={{ fontSize: 22, margin: "0 0 20px" }}>Reset your access.</h1>
 
             <div>
               <label htmlFor="forgot-email">Email</label>
@@ -496,27 +550,49 @@ export default function AuthPage() {
             </div>
 
             <button type="submit" className="primary-button auth-submit-btn" disabled={busy}>
-              {busy ? "Working..." : "Send reset link"}
+              {busy ? "Working…" : "Send reset link"}
             </button>
 
-            {status && <div className="meta" style={{ color: "var(--rf-sub)", fontSize: 13 }}>{status}</div>}
+            {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
+            {infoMsg  && <p className="auth-msg auth-msg--info">{infoMsg}</p>}
 
             <div className="auth-extras">
-              <button type="button" className="auth-inline-link" onClick={() => setMode("signin")}>
-                Back to sign in
+              <button type="button" className="auth-inline-link" onClick={() => { setMode("signin"); clearMsgs(); }}>
+                ← Back to sign in
               </button>
             </div>
           </form>
         ) : (
-          <form className="auth-form" onSubmit={(e) => { e.preventDefault(); void signIn(); }}>
-            {authIntro}
-            <div>
-              <h2>Sign in</h2>
-              <p className="auth-form-sub">
-                <button type="button" className="auth-inline-link" onClick={() => setMode("signup")}>Create an account</button>
-              </p>
+          /* ── Sign in / Sign up ── */
+          <form
+            className="auth-form"
+            onSubmit={(e) => { e.preventDefault(); isSignup ? void signUp() : void signIn(); }}
+          >
+            {logoMark}
+
+            {/* Pill tabs */}
+            <div className="auth-tabs" role="tablist">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={!isSignup}
+                className={`auth-tab${!isSignup ? " is-active" : ""}`}
+                onClick={() => { setMode("signin"); clearMsgs(); setShowEmailFallback(false); }}
+              >
+                Sign in
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={isSignup}
+                className={`auth-tab${isSignup ? " is-active" : ""}`}
+                onClick={() => { setMode("signup"); clearMsgs(); setShowEmailFallback(false); }}
+              >
+                Sign up
+              </button>
             </div>
 
+            {/* Google OAuth */}
             <button
               type="button"
               className="auth-google-btn"
@@ -524,63 +600,106 @@ export default function AuthPage() {
               disabled={busy}
             >
               <span aria-hidden="true">G</span>
-              Sign in with Google
+              {isSignup ? "Sign up with Google" : "Sign in with Google"}
             </button>
-            <p className="auth-gateway-note">Recommended. You will continue to the app gateway after Google confirms your account.</p>
+
             <div className="auth-divider"><span>or</span></div>
-            <button type="button" className="auth-email-toggle" onClick={() => setShowEmailFallback((value) => !value)}>
-              {showEmailFallback ? "Hide email sign in" : "Use email instead"}
+
+            <button
+              type="button"
+              className="auth-email-toggle"
+              onClick={() => setShowEmailFallback((v) => !v)}
+            >
+              {showEmailFallback
+                ? (isSignup ? "Hide email signup" : "Hide email sign in")
+                : "Use email instead"}
             </button>
 
             {showEmailFallback && (
               <>
+                {isSignup && (
+                  <div>
+                    <label htmlFor="signup-name">Full name</label>
+                    <input
+                      id="signup-name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Your full name"
+                      autoComplete="name"
+                    />
+                  </div>
+                )}
+
                 <div>
-                  <label htmlFor="login-email">Email</label>
+                  <label htmlFor="auth-email">Email</label>
                   <input
-                    id="login-email"
+                    id="auth-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
-                    autoComplete="username"
+                    autoComplete={isSignup ? "email" : "username"}
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="login-password">
+                  <label htmlFor="auth-password">
                     Password
-                    <button
-                      type="button"
-                      className="auth-inline-link"
-                      style={{ float: "right", fontWeight: 600 }}
-                      onClick={() => setMode("forgot")}
-                    >
-                      Forgot?
-                    </button>
+                    {!isSignup && (
+                      <button
+                        type="button"
+                        className="auth-inline-link"
+                        style={{ float: "right", fontWeight: 600 }}
+                        onClick={() => { setMode("forgot"); clearMsgs(); }}
+                      >
+                        Forgot?
+                      </button>
+                    )}
                   </label>
                   <input
-                    id="login-password"
+                    id="auth-password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Your password"
-                    autoComplete="current-password"
+                    placeholder={isSignup ? "Min 8 characters" : "Your password"}
+                    autoComplete={isSignup ? "new-password" : "current-password"}
+                    minLength={isSignup ? 8 : undefined}
                     required
                   />
                 </div>
 
-                <button type="submit" className="primary-button auth-submit-btn" disabled={busy}>
-                  {busy ? "Working..." : "Sign in"}
+                {isSignup && planIntent !== "free" && (
+                  <div className="auth-signup-note">
+                    <strong>{planIntent === "student" ? "Student Pro account" : "Pro account"}</strong>
+                    <span>
+                      {planIntent === "student"
+                        ? "You'll verify your student status right after signup."
+                        : "Create your learner account first — the payment step follows signup."}
+                    </span>
+                    <button
+                      type="button"
+                      className="auth-inline-link"
+                      onClick={() => setPlanIntent("free")}
+                    >
+                      Start free instead
+                    </button>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="primary-button auth-submit-btn"
+                  disabled={busy}
+                >
+                  {busy ? "Working…" : isSignup ? "Create account" : "Sign in"}
                 </button>
               </>
             )}
 
-            {status && <div className="meta" style={{ color: "var(--danger)", fontSize: 13 }}>{status}</div>}
-
-            <div className="auth-extras">
-              <Link href="/admin" className="auth-admin-link">Admin sign in</Link>
-            </div>
+            {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
+            {infoMsg  && <p className="auth-msg auth-msg--info">{infoMsg}</p>}
           </form>
         )}
       </div>
