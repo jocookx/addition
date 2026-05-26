@@ -2945,6 +2945,13 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 
+/* ── Auth form segment tabs — centred ────────────────────────────────────── */
+.auth-form .segment-nav-tabs {
+  align-self: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+
 /* ── Auth status messages ─────────────────────────────────────────────────── */
 .auth-msg {
   font-size: 13px;
