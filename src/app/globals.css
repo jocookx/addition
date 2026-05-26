@@ -2948,8 +2948,14 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 /* ── Auth form segment tabs — centred + monochrome ───────────────────────── */
 .auth-form .segment-nav-tabs {
   align-self: center;
-  width: fit-content;
+  width: fit-content !important;
   margin: 0 auto;
+}
+
+.auth-form .segment-btn {
+  flex: none;
+  padding: 8px 24px;
+  font-size: 14px;
 }
 
 .auth-form .segment-btn.active {
@@ -4874,6 +4880,19 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 
   .mob-nav-btn.active {
     color: var(--accent);
+  }
+
+  /* Segment tabs — full width on mobile, equal columns, no overflow */
+  .segment-nav-tabs {
+    display: flex;
+    width: 100%;
+  }
+
+  .segment-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 13px;
   }
 
   .legacy-card-grid {
