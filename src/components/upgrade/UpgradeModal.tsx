@@ -202,13 +202,13 @@ export function UpgradeModal({ isOpen, onClose, accessToken, returnTo = "/dashbo
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Could not open checkout";
-      if (msg.includes("403") || msg.toLowerCase().includes("approved") || msg.toLowerCase().includes("student")) {
-        setError(
-          "Your student status hasn't been approved yet. Go to Settings → Student Verification to apply.",
-        );
-      } else {
-        setError(msg);
+      if (plan === "student" && (msg.includes("403") || msg.toLowerCase().includes("approved") || msg.toLowerCase().includes("student"))) {
+        // Not yet verified — send straight to the student verification wizard
+        const next = returnTo && returnTo.startsWith("/") ? returnTo : "/dashboard";
+        window.location.href = `/auth?verify=student&next=${encodeURIComponent(next)}`;
+        return;
       }
+      setError(msg);
     } finally {
       setBusy(false);
     }
@@ -282,7 +282,7 @@ export function UpgradeModal({ isOpen, onClose, accessToken, returnTo = "/dashbo
                 interval={interval}
                 prices={prices}
                 features={STUDENT_FEATURES}
-                note="Requires approved student verification in Settings."
+                note="We'll verify your student status — takes 30 seconds."
                 onSelect={() => setPlan("student")}
               />
             </div>
