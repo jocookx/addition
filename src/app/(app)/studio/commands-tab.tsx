@@ -190,7 +190,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
         if (cancelled) return;
         const rows = result.commands.map((command) => ({ ...command, _dirty: false }));
         setCommands(rows);
-        setSelected((current) => current && rows.some((row) => row.id === current.id) ? current : rows[0] ?? null);
+        setSelected((current) => current && rows.some((row) => row.id === current.id) ? current : null);
       } catch (err: unknown) {
         if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load commands");
       } finally {
