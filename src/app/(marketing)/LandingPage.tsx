@@ -686,10 +686,20 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "1") return;
+
+    // If OAuth landed here instead of /auth/callback (e.g. implicit flow fallback),
+    // forward the code/hash to the callback page so it is processed correctly.
+    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash;
+    if (params.get("code") || hash.includes("access_token")) {
+      window.location.replace("/auth/callback" + window.location.search + hash);
+      return;
+    }
+
     const supabase = getBrowserSupabaseClient();
     if (!supabase) return;
     void supabase.auth.getSession().then(({ data }) => {
-      if (data.session) router.replace("/dashboard");
+      if (data.session) router.replace("/dashboard?gateway=welcome");
     });
   }, [router]);
 
