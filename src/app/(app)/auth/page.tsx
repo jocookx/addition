@@ -379,28 +379,43 @@ export default function AuthPage() {
 
   // ─── Student Verification Wizard ──────────────────────────────────────────
   if (verifyStep !== "idle") {
+    const uploadIcon = (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"
+           strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+    );
     return (
       <main className="auth">
         <div className="auth-card">
           <div className="auth-form auth-verify-wizard">
-            {logoMark}
 
-            <div>
-              <h1 style={{ fontSize: 22, margin: "0 0 4px" }}>Verify your student status</h1>
-              <p className="auth-form-sub" style={{ margin: 0 }}>
-                {verifyStep === "email"     && "Enter your university or college email address."}
-                {verifyStep === "upload"    && "Upload a student ID card, enrollment letter, or university card."}
-                {verifyStep === "reviewing" && "Checking your document…"}
-                {verifyStep === "approved"  && "Student status confirmed."}
-                {verifyStep === "pending"   && "Your document is under review."}
+            {/* ── Step header ── */}
+            <div className="auth-simple-intro">
+              <div className="auth-simple-logo" aria-hidden="true">+</div>
+              <h1>
+                {verifyStep === "email"     && "Verify your student status"}
+                {verifyStep === "upload"    && "Upload proof"}
+                {verifyStep === "reviewing" && "Checking your document"}
+                {verifyStep === "approved"  && "You're all set!"}
+                {verifyStep === "pending"   && "Application submitted"}
+              </h1>
+              <p>
+                {verifyStep === "email"     && "Use your university email, or upload a student ID."}
+                {verifyStep === "upload"    && "Student ID card, enrollment letter, or university card."}
+                {verifyStep === "reviewing" && "This usually takes a few seconds."}
+                {verifyStep === "approved"  && (verifyResult?.institution || "Student status confirmed.")}
+                {verifyStep === "pending"   && "You'll hear back within 24 hours."}
               </p>
             </div>
 
             {/* ── Step: email domain ── */}
             {verifyStep === "email" && (
               <>
-                <div>
-                  <label htmlFor="verify-email">Student email address</label>
+                <div className="auth-verify-field">
+                  <label className="auth-verify-label" htmlFor="verify-email">University or college email</label>
                   <input
                     id="verify-email"
                     type="email"
@@ -410,45 +425,34 @@ export default function AuthPage() {
                     autoComplete="email"
                     autoFocus
                   />
-                  {domainChecked && domainValid  && <p className="auth-domain-ok">✓ Student email recognised</p>}
-                  {domainChecked && !domainValid && <p className="auth-domain-err">This doesn&apos;t look like a student email address</p>}
+                  {domainChecked && domainValid  && <p className="auth-domain-ok">✓ Recognised as a student address</p>}
+                  {domainChecked && !domainValid && <p className="auth-domain-err">Doesn&apos;t look like a student email — upload proof below</p>}
                 </div>
 
                 {domainValid && (
-                  <button
-                    type="button"
-                    className="primary-button auth-submit-btn"
-                    onClick={() => void verifyStudentEmail()}
-                    disabled={busy}
-                  >
+                  <button type="button" className="primary-button auth-submit-btn"
+                    onClick={() => void verifyStudentEmail()} disabled={busy}>
                     {busy ? "Verifying…" : "Verify & continue →"}
                   </button>
                 )}
 
                 <div className="auth-divider"><span>or upload proof instead</span></div>
 
-                <label className="auth-file-upload" htmlFor="verify-doc-email">
-                  Upload student ID or enrollment letter
-                  <input
-                    id="verify-doc-email"
-                    type="file"
+                <label className="auth-upload-zone" htmlFor="verify-doc-email">
+                  <span className="auth-upload-zone-icon">{uploadIcon}</span>
+                  <span className="auth-upload-zone-text">
+                    <strong>Student ID or enrollment letter</strong>
+                    <span>JPG, PNG, WebP or PDF · Max 8 MB</span>
+                  </span>
+                  <input id="verify-doc-email" type="file"
                     accept="image/jpeg,image/png,image/webp,application/pdf"
-                    onChange={(e) => { const f = e.target.files?.[0]; if (f) void uploadVerifyDocument(f); }}
-                  />
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) void uploadVerifyDocument(f); }} />
                 </label>
-                <p className="auth-form-sub" style={{ fontSize: 12, marginTop: -8 }}>
-                  JPG, PNG, WebP or PDF · Max 8 MB
-                </p>
 
                 {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
                 {infoMsg  && <p className="auth-msg auth-msg--info">{infoMsg}</p>}
 
-                <button
-                  type="button"
-                  className="auth-inline-link"
-                  onClick={() => void proceedAfterVerify(false)}
-                  style={{ fontSize: 12, opacity: 0.45, marginTop: 4, textAlign: "center" }}
-                >
+                <button type="button" className="auth-skip-btn" onClick={() => void proceedAfterVerify(false)}>
                   Skip for now
                 </button>
               </>
@@ -457,70 +461,84 @@ export default function AuthPage() {
             {/* ── Step: upload ── */}
             {verifyStep === "upload" && (
               <>
-                <label className="auth-file-upload" htmlFor="verify-doc-upload">
-                  Choose file to upload
-                  <input
-                    id="verify-doc-upload"
-                    type="file"
+                <label className="auth-upload-zone" htmlFor="verify-doc-upload">
+                  <span className="auth-upload-zone-icon">{uploadIcon}</span>
+                  <span className="auth-upload-zone-text">
+                    <strong>Choose file to upload</strong>
+                    <span>JPG, PNG, WebP or PDF · Max 8 MB</span>
+                  </span>
+                  <input id="verify-doc-upload" type="file"
                     accept="image/jpeg,image/png,image/webp,application/pdf"
-                    onChange={(e) => { const f = e.target.files?.[0]; if (f) void uploadVerifyDocument(f); }}
-                  />
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) void uploadVerifyDocument(f); }} />
                 </label>
-                <p className="auth-form-sub" style={{ fontSize: 12 }}>JPG, PNG, WebP or PDF · Max 8 MB</p>
                 {errorMsg && <p className="auth-msg auth-msg--error">{errorMsg}</p>}
-                <button type="button" className="auth-inline-link" onClick={() => setVerifyStep("email")}>
-                  ← Back
+                <button type="button" className="auth-skip-btn" onClick={() => setVerifyStep("email")}>
+                  ← Back to email
                 </button>
               </>
             )}
 
-            {/* ── Step: reviewing (progress bar) ── */}
+            {/* ── Step: reviewing ── */}
             {verifyStep === "reviewing" && (
-              <>
+              <div className="auth-verify-reviewing">
                 <div className="auth-verify-progress">
                   <div className="auth-verify-progress-fill" style={{ width: `${uploadProgress}%` }} />
                 </div>
-                <p className="auth-form-sub" style={{ fontSize: 13 }}>
-                  {uploadProgress < 100 ? `Analysing document… ${uploadProgress}%` : "Almost done…"}
+                <p className="auth-verify-reviewing-pct">
+                  {uploadProgress < 100 ? `${uploadProgress}%` : "Almost done…"}
                 </p>
-              </>
+              </div>
             )}
 
             {/* ── Step: approved ── */}
             {verifyStep === "approved" && (
               <>
                 <div className="auth-verify-result auth-verify-result--ok">
-                  <span aria-hidden="true">✓</span>
+                  <span aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                         strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
                   <div>
                     <strong>Student status confirmed</strong>
                     {verifyResult?.institution && (
-                      <p style={{ margin: 0, fontSize: 13, opacity: 0.8 }}>{verifyResult.institution}</p>
+                      <p style={{ margin: "2px 0 0", fontSize: 13, opacity: 0.75 }}>{verifyResult.institution}</p>
                     )}
                   </div>
                 </div>
-                <button type="button" className="primary-button auth-submit-btn" onClick={() => void proceedAfterVerify(true)}>
+                <button type="button" className="primary-button auth-submit-btn"
+                  onClick={() => void proceedAfterVerify(true)}>
                   Continue to checkout →
                 </button>
               </>
             )}
 
-            {/* ── Step: pending (under review) ── */}
+            {/* ── Step: pending ── */}
             {verifyStep === "pending" && (
               <>
                 <div className="auth-verify-result auth-verify-result--pending">
-                  <span aria-hidden="true">⏳</span>
+                  <span aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                         strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </span>
                   <div>
                     <strong>Under review</strong>
-                    <p style={{ margin: 0, fontSize: 13, opacity: 0.8 }}>
-                      You&apos;ll hear within 24 hours. Free access granted in the meantime.
+                    <p style={{ margin: "2px 0 0", fontSize: 13, opacity: 0.75 }}>
+                      You&apos;ll hear within 24 hours. Free access in the meantime.
                     </p>
                   </div>
                 </div>
-                <button type="button" className="primary-button auth-submit-btn" onClick={() => void proceedAfterVerify(false)}>
+                <button type="button" className="primary-button auth-submit-btn"
+                  onClick={() => void proceedAfterVerify(false)}>
                   Continue to Addition →
                 </button>
               </>
             )}
+
           </div>
         </div>
       </main>
