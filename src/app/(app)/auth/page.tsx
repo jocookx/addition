@@ -54,7 +54,6 @@ export default function AuthPage() {
 
   // ── Student verification wizard state ─────────────────────────────────────
   const [verifyStep, setVerifyStep] = useState<VerifyStep>("idle");
-  const [verifyUserId, setVerifyUserId] = useState("");
   const [verifyEmail, setVerifyEmail] = useState("");
   const [verifyOnLoad, setVerifyOnLoad] = useState(false);
   const [studentVerifyEmail, setStudentVerifyEmail] = useState("");
@@ -106,7 +105,6 @@ export default function AuthPage() {
 
     // Student returning via ?verify=student — launch wizard immediately
     if (verifyOnLoad && session.user) {
-      setVerifyUserId(session.user.id);
       setVerifyEmail(session.user.email ?? "");
       setVerifyStep("email");
       return;
@@ -242,7 +240,6 @@ export default function AuthPage() {
       const userId = data.user?.id ?? "";
       if (planIntent === "student" && userId) {
         // Student signup — launch inline verification wizard
-        setVerifyUserId(userId);
         setVerifyEmail(email.trim());
         setVerifyStep("email");
         setInfoMsg("");
@@ -294,8 +291,11 @@ export default function AuthPage() {
     try {
       const response = await fetch("/api/v1/auth/student-verify", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: verifyUserId, email: studentVerifyEmail.trim(), method: "email_domain" }),
+        headers: {
+          "Content-Type": "application/json",
+          ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+        },
+        body: JSON.stringify({ email: studentVerifyEmail.trim(), method: "email_domain" }),
       });
       const payload = await response.json().catch(() => ({})) as { error?: string };
       if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Verification failed.");
@@ -325,11 +325,11 @@ export default function AuthPage() {
     try {
       const form = new FormData();
       form.set("file", file);
-      form.set("userId", verifyUserId);
       form.set("email", verifyEmail);
 
       const response = await fetch("/api/v1/auth/student-verify", {
         method: "POST",
+        headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {},
         body: form,
       });
 
@@ -408,11 +408,10 @@ export default function AuthPage() {
                     onChange={(e) => setStudentVerifyEmail(e.target.value)}
                     placeholder="you@university.ac.uk"
                     autoComplete="email"
-                    // eslint-disable-next-line jsx-a11y/no-autofocus
                     autoFocus
                   />
                   {domainChecked && domainValid  && <p className="auth-domain-ok">✓ Student email recognised</p>}
-                  {domainChecked && !domainValid && <p className="auth-domain-err">This doesn't look like a student email address</p>}
+                  {domainChecked && !domainValid && <p className="auth-domain-err">This doesn&apos;t look like a student email address</p>}
                 </div>
 
                 {domainValid && (
@@ -513,7 +512,7 @@ export default function AuthPage() {
                   <div>
                     <strong>Under review</strong>
                     <p style={{ margin: 0, fontSize: 13, opacity: 0.8 }}>
-                      You'll hear within 24 hours. Free access granted in the meantime.
+                      You&apos;ll hear within 24 hours. Free access granted in the meantime.
                     </p>
                   </div>
                 </div>
@@ -594,7 +593,7 @@ export default function AuthPage() {
           /* ── Sign in / Sign up ── */
           <form
             className="auth-form"
-            onSubmit={(e) => { e.preventDefault(); isSignup ? void signUp() : void signIn(); }}
+            onSubmit={(e) => { e.preventDefault(); void (isSignup ? signUp() : signIn()); }}
           >
             {logoMark}
 

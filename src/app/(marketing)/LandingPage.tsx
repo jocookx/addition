@@ -676,6 +676,8 @@ export default function LandingPage() {
       window.location.replace("/auth/callback" + window.location.search + hash);
       return "redirecting";
     }
+    // No Supabase = no session possible — show page immediately
+    if (!getBrowserSupabaseClient()) return "ready";
     try {
       const hasToken = Object.keys(localStorage).some(
         k => k.startsWith("sb-") && k.endsWith("-auth-token")
@@ -708,14 +710,14 @@ export default function LandingPage() {
   }
 
   useEffect(() => {
-    if (authState === "redirecting") return;
-    const supabase = getBrowserSupabaseClient();
-    if (!supabase) { setAuthState("ready"); return; }
+    if (authState !== "checking") return;
+    // getBrowserSupabaseClient() is guaranteed non-null here — we checked in useState
+    const supabase = getBrowserSupabaseClient()!;
     void supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
         router.replace("/dashboard?gateway=welcome");
       } else {
-        setAuthState("ready");
+        setAuthState("ready"); // async callback — not a synchronous setState in effect body
       }
     });
   }, [authState, router]);

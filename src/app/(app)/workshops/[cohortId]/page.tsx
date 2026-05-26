@@ -21,9 +21,6 @@ function fmtShort(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
 }
 
-function fmtFull(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-}
 
 // ── SVG icons ─────────────────────────────────────────────────────────────────
 
@@ -120,7 +117,6 @@ export default function CohortDetailPage() {
   }, [selectedId]);
 
   const first = sessions[0] ?? null;
-  const last = sessions[sessions.length - 1] ?? null;
 
   // Merged data — prefer detail, fall back to session list item
   const learnItems = useMemo(() => detail?.learn ?? selected?.learn ?? [], [detail, selected]);
@@ -144,12 +140,6 @@ export default function CohortDetailPage() {
   const detailSaving = selected?.pricePence ? `£${Math.round(selected.pricePence / 100 * 0.2)}` : "20%";
   const detailMemberPrice = selected?.pricePence ? `£${Math.round(selected.pricePence / 100 * 0.8)}` : null;
 
-  // Date range label for facts strip
-  const dateLabel = first && last
-    ? first.date === last.date
-      ? fmtFull(first.date)
-      : `${fmtFull(first.date)} – ${fmtFull(last.date)}`
-    : "";
 
   function handleRegister() {
     if (!selected) return;

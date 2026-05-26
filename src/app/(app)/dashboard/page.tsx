@@ -333,6 +333,7 @@ function ProgressTab() {
   return <div className="dash-tab-empty glass-panel">My Progress — coming next.</div>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- WIP: will be wired up when paths tab ships
 function PathTab({ token }: { token: string }) {
   const router = useRouter();
   const [paths, setPaths]           = useState<LearningPathListItem[]>([]);
@@ -527,6 +528,7 @@ function ProgressTabIcon() {
     </svg>
   );
 }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- WIP: paired with PathTab above
 function PathTabIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

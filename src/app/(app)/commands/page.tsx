@@ -235,7 +235,7 @@ export default function CommandsPage() {
     }
     // No query: alphabetical
     return pool.slice().sort((a, b) => cleanCommandName(a.name).localeCompare(cleanCommandName(b.name)));
-  }, [softwareCommands, effectiveTopCat, effectiveSubCat, intent, objectType, query]);
+  }, [softwareCommands, effectiveTopCat, effectiveSubCat, intent, objectType, inputType, query]);
 
   function toggleLearned(command: CommandListItem) {
     setLearned((cur) => ({ ...cur, [command.name]: !cur[command.name] }));

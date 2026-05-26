@@ -6,7 +6,7 @@ import type { MouseEvent } from "react";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import type { WorkshopListItem } from "@/domain/workshop";
 import { getWorkshops } from "@/lib/api/workshops";
-import { type Cohort, buildCohorts, cohortDisplayTitle, getCohortId, TRACK_LABELS } from "@/lib/workshop-cohorts";
+import { type Cohort, buildCohorts, cohortDisplayTitle } from "@/lib/workshop-cohorts";
 import { addWorkshopToCart, workshopToCartItem } from "@/lib/workshop-cart";
 
 // ── Countdown ────────────────────────────────────────────────────────────────

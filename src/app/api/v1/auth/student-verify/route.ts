@@ -2,6 +2,8 @@ import { randomUUID } from "node:crypto";
 import { errorResponse, okResponse } from "@/lib/http";
 import { consumeRateLimit } from "@/server/rate-limit";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
+import { requireUserFromRequest } from "@/server/auth/require-user";
+import { validateUploadMime } from "@/server/upload/validate-mime";
 
 const BUCKET = "student-evidence";
 const MAX_BYTES = 8 * 1024 * 1024;
@@ -129,6 +131,12 @@ async function ensureBucket(db: ReturnType<typeof createSupabaseServiceClient>) 
 }
 
 export async function POST(request: Request) {
+  // Require a valid session for all verification paths — prevents unauthenticated
+  // access and ensures userId always comes from the verified token, never the body.
+  const auth = await requireUserFromRequest(request);
+  if (!auth.ok) return auth.response;
+  const userId = auth.user.id;
+
   try {
     const db = createSupabaseServiceClient();
     const ip = getClientIp(request);
@@ -147,10 +155,8 @@ export async function POST(request: Request) {
         r.headers.set("Retry-After", String(limit.retryAfterSeconds));
         return r;
       }
-      const body = await request.json() as { userId?: string; email?: string; method?: string };
-      const userId = typeof body.userId === "string" ? body.userId.trim() : "";
+      const body = await request.json() as { email?: string; method?: string };
       const email  = typeof body.email  === "string" ? body.email.trim().toLowerCase() : "";
-      if (!userId) return errorResponse("User ID is required.", 400);
       const { error: dbError } = await db
         .from("addition_student_verifications")
         .upsert({
@@ -183,23 +189,25 @@ export async function POST(request: Request) {
 
     const form = await request.formData();
     const file = form.get("file");
-    const userId = typeof form.get("userId") === "string" ? String(form.get("userId")).trim() : "";
     const email = typeof form.get("email") === "string" ? String(form.get("email")).trim().toLowerCase() : "";
 
     if (!(file instanceof File)) return errorResponse("A document file is required.", 400);
-    if (!userId) return errorResponse("User ID is required.", 400);
-    if (!ALLOWED_TYPES.has(file.type)) return errorResponse("Upload a JPG, PNG, WebP, or PDF file.", 400);
     if (file.size > MAX_BYTES) return errorResponse("Document must be smaller than 8MB.", 400);
+
+    const bytes = Buffer.from(await file.arrayBuffer());
+    // Validate by magic bytes — never trust the client-supplied Content-Type
+    const mimeCheck = validateUploadMime(bytes, ALLOWED_TYPES);
+    if (!mimeCheck.ok) return errorResponse(mimeCheck.error, 400);
+    const mimeType = mimeCheck.mime;
 
     // Upload to storage
     await ensureBucket(db);
     const safeEmail = email.replace(/[^a-z0-9@._-]/g, "").replace("@", "-at-").slice(0, 80);
     const objectPath = `verify/${safeEmail}/${new Date().toISOString().slice(0, 10)}/${randomUUID()}.${extensionFor(file)}`;
-    const bytes = Buffer.from(await file.arrayBuffer());
 
     const { error: uploadError } = await db.storage.from(BUCKET).upload(objectPath, bytes, {
       cacheControl: "31536000",
-      contentType: file.type,
+      contentType: mimeType, // use validated MIME, not client-supplied file.type
       upsert: false,
     });
     if (uploadError) return errorResponse(uploadError.message, 500);
@@ -207,7 +215,7 @@ export async function POST(request: Request) {
     // AI verification
     let aiResult: VerifyResult;
     try {
-      aiResult = await verifyWithAI(bytes, file.type);
+      aiResult = await verifyWithAI(bytes, mimeType);
     } catch (aiErr) {
       // AI failure → pending review rather than hard error
       aiResult = {

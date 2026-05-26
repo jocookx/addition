@@ -2,6 +2,8 @@ import { randomUUID } from "node:crypto";
 import { errorResponse, okResponse } from "@/lib/http";
 import { consumeRateLimit } from "@/server/rate-limit";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
+import { requireUserFromRequest } from "@/server/auth/require-user";
+import { validateUploadMime } from "@/server/upload/validate-mime";
 
 const BUCKET = "student-evidence";
 const MAX_BYTES = 8 * 1024 * 1024;
@@ -41,6 +43,9 @@ async function ensureBucket() {
 }
 
 export async function POST(request: Request) {
+  const auth = await requireUserFromRequest(request);
+  if (!auth.ok) return auth.response;
+
   try {
     const db = createSupabaseServiceClient();
     const ip = getClientIp(request);
@@ -64,17 +69,20 @@ export async function POST(request: Request) {
 
     if (!(file instanceof File)) return errorResponse("Student evidence file is required.", 400);
     if (!email || !email.includes("@")) return errorResponse("A valid email is required.", 400);
-    if (!ALLOWED_TYPES.has(file.type)) return errorResponse("Upload a JPG, PNG, WebP, or PDF file.", 400);
     if (file.size > MAX_BYTES) return errorResponse("Evidence must be smaller than 8MB.", 400);
+
+    const bytes = Buffer.from(await file.arrayBuffer());
+    // Validate by magic bytes — never trust the client-supplied Content-Type
+    const mimeCheck = validateUploadMime(bytes, ALLOWED_TYPES);
+    if (!mimeCheck.ok) return errorResponse(mimeCheck.error, 400);
 
     const safeEmail = email.replace(/[^a-z0-9@._-]/g, "").replace("@", "-at-").slice(0, 120);
     const objectPath = `pending/${safeEmail}/${new Date().toISOString().slice(0, 10)}/${randomUUID()}.${extensionFor(file)}`;
-    const bytes = Buffer.from(await file.arrayBuffer());
     const storageDb = await ensureBucket();
 
     const { error } = await storageDb.storage.from(BUCKET).upload(objectPath, bytes, {
       cacheControl: "31536000",
-      contentType: file.type,
+      contentType: mimeCheck.mime, // use validated MIME, not client-supplied file.type
       upsert: false,
     });
     if (error) return errorResponse(error.message, 500);

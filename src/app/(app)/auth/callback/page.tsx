@@ -16,11 +16,16 @@ function getWorkshopCheckoutPath(path: string) {
 
 export default function AuthCallbackPage() {
   const router = useRouter();
-  const [errorMsg, setErrorMsg] = useState("");
+  // Initialise synchronously so we never need to call setErrorMsg inside an effect body
+  const [errorMsg, setErrorMsg] = useState(() =>
+    typeof window !== "undefined" && !getBrowserSupabaseClient()
+      ? "Supabase is not configured."
+      : ""
+  );
 
   useEffect(() => {
-    const supabase = getBrowserSupabaseClient();
-    if (!supabase) { setErrorMsg("Supabase is not configured."); return; }
+    if (errorMsg) return; // already in an error state, nothing to do
+    const supabase = getBrowserSupabaseClient()!;
 
     const params = new URLSearchParams(window.location.search);
     const next = params.get("next")?.trim();
@@ -86,7 +91,7 @@ export default function AuthCallbackPage() {
       subscription.unsubscribe();
       clearTimeout(timeout);
     };
-  }, [router]);
+  }, [router, errorMsg]);
 
   return (
     <main className="auth">
