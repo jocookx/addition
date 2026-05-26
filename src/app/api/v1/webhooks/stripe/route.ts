@@ -60,6 +60,51 @@ async function verifyStripeSignature(
   return diff === 0;
 }
 
+function normalizeSubscriptionStatus(status?: string | null): string {
+  if (status === "active" || status === "trialing" || status === "past_due" || status === "unpaid") return status;
+  if (status === "canceled" || status === "cancelled") return "cancelled";
+  return "inactive";
+}
+
+async function sendCartConfirmationEmails(
+  supabase: ReturnType<typeof createSupabaseServiceClient>,
+  rows: Array<{ workshop_id: string; user_id?: string | null; guest_email?: string; guest_name?: string }>,
+) {
+  for (const row of rows) {
+    try {
+      const workshopResult = await supabase
+        .from("addition_workshops")
+        .select("title, date, time, timezone, format, location")
+        .eq("id", row.workshop_id)
+        .single();
+      const ws = workshopResult.data;
+      let email = row.guest_email || "";
+      let name = row.guest_name || null;
+      if (!email && row.user_id) {
+        const authUser = await supabase.auth.admin.getUserById(row.user_id);
+        email = authUser.data?.user?.email ?? "";
+        const candidate = authUser.data?.user?.user_metadata?.name ?? authUser.data?.user?.user_metadata?.full_name ?? "";
+        name = typeof candidate === "string" && candidate.trim() ? candidate.trim() : null;
+      }
+      if (email && ws) {
+        await sendWorkshopConfirmation({
+          toEmail: email,
+          toName: name,
+          workshopId: row.workshop_id,
+          workshopTitle: ws.title ?? row.workshop_id,
+          date: ws.date ?? "",
+          time: ws.time ?? "",
+          timezone: ws.timezone ?? "UTC",
+          format: ws.format ?? "Online",
+          location: ws.location ?? "",
+        });
+      }
+    } catch (error) {
+      console.error("[stripe-webhook] Cart confirmation email failed:", error);
+    }
+  }
+}
+
 export async function POST(req: Request) {
   const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!stripeWebhookSecret) {
@@ -85,11 +130,6 @@ export async function POST(req: Request) {
     return errorResponse("Invalid JSON body", 400);
   }
 
-  if (event.type !== "checkout.session.completed") {
-    // Acknowledge other event types without processing
-    return okResponse({ received: true });
-  }
-
   const session = event.data.object as {
     client_reference_id?: string;
     customer_email?: string;
@@ -100,9 +140,61 @@ export async function POST(req: Request) {
     id?: string;
     metadata?: Record<string, string>;
     payment_status?: string;
+    customer?: string;
+    subscription?: string;
+    status?: string;
   };
 
   const supabase = createSupabaseServiceClient();
+
+  if (event.type.startsWith("customer.subscription.")) {
+    const subscription = event.data.object as {
+      id?: string;
+      customer?: string;
+      status?: string;
+      metadata?: Record<string, string>;
+    };
+    const customerId = typeof subscription.customer === "string" ? subscription.customer : "";
+    const userId = subscription.metadata?.userId || "";
+    const status = normalizeSubscriptionStatus(subscription.status);
+    const plan = subscription.metadata?.plan === "student" ? "student" : subscription.metadata?.plan === "pro" ? "pro" : undefined;
+    const patch: Record<string, unknown> = {
+      stripe_subscription_id: subscription.id || "",
+      subscription_status: event.type === "customer.subscription.deleted" ? "cancelled" : status,
+    };
+    if (customerId) patch.stripe_customer_id = customerId;
+    if (plan && (status === "active" || status === "trialing")) patch.plan = plan;
+    if (status === "cancelled" || status === "unpaid") patch.plan = "free";
+
+    let query = supabase.from("addition_users").update(patch);
+    if (userId) query = query.eq("id", userId);
+    else if (customerId) query = query.eq("stripe_customer_id", customerId);
+    else return okResponse({ received: true });
+
+    const { error } = await query;
+    if (error) {
+      console.error("[stripe-webhook] Subscription status update failed:", error.message);
+      return errorResponse("Failed to update subscription status", 500);
+    }
+    return okResponse({ received: true });
+  }
+
+  if (event.type === "invoice.payment_failed") {
+    const invoice = event.data.object as { customer?: string };
+    const customerId = typeof invoice.customer === "string" ? invoice.customer : "";
+    if (customerId) {
+      const { error } = await supabase
+        .from("addition_users")
+        .update({ subscription_status: "payment_failed" })
+        .eq("stripe_customer_id", customerId);
+      if (error) return errorResponse("Failed to update payment status", 500);
+    }
+    return okResponse({ received: true });
+  }
+
+  if (event.type !== "checkout.session.completed") {
+    return okResponse({ received: true });
+  }
 
   if (session.metadata?.kind === "subscription") {
     const userId = session.metadata.userId || session.client_reference_id || "";
@@ -114,7 +206,13 @@ export async function POST(req: Request) {
 
     const { error } = await supabase
       .from("addition_users")
-      .update({ plan })
+      .update({
+        plan,
+        stripe_customer_id: typeof session.customer === "string" ? session.customer : "",
+        stripe_subscription_id: typeof session.subscription === "string" ? session.subscription : "",
+        subscription_status: "active",
+        billing_interval: session.metadata.interval || "",
+      })
       .eq("id", userId);
 
     if (error) {
@@ -162,6 +260,7 @@ export async function POST(req: Request) {
         console.error("[stripe-webhook] Guest cart DB upsert failed:", error.message);
         return errorResponse("Failed to record guest cart registrations", 500);
       }
+      void sendCartConfirmationEmails(supabase, rows);
 
       return okResponse({ received: true });
     }
@@ -206,6 +305,7 @@ export async function POST(req: Request) {
       console.error("[stripe-webhook] Cart DB upsert failed:", error.message);
       return errorResponse("Failed to record cart registrations", 500);
     }
+    void sendCartConfirmationEmails(supabase, rows);
 
     return okResponse({ received: true });
   }

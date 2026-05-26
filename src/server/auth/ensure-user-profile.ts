@@ -14,6 +14,16 @@ type UserRow = {
   plan: "free" | "pro" | "team" | "student";
   level: "explorer" | "improver" | "refiner";
   profile_image: string;
+  phone: string | null;
+  organisation: string | null;
+  role: string | null;
+  timezone: string | null;
+  software_preferences: unknown;
+  primary_goal: UserProfile["primaryGoal"] | null;
+  stripe_customer_id: string | null;
+  stripe_subscription_id: string | null;
+  subscription_status: UserProfile["subscriptionStatus"] | null;
+  billing_interval: UserProfile["billingInterval"] | null;
   created_at: string;
 };
 
@@ -23,6 +33,10 @@ function fallbackName(email: string): string {
 }
 
 function mapRow(row: UserRow): UserProfile {
+  const softwarePreferences = Array.isArray(row.software_preferences)
+    ? row.software_preferences.filter((item): item is string => typeof item === "string" && item.trim().length > 0)
+    : [];
+
   return {
     id: row.id,
     email: row.email,
@@ -30,6 +44,16 @@ function mapRow(row: UserRow): UserProfile {
     plan: row.plan,
     level: row.level,
     profileImage: row.profile_image,
+    phone: row.phone ?? "",
+    organisation: row.organisation ?? "",
+    role: row.role ?? "",
+    timezone: row.timezone ?? "Europe/London",
+    softwarePreferences,
+    primaryGoal: row.primary_goal ?? "",
+    stripeCustomerId: row.stripe_customer_id ?? "",
+    stripeSubscriptionId: row.stripe_subscription_id ?? "",
+    subscriptionStatus: row.subscription_status ?? "inactive",
+    billingInterval: row.billing_interval ?? "",
     createdAt: row.created_at,
   };
 }
@@ -58,7 +82,7 @@ export async function ensureUserProfile(db: SupabaseClient, user: EnsureUserArgs
 
   const { data, error } = await db
     .from("addition_users")
-    .select("id,email,name,plan,level,profile_image,created_at")
+    .select("id,email,name,plan,level,profile_image,phone,organisation,role,timezone,software_preferences,primary_goal,stripe_customer_id,stripe_subscription_id,subscription_status,billing_interval,created_at")
     .eq("id", user.id)
     .single();
   if (error) throw new Error(`Failed loading user profile: ${error.message}`);

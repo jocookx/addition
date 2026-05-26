@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { errorResponse, okResponse } from "@/lib/http";
 import { requireUserFromRequest } from "@/server/auth/require-user";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
+import { getStripe } from "@/server/stripe";
 
 type Plan = "pro" | "student";
 type BillingInterval = "monthly" | "yearly";
@@ -24,17 +25,6 @@ function getPriceId(plan: Plan, interval: BillingInterval): { priceId: string | 
     if (value) return { priceId: value, expected: name };
   }
   return { priceId: null, expected: names.join(" or ") };
-}
-
-function getStripe(): Stripe {
-  const apiKey = process.env.STRIPE_SECRET_KEY;
-  if (!apiKey) {
-    throw new Error("STRIPE_SECRET_KEY is not configured.");
-  }
-  if (process.env.NODE_ENV === "production" && apiKey.startsWith("sk_test_")) {
-    throw new Error("A Stripe test secret key is configured in production.");
-  }
-  return new Stripe(apiKey, { apiVersion: "2026-02-25.clover" as Stripe.LatestApiVersion });
 }
 
 export async function POST(request: Request) {
@@ -99,6 +89,16 @@ export async function POST(request: Request) {
     },
   };
 
+  const db = createSupabaseServiceClient();
+  const { data: profile } = await db
+    .from("addition_users")
+    .select("stripe_customer_id")
+    .eq("id", auth.user.id)
+    .maybeSingle();
+  const customerId = typeof profile?.stripe_customer_id === "string" && profile.stripe_customer_id
+    ? profile.stripe_customer_id
+    : undefined;
+
   let session: Stripe.Checkout.Session;
   try {
     if (isEmbedded) {
@@ -107,7 +107,8 @@ export async function POST(request: Request) {
         mode: "subscription",
         line_items: [{ price: priceId, quantity: 1 }],
         client_reference_id: auth.user.id,
-        customer_email: auth.user.email ?? undefined,
+        customer: customerId,
+        customer_email: customerId ? undefined : auth.user.email ?? undefined,
         return_url: `${origin}${returnTo}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
         ...sessionMeta,
       });
@@ -116,7 +117,8 @@ export async function POST(request: Request) {
         mode: "subscription",
         line_items: [{ price: priceId, quantity: 1 }],
         client_reference_id: auth.user.id,
-        customer_email: auth.user.email ?? undefined,
+        customer: customerId,
+        customer_email: customerId ? undefined : auth.user.email ?? undefined,
         success_url: `${origin}${returnTo}?checkout=success`,
         cancel_url: `${origin}${returnTo}?checkout=cancelled`,
         ...sessionMeta,

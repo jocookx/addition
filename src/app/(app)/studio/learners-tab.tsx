@@ -42,6 +42,7 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
   const [total, setTotal]       = useState(0);
   const [page, setPage]         = useState(1);
   const [q, setQ]               = useState("");
+  const [busyUserId, setBusyUserId] = useState("");
 
   const LIMIT = 50;
 
@@ -70,6 +71,24 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
   const totalPages = Math.ceil(total / LIMIT);
   const proCount   = learners.filter((l) => l.plan !== "free").length;
   const activeCount = learners.filter((l) => l.enrollments > 0).length;
+  const pendingStudentCount = learners.filter((l) => l.studentVerificationStatus === "pending").length;
+
+  async function reviewStudent(userId: string, status: "approved" | "rejected") {
+    setBusyUserId(userId);
+    setError("");
+    try {
+      await fetchJson(`/api/v1/admin/student-verifications/${encodeURIComponent(userId)}`, {
+        method: "PATCH",
+        headers: { ...headers, "Content-Type": "application/json" },
+        body: JSON.stringify({ status, reviewNotes: status === "approved" ? "Approved in Studio." : "Rejected in Studio." }),
+      });
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Review failed.");
+    } finally {
+      setBusyUserId("");
+    }
+  }
 
   return (
     <div className="st-list-panel">
@@ -106,6 +125,10 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
             <strong>{activeCount}</strong>
             <span>Enrolled</span>
           </div>
+          <div className="st-learner-kpi">
+            <strong>{pendingStudentCount}</strong>
+            <span>Student review</span>
+          </div>
         </div>
       )}
 
@@ -123,6 +146,7 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
                 <th>Enrolled</th>
                 <th>Lessons done</th>
                 <th>Last seen</th>
+                <th>Student</th>
                 <th>Joined</th>
               </tr>
             </thead>
@@ -144,12 +168,21 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
                   <td>{l.enrollments}</td>
                   <td>{l.completedLessons}</td>
                   <td className="st-muted">{relativeDate(l.lastSeen)}</td>
+                  <td>
+                    <span className={`st-badge ${l.studentVerificationStatus === "approved" ? "st-badge--ok" : l.studentVerificationStatus === "pending" ? "st-badge--warn" : "st-badge--muted"}`}>{l.studentVerificationStatus}</span>
+                    {l.studentVerificationStatus === "pending" && (
+                      <span style={{ display: "inline-flex", gap: 6, marginLeft: 8 }}>
+                        <button type="button" className="st-save-btn" disabled={busyUserId === l.id} onClick={() => void reviewStudent(l.id, "approved")}>Approve</button>
+                        <button type="button" className="ghost-btn" disabled={busyUserId === l.id} onClick={() => void reviewStudent(l.id, "rejected")}>Reject</button>
+                      </span>
+                    )}
+                  </td>
                   <td className="st-muted">{new Date(l.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}
               {learners.length === 0 && (
                 <tr>
-                  <td colSpan={7} style={{ textAlign: "center", padding: "32px", color: "rgba(236,236,242,0.3)" }}>
+                  <td colSpan={8} style={{ textAlign: "center", padding: "32px", color: "rgba(236,236,242,0.3)" }}>
                     No learners found.
                   </td>
                 </tr>

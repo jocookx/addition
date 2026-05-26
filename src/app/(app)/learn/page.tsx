@@ -12,10 +12,12 @@ import { getCourseCatalog, getCourseDetail } from "@/lib/api/catalog";
 import { getCourseProgressOverview } from "@/lib/api/course-progress";
 import { completeLesson, startLesson } from "@/lib/api/lesson-actions";
 import { patchLearningProgress } from "@/lib/api/learning-progress";
+import { getPathDetail, getPaths } from "@/lib/api/paths";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import { normalizeSoftwareLabel, useSoftwareContext, SOFTWARE_LIST } from "@/lib/software-context";
 import { rankBySmartMatchWithMeta, type SmartMatchMeta } from "@/lib/search/smart-match";
+import type { LearningPathDetail, LearningPathListItem } from "@/domain/learning-path";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -96,9 +98,6 @@ function CourseCard({
         )}
         <h3>{course.title}</h3>
         <div className="meta">{course.software} · {course.lessonCount} lessons</div>
-        <div className="course-meta-tags">
-          <span className="course-meta-tag">{course.type === "core" ? "Core" : "Course"}</span>
-        </div>
         {hasMatch && (
           <div
             className={`course-match-hint${canJump ? " course-match-hint--clickable" : ""}`}
@@ -205,7 +204,9 @@ function LearnPageInner() {
 
   const [activeSoftware] = useSoftwareContext();
   const [catalog, setCatalog] = useState<CourseCatalogListItem[]>([]);
-  const [catalogType, setCatalogType] = useState<"all" | "core" | "courses">("all");
+  const [paths, setPaths] = useState<LearningPathListItem[]>([]);
+  const [pathDetails, setPathDetails] = useState<Record<string, LearningPathDetail>>({});
+  const [activePathId, setActivePathId] = useState("all");
   const [search, setSearch] = useState("");
 
   // Player state — null means catalog view
@@ -243,10 +244,22 @@ function LearnPageInner() {
 
   useEffect(() => {
     let canceled = false;
-    getCourseCatalog()
-      .then((courses) => {
+    Promise.all([
+      getCourseCatalog(),
+      getPaths().catch(() => [] as LearningPathListItem[]),
+    ])
+      .then(async ([courses, pathList]) => {
         if (canceled) return;
         setCatalog(courses);
+        setPaths(pathList);
+        const details = await Promise.all(pathList.map((path) => getPathDetail(path.id).catch(() => null)));
+        if (!canceled) {
+          setPathDetails(Object.fromEntries(
+            details
+              .filter((path): path is LearningPathDetail => Boolean(path))
+              .map((path) => [path.id, path]),
+          ));
+        }
         // Deep-link: ?course=ID goes straight to player
         const urlCourse = searchParams.get("course");
         if (urlCourse && courses.some((c) => c.id === urlCourse)) {
@@ -327,11 +340,17 @@ function LearnPageInner() {
     : -1;
 
   // ── catalog filter ────────────────────────────────────────────────────────
+  const activePath = activePathId === "all" ? null : pathDetails[activePathId] ?? null;
+  const pathOrderedCatalog = useMemo(() => {
+    if (!activePath) return catalog;
+    return activePath.courses
+      .map((pathCourse) => catalog.find((catalogCourse) => catalogCourse.id === pathCourse.id))
+      .filter((courseItem): courseItem is CourseCatalogListItem => Boolean(courseItem));
+  }, [activePath, catalog]);
+
   const filteredCatalog = useMemo(() => {
-    // Apply non-text filters first (catalog type + software)
-    const prefiltered = catalog.filter((c) => {
-      if (catalogType === "core"    && c.type !== "core") return false;
-      if (catalogType === "courses" && c.type === "core") return false;
+    // Apply non-text filters first (path order + software)
+    const prefiltered = pathOrderedCatalog.filter((c) => {
       if (activeSoftware) {
         const norm = normalizeSoftwareLabel(c.software ?? "");
         if (norm !== activeSoftware && c.software !== activeSoftware) return false;
@@ -352,7 +371,7 @@ function LearnPageInner() {
         })),
       }),
     });
-  }, [catalog, catalogType, search, activeSoftware]);
+  }, [pathOrderedCatalog, search, activeSoftware]);
 
   // ── actions ───────────────────────────────────────────────────────────────
 
@@ -421,16 +440,22 @@ function LearnPageInner() {
             <div className="commands-toolbar-right">
               <select
                 className="reference-search"
-                style={{ width: "auto", minWidth: 120 }}
-                value={catalogType}
-                onChange={(e) => setCatalogType(e.target.value as "all" | "core" | "courses")}
+                style={{ width: "auto", minWidth: 170 }}
+                value={activePathId}
+                onChange={(e) => setActivePathId(e.target.value)}
               >
-                <option value="all">All types</option>
-                <option value="core">Core</option>
-                <option value="courses">Courses</option>
+                <option value="all">All paths</option>
+                {paths.map((path) => (
+                  <option key={path.id} value={path.id}>{path.title}</option>
+                ))}
               </select>
             </div>
           </div>
+          {activePath && (
+            <p className="meta" style={{ marginTop: -8, marginBottom: 14 }}>
+              Ordered by {activePath.title}
+            </p>
+          )}
 
           {error && <p className="meta" style={{ color: "var(--danger)" }}>{error}</p>}
           {filteredCatalog.length ? (

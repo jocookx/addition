@@ -1,4 +1,4 @@
-export type ToolkitItemType = "command" | "combo" | "course";
+export type ToolkitItemType = "command" | "combo" | "course" | "resource";
 
 export type ToolkitItem = {
   id: string;

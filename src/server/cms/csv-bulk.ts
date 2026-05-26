@@ -67,7 +67,7 @@ const CONFIGS: Record<EntityKey, EntityConfig> = {
       summary: "A practical beginner course for clean Rhino modelling.",
       course_promise: "Model simple architectural geometry with a reliable workflow.",
       learning_outcome: "Create and edit clean curves, surfaces and solids.",
-      category: "Core course",
+      category: "Course",
       level: "Beginner",
       access_level: "Free",
       status: "Draft",

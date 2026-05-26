@@ -102,10 +102,10 @@ function sortItems(items: StudioCourse[]): StudioCourse[] {
 
 function normalizeDbCourse(row: CourseRow): StudioCourse {
   return StudioCourseSchema.parse({
-    bucket: row.type === "core" ? "core" : "courses",
+    bucket: "courses",
     id: row.id,
     title: row.title,
-    type: row.type === "combo" ? "course" : row.type,
+    type: "course",
     software: row.software,
     summary: row.summary ?? "",
     image: row.image ?? "",
@@ -123,8 +123,8 @@ function normalizeDbCourse(row: CourseRow): StudioCourse {
   });
 }
 
-function dbTypeForCourse(item: StudioCourse): "course" | "core" {
-  return item.bucket === "core" ? "core" : "course";
+function dbTypeForCourse(): "course" {
+  return "course";
 }
 
 function lessonRowToStudioLesson(les: LessonRow): Record<string, unknown> {
@@ -139,6 +139,15 @@ function lessonRowToStudioLesson(les: LessonRow): Record<string, unknown> {
     // Spread extra fields (transcript, steps, practiceTask, etc.) from metadata
     ...(les.metadata && typeof les.metadata === "object" ? les.metadata : {}),
   };
+}
+
+function jsonbLessonCount(modules: unknown): number {
+  if (!Array.isArray(modules)) return 0;
+  return modules.reduce((total, moduleItem) => {
+    if (!moduleItem || typeof moduleItem !== "object") return total;
+    const lessons = (moduleItem as { lessons?: unknown }).lessons;
+    return total + (Array.isArray(lessons) ? lessons.length : 0);
+  }, 0);
 }
 
 // ── Relational DB read/write ──────────────────────────────────────────────────
@@ -208,6 +217,10 @@ async function readRelationalPayload(
         title: mod.title,
         lessons: (lessonsByModule.get(mod.id) ?? []).map(lessonRowToStudioLesson),
       }));
+      const relationalLessonCount = studioModules.reduce((total, mod) => total + mod.lessons.length, 0);
+      if (relationalLessonCount === 0 && jsonbLessonCount(course.modules) > 0) {
+        return normalizeDbCourse(course);
+      }
       return normalizeDbCourse({ ...course, modules: studioModules });
     }),
   );
@@ -250,6 +263,7 @@ async function writeRelationalPayload(
 
         // Separate core fields from extra metadata
         const { id, title, video, image, content, durationMin, resources, ...extra } = les;
+        void resources;
         const videoIdVal = (extra as Record<string, unknown>).videoId ?? "";
         const restMeta = { ...extra };
         delete (restMeta as Record<string, unknown>).videoId;
@@ -366,7 +380,7 @@ async function writeSupabaseStudioPayload(payload: StudioPayload): Promise<Studi
 
   const courseRows = parsed.items.map((item) => ({
     id: item.id,
-    type: dbTypeForCourse(item),
+    type: dbTypeForCourse(),
     title: item.title,
     software: item.software,
     summary: item.summary ?? "",
@@ -441,7 +455,7 @@ export async function readStudioPayload(): Promise<StudioPayload> {
   const content = store.content || {};
 
   const items = sortItems([
-    ...normalizeItems("core", Array.isArray(content.core) ? content.core : []),
+    ...normalizeItems("courses", Array.isArray(content.core) ? content.core : []),
     ...normalizeItems("courses", Array.isArray(content.courses) ? content.courses : []),
   ]);
 
@@ -486,15 +500,7 @@ export async function writeStudioPayload(payload: StudioPayload): Promise<Studio
   const store = JSON.parse(raw) as StoreShape;
   const parsed = StudioPayloadSchema.parse(payload);
 
-  const core = parsed.items
-    .filter((item) => item.bucket === "core")
-    .map((item) => {
-      const rest = { ...item };
-      delete (rest as { bucket?: string }).bucket;
-      return rest;
-    });
   const courses = parsed.items
-    .filter((item) => item.bucket === "courses")
     .map((item) => {
       const rest = { ...item };
       delete (rest as { bucket?: string }).bucket;
@@ -504,7 +510,7 @@ export async function writeStudioPayload(payload: StudioPayload): Promise<Studio
   store.content = {
     ...(store.content || {}),
     categories: parsed.categories,
-    core,
+    core: [],
     courses,
   };
 

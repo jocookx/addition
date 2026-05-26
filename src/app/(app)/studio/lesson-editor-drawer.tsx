@@ -1,5 +1,9 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-unused-vars --
+   lessonHasVideo is retained with the drawer helpers for the pending lesson
+   publish-status consolidation. */
+
 import type { StudioCourse, StudioLesson, StudioModule } from "@/domain/content-studio";
 import { AccessBadge, StatusBadge, ContentHealthSummary, HealthChecklist, MoreMenu } from "./studio-ui";
 import { ImageUploadField } from "./image-upload-field";

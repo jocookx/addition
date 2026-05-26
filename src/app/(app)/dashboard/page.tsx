@@ -1,5 +1,9 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-unused-vars, @next/next/no-img-element --
+   Dashboard was intentionally narrowed to four core panels; older tab sections are
+   kept in-file until the post-hardening dashboard pass removes or reuses them. */
+
 import { useEffect, useState, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -7,6 +11,7 @@ import type { Session } from "@supabase/supabase-js";
 import type { LearningSummary } from "@/domain/learning-summary";
 import type { LearningPathListItem, PathEnrolment, PathLevel } from "@/domain/learning-path";
 import type { UserProfile } from "@/domain/user-profile";
+import { formatWorkshopCountdown } from "@/domain/workshop-lifecycle";
 import { ensureAuthProfile } from "@/lib/api/auth-profile";
 import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { getLearningSummary } from "@/lib/api/learning-summary";
@@ -31,6 +36,11 @@ type UpcomingWorkshop = {
   format?: "online" | "in-person";
   image?: string | null;
   price?: string | null;
+  startTime?: string | null;
+  endTime?: string | null;
+  recordingStatus?: "none" | "processing" | "available" | "failed";
+  joinUrl?: string;
+  recordingUrl?: string;
 };
 
 type NextPathCourse = {
@@ -302,6 +312,7 @@ function WorkshopCard({ ws }: { ws: UpcomingWorkshop | null }) {
   }
   const date = new Date(ws.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
   const format = ws.format === "in-person" ? "In person" : "Online";
+  const countdown = formatWorkshopCountdown(ws);
   return (
     <Link href={getWorkshopHref(ws.id)} className="home-workshop-card glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
       {ws.image ? (
@@ -322,7 +333,26 @@ function WorkshopCard({ ws }: { ws: UpcomingWorkshop | null }) {
           <span>{format}</span>
           {ws.price ? <span>{ws.price}</span> : null}
         </span>
+        <span className="home-workshop-meta">{countdown}</span>
       </span>
+    </Link>
+  );
+}
+
+function RecommendedPracticeCard({ count }: { count: number }) {
+  return (
+    <Link href="/practice" className="home-chip glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
+      <span className="home-chip-label">Recommended Practice</span>
+      <span className="home-chip-action">{count > 0 ? `${count} commands to practise` : "Start command recall"} →</span>
+    </Link>
+  );
+}
+
+function SavedToolkitCard() {
+  return (
+    <Link href="/toolkit" className="home-chip glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
+      <span className="home-chip-label">Saved Toolkit / Resources</span>
+      <span className="home-chip-action">Open saved items →</span>
     </Link>
   );
 }
@@ -333,7 +363,6 @@ function ProgressTab() {
   return <div className="dash-tab-empty glass-panel">My Progress — coming next.</div>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- WIP: will be wired up when paths tab ships
 function PathTab({ token }: { token: string }) {
   const router = useRouter();
   const [paths, setPaths]           = useState<LearningPathListItem[]>([]);
@@ -528,7 +557,6 @@ function ProgressTabIcon() {
     </svg>
   );
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- WIP: paired with PathTab above
 function PathTabIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -661,6 +689,11 @@ function DashboardPageInner() {
           format: workshop.format,
           image: workshop.image,
           price: workshop.price,
+          startTime: workshop.startTime,
+          endTime: workshop.endTime,
+          recordingStatus: workshop.recordingStatus,
+          joinUrl: workshop.joinUrl,
+          recordingUrl: workshop.recordingUrl,
         })));
         setLoading(false);
       })
@@ -849,38 +882,27 @@ function DashboardPageInner() {
         </header>
 
         {/* ── Inner tabs ── */}
-        <TabBar active={tab} badges={badges} onChange={handleTabChange} />
-
         {error && <p className="meta" style={{ color: "var(--danger)" }}>{error}</p>}
 
         {/* ── Tab content ── */}
         <div className="dash-tab-panel">
-          {loading && tab === "home" ? (
+          {loading ? (
             <p className="meta">Loading…</p>
-          ) : tab === "home" ? (
+          ) : (
             <div className="home-layout">
               <div className="home-main">
                 {activePath
                   ? <PathHero activePath={activePath} onContinue={handleContinue} />
                   : <ContinueHero course={nextUp} onContinue={handleContinue} />
                 }
-                <SolveSection />
+                <RecommendedPracticeCard count={practiseCount} />
               </div>
               <div className="home-side">
-                <TinyGoal onStart={() => {
-                  const target = activePath?.nextCourse ?? nextUp;
-                  if (target && "id" in target) handleContinue(target.id, target.nextLessonId);
-                  else if (target && "courseId" in target) handleContinue(target.courseId, target.nextLessonId);
-                  else router.push("/learn");
-                }} />
-                {!activePath && <PathSection activePath={null} />}
                 <WorkshopCard ws={upcomingWorkshop} />
+                <SavedToolkitCard />
               </div>
             </div>
-          ) : tab === "progress"  ? <ProgressTab />
-            : tab === "assets"    ? <AssetsTab />
-            : tab === "workshops" ? <WorkshopsTabPanel workshops={visibleWorkshops} />
-            : null}
+          )}
         </div>
       </section>
       {gatewayIntent && (

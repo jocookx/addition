@@ -9,11 +9,13 @@ import { getToolkit } from "@/lib/api/toolkit";
 import { getCommands } from "@/lib/api/commands";
 import { getCombos } from "@/lib/api/combos";
 import { getCourseCatalog } from "@/lib/api/catalog";
+import { getResources } from "@/lib/api/resources";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import type { CommandListItem } from "@/domain/command";
 import type { ComboListItem } from "@/domain/combo";
 import type { CourseCatalogListItem } from "@/domain/catalog";
 import type { ToolkitItem } from "@/domain/toolkit";
+import type { ResourceListItem } from "@/domain/resource";
 
 export default function ToolkitPage() {
   const [session, setSession] = useState<string | null>(null);
@@ -21,6 +23,7 @@ export default function ToolkitPage() {
   const [commands, setCommands] = useState<CommandListItem[]>([]);
   const [combos, setCombos] = useState<ComboListItem[]>([]);
   const [courses, setCourses] = useState<CourseCatalogListItem[]>([]);
+  const [resources, setResources] = useState<ResourceListItem[]>([]);
   const [booted, setBooted] = useState(false);
   const [error, setError] = useState("");
 
@@ -44,13 +47,14 @@ export default function ToolkitPage() {
 
     let canceled = false;
 
-    Promise.all([getToolkit(session), getCommands(), getCombos(), getCourseCatalog()])
-      .then(([toolkit, commandData, comboData, courseData]) => {
+    Promise.all([getToolkit(session), getCommands(), getCombos(), getCourseCatalog(), getResources(session)])
+      .then(([toolkit, commandData, comboData, courseData, resourceData]) => {
         if (canceled) return;
         setItems(toolkit);
         setCommands(commandData);
         setCombos(comboData);
         setCourses(courseData);
+        setResources(resourceData);
         setError("");
       })
       .catch((err) => {
@@ -93,6 +97,14 @@ export default function ToolkitPage() {
         href = `/learn?course=${encodeURIComponent(item.contentId)}`;
       }
 
+      if (item.contentType === "resource") {
+        const resource = resources.find((resourceItem) => resourceItem.id === item.contentId);
+        title = resource?.title || item.contentId;
+        subtitle = resource ? `${resource.software || "General"} ${resource.type}` : "Resource";
+        tags = resource?.tags ?? [];
+        href = "/resources";
+      }
+
       return {
         ...item,
         title,
@@ -101,14 +113,14 @@ export default function ToolkitPage() {
         href,
       };
     });
-  }, [items, commands, combos, courses]);
+  }, [items, commands, combos, courses, resources]);
 
   if (!booted) return null;
 
   return (
     <AppFrame
       title="Toolkit"
-      subtitle="Your saved commands, combos, and courses for quick access."
+      subtitle="Your saved commands, combos, courses and resources for quick access."
       topTabs={[]}
     >
       <section className="panel">
@@ -126,11 +138,12 @@ export default function ToolkitPage() {
 
         {itemRows.length === 0 ? (
           <div style={{ padding: "28px 0", textAlign: "center" }}>
-            <p className="meta">Your toolkit is empty. Save a command, combo, or course to see it here.</p>
+            <p className="meta">Your toolkit is empty. Save a command, combo, course or resource to see it here.</p>
             <div style={{ display: "flex", justifyContent: "center", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
               <Link href="/commands" className="ghost-btn">Browse commands</Link>
               <Link href="/combos" className="ghost-btn">Browse combos</Link>
               <Link href="/learn" className="ghost-btn">Browse courses</Link>
+              <Link href="/resources" className="ghost-btn">Browse resources</Link>
             </div>
           </div>
         ) : (

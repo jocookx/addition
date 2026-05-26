@@ -1,5 +1,9 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-unused-vars --
+   Placeholder remains available for the next workshop content panels while the
+   live-delivery and recording forms are being finished. */
+
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { fetchJson } from "@/lib/api/fetch-json";
@@ -15,6 +19,23 @@ type AdminWorkshop = WorkshopListItem & {
   tutorId?: string | null;
   tutorBio?: string | null;
   tutorImage?: string | null;
+  startTime?: string | null;
+  endTime?: string | null;
+  liveProvider?: "zoom" | "youtube" | "vimeo" | "custom" | "other";
+  joinUrl?: string;
+  hostUrl?: string;
+  meetingId?: string;
+  passcode?: string;
+  liveEmbedUrl?: string;
+  calendarUrl?: string;
+  preWork?: string[];
+  resources?: string[];
+  recordingStatus?: "none" | "processing" | "available" | "failed";
+  recordingUrl?: string;
+  recordingEmbedUrl?: string;
+  recordingDuration?: string;
+  recordingThumbnail?: string;
+  recordingAccessLevel?: "booked_users" | "pro" | "student" | "purchased" | "free";
   _dirty?: boolean;
 };
 
@@ -22,6 +43,23 @@ type AdminWorkshopRow = Partial<AdminWorkshop> & {
   price_pence?: number | null;
   stripe_payment_link?: string | null;
   tutor_id?: string | null;
+  start_time?: string | null;
+  end_time?: string | null;
+  live_provider?: "zoom" | "youtube" | "vimeo" | "custom" | "other";
+  join_url?: string | null;
+  host_url?: string | null;
+  meeting_id?: string | null;
+  passcode?: string | null;
+  live_embed_url?: string | null;
+  calendar_url?: string | null;
+  pre_work?: string[] | null;
+  resources?: string[] | null;
+  recording_status?: "none" | "processing" | "available" | "failed";
+  recording_url?: string | null;
+  recording_embed_url?: string | null;
+  recording_duration?: string | null;
+  recording_thumbnail?: string | null;
+  recording_access_level?: "booked_users" | "pro" | "student" | "purchased" | "free";
   addition_tutors?: { id?: string | null; name?: string | null; bio?: string | null; image?: string | null } | null;
 };
 
@@ -84,6 +122,21 @@ function blankWorkshop(title: string): AdminWorkshop {
     included: [],
     stripePaymentLink: null,
     tutorName: null,
+    liveProvider: "zoom",
+    joinUrl: "",
+    hostUrl: "",
+    meetingId: "",
+    passcode: "",
+    liveEmbedUrl: "",
+    calendarUrl: "",
+    preWork: [],
+    resources: [],
+    recordingStatus: "none",
+    recordingUrl: "",
+    recordingEmbedUrl: "",
+    recordingDuration: "",
+    recordingThumbnail: "",
+    recordingAccessLevel: "booked_users",
     _dirty: true,
   };
 }
@@ -112,6 +165,23 @@ function buildBody(ws: AdminWorkshop) {
     principles: ws.principles ?? [],
     stripe_payment_link: ws.stripePaymentLink,
     tutor_id: ws.tutorId ?? null,
+    start_time: ws.startTime ?? null,
+    end_time: ws.endTime ?? null,
+    live_provider: ws.liveProvider ?? "zoom",
+    join_url: ws.joinUrl ?? "",
+    host_url: ws.hostUrl ?? "",
+    meeting_id: ws.meetingId ?? "",
+    passcode: ws.passcode ?? "",
+    live_embed_url: ws.liveEmbedUrl ?? "",
+    calendar_url: ws.calendarUrl ?? "",
+    pre_work: ws.preWork ?? [],
+    resources: ws.resources ?? [],
+    recording_status: ws.recordingStatus ?? "none",
+    recording_url: ws.recordingUrl ?? "",
+    recording_embed_url: ws.recordingEmbedUrl ?? "",
+    recording_duration: ws.recordingDuration ?? "",
+    recording_thumbnail: ws.recordingThumbnail ?? "",
+    recording_access_level: ws.recordingAccessLevel ?? "booked_users",
   };
 }
 
@@ -144,6 +214,23 @@ function normalizeWorkshop(row: AdminWorkshopRow): AdminWorkshop {
     tutorName: row.tutorName ?? tutor?.name ?? null,
     tutorBio: row.tutorBio ?? tutor?.bio ?? null,
     tutorImage: row.tutorImage ?? tutor?.image ?? null,
+    startTime: row.startTime ?? row.start_time ?? null,
+    endTime: row.endTime ?? row.end_time ?? null,
+    liveProvider: row.liveProvider ?? row.live_provider ?? "zoom",
+    joinUrl: row.joinUrl ?? row.join_url ?? "",
+    hostUrl: row.hostUrl ?? row.host_url ?? "",
+    meetingId: row.meetingId ?? row.meeting_id ?? "",
+    passcode: row.passcode ?? row.passcode ?? "",
+    liveEmbedUrl: row.liveEmbedUrl ?? row.live_embed_url ?? "",
+    calendarUrl: row.calendarUrl ?? row.calendar_url ?? "",
+    preWork: Array.isArray(row.preWork) ? row.preWork : Array.isArray(row.pre_work) ? row.pre_work : [],
+    resources: Array.isArray(row.resources) ? row.resources : [],
+    recordingStatus: row.recordingStatus ?? row.recording_status ?? "none",
+    recordingUrl: row.recordingUrl ?? row.recording_url ?? "",
+    recordingEmbedUrl: row.recordingEmbedUrl ?? row.recording_embed_url ?? "",
+    recordingDuration: row.recordingDuration ?? row.recording_duration ?? "",
+    recordingThumbnail: row.recordingThumbnail ?? row.recording_thumbnail ?? "",
+    recordingAccessLevel: row.recordingAccessLevel ?? row.recording_access_level ?? "booked_users",
     _dirty: Boolean(row._dirty),
   };
 }
@@ -161,6 +248,8 @@ function workshopHealth(ws: AdminWorkshop): HealthItem[] {
     { label: "Included items", ok: ws.included.length > 0, severity: "recommended" },
     { label: "Hero image", ok: Boolean(ws.image.trim()), severity: "recommended" },
     { label: "Instructor", ok: Boolean(ws.tutorName?.trim()), severity: "recommended" },
+    { label: "Live join link", ok: !ws.upcoming || Boolean(ws.joinUrl?.trim() || ws.location.trim()), severity: "recommended" },
+    { label: "Recording access", ok: ws.recordingStatus !== "available" || Boolean(ws.recordingUrl?.trim()), severity: "recommended" },
   ];
 }
 
@@ -450,7 +539,15 @@ export function WorkshopsTab({ accessToken }: { accessToken: string }) {
                       <label><span>Time</span><input type="time" value={selected.time} onChange={(event) => patch("time", event.target.value)} /></label>
                       <label><span>Timezone</span><input value={selected.timezone} onChange={(event) => patch("timezone", event.target.value)} /></label>
                       <label><span>Duration</span><input value={selected.duration} onChange={(event) => patch("duration", event.target.value)} /></label>
+                      <label><span>Start time override</span><input type="datetime-local" value={selected.startTime?.slice(0, 16) ?? ""} onChange={(event) => patch("startTime", event.target.value ? new Date(event.target.value).toISOString() : null)} /></label>
+                      <label><span>End time override</span><input type="datetime-local" value={selected.endTime?.slice(0, 16) ?? ""} onChange={(event) => patch("endTime", event.target.value ? new Date(event.target.value).toISOString() : null)} /></label>
                       <label className="span-2"><span>Location / meeting link</span><input value={selected.location} onChange={(event) => patch("location", event.target.value)} /></label>
+                      <label><span>Live provider</span><select value={selected.liveProvider ?? "zoom"} onChange={(event) => patch("liveProvider", event.target.value)}><option value="zoom">Zoom</option><option value="youtube">YouTube</option><option value="vimeo">Vimeo</option><option value="custom">Custom</option><option value="other">Other</option></select></label>
+                      <label><span>Meeting ID</span><input value={selected.meetingId ?? ""} onChange={(event) => patch("meetingId", event.target.value)} /></label>
+                      <label className="span-2"><span>Join URL</span><input value={selected.joinUrl ?? ""} onChange={(event) => patch("joinUrl", event.target.value)} /></label>
+                      <label className="span-2"><span>Host URL</span><input value={selected.hostUrl ?? ""} onChange={(event) => patch("hostUrl", event.target.value)} /></label>
+                      <label><span>Passcode</span><input value={selected.passcode ?? ""} onChange={(event) => patch("passcode", event.target.value)} /></label>
+                      <label><span>Calendar URL</span><input value={selected.calendarUrl ?? ""} onChange={(event) => patch("calendarUrl", event.target.value)} /></label>
                     </div>
                   </section>
                 )}
@@ -473,8 +570,30 @@ export function WorkshopsTab({ accessToken }: { accessToken: string }) {
                     </div>
                   </section>
                 )}
-                {activeTab === "resources" && <Placeholder title="Resources" text="Attach exercise files, templates, reference images and downloads in the next data model pass." />}
-                {activeTab === "recording" && <Placeholder title="Recording" text="Add recording URL, replay access rules and follow-up resources after the session." />}
+                {activeTab === "resources" && (
+                  <section className="aa-panel aa-narrow-panel">
+                    <div className="aa-panel-head"><h3>Resources</h3><p>Attach pre-work and resource IDs shown to booked learners.</p></div>
+                    <ListEditor label="Pre-work" items={selected.preWork ?? []} onChange={(items) => patch("preWork", items)} />
+                    <ListEditor label="Resource IDs" items={selected.resources ?? []} onChange={(items) => patch("resources", items)} />
+                  </section>
+                )}
+                {activeTab === "recording" && (
+                  <section className="aa-panel aa-narrow-panel">
+                    <div className="aa-panel-head"><h3>Recording</h3><p>Make the replay available after the live session.</p></div>
+                    <div className="aa-form-grid">
+                      <label><span>Status</span><select value={selected.recordingStatus ?? "none"} onChange={(event) => patch("recordingStatus", event.target.value)}><option value="none">None</option><option value="processing">Processing</option><option value="available">Available</option><option value="failed">Failed</option></select></label>
+                      <label><span>Access</span><select value={selected.recordingAccessLevel ?? "booked_users"} onChange={(event) => patch("recordingAccessLevel", event.target.value)}><option value="booked_users">Booked users</option><option value="pro">Pro</option><option value="student">Student</option><option value="purchased">Purchased</option><option value="free">Free</option></select></label>
+                      <label className="span-2"><span>Recording URL</span><input value={selected.recordingUrl ?? ""} onChange={(event) => patch("recordingUrl", event.target.value)} /></label>
+                      <label className="span-2"><span>Embed URL</span><input value={selected.recordingEmbedUrl ?? ""} onChange={(event) => patch("recordingEmbedUrl", event.target.value)} /></label>
+                      <label><span>Duration</span><input value={selected.recordingDuration ?? ""} onChange={(event) => patch("recordingDuration", event.target.value)} /></label>
+                      <label><span>Thumbnail</span><input value={selected.recordingThumbnail ?? ""} onChange={(event) => patch("recordingThumbnail", event.target.value)} /></label>
+                    </div>
+                    <div className="aa-publish-actions">
+                      <button type="button" className="st-publish-btn" onClick={() => void saveWorkshop({ ...selected, upcoming: false, recordingStatus: "available" })}>Mark completed with recording</button>
+                      <button type="button" className="aa-secondary-button" onClick={() => void saveWorkshop({ ...selected, upcoming: false, recordingStatus: "processing" })}>Mark recording processing</button>
+                    </div>
+                  </section>
+                )}
                 {activeTab === "publish" && (
                   <section className="aa-panel aa-publish-panel">
                     <div className="aa-panel-head"><h3>Publish Readiness</h3><p>Make sure booking and content details are complete.</p></div>

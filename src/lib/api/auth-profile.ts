@@ -29,7 +29,7 @@ export async function getAuthProfile(accessToken: string): Promise<UserProfile> 
 
 export async function updateAuthProfile(
   accessToken: string,
-  updates: Partial<Pick<UserProfile, "level" | "name">>,
+  updates: Partial<Pick<UserProfile, "level" | "name" | "phone" | "organisation" | "role" | "timezone" | "softwarePreferences" | "primaryGoal">>,
 ): Promise<UserProfile> {
   const payload = await fetchJson<{ profile: UserProfile }>("/api/v1/auth/profile", {
     method: "PATCH",

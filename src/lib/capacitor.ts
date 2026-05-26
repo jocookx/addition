@@ -14,9 +14,9 @@
 export function isNative(): boolean {
   return (
     typeof window !== "undefined" &&
-    // @ts-expect-error — Capacitor attaches this global at runtime
+    // @ts-expect-error Capacitor attaches this global at runtime.
     typeof window.Capacitor !== "undefined" &&
-    // @ts-expect-error
+    // @ts-expect-error Capacitor attaches this global at runtime.
     window.Capacitor.isNative === true
   );
 }
@@ -24,7 +24,7 @@ export function isNative(): boolean {
 /** Returns the current Capacitor platform: 'web' | 'ios' | 'android' */
 export function getPlatform(): "web" | "ios" | "android" {
   if (typeof window === "undefined") return "web";
-  // @ts-expect-error
+  // @ts-expect-error Capacitor attaches this global at runtime.
   return window.Capacitor?.getPlatform?.() ?? "web";
 }
 
@@ -131,3 +131,4 @@ export async function addBackButtonListener(
     return () => {};
   }
 }
+

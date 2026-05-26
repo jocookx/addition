@@ -3318,6 +3318,76 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   gap: 18px;
 }
 
+.reference-view > .commands-toolbar {
+  display: contents;
+}
+
+.reference-view > .commands-grid,
+.reference-view > .commands-row-layout,
+.reference-view > .cmd-group-section,
+.reference-view > .sw-context-prompt,
+.reference-view > .skeleton-card,
+.reference-view > .meta {
+  grid-column: 1 / -1;
+}
+
+.reference-view {
+  grid-template-columns: minmax(280px, 1fr) auto minmax(340px, max-content);
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 14px;
+}
+
+.command-discovery-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 260px;
+}
+
+.command-discovery-search .toolbar-search-input {
+  height: 40px;
+}
+
+.reference-view > .cmd-sentence-filter {
+  justify-content: flex-end;
+  min-width: 0;
+  padding: 0;
+}
+
+.reference-view > .commands-toolbar > .commands-toolbar-right,
+.commands-toolbar-right {
+  white-space: nowrap;
+}
+
+@media (max-width: 1260px) {
+  .reference-view {
+    grid-template-columns: minmax(260px, 1fr) auto;
+  }
+
+  .reference-view > .cmd-sentence-filter {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .reference-view {
+    grid-template-columns: 1fr;
+  }
+
+  .reference-view > .commands-toolbar {
+    display: flex;
+  }
+
+  .reference-view > .cmd-sentence-filter,
+  .command-discovery-search,
+  .commands-toolbar-right {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
 .reference-search {
   min-width: min(320px, 100%);
 }
@@ -16413,6 +16483,150 @@ html[data-theme="light"] .cmd-list-name { color: rgba(20,20,40,0.88); }
 html[data-theme="light"] .cmd-list-meta { color: rgba(20,20,40,0.38); }
 html[data-theme="light"] .cmd-row-access--cmd { color: rgba(20,20,40,0.38); }
 html[data-theme="light"] .cmd-row-access--lib { color: rgb(21, 128, 61); }
+
+/* Row view with persistent preview panel */
+.commands-row-layout {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(340px, 420px);
+  align-items: start;
+  gap: 24px;
+}
+
+.commands-row-list {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.commands-row-layout .commands-list {
+  gap: 6px;
+  padding-bottom: 64px;
+}
+
+.commands-row-layout .cmd-list-row {
+  display: grid !important;
+  grid-template-columns: 34px 22px minmax(120px, 0.36fr) minmax(180px, 1fr) auto;
+  gap: 12px;
+  min-height: 54px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-color: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.commands-row-layout .cmd-list-row .cmd-check {
+  position: static;
+  inset: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+}
+
+.commands-row-layout .cmd-list-row:hover,
+.commands-row-layout .cmd-list-row.active {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(124, 58, 237, 0.42);
+}
+
+.commands-row-layout .cmd-list-row.active {
+  box-shadow: inset 3px 0 0 rgba(124, 58, 237, 0.8);
+}
+
+.commands-row-layout .cmd-list-row .cmd-list-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.commands-row-layout .cmd-list-name {
+  max-width: none;
+  min-width: 0;
+  font-size: 14px;
+}
+
+.commands-row-layout .cmd-list-meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.cmd-preview-panel {
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 116px);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(16, 17, 22, 0.92);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+}
+
+.cmd-preview-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cmd-preview-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+.cmd-preview-media {
+  min-height: 180px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.cmd-preview-media img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.cmd-preview-body {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+}
+
+.cmd-preview-head {
+  display: grid;
+  gap: 10px;
+}
+
+.cmd-preview-head h3 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.08;
+}
+
+html[data-theme="light"] .commands-row-layout .cmd-list-row {
+  background: rgba(0, 0, 0, 0.025);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .commands-row-layout .cmd-list-row:hover,
+html[data-theme="light"] .commands-row-layout .cmd-list-row.active {
+  background: rgba(0, 0, 0, 0.045);
+  border-color: rgba(124, 58, 237, 0.38);
+}
+
+html[data-theme="light"] .cmd-preview-panel {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .cmd-preview-media {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.035);
+}
+
+@media (max-width: 1023px) {
+  .commands-row-layout {
+    display: block;
+  }
+}
 
 /* ── Dashboard path section ─────────────────────────────────────────────── */
 

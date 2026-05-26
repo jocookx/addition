@@ -23,6 +23,12 @@ type WorkshopRow = {
   stripe_payment_link: string | null;
   addition_tutors: { name?: string | null } | null;
   learn: unknown;
+  start_time?: string | null;
+  end_time?: string | null;
+  calendar_url?: string | null;
+  recording_status?: string | null;
+  recording_url?: string | null;
+  recording_access_level?: string | null;
 };
 
 export async function GET(req: Request) {
@@ -38,6 +44,7 @@ export async function GET(req: Request) {
         id, title, date, time, timezone, duration, format, location,
         price, price_pence, capacity, upcoming,
         track, level, week, software, image, stripe_payment_link,
+        start_time, end_time, calendar_url, recording_status, recording_url, recording_access_level,
         learn,
         addition_tutors ( name )
       `)
@@ -71,6 +78,12 @@ export async function GET(req: Request) {
       stripePaymentLink: row.stripe_payment_link ?? null,
       tutorName:         (row.addition_tutors as { name?: string } | null)?.name ?? null,
       learn:             Array.isArray(row.learn) ? row.learn.filter((item): item is string => typeof item === "string") : [],
+      startTime:         row.start_time ?? null,
+      endTime:           row.end_time ?? null,
+      calendarUrl:       row.calendar_url ?? "",
+      recordingStatus:   row.recording_status === "processing" || row.recording_status === "available" || row.recording_status === "failed" ? row.recording_status : "none",
+      recordingUrl:      row.recording_url ?? "",
+      recordingAccessLevel: row.recording_access_level === "pro" || row.recording_access_level === "student" || row.recording_access_level === "purchased" || row.recording_access_level === "free" ? row.recording_access_level : "booked_users",
     }));
 
     return okResponse({ workshops, total: workshops.length });

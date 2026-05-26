@@ -52,3 +52,5 @@ next-env.d.ts
 # Exception: keep the hand-written offline fallback page
 /out/*
 !/out/index.html
+
+.env*

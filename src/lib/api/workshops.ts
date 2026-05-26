@@ -26,17 +26,20 @@ export async function getWorkshops(options?: {
   return request;
 }
 
-export async function getWorkshopDetail(workshopId: string): Promise<WorkshopDetail> {
-  const cached = workshopDetailCache.get(workshopId);
+export async function getWorkshopDetail(workshopId: string, accessToken?: string): Promise<WorkshopDetail> {
+  const cacheKey = `${workshopId}:${accessToken ? "auth" : "anon"}`;
+  const cached = workshopDetailCache.get(cacheKey);
   if (cached) return cached;
 
-  const request = fetchJson<{ workshop: WorkshopDetail }>(`/api/v1/workshops/${encodeURIComponent(workshopId)}`)
+  const request = fetchJson<{ workshop: WorkshopDetail }>(`/api/v1/workshops/${encodeURIComponent(workshopId)}`, {
+    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined,
+  })
     .then((body) => body.workshop)
     .catch((error) => {
-      workshopDetailCache.delete(workshopId);
+      workshopDetailCache.delete(cacheKey);
       throw error;
     });
-  workshopDetailCache.set(workshopId, request);
+  workshopDetailCache.set(cacheKey, request);
   return request;
 }
 

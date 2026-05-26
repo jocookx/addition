@@ -44,6 +44,18 @@ export async function getBillingClientSecret(
   return body.clientSecret;
 }
 
+export async function getBillingPortalUrl(accessToken: string, returnTo = "/settings"): Promise<string> {
+  const body = await fetchJson<{ url: string }>("/api/v1/billing/portal", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ returnTo }),
+  });
+  return body.url;
+}
+
 /** Fetches live plan prices from Stripe (cached at the CDN). */
 export async function getPlanPrices(): Promise<PlanPrice[]> {
   try {

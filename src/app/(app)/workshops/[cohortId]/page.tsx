@@ -6,7 +6,9 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import type { WorkshopDetail, WorkshopListItem } from "@/domain/workshop";
+import { formatWorkshopCountdown, getWorkshopLifecycle } from "@/domain/workshop-lifecycle";
 import { getWorkshopDetail, getWorkshops } from "@/lib/api/workshops";
+import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { addWorkshopToCart, workshopToCartItem } from "@/lib/workshop-cart";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -83,11 +85,20 @@ export default function CohortDetailPage() {
   const [sessions, setSessions] = useState<WorkshopListItem[]>([]);
   const [selected, setSelected] = useState<WorkshopListItem | null>(null);
   const [detail, setDetail] = useState<WorkshopDetail | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("learn");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   // Load cohort sessions (upcoming + past so the URL works for past workshops too)
+  useEffect(() => {
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) return;
+    supabase.auth.getSession().then(({ data }) => setAccessToken(data.session?.access_token ?? null));
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => setAccessToken(session?.access_token ?? null));
+    return () => data.subscription.unsubscribe();
+  }, []);
+
   useEffect(() => {
     let canceled = false;
     getWorkshops({ upcoming: false })
@@ -110,11 +121,11 @@ export default function CohortDetailPage() {
   useEffect(() => {
     if (!selectedId) return;
     let canceled = false;
-    getWorkshopDetail(selectedId)
+    getWorkshopDetail(selectedId, accessToken ?? undefined)
       .then((v) => { if (!canceled) setDetail(v); })
       .catch(() => {});
     return () => { canceled = true; setDetail(null); };
-  }, [selectedId]);
+  }, [accessToken, selectedId]);
 
   const first = sessions[0] ?? null;
 
@@ -133,6 +144,25 @@ export default function CohortDetailPage() {
   const hasRecordings = isPastWorkshop && recordings.length > 0;
   const hasCohortSchedule = sessions.length > 1;
   const hasInstructor = !!(detail?.tutorBio ?? selected?.tutorName);
+  const lifecycle = getWorkshopLifecycle({
+    startTime: detail?.startTime ?? selected?.startTime,
+    endTime: detail?.endTime ?? selected?.endTime,
+    date: selected?.date,
+    time: selected?.time,
+    duration: selected?.duration,
+    upcoming: selected?.upcoming,
+    recordingStatus: detail?.recordingStatus ?? selected?.recordingStatus,
+  });
+  const countdown = formatWorkshopCountdown({
+    startTime: detail?.startTime ?? selected?.startTime,
+    endTime: detail?.endTime ?? selected?.endTime,
+    date: selected?.date,
+    time: selected?.time,
+    duration: selected?.duration,
+    upcoming: selected?.upcoming,
+    recordingStatus: detail?.recordingStatus ?? selected?.recordingStatus,
+  });
+  const isBooked = detail?.bookingStatus === "registered" || detail?.bookingStatus === "confirmed" || detail?.bookingStatus === "completed";
 
   const baseTitle = first?.track || first?.title || "Workshop";
   const titleStr = `${baseTitle}${first?.level && first.level !== "Foundations" ? ` - ${first.level}` : ""}`;
@@ -215,6 +245,7 @@ export default function CohortDetailPage() {
                 </span>
                 {first?.level && <span className="ws-badge ws-badge-level">{first.level}</span>}
                 {first && !first.upcoming && <span className="ws-badge ws-badge-recorded">Recorded</span>}
+                <span className="ws-badge ws-badge-level">{countdown}</span>
               </div>
             </div>
 
@@ -262,25 +293,33 @@ export default function CohortDetailPage() {
 
               {/* ── Learn ── */}
               {tab === "learn" && (
-                learnItems.length > 0 ? (
-                  <ul className="ws-det-learn-grid">
-                    {learnItems.map((item, i) => (
-                      <li key={i} className="ws-det-learn-item">
-                        <span className="ws-det-learn-num">{String(i + 1).padStart(2, "0")}</span>
-                        <span className="ws-det-learn-text">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="ws-det-empty">Learning outcomes coming soon.</p>
-                )
+                <>
+                  {detail?.preWork?.length ? (
+                    <div className="ws-det-about-section" style={{ marginBottom: 16 }}>
+                      <div className="ws-det-about-section-hd">Pre-work</div>
+                      <div className="ws-det-principles-tags">{detail.preWork.map((item) => <span key={item} className="ws-det-principle-tag">{item}</span>)}</div>
+                    </div>
+                  ) : null}
+                  {learnItems.length > 0 ? (
+                    <ul className="ws-det-learn-grid">
+                      {learnItems.map((item, i) => (
+                        <li key={i} className="ws-det-learn-item">
+                          <span className="ws-det-learn-num">{String(i + 1).padStart(2, "0")}</span>
+                          <span className="ws-det-learn-text">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="ws-det-empty">Learning outcomes coming soon.</p>
+                  )}
+                </>
               )}
 
               {/* ── About ── */}
               {tab === "recording" && (
                 hasRecordings ? (
                   <div className="ws-det-recording-list">
-                    {recordings.map((recording) => (
+                    {(detail?.recordingUrl ? [{ id: "main", title: "Workshop recording", video: detail.recordingUrl }] : recordings).map((recording) => (
                       <a
                         key={recording.id}
                         className="ws-det-recording-card"
@@ -296,10 +335,16 @@ export default function CohortDetailPage() {
                       </a>
                     ))}
                   </div>
+                ) : detail?.recordingStatus === "available" ? (
+                  <div className="ws-det-recording-empty">
+                    <h2>Recording available</h2>
+                    <p>This recording is locked for your current access. Upgrade or use the account that booked the workshop.</p>
+                    <Link href="/auth?mode=signup&plan=pro&next=/workshops" className="primary-button" style={{ display: "inline-flex", marginTop: 12 }}>Upgrade</Link>
+                  </div>
                 ) : (
                   <div className="ws-det-recording-empty">
-                    <h2>Recording coming soon</h2>
-                    <p>The workshop content is available to view here. The replay link will appear once the recording has been processed.</p>
+                    <h2>{lifecycle === "recording_processing" ? "Recording processing" : "Recording coming soon"}</h2>
+                    <p>The replay link will appear once the recording has been processed.</p>
                   </div>
                 )
               )}
@@ -426,6 +471,7 @@ export default function CohortDetailPage() {
                   <span className="ws-det-price">{isPastWorkshop ? "Watch back" : selectedPrice}</span>
                   <span className="ws-det-price-per">{isPastWorkshop ? "recorded session" : "per person"}</span>
                 </div>
+                <p className="meta" style={{ marginTop: 8 }}>{countdown}</p>
               </div>
 
               {/* Facts grid */}
@@ -473,7 +519,15 @@ export default function CohortDetailPage() {
               {/* CTA section */}
               <div className="ws-det-card-section ws-det-card-section--cta">
                 <div className="ws-det-cta">
-                  {selected?.upcoming ? (
+                  {isBooked && (lifecycle === "starting_soon" || lifecycle === "live") && detail?.joinUrl ? (
+                    <a className="primary-button ws-det-register-btn" href={detail.joinUrl} target="_blank" rel="noreferrer">
+                      {lifecycle === "live" ? "Join live session" : "Join room"}
+                    </a>
+                  ) : detail?.recordingUrl ? (
+                    <a className="primary-button ws-det-register-btn" href={detail.recordingUrl} target="_blank" rel="noreferrer">
+                      Watch recording
+                    </a>
+                  ) : selected?.upcoming ? (
                     <>
                       <button
                         type="button"

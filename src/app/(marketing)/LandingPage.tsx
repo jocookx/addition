@@ -1,5 +1,9 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element --
+   A few hero/partner assets are plain external images outside the app image
+   pipeline; keep them as img until the media allow-list is finalized. */
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";

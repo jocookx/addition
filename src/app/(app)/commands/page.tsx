@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { AppFrame } from "@/components/legacy/AppFrame";
-import { ToolActionDetailModal } from "@/components/tool-action/ToolActionDetailModal";
+import { ToolActionDetailModal, ToolActionPreviewPanel } from "@/components/tool-action/ToolActionDetailModal";
 import type { CommandListItem } from "@/domain/command";
 import { getCommands } from "@/lib/api/commands";
 import { getToolkit } from "@/lib/api/toolkit";
@@ -75,6 +75,8 @@ export default function CommandsPage() {
   const [query, setQuery] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selected, setSelected] = useState<CommandListItem | null>(null);
+  const [fullDetailCommand, setFullDetailCommand] = useState<CommandListItem | null>(null);
+  const [useRowPreview, setUseRowPreview] = useState(false);
   const [status, setStatus] = useState("Loading commands...");
   const [savedIds, setSavedIds] = useState<Record<string, boolean>>({});
   const [learned, setLearned] = useState<Record<string, boolean>>(() => {
@@ -94,6 +96,15 @@ export default function CommandsPage() {
     const keys = Object.keys(learned).filter((k) => learned[k]);
     window.localStorage.setItem(LEARNED_STORAGE_KEY, JSON.stringify(keys));
   }, [learned]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const update = () => setUseRowPreview(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     if (!supabase) return;
@@ -237,6 +248,13 @@ export default function CommandsPage() {
     return pool.slice().sort((a, b) => cleanCommandName(a.name).localeCompare(cleanCommandName(b.name)));
   }, [softwareCommands, effectiveTopCat, effectiveSubCat, intent, objectType, inputType, query]);
 
+  useEffect(() => {
+    if (viewMode !== "row" || !useRowPreview || !filteredCommands.length) return;
+    if (!selected || !filteredCommands.some((command) => command.id === selected.id)) {
+      window.setTimeout(() => setSelected(filteredCommands[0]), 0);
+    }
+  }, [filteredCommands, selected, useRowPreview, viewMode]);
+
   function toggleLearned(command: CommandListItem) {
     setLearned((cur) => ({ ...cur, [command.name]: !cur[command.name] }));
   }
@@ -261,9 +279,16 @@ export default function CommandsPage() {
         className="card cmd-card"
         role="button"
         tabIndex={0}
-        onClick={() => setSelected(command)}
+        onClick={() => {
+          setSelected(command);
+          setFullDetailCommand(command);
+        }}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(command); }
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setSelected(command);
+            setFullDetailCommand(command);
+          }
         }}
       >
         <button
@@ -378,13 +403,6 @@ export default function CommandsPage() {
           </span>
         );
       }
-      if (cardTerms.accessType === "command-line") {
-        return (
-          <span className="cmd-row-access cmd-row-access--cmd">
-            <span className="cmd-line-prompt">_</span>{name}
-          </span>
-        );
-      }
       return null;
     }
 
@@ -418,12 +436,20 @@ export default function CommandsPage() {
     return (
       <div
         key={command.id}
-        className="cmd-list-row"
+        className={`cmd-list-row${selected?.id === command.id ? " active" : ""}`}
         role="button"
         tabIndex={0}
-        onClick={() => setSelected(command)}
+        onClick={() => {
+          setSelected(command);
+          if (!useRowPreview) setFullDetailCommand(command);
+        }}
+        onDoubleClick={() => setFullDetailCommand(command)}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(command); }
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setSelected(command);
+            if (!useRowPreview) setFullDetailCommand(command);
+          }
         }}
       >
         <div className="cmd-list-icon-wrap"><ListIcon /></div>
@@ -447,13 +473,27 @@ export default function CommandsPage() {
     <AppFrame
       title={activeSoftware ? `${activeSoftware} ${terms.pageTitle}` : terms.pageTitle}
       subtitle={activeSoftware ? `Search and browse ${terms.countLabel} for ${activeSoftware}.` : "Search and browse commands across every software."}
-      toolbarQuery={query}
-      onToolbarQueryChange={setQuery}
     >
       <div className="reference-view">
 
         {/* Toolbar */}
         <div className="commands-toolbar">
+          <div className="command-discovery-search">
+            <svg className="toolbar-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              className="toolbar-search-input"
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search commands, menus, tags..."
+            />
+            {query ? (
+              <button type="button" className="toolbar-search-clear" onClick={() => setQuery("")} aria-label="Clear search">×</button>
+            ) : null}
+          </div>
+
           <div className="commands-toolbar-right">
             <span className="meta">
               {allCommands.length ? `${filteredCommands.length} ${terms.countLabel}` : status}
@@ -563,7 +603,7 @@ export default function CommandsPage() {
         )}
 
         {/* Category filters */}
-        {activeSoftware && topCatOptions.length > 1 && (
+        {false && activeSoftware && topCatOptions.length > 1 && (
           <div className="cmd-filter-strip">
             <div className="cmd-filter-row">
               <label className="cmd-intent-label" htmlFor="cmd-topcat-select">{terms.menuGroupLabel}</label>
@@ -625,11 +665,6 @@ export default function CommandsPage() {
             ? getCommandGroups(activeSoftware, intent, objectType)
             : null;
 
-          const renderItems = (cmds: CommandListItem[]) =>
-            viewMode === "row"
-              ? <div className="commands-list">{cmds.map(renderCommandRow)}</div>
-              : <div className="commands-grid">{cmds.map(renderCommandCard)}</div>;
-
           if (groups) {
             const byName = new Map(filteredCommands.map((c) => [c.name.toLowerCase(), c]));
             const rendered: React.ReactNode[] = [];
@@ -644,7 +679,9 @@ export default function CommandsPage() {
               rendered.push(
                 <div key={`${group.label}-${rendered.length}`} className="cmd-group-section">
                   <p className="cmd-group-label">{group.label}</p>
-                  {renderItems(groupCmds)}
+                  {viewMode === "row"
+                    ? <div className="commands-list">{groupCmds.map(renderCommandRow)}</div>
+                    : <div className="commands-grid">{groupCmds.map(renderCommandCard)}</div>}
                 </div>
               );
             }
@@ -653,27 +690,73 @@ export default function CommandsPage() {
               rendered.push(
                 <div key="other" className="cmd-group-section">
                   <p className="cmd-group-label">Other</p>
-                  {renderItems(remainder)}
+                  {viewMode === "row"
+                    ? <div className="commands-list">{remainder.map(renderCommandRow)}</div>
+                    : <div className="commands-grid">{remainder.map(renderCommandCard)}</div>}
+                </div>
+              );
+            }
+            if (viewMode === "row") {
+              return (
+                <div className="commands-row-layout">
+                  <div className="commands-row-list">{rendered}</div>
+                  {useRowPreview && selected ? (
+                    <ToolActionPreviewPanel
+                      command={selected}
+                      commands={allCommands}
+                      learned={Boolean(learned[selected.name])}
+                      saved={Boolean(savedIds[selected.id])}
+                      accessToken={session?.access_token ?? undefined}
+                      onOpenCommand={setSelected}
+                      onOpenFull={setFullDetailCommand}
+                      onToggleLearned={toggleLearned}
+                      onToggleSaved={(command, next) => setSavedIds((cur) => ({ ...cur, [command.id]: next }))}
+                    />
+                  ) : null}
                 </div>
               );
             }
             return <>{rendered}</>;
           }
 
-          return renderItems(filteredCommands);
+          if (viewMode === "row") {
+            return (
+              <div className="commands-row-layout">
+                <div className="commands-list">{filteredCommands.map(renderCommandRow)}</div>
+                {useRowPreview && selected ? (
+                  <ToolActionPreviewPanel
+                    command={selected}
+                    commands={allCommands}
+                    learned={Boolean(learned[selected.name])}
+                    saved={Boolean(savedIds[selected.id])}
+                    accessToken={session?.access_token ?? undefined}
+                    onOpenCommand={setSelected}
+                    onOpenFull={setFullDetailCommand}
+                    onToggleLearned={toggleLearned}
+                    onToggleSaved={(command, next) => setSavedIds((cur) => ({ ...cur, [command.id]: next }))}
+                  />
+                ) : null}
+              </div>
+            );
+          }
+
+          return <div className="commands-grid">{filteredCommands.map(renderCommandCard)}</div>;
         })()}
 
       </div>
 
-      {selected ? (
+      {fullDetailCommand ? (
         <ToolActionDetailModal
-          command={selected}
+          command={fullDetailCommand}
           commands={allCommands}
-          learned={Boolean(learned[selected.name])}
-          saved={Boolean(savedIds[selected.id])}
+          learned={Boolean(learned[fullDetailCommand.name])}
+          saved={Boolean(savedIds[fullDetailCommand.id])}
           accessToken={session?.access_token ?? undefined}
-          onClose={() => setSelected(null)}
-          onOpenCommand={(command) => setSelected(command)}
+          onClose={() => setFullDetailCommand(null)}
+          onOpenCommand={(command) => {
+            setSelected(command);
+            setFullDetailCommand(command);
+          }}
           onToggleLearned={toggleLearned}
           onToggleSaved={(command, next) => setSavedIds((cur) => ({ ...cur, [command.id]: next }))}
         />

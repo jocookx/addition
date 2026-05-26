@@ -1,5 +1,9 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-unused-vars --
+   Some lesson-level controls are still staged while the drawer/curriculum-builder
+   split settles; keeping them here avoids churn during the studio hardening pass. */
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { StudioCourse, StudioLesson, StudioModule, StudioPayload } from "@/domain/content-studio";
 import { LAUNCH_SOFTWARE } from "@/config/taxonomy";
@@ -38,6 +42,12 @@ type CourseView = "all" | "attention" | "drafts" | "published" | "ready" | "rhin
 type CourseColumnPreset = "overview" | "production" | "curriculum" | "publishing" | "audit";
 type AiTask = "course-overview" | "lesson-plan" | "lesson-script" | "lesson-steps" | "practice-task";
 type AiGenerateResponse = { fields: Record<string, string | number>; raw: string; model: string };
+type AdminPath = {
+  id: string;
+  title: string;
+  slug: string;
+  course_ids: string[];
+};
 
 const COURSE_TABS: { id: CourseTab; label: string }[] = [
   { id: "overview", label: "Overview" },
@@ -253,17 +263,13 @@ function templateModules(template: CourseTemplate): StudioModule[] {
 
 export function CoursesTab({ accessToken }: { accessToken: string }) {
   const [payload, setPayload] = useState<StudioPayload | null>(null);
+  const [paths, setPaths] = useState<AdminPath[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [saveState, setSaveState] = useState<SaveState>("Saved");
   const [query, setQuery] = useState("");
   const [softwareFilter, setSoftwareFilter] = useState("All");
   const [pathFilter, setPathFilter] = useState("All");
-  const [levelFilter, setLevelFilter] = useState("All");
-  const [categoryFilter, setCategoryFilter] = useState("All");
-  const [accessFilter, setAccessFilter] = useState("All");
-  const [healthFilter, setHealthFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState("All");
   const [activeView, setActiveView] = useState<CourseView>("all");
   const [courseColumnPreset, setCourseColumnPreset] = useState<CourseColumnPreset>("overview");
   const [selectedCourseIds, setSelectedCourseIds] = useState<string[]>([]);
@@ -290,10 +296,14 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
 
   useEffect(() => {
     let alive = true;
-    fetchJson<StudioPayload>("/api/v1/admin/content-studio", { headers })
-      .then((data) => {
+    Promise.all([
+      fetchJson<StudioPayload>("/api/v1/admin/content-studio", { headers }),
+      fetchJson<{ paths: AdminPath[] }>("/api/v1/admin/paths", { headers }),
+    ])
+      .then(([data, pathData]) => {
         if (!alive) return;
         setPayload(data);
+        setPaths(pathData.paths);
         payloadRef.current = data;
         setSelectedCourseId(null);
         setLoading(false);
@@ -527,11 +537,6 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
     setQuery("");
     setSoftwareFilter("All");
     setPathFilter("All");
-    setLevelFilter("All");
-    setCategoryFilter("All");
-    setStatusFilter("All");
-    setAccessFilter("All");
-    setHealthFilter("All");
     setActiveView("all");
   }
 
@@ -609,25 +614,20 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
 
   const courses = payload?.items ?? [];
   const softwareOptions = ["All", ...LAUNCH_SOFTWARE];
-  const pathOptions = ["All", ...Array.from(new Set(courses.map((course) => getString(course, "pathKind")).filter(Boolean))).sort()];
-  const levelOptions = ["All", ...Array.from(new Set(courses.map((course) => course.level).filter(Boolean))).sort()];
-  const categoryOptions = ["All", ...Array.from(new Set(courses.map((course) => course.category).filter(Boolean))).sort()];
+  const selectedPath = pathFilter === "All" ? null : paths.find((path) => path.id === pathFilter || path.slug === pathFilter) ?? null;
   const selectedCourse = courses.find((course) => course.id === selectedCourseId) ?? null;
   const selectedLesson = selectedLessonFrom(payload, lessonSelection);
 
-  const filteredCourses = courses.filter((course) => {
+  const baseCourses = selectedPath
+    ? selectedPath.course_ids
+        .map((id) => courses.find((course) => course.id === id))
+        .filter((course): course is StudioCourse => Boolean(course))
+    : courses;
+
+  const filteredCourses = baseCourses.filter((course) => {
     const haystack = [course.title, course.summary, course.software, course.level, course.category].join(" ").toLowerCase();
     if (query.trim() && !haystack.includes(query.toLowerCase())) return false;
     if (softwareFilter !== "All" && course.software !== softwareFilter) return false;
-    if (pathFilter !== "All" && getString(course, "pathKind") !== pathFilter) return false;
-    if (levelFilter !== "All" && course.level !== levelFilter) return false;
-    if (categoryFilter !== "All" && course.category !== categoryFilter) return false;
-    if (statusFilter !== "All" && courseStatus(course) !== statusFilter) return false;
-    if (accessFilter !== "All" && getAccess(course) !== accessFilter) return false;
-    if (healthFilter === "missing-video" && !courseHasMissingVideo(course)) return false;
-    if (healthFilter === "missing-script" && !courseHasMissingScript(course)) return false;
-    if (healthFilter === "missing-practice" && !courseHasMissingPractice(course)) return false;
-    if (healthFilter === "no-commands" && courseCommandCount(course) > 0) return false;
     const health = courseHealth(course);
     const score = healthScore(health);
     if (activeView === "attention" && score >= 85) return false;
@@ -672,13 +672,22 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
       render: (course) => (
         <span className="aa-table-title">
           <strong>{course.title}</strong>
-          <span>{course.type || "Core course"} / {lessonCount(course)} lessons</span>
+          <span>Course / {lessonCount(course)} lessons</span>
         </span>
       ),
       defaultVisible: showColumn("title"),
     },
     { id: "software", label: "Software", sortValue: (course) => course.software, render: (course) => course.software || <span className="aa-table-muted">None</span>, defaultVisible: showColumn("software") },
-    { id: "path", label: "Path", sortValue: (course) => getString(course, "pathKind"), render: (course) => getString(course, "pathKind") || <span className="aa-table-muted">Unassigned</span>, defaultVisible: showColumn("path") },
+    {
+      id: "path",
+      label: "Path",
+      sortValue: (course) => paths.filter((path) => path.course_ids.includes(course.id)).map((path) => path.title).join(", "),
+      render: (course) => {
+        const linkedPaths = paths.filter((path) => path.course_ids.includes(course.id));
+        return linkedPaths.length ? linkedPaths.map((path) => path.title).join(", ") : <span className="aa-table-muted">Unassigned</span>;
+      },
+      defaultVisible: showColumn("path"),
+    },
     { id: "level", label: "Level", sortValue: (course) => course.level ?? "", render: (course) => course.level || <span className="aa-table-muted">None</span>, defaultVisible: showColumn("level") },
     { id: "category", label: "Category", sortValue: (course) => course.category ?? "", render: (course) => course.category || <span className="aa-table-muted">None</span>, defaultVisible: showColumn("category") },
     { id: "modules", label: "Modules", sortValue: (course) => course.modules.length, render: (course) => course.modules.length, defaultVisible: showColumn("modules") },
@@ -766,34 +775,15 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
         </label>
         <label>
           <span>Path</span>
-          <select value={pathFilter} onChange={(event) => setPathFilter(event.target.value)}>{pathOptions.map((option) => <option key={option}>{option}</option>)}</select>
-        </label>
-        <label>
-          <span>Level</span>
-          <select value={levelFilter} onChange={(event) => setLevelFilter(event.target.value)}>{levelOptions.map((option) => <option key={option}>{option}</option>)}</select>
-        </label>
-        <label>
-          <span>Status</span>
-          <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}><option>All</option>{STATUS_OPTIONS.map((option) => <option key={option}>{option}</option>)}</select>
-        </label>
-        <label>
-          <span>Access</span>
-          <select value={accessFilter} onChange={(event) => setAccessFilter(event.target.value)}><option>All</option>{ACCESS_OPTIONS.map((option) => <option key={option}>{option}</option>)}</select>
-        </label>
-        <label>
-          <span>Health</span>
-          <select value={healthFilter} onChange={(event) => setHealthFilter(event.target.value)}>
-            <option value="All">All</option>
-            <option value="missing-video">Missing video</option>
-            <option value="missing-script">Missing script</option>
-            <option value="missing-practice">Missing practice</option>
-            <option value="no-commands">No commands</option>
+          <select value={pathFilter} onChange={(event) => setPathFilter(event.target.value)}>
+            <option value="All">All courses</option>
+            {paths.map((path) => <option key={path.id} value={path.id}>{path.title}</option>)}
           </select>
         </label>
+        {selectedPath && <span className="aa-table-muted">Ordered by {selectedPath.title}</span>}
         <details className="aa-more-filters">
-          <summary>More Filters</summary>
+          <summary>Create Course</summary>
           <div>
-            <label><span>Category</span><select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)}>{categoryOptions.map((option) => <option key={option}>{option}</option>)}</select></label>
             <label><span>New title</span><input value={newCourseTitle} onChange={(event) => setNewCourseTitle(event.target.value)} placeholder="New course title..." /></label>
             <label><span>Template</span><select value={template} onChange={(event) => setTemplate(event.target.value as CourseTemplate)}><option value="blank">Blank</option><option value="beginner">Beginner Software Course</option><option value="command">Command-Based Course</option><option value="workflow">Workflow Combo Course</option></select></label>
             <button type="button" onClick={createCourse}>Create from template</button>

@@ -29,7 +29,7 @@ export async function GET(request: Request) {
 
   const { data: rows, error: wsError } = await db
     .from("addition_workshops")
-    .select("id, title, date, time, timezone, duration, format, image, price, upcoming")
+    .select("id, title, date, time, timezone, duration, format, image, price, upcoming, start_time, end_time, calendar_url, join_url, recording_status, recording_url, recording_access_level")
     .in("id", workshopIds)
     .order("date", { ascending: true });
 
@@ -59,6 +59,14 @@ export async function GET(request: Request) {
     learn:      [],
     stripePaymentLink: null,
     tutorName:  null,
+    startTime: row.start_time ?? null,
+    endTime: row.end_time ?? null,
+    calendarUrl: row.calendar_url ?? "",
+    joinUrl: row.join_url ?? "",
+    recordingStatus: row.recording_status ?? "none",
+    recordingUrl: row.recording_url ?? "",
+    recordingAccessLevel: row.recording_access_level ?? "booked_users",
+    bookingStatus: regs.find((reg) => reg.workshop_id === row.id)?.status ?? null,
   }));
 
   return okResponse({ workshops });

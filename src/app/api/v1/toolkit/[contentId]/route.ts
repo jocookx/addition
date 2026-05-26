@@ -2,7 +2,7 @@ import { errorResponse, okResponse } from "@/lib/http";
 import { readBearerToken, requireUserIdFromRequest } from "@/server/auth/require-user";
 import { createSupabaseUserClient } from "@/server/supabase/clients";
 
-const VALID_TYPES = new Set(["command", "combo", "course"]);
+const VALID_TYPES = new Set(["command", "combo", "course", "resource"]);
 
 export async function POST(
   request: Request,
@@ -23,7 +23,7 @@ export async function POST(
   }
 
   if (!VALID_TYPES.has(contentType)) {
-    return errorResponse("contentType must be 'command', 'combo', or 'course'.", 400);
+    return errorResponse("contentType must be 'command', 'combo', 'course', or 'resource'.", 400);
   }
 
   try {
@@ -62,7 +62,7 @@ export async function DELETE(
   const { searchParams } = new URL(request.url);
   const contentType = (searchParams.get("type") || "").trim();
   if (!VALID_TYPES.has(contentType)) {
-    return errorResponse("?type must be 'command', 'combo', or 'course'.", 400);
+    return errorResponse("?type must be 'command', 'combo', 'course', or 'resource'.", 400);
   }
 
   try {

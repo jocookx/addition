@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { LAUNCH_SOFTWARE } from "@/config/taxonomy";
 import { fetchJson } from "@/lib/api/fetch-json";
 import type { CourseCatalogListItem } from "@/domain/catalog";
-import type { StudioPayload } from "@/domain/content-studio";
 import { ImageUploadField } from "./image-upload-field";
 import {
   AccessBadge,
@@ -99,30 +98,6 @@ function pathHealth(path: AdminPath, assignedCourses: CourseCatalogListItem[]): 
   ];
 }
 
-function studioCourseToPathCourse(course: StudioPayload["items"][number]): CourseCatalogListItem {
-  const lessons = course.modules.flatMap((module, moduleIndex) =>
-    module.lessons.map((lesson, lessonIndex) => ({
-      id: lesson.id,
-      module: module.title,
-      moduleIndex,
-      lessonIndex,
-      title: lesson.title,
-      content: lesson.content ?? "",
-    })),
-  );
-
-  return {
-    id: course.id,
-    title: course.title,
-    type: course.type === "combo" || course.type === "core" ? course.type : "course",
-    software: course.software,
-    firstLessonId: lessons[0]?.id ?? null,
-    moduleCount: course.modules.length,
-    lessonCount: lessons.length,
-    lessons,
-  };
-}
-
 function newPath(title: string, sortOrder: number): AdminPath {
   const id = slugify(title.trim()) || `path-${Date.now()}`;
   return {
@@ -194,11 +169,11 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
     setLoading(true);
     void Promise.all([
       fetchJson<{ paths: AdminPath[] }>("/api/v1/admin/paths", { headers }),
-      fetchJson<StudioPayload>("/api/v1/admin/content-studio", { headers }),
+      fetchJson<{ courses: CourseCatalogListItem[] }>("/api/v1/catalog/courses"),
     ]).then(([pathData, courseData]) => {
       if (cancelled) return;
       setPaths(pathData.paths);
-      setCourses(courseData.items.map(studioCourseToPathCourse));
+      setCourses(courseData.courses);
       setSelected(null);
       setLoading(false);
     }).catch((err: unknown) => {

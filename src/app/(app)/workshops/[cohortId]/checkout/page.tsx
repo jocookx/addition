@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import type { WorkshopListItem } from "@/domain/workshop";
+import { formatWorkshopCountdown } from "@/domain/workshop-lifecycle";
 import {
   getWorkshopEmbeddedCheckoutClientSecret,
   getWorkshopRegisterUrl,
@@ -52,8 +53,17 @@ function IcoLock() {
 }
 
 export default function WorkshopCheckoutPage() {
+  return (
+    <Suspense>
+      <WorkshopCheckoutPageInner />
+    </Suspense>
+  );
+}
+
+function WorkshopCheckoutPageInner() {
   const params = useParams<{ cohortId: string }>();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const cohortId = params.cohortId;
 
   const [sessions, setSessions] = useState<WorkshopListItem[]>([]);
@@ -135,6 +145,7 @@ export default function WorkshopCheckoutPage() {
   const price = formatPrice(selected?.pricePence);
   const software = useMemo(() => Array.from(new Set(sessions.flatMap((item) => item.software))), [sessions]);
   const isFree = Number(selected?.pricePence ?? 0) <= 0;
+  const checkoutState = searchParams.get("checkout");
 
   async function continueHostedCheckout() {
     if (!selected || !accessToken) return;
@@ -156,6 +167,23 @@ export default function WorkshopCheckoutPage() {
             <IcoBack /> Workshop
           </Link>
         </div>
+
+        {checkoutState === "success" && selected ? (
+          <section className="ws-checkout-state ws-checkout-state--notice glass-panel" style={{ marginBottom: 16 }}>
+            <h2>You&apos;re booked</h2>
+            <p>{title}</p>
+            <p className="meta">{selected.date} {selected.time} {selected.timezone} · {formatWorkshopCountdown(selected)}</p>
+            <div className="settings-action-row" style={{ marginTop: 12 }}>
+              {selected.calendarUrl ? <a className="primary-button" href={selected.calendarUrl} target="_blank" rel="noreferrer">Add to calendar</a> : null}
+              <Link className="ghost-btn" href="/dashboard?tab=workshops">View My Workshops</Link>
+            </div>
+          </section>
+        ) : checkoutState === "cancelled" ? (
+          <section className="ws-checkout-state ws-checkout-state--notice glass-panel" style={{ marginBottom: 16 }}>
+            <h2>Checkout cancelled</h2>
+            <p>No booking was created. You can restart checkout when ready.</p>
+          </section>
+        ) : null}
 
         <div className="ws-checkout-grid">
           <section className="ws-checkout-summary glass-panel">

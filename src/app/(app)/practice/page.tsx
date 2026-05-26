@@ -5,6 +5,7 @@ import { useEffect, useEffectEvent, useMemo, useState } from "react";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import type { CommandListItem } from "@/domain/command";
 import { getCommands } from "@/lib/api/commands";
+import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 
 type PracticeFocus = "random" | "mostused" | "menu" | "due" | "weakest";
 type QuestionType = "desc_to_name" | "name_to_desc" | "gif_to_name" | "name_to_shortcut";
@@ -127,6 +128,39 @@ export default function PracticePage() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [view, setView] = useState<"setup" | "session" | "summary">("setup");
   const [store, setStore] = useState<PracticeStore>(() => readPracticeStore());
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) return;
+    supabase.auth.getSession().then(({ data }) => setAccessToken(data.session?.access_token ?? null));
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => setAccessToken(session?.access_token ?? null));
+    return () => data.subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (!accessToken || !commands.length) return;
+    let canceled = false;
+    fetch("/api/v1/learning/progress", { headers: { Authorization: `Bearer ${accessToken}` } })
+      .then((res) => res.ok ? res.json() as Promise<{ commands: Array<{ commandId: string; attemptedCount: number; confidence: number; masteryState: string; lastPracticedAt: string }> }> : null)
+      .then((payload) => {
+        if (canceled || !payload) return;
+        const byId = new Map(commands.map((command) => [command.id, command]));
+        const practiceData: Record<string, PracticeProgressEntry> = {};
+        payload.commands.forEach((item) => {
+          const command = byId.get(item.commandId);
+          if (!command) return;
+          practiceData[practiceKey(command)] = {
+            ease: Math.max(1.3, Math.min(3, 1.3 + item.confidence / 60)),
+            due: todayIso(),
+            reps: item.attemptedCount,
+          };
+        });
+        setStore((current) => ({ ...current, practiceData: { ...current.practiceData, ...practiceData } }));
+      })
+      .catch(() => {});
+    return () => { canceled = true; };
+  }, [accessToken, commands]);
 
   useEffect(() => {
     let canceled = false;
@@ -279,6 +313,23 @@ export default function PracticePage() {
     const correct = card.options[selectedAnswer] === card.correctAnswer;
     const key = practiceKey(card);
     const xpGain = correct ? 10 : 2;
+    if (accessToken && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(card.id)) {
+      void fetch("/api/v1/learning/progress", {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          commands: [{
+            commandId: card.id,
+            attemptedDelta: 1,
+            correctDelta: correct ? 1 : 0,
+            incorrectDelta: correct ? 0 : 1,
+          }],
+        }),
+      }).catch(() => {});
+    }
 
     setStore((current) => {
       const updatedData = {

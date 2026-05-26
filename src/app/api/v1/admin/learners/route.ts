@@ -12,6 +12,9 @@ export type AdminLearner = {
   enrollments: number;
   completedLessons: number;
   lastSeen: string | null;
+  studentVerificationStatus: "not_started" | "pending" | "approved" | "rejected";
+  studentInstitution: string;
+  studentReviewNotes: string;
 };
 
 export async function GET(request: Request) {
@@ -83,6 +86,17 @@ export async function GET(request: Request) {
       if (!lastSeen.has(row.user_id)) lastSeen.set(row.user_id, row.last_seen_at);
     }
 
+    const { data: verificationRows, error: verificationsErr } = await db
+      .from("addition_student_verifications")
+      .select("user_id,status,institution,review_notes,ai_reason")
+      .in("user_id", userIds);
+    if (verificationsErr) return errorResponse(`DB student_verifications: ${verificationsErr.message}`, 500);
+
+    const verifications = new Map<string, { status?: string | null; institution?: string | null; review_notes?: string | null; ai_reason?: string | null }>();
+    for (const row of verificationRows ?? []) {
+      verifications.set(row.user_id, row);
+    }
+
     const learners: AdminLearner[] = (users ?? []).map((u) => ({
       id:               u.id,
       email:            u.email ?? "",
@@ -93,6 +107,9 @@ export async function GET(request: Request) {
       enrollments:      enrollCount.get(u.id) ?? 0,
       completedLessons: completedCount.get(u.id) ?? 0,
       lastSeen:         lastSeen.get(u.id) ?? null,
+      studentVerificationStatus: (verifications.get(u.id)?.status as AdminLearner["studentVerificationStatus"] | undefined) ?? "not_started",
+      studentInstitution: verifications.get(u.id)?.institution ?? "",
+      studentReviewNotes: verifications.get(u.id)?.review_notes ?? verifications.get(u.id)?.ai_reason ?? "",
     }));
 
     return okResponse({ learners, total: count ?? 0, page, limit });

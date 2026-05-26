@@ -168,6 +168,136 @@ type Props = {
   accessToken?: string;
 };
 
+type PreviewProps = Omit<Props, "onClose"> & {
+  onOpenFull?: (command: CommandListItem) => void;
+};
+
+export function ToolActionPreviewPanel({
+  command,
+  commands,
+  onOpenCommand,
+  onOpenFull,
+  learned,
+  onToggleLearned,
+  saved,
+  onToggleSaved,
+  accessToken,
+}: PreviewProps) {
+  const terms = getSoftwareTerms(command.software);
+  const name = cleanName(command.name);
+  const isGrasshopper = command.software === "Grasshopper";
+  const relatedCommands = commands
+    .filter((item) => item.id !== command.id && item.software === command.software)
+    .filter((item) => {
+      if (isGrasshopper) return item.addon && item.addon === command.addon;
+      const itemGroup = item.menu.split(/[>/|]/)[0]?.trim() || "";
+      const commandGroup = command.menu.split(/[>/|]/)[0]?.trim() || "";
+      return Boolean(itemGroup) && itemGroup === commandGroup;
+    })
+    .slice(0, 6);
+  const hasIntentData = (command.intentCategories?.length ?? 0) > 0 || (command.objectTypes?.length ?? 0) > 0;
+
+  return (
+    <aside className="cmd-preview-panel" aria-label={`${name} preview`}>
+      <div className="cmd-preview-media">
+        {command.gif || command.icon ? (
+          <Image src={command.gif || command.icon} alt={name} width={900} height={520} unoptimized />
+        ) : (
+          <div className="cmd-modal-empty">No preview available</div>
+        )}
+      </div>
+
+      <div className="cmd-preview-body">
+        <div className="cmd-preview-head">
+          <div className="legacy-tag-row">
+            <span className="legacy-tag primary">{command.software}</span>
+            {command.addon && !isGrasshopper ? <span className="legacy-tag muted">{command.addon}</span> : null}
+            {learned ? <span className="legacy-tag success">Learned</span> : null}
+          </div>
+          <h3>{name}</h3>
+          <TagChips tags={command.tags} />
+        </div>
+
+        {hasIntentData ? (
+          <div className="cmd-modal-section">
+            <IntentRow
+              intentCategories={command.intentCategories ?? []}
+              objectTypes={command.objectTypes ?? []}
+              outcomes={command.outcomes ?? []}
+            />
+          </div>
+        ) : null}
+
+        {terms.accessType !== "none" ? (
+          <div className="cmd-modal-section">
+            <div className="cmd-modal-section-label">{terms.accessLabel}</div>
+            <AccessChip
+              accessType={terms.accessType}
+              name={name}
+              shortcut={command.shortcut ?? ""}
+              addon={command.addon ?? ""}
+              isGrasshopper={isGrasshopper}
+              menuPath={command.menu ?? ""}
+            />
+          </div>
+        ) : null}
+
+        {!isGrasshopper && command.menu ? (
+          <div className="cmd-modal-section">
+            <div className="cmd-modal-section-label">{terms.menuGroupLabel}</div>
+            <p className="meta">{command.menu}</p>
+          </div>
+        ) : null}
+
+        <div className="cmd-modal-section">
+          <div className="cmd-modal-section-label">Description</div>
+          <p className="cmd-modal-copy">{command.description || "No description yet."}</p>
+        </div>
+
+        {relatedCommands.length > 0 && onOpenCommand ? (
+          <div className="cmd-modal-section">
+            <div className="cmd-modal-section-label">Related {terms.itemPlural.toLowerCase()}</div>
+            <div className="cmd-modal-related">
+              {relatedCommands.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="cmd-modal-related-chip"
+                  onClick={() => onOpenCommand(item)}
+                >
+                  {cleanName(item.name)}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        <div className="cmd-modal-actions">
+          {onToggleLearned ? (
+            <button type="button" className="primary-button" onClick={() => onToggleLearned(command)}>
+              {learned ? "Mark as not learned" : "Mark as learned"}
+            </button>
+          ) : null}
+          {typeof saved !== "undefined" ? (
+            <SaveButton
+              contentId={command.id}
+              contentType="command"
+              accessToken={accessToken}
+              saved={saved}
+              onSavedChange={(next) => onToggleSaved?.(command, next)}
+            />
+          ) : null}
+          {onOpenFull ? (
+            <button type="button" className="ghost-btn" onClick={() => onOpenFull(command)}>
+              Open full details
+            </button>
+          ) : null}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
 export function ToolActionDetailModal({
   command,
   commands,

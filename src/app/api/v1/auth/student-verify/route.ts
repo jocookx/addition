@@ -9,6 +9,24 @@ const BUCKET = "student-evidence";
 const MAX_BYTES = 8 * 1024 * 1024;
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "application/pdf"]);
 const AI_CONFIDENCE_THRESHOLD = 0.80;
+const STUDENT_DOMAIN_HINTS = [
+  ".ac.uk",
+  ".edu",
+  ".edu.au",
+  ".edu.sg",
+  ".ac.nz",
+  ".edu.my",
+  ".edu.ph",
+  ".edu.hk",
+];
+const STUDENT_DOMAIN_PREFIXES = ["student.", "students.", "mymail.", "mail.student.", "webmail.student."];
+
+function isStudentDomain(email: string): boolean {
+  const domain = email.split("@")[1]?.toLowerCase() ?? "";
+  if (!domain || !domain.includes(".")) return false;
+  return STUDENT_DOMAIN_PREFIXES.some((prefix) => domain.startsWith(prefix))
+    || STUDENT_DOMAIN_HINTS.some((hint) => domain.endsWith(hint));
+}
 
 function extensionFor(file: File): string {
   const fromName = file.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -150,14 +168,19 @@ export async function POST(request: Request) {
       }
       const body = await request.json() as { email?: string; method?: string };
       const email  = typeof body.email  === "string" ? body.email.trim().toLowerCase() : "";
+      if (!email || !isStudentDomain(email)) {
+        return errorResponse("Use a recognised student email, or upload evidence for manual review.", 400);
+      }
       const { error: dbError } = await db
         .from("addition_student_verifications")
         .upsert({
           user_id: userId,
+          email,
           status: "approved",
           method: "email_domain",
-          institution: null,
-          evidence_path: null,
+          verification_method: "student_email",
+          institution: "",
+          evidence_path: "",
           ai_confidence: 1,
           ai_reason: `Student email domain verified: ${email}`,
           reviewed_at: new Date().toISOString(),
@@ -228,10 +251,13 @@ export async function POST(request: Request) {
       .from("addition_student_verifications")
       .upsert({
         user_id: userId,
+        email,
         status,
         method: "ai_document",
-        institution: aiResult.institution || null,
+        verification_method: "evidence_upload",
+        institution: aiResult.institution || "",
         evidence_path: objectPath,
+        evidence_filename: file.name.slice(0, 180),
         ai_confidence: aiResult.confidence,
         ai_reason: aiResult.reason,
         reviewed_at: approved ? new Date().toISOString() : null,
@@ -256,5 +282,37 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     return errorResponse(error instanceof Error ? error.message : "Verification failed.", 500);
+  }
+}
+
+export async function GET(request: Request) {
+  const auth = await requireUserFromRequest(request);
+  if (!auth.ok) return auth.response;
+
+  try {
+    const db = createSupabaseServiceClient();
+    const { data, error } = await db
+      .from("addition_student_verifications")
+      .select("status,email,institution,evidence_path,evidence_filename,review_notes,reviewed_at,submitted_at,created_at,ai_reason")
+      .eq("user_id", auth.user.id)
+      .maybeSingle();
+
+    if (error) return errorResponse(error.message, 500);
+    if (!data) return okResponse({ verification: { status: "not_started" } });
+
+    return okResponse({
+      verification: {
+        status: data.status || "not_started",
+        email: data.email || auth.user.email || "",
+        institution: data.institution || "",
+        evidencePath: data.evidence_path || "",
+        evidenceFilename: data.evidence_filename || "",
+        reviewNotes: data.review_notes || data.ai_reason || "",
+        reviewedAt: data.reviewed_at || null,
+        submittedAt: data.submitted_at || data.created_at || null,
+      },
+    });
+  } catch (error) {
+    return errorResponse(error instanceof Error ? error.message : "Verification status failed.", 500);
   }
 }

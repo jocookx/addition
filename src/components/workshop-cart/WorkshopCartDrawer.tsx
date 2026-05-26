@@ -1,5 +1,8 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element --
+   Workshop artwork is CMS-provided and may use arbitrary remote hosts. */
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";

@@ -27,6 +27,23 @@ const WorkshopUpsertSchema = z.object({
   principles:          z.array(z.string()).default([]),
   stripe_payment_link: z.string().nullable().default(null),
   tutor_id:            z.string().nullable().default(null),
+  start_time:          z.string().nullable().default(null),
+  end_time:            z.string().nullable().default(null),
+  live_provider:       z.enum(["zoom", "youtube", "vimeo", "custom", "other"]).default("zoom"),
+  join_url:            z.string().default(""),
+  host_url:            z.string().default(""),
+  meeting_id:          z.string().default(""),
+  passcode:            z.string().default(""),
+  live_embed_url:      z.string().default(""),
+  calendar_url:        z.string().default(""),
+  pre_work:            z.array(z.string()).default([]),
+  resources:           z.array(z.string()).default([]),
+  recording_status:    z.enum(["none", "processing", "available", "failed"]).default("none"),
+  recording_url:       z.string().default(""),
+  recording_embed_url: z.string().default(""),
+  recording_duration:  z.string().default(""),
+  recording_thumbnail: z.string().default(""),
+  recording_access_level: z.enum(["booked_users", "pro", "student", "purchased", "free"]).default("booked_users"),
 });
 
 const WorkshopPatchSchema = WorkshopUpsertSchema.partial();
@@ -44,6 +61,9 @@ export async function GET(request: Request) {
         price, price_pence, capacity, upcoming,
         track, level, week, software, image, description,
         learn, included, principles,
+        start_time, end_time, live_provider, join_url, host_url, meeting_id, passcode, live_embed_url,
+        calendar_url, pre_work, resources, recording_status, recording_url, recording_embed_url,
+        recording_duration, recording_thumbnail, recording_uploaded_at, recording_access_level,
         stripe_payment_link, tutor_id,
         addition_tutors ( id, name, title, studio, bio, expertise, image )
       `)
