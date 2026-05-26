@@ -19,32 +19,22 @@ export default function AuthCallbackPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    const maybeClient = getBrowserSupabaseClient();
-    if (!maybeClient) {
-      setErrorMsg("Supabase is not configured.");
-      return;
-    }
-    const supabase = maybeClient;
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) { setErrorMsg("Supabase is not configured."); return; }
+
+    const params = new URLSearchParams(window.location.search);
+    const next = params.get("next")?.trim();
+    const plan = params.get("plan");
+    const billingInterval = params.get("billing") === "yearly" ? "yearly" : "monthly";
+    const nextPath = next && next.startsWith("/") ? next : "/dashboard";
 
     let canceled = false;
-    async function run() {
+    let proceeded = false;
+
+    async function proceed(token: string) {
+      if (canceled || proceeded) return;
+      proceeded = true;
       try {
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get("code");
-        const next = params.get("next")?.trim();
-        const plan = params.get("plan");
-        const billingInterval = params.get("billing") === "yearly" ? "yearly" : "monthly";
-        const nextPath = next && next.startsWith("/") ? next : "/dashboard";
-
-        if (code) {
-          const { error } = await supabase.auth.exchangeCodeForSession(code);
-          if (error) throw new Error(error.message);
-        }
-
-        const { data } = await supabase.auth.getSession();
-        const token = data.session?.access_token;
-        if (!token) throw new Error("No active session found.");
-
         if (nextPath.includes("/workshops/")) {
           router.replace(getWorkshopCheckoutPath(nextPath));
           return;
@@ -62,14 +52,40 @@ export default function AuthCallbackPage() {
           router.replace(`/dashboard?gateway=student&billing=${billingInterval}`);
           return;
         }
-        if (!canceled) router.replace("/dashboard?gateway=welcome");
-      } catch (error) {
-        if (!canceled) setErrorMsg(parseError(error));
+        router.replace("/dashboard?gateway=welcome");
+      } catch (err) {
+        if (!canceled) setErrorMsg(parseError(err));
       }
     }
-    void run();
 
-    return () => { canceled = true; };
+    // With flowType:"pkce" + detectSessionInUrl:true, the Supabase client
+    // automatically exchanges the ?code= for a session on initialisation.
+    // We must NOT call exchangeCodeForSession manually — doing so consumes the
+    // code verifier a second time and causes "PKCE code verifier not found".
+    // Instead, listen for SIGNED_IN which fires once the auto-exchange completes.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.access_token) {
+        subscription.unsubscribe();
+        void proceed(session.access_token);
+      }
+    });
+
+    // Also check immediately — detectSessionInUrl may have already resolved
+    // before our listener was registered.
+    void supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.access_token) void proceed(data.session.access_token);
+    });
+
+    // Timeout safety net
+    const timeout = setTimeout(() => {
+      if (!proceeded && !canceled) setErrorMsg("Sign-in timed out — please try again.");
+    }, 12000);
+
+    return () => {
+      canceled = true;
+      subscription.unsubscribe();
+      clearTimeout(timeout);
+    };
   }, [router]);
 
   return (
