@@ -513,10 +513,10 @@ function GatewayModal({
       action: "Continue to workshop",
     },
     welcome: {
-      kicker: "Welcome",
-      title: "Start with a quick tour",
-      body: "Your dashboard is ready. Learn the layout, find commands, and see where workshops and practice live.",
-      action: "Start tour",
+      kicker: "Welcome to Addition",
+      title: "Where do you want to start?",
+      body: "Pick a learning path to follow a structured programme, or browse individual courses to start anywhere.",
+      action: "Explore Learning Paths",
     },
   }[intent];
 
@@ -800,7 +800,7 @@ function DashboardPageInner() {
       }
       if (gatewayIntent === "welcome") {
         clearGateway();
-        router.push("/learn");
+        router.push("/paths");
         return;
       }
       clearGateway();
@@ -895,6 +895,7 @@ function DashboardPageInner() {
                   ? <PathHero activePath={activePath} onContinue={handleContinue} />
                   : <ContinueHero course={nextUp} onContinue={handleContinue} />
                 }
+                <SolveSection />
                 <RecommendedPracticeCard count={practiseCount} />
               </div>
               <div className="home-side">

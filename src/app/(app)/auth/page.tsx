@@ -149,7 +149,7 @@ export default function AuthPage() {
       router.replace(getWorkshopCheckoutPath(nextPath));
       return;
     }
-    await ensureAuthProfile(token);
+    const profile = await ensureAuthProfile(token);
     if (nextPath === "/workshops/cart") {
       router.replace(nextPath);
       return;
@@ -162,7 +162,9 @@ export default function AuthPage() {
       router.replace(`/dashboard?gateway=student&billing=${billingInterval}`);
       return;
     }
-    router.replace("/dashboard?gateway=welcome");
+    // Only show the welcome modal on first sign-up (profile created < 2 min ago)
+    const isNew = Date.now() - new Date(profile.createdAt).getTime() < 120_000;
+    router.replace(isNew ? "/dashboard?gateway=welcome" : "/dashboard");
   }
 
   // ── OAuth ──────────────────────────────────────────────────────────────────
