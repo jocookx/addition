@@ -2,10 +2,19 @@ import { errorResponse, okResponse } from "@/lib/http";
 import { normaliseLaunchSoftware } from "@/config/taxonomy";
 import { runSearch } from "@/lib/search/engine";
 import { readBearerToken, requireUserFromRequest } from "@/server/auth/require-user";
+import { consumeRateLimit } from "@/server/rate-limit";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
 
 function clean(v: unknown): string {
   return typeof v === "string" ? v.trim() : "";
+}
+
+function getClientIp(request: Request): string {
+  return (
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
+  );
 }
 
 export async function GET(req: Request) {
@@ -25,8 +34,22 @@ export async function GET(req: Request) {
     if (auth.ok) userId = auth.user.id;
   }
 
+  const db = createSupabaseServiceClient();
+
+  // Rate limit by user ID when authenticated, fall back to IP for public searches
+  const rateLimitKey = userId ? `search:user:${userId}` : `search:ip:${getClientIp(req)}`;
+  const limit = await consumeRateLimit(db, {
+    key: rateLimitKey,
+    max: 60,
+    windowMs: 60 * 1000, // 60 requests per minute
+  });
+  if (!limit.ok) {
+    const r = errorResponse("Too many search requests. Slow down.", 429);
+    r.headers.set("Retry-After", String(limit.retryAfterSeconds));
+    return r;
+  }
+
   try {
-    const db = createSupabaseServiceClient();
     const response = await runSearch(db, rawQ, { userId, software });
     return okResponse(response);
   } catch (err) {

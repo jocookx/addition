@@ -9,14 +9,6 @@ const BUCKET = "student-evidence";
 const MAX_BYTES = 8 * 1024 * 1024;
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "application/pdf"]);
 
-function getClientIp(request: Request): string {
-  return (
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "unknown"
-  );
-}
-
 function extensionFor(file: File): string {
   const fromName = file.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "");
   if (fromName && ["jpg", "jpeg", "png", "webp", "pdf"].includes(fromName)) return fromName;
@@ -48,9 +40,11 @@ export async function POST(request: Request) {
 
   try {
     const db = createSupabaseServiceClient();
-    const ip = getClientIp(request);
+    const userId = auth.user.id;
     const limit = await consumeRateLimit(db, {
-      key: `student-evidence:${ip}`,
+      // Rate limit by user ID — prevents IP-rotation bypass.
+      // userId is always from the verified token, never client-supplied.
+      key: `student-evidence:user:${userId}`,
       max: 8,
       windowMs: 60 * 60 * 1000,
     });

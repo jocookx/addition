@@ -1,20 +1,23 @@
 import { randomUUID } from "node:crypto";
 import { errorResponse, okResponse } from "@/lib/http";
 import { requireAdminFromRequest } from "@/server/auth/require-admin";
+import { validateUploadMime, validateSvgContent } from "@/server/upload/validate-mime";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
 
 const BUCKET = "cms-images";
 const MAX_BYTES = 8 * 1024 * 1024;
-const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"]);
+// Magic-byte-validatable types (JPEG, PNG, WebP, GIF)
+const BINARY_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
+const ALLOWED_TYPES = new Set([...BINARY_IMAGE_TYPES, "image/svg+xml"]);
 
-function extensionFor(file: File): string {
+function extensionFor(mime: string, file: File): string {
   const fromName = file.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "");
   if (fromName && ["jpg", "jpeg", "png", "webp", "gif", "svg"].includes(fromName)) return fromName;
-  if (file.type === "image/jpeg") return "jpg";
-  if (file.type === "image/png") return "png";
-  if (file.type === "image/webp") return "webp";
-  if (file.type === "image/gif") return "gif";
-  if (file.type === "image/svg+xml") return "svg";
+  if (mime === "image/jpeg") return "jpg";
+  if (mime === "image/png") return "png";
+  if (mime === "image/webp") return "webp";
+  if (mime === "image/gif") return "gif";
+  if (mime === "image/svg+xml") return "svg";
   return "bin";
 }
 
@@ -43,17 +46,31 @@ export async function POST(request: Request) {
     const folder = typeof form.get("folder") === "string" ? String(form.get("folder")) : "general";
 
     if (!(file instanceof File)) return errorResponse("Image file is required.", 400);
-    if (!ALLOWED_TYPES.has(file.type)) return errorResponse("Upload a JPG, PNG, WebP, GIF, or SVG image.", 400);
     if (file.size > MAX_BYTES) return errorResponse("Image must be smaller than 8MB.", 400);
 
-    const safeFolder = folder.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/^-|-$/g, "") || "general";
-    const objectPath = `${safeFolder}/${new Date().toISOString().slice(0, 10)}/${randomUUID()}.${extensionFor(file)}`;
+    // Read bytes first so we can validate content, not just the client header
     const bytes = Buffer.from(await file.arrayBuffer());
+
+    // Determine MIME type by content, not client-supplied file.type
+    let validatedMime: string;
+    if (file.type === "image/svg+xml" || file.name.toLowerCase().endsWith(".svg")) {
+      // SVG is text-based — no magic bytes; validate content instead
+      const svgCheck = validateSvgContent(bytes);
+      if (!svgCheck.ok) return errorResponse(svgCheck.error, 400);
+      validatedMime = svgCheck.mime;
+    } else {
+      const mimeCheck = validateUploadMime(bytes, BINARY_IMAGE_TYPES);
+      if (!mimeCheck.ok) return errorResponse(mimeCheck.error, 400);
+      validatedMime = mimeCheck.mime;
+    }
+
+    const safeFolder = folder.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/^-|-$/g, "") || "general";
+    const objectPath = `${safeFolder}/${new Date().toISOString().slice(0, 10)}/${randomUUID()}.${extensionFor(validatedMime, file)}`;
     const db = await ensureBucket();
 
     const { error } = await db.storage.from(BUCKET).upload(objectPath, bytes, {
       cacheControl: "31536000",
-      contentType: file.type,
+      contentType: validatedMime, // use validated MIME, not client-supplied file.type
       upsert: false,
     });
     if (error) return errorResponse(error.message, 500);
