@@ -177,6 +177,8 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
   const [courseQuery, setCourseQuery] = useState("");
   const [newTitle, setNewTitle] = useState("");
   const [creating, setCreating] = useState(false);
+  // Track whether the slug has been manually edited so we stop auto-generating
+  const [slugLocked, setSlugLocked] = useState(false);
   const [levelFilter, setLevelFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
   const [activeView, setActiveView] = useState<PathView>("all");
@@ -283,7 +285,7 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
       render: (path) => (
         <span onClick={(event) => event.stopPropagation()}>
           <MoreMenu>
-            <button type="button" onClick={() => setSelected(path)}>Edit</button>
+            <button type="button" onClick={() => { setSelected(path); setSlugLocked(false); }}>Edit</button>
             <button type="button" onClick={() => void savePathFor(path, { published: false })}>Move to draft</button>
             <button type="button" className="danger" onClick={() => void deletePath(path.id)}>Delete</button>
           </MoreMenu>
@@ -299,7 +301,19 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
 
   function patch(field: keyof AdminPath, value: unknown) {
     if (!selected) return;
-    const updated = { ...selected, [field]: value };
+    let updated = { ...selected, [field]: value };
+    // Auto-generate slug from title unless the user has manually edited the slug
+    if (field === "title" && !slugLocked) {
+      updated = { ...updated, slug: slugify(String(value)) };
+    }
+    setSelected(updated);
+    setPaths((current) => current.map((path) => path.id === updated.id ? updated : path));
+  }
+
+  function patchSlug(value: string) {
+    if (!selected) return;
+    setSlugLocked(true); // user is manually editing — stop auto-generating
+    const updated = { ...selected, slug: value };
     setSelected(updated);
     setPaths((current) => current.map((path) => path.id === updated.id ? updated : path));
   }
@@ -448,6 +462,7 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
         onRowClick={(path) => {
           setSelected(path);
           setActiveTab("overview");
+          setSlugLocked(false);
         }}
         getRowLabel={(path) => path.title}
         bulkActions={(
@@ -537,8 +552,15 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
                         <input value={selected.title} onChange={(event) => patch("title", event.target.value)} />
                       </label>
                       <label className="aa-field">
-                        <span>Slug</span>
-                        <input value={selected.slug} onChange={(event) => patch("slug", event.target.value)} />
+                        <span>
+                          Slug
+                          {!slugLocked && <small style={{ marginLeft: 6, opacity: 0.45, fontWeight: 400 }}>auto</small>}
+                        </span>
+                        <input
+                          value={selected.slug}
+                          onChange={(event) => patchSlug(event.target.value)}
+                          placeholder="e.g. rhino-beginner-path"
+                        />
                       </label>
                       <label className="aa-field">
                         <span>Level</span>
