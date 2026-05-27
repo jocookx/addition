@@ -40,6 +40,8 @@ export default function CombosPage() {
   const [activeSoftware, setActiveSoftware] = useSoftwareContext();
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("Loading combos...");
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [selectedCombo, setSelectedCombo] = useState<ComboListItem | null>(null);
   const [selectedCommand, setSelectedCommand] = useState<CommandListItem | null>(null);
   const [previewById, setPreviewById] = useState<Record<string, string>>({});
@@ -47,6 +49,8 @@ export default function CombosPage() {
   useEffect(() => {
     let canceled = false;
     async function load() {
+      setLoading(true);
+      setLoadError("");
       try {
         const [comboData, commandData] = await Promise.all([getCombos(), getCommands()]);
         if (canceled) return;
@@ -55,7 +59,11 @@ export default function CombosPage() {
         setStatus(`${comboData.length} combos loaded.`);
       } catch (error) {
         if (canceled) return;
-        setStatus(error instanceof Error ? error.message : "Failed to load combos.");
+        const message = error instanceof Error ? error.message : "Failed to load combos.";
+        setLoadError(message);
+        setStatus(message);
+      } finally {
+        if (!canceled) setLoading(false);
       }
     }
     void load();
@@ -165,8 +173,26 @@ export default function CombosPage() {
           </div>
         )}
 
-        {!combos.length ? (
+        {loading ? (
           <div className="legacy-card-grid combo-card-grid">{Array.from({ length: 4 }, (_, index) => comboSkeletonCard(`combo-skeleton-${index}`))}</div>
+        ) : loadError ? (
+          <div className="reference-software-prompt">
+            <h3>Combos could not load</h3>
+            <p className="meta reference-software-copy">{loadError}</p>
+            <div className="legacy-card-actions">
+              <button type="button" className="primary-button" onClick={() => window.location.reload()}>Try again</button>
+              <a className="ghost-btn" href="/commands">Browse commands</a>
+            </div>
+          </div>
+        ) : !combos.length ? (
+          <div className="reference-software-prompt">
+            <h3>No combos published yet</h3>
+            <p className="meta reference-software-copy">Combos are repeatable workflows made from commands. Use the command library while these are being prepared.</p>
+            <div className="legacy-card-actions">
+              <a className="primary-button" href="/commands">Browse commands</a>
+              <a className="ghost-btn" href="/learn">Browse courses</a>
+            </div>
+          </div>
         ) : filteredCombos.length ? (
           <div className="legacy-card-grid combo-card-grid">
             {filteredCombos.map((combo) => {
