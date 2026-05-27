@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useEffectEvent, useMemo, useState } from "react";
 import { AppFrame } from "@/components/legacy/AppFrame";
+import { useToast } from "@/components/toast/ToastContext";
 import type { CommandListItem } from "@/domain/command";
 import { getCommands } from "@/lib/api/commands";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
@@ -121,6 +122,7 @@ function updateSm2(entry: PracticeProgressEntry | undefined, correct: boolean): 
 }
 
 export default function PracticePage() {
+  const toast = useToast();
   const [commands, setCommands] = useState<CommandListItem[]>([]);
   const [status, setStatus] = useState("Loading quiz data...");
   const [config, setConfig] = useState<PracticeConfig>(defaultConfig);
@@ -379,6 +381,13 @@ export default function PracticePage() {
       setSession(nextSession);
       setView("summary");
       setSelectedAnswer(null);
+      // Fire end-of-session toast
+      const acc = Math.round((nextSession.correct / Math.max(1, nextSession.correct + nextSession.incorrect)) * 100);
+      if (acc === 100) {
+        toast({ type: "streak", title: `Perfect! +${nextSession.xpEarned} XP 🎉`, body: "Flawless session — nothing missed.", duration: 5000 });
+      } else {
+        toast({ type: "success", title: `+${nextSession.xpEarned} XP earned`, body: `${acc}% accuracy · ${nextSession.correct} correct` });
+      }
       return;
     }
 

@@ -222,6 +222,8 @@ function LearnPageInner() {
   const [videoMax, toggleVideoMax] = useReducer((v: boolean) => !v, false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [autoAdvanceIn, setAutoAdvanceIn] = useState<number | null>(null);
+  const autoAdvanceRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // ── auth ─────────────────────────────────────────────────────────────────
 
@@ -397,11 +399,20 @@ function LearnPageInner() {
   }
 
   function backToCatalog() {
+    cancelAutoAdvance();
     setActiveCourseId(null);
     setCourse(null);
     setProgress(null);
     setSelectedLessonId("");
     if (videoMax) toggleVideoMax();
+  }
+
+  function cancelAutoAdvance() {
+    if (autoAdvanceRef.current) {
+      clearInterval(autoAdvanceRef.current);
+      autoAdvanceRef.current = null;
+    }
+    setAutoAdvanceIn(null);
   }
 
   async function handleMarkComplete() {
@@ -412,7 +423,6 @@ function LearnPageInner() {
       const updated = await completeLesson(token, activeCourseId, selectedLessonId);
       setProgress(updated);
       const isCourseComplete = !nextLesson && updated.percentComplete === 100;
-      if (nextLesson) setSelectedLessonId(nextLesson.id);
       if (isCourseComplete) {
         toast({
           type: "streak",
@@ -420,18 +430,33 @@ function LearnPageInner() {
           body: course?.title ?? "Amazing work — all lessons done!",
           duration: 6000,
         });
-      } else {
+      } else if (nextLesson) {
         toast({
           type: "success",
           title: "Lesson complete!",
-          body: nextLesson ? `Up next: ${nextLesson.title}` : "Last lesson — finishing up…",
+          body: `Up next: ${nextLesson.title}`,
         });
+        // Auto-advance countdown
+        setAutoAdvanceIn(3);
+        const captured = nextLesson;
+        autoAdvanceRef.current = setInterval(() => {
+          setAutoAdvanceIn((prev) => {
+            if (prev === null || prev <= 1) {
+              clearInterval(autoAdvanceRef.current!);
+              autoAdvanceRef.current = null;
+              void handleSelectLesson(captured.id);
+              return null;
+            }
+            return prev - 1;
+          });
+        }, 1000);
       }
     } catch (e) { setError(parseError(e)); }
     finally { setBusy(false); }
   }
 
   async function handleSelectLesson(id: string) {
+    cancelAutoAdvance();
     setSelectedLessonId(id);
     const token = session?.access_token;
     if (!token || !activeCourseId) return;
@@ -611,6 +636,17 @@ function LearnPageInner() {
               )}
               <strong className="player-lesson-title">{activeLesson?.title ?? "Select a lesson"}</strong>
             </div>
+            {autoAdvanceIn !== null && nextLesson && (
+              <div className="player-auto-advance">
+                <span className="player-auto-advance-label">Next lesson in {autoAdvanceIn}s</span>
+                <button type="button" className="player-auto-advance-skip" onClick={() => { cancelAutoAdvance(); void handleSelectLesson(nextLesson.id); }}>
+                  Skip →
+                </button>
+                <button type="button" className="player-auto-advance-cancel" onClick={cancelAutoAdvance}>
+                  ✕
+                </button>
+              </div>
+            )}
             <div className="player-lesson-actions">
               <button
                 type="button"

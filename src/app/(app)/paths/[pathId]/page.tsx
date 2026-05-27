@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import type { LearningPathDetail, PathLevel } from "@/domain/learning-path";
+import type { LearningSummaryCourse } from "@/domain/learning-summary";
 import { getPathDetail, enrolInPath, getMyEnrolments } from "@/lib/api/paths";
+import { getLearningSummary } from "@/lib/api/learning-summary";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { useToast } from "@/components/toast/ToastContext";
 
@@ -26,6 +28,7 @@ export default function PathDetailPage() {
   const [loading, setLoading]     = useState(true);
   const [enrolling, setEnrolling] = useState(false);
   const [error, setError]         = useState("");
+  const [courseProgress, setCourseProgress] = useState<Map<string, LearningSummaryCourse>>(new Map());
 
   useEffect(() => {
     const supabase = getBrowserSupabaseClient();
@@ -34,15 +37,21 @@ export default function PathDetailPage() {
       const t = data.session?.access_token ?? null;
       setToken(t);
       if (!t) { router.replace(`/auth?next=/paths/${pathId}`); return; }
-      const [detail, enrolments] = await Promise.all([
+      const [detail, enrolments, summary] = await Promise.all([
         getPathDetail(pathId).catch((e: unknown) => {
           setError(e instanceof Error ? e.message : "Failed to load");
           return null;
         }),
         getMyEnrolments(t).catch(() => []),
+        getLearningSummary(t).catch(() => null),
       ]);
       setPath(detail);
-      setEnrolled(enrolments.some((e) => e.pathId === pathId));
+      const isEnrolled = enrolments.some((e) => e.pathId === pathId);
+      setEnrolled(isEnrolled);
+      if (summary) {
+        const map = new Map(summary.courses.map((c) => [c.courseId, c]));
+        setCourseProgress(map);
+      }
       setLoading(false);
     });
   }, [pathId, router]);
@@ -89,6 +98,13 @@ export default function PathDetailPage() {
 
   const totalMinutes = path.courses.reduce((s, c) => s + c.estimatedMinutes, 0);
   const totalHours = totalMinutes > 0 ? Math.round(totalMinutes / 60 * 10) / 10 : 0;
+
+  // Progress-aware helpers (only meaningful when enrolled)
+  const completedCourseIds = new Set(
+    path.courses.filter((c) => courseProgress.get(c.id)?.status === "completed").map((c) => c.id)
+  );
+  const nextCourse = path.courses.find((c) => courseProgress.get(c.id)?.status !== "completed") ?? path.courses[0] ?? null;
+  const pathPercent = path.courses.length > 0 ? Math.round((completedCourseIds.size / path.courses.length) * 100) : 0;
 
   return (
     <AppFrame title="" subtitle="" topTabs={[]}>
@@ -155,19 +171,42 @@ export default function PathDetailPage() {
               {path.courses.length === 0 ? (
                 <p className="meta">Courses being added — check back soon.</p>
               ) : (
-                path.courses.map((course, idx) => (
-                  <div key={course.id} className="pdet-course-row">
-                    <div className="pdet-course-step">{idx + 1}</div>
-                    <div className="pdet-course-info">
-                      <div className="pdet-course-type">{course.type} · {course.software}</div>
-                      <strong className="pdet-course-title">{course.title}</strong>
-                      <div className="pdet-course-meta">{course.lessonCount} lessons · ~{course.estimatedMinutes} min</div>
+                path.courses.map((course, idx) => {
+                  const prog = courseProgress.get(course.id);
+                  const isDone = prog?.status === "completed";
+                  const isActive = prog?.status === "active" || (!isDone && course.id === nextCourse?.id && enrolled && (prog?.percentComplete ?? 0) > 0);
+                  const pct = prog?.percentComplete ?? 0;
+                  return (
+                    <div key={course.id} className={`pdet-course-row${isDone ? " is-done" : isActive ? " is-active" : ""}`}>
+                      <div className={`pdet-course-step${isDone ? " is-done" : isActive ? " is-active" : ""}`}>
+                        {isDone ? (
+                          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="12" height="12" aria-hidden="true"><polyline points="17 5 8 14 3 10"/></svg>
+                        ) : idx + 1}
+                      </div>
+                      <div className="pdet-course-info">
+                        <div className="pdet-course-type">{course.type} · {course.software}</div>
+                        <strong className="pdet-course-title">{course.title}</strong>
+                        <div className="pdet-course-meta">
+                          {course.lessonCount} lessons · ~{course.estimatedMinutes} min
+                          {enrolled && pct > 0 && !isDone && (
+                            <span className="pdet-course-pct"> · {pct}% done</span>
+                          )}
+                        </div>
+                        {enrolled && isActive && pct > 0 && (
+                          <div className="pdet-course-bar">
+                            <div className="pdet-course-bar-fill" style={{ width: `${pct}%` }} />
+                          </div>
+                        )}
+                      </div>
+                      <Link
+                        href={`/learn?course=${encodeURIComponent(course.id)}&path=${encodeURIComponent(pathId)}`}
+                        className={`ghost-btn pdet-course-btn${isDone ? " is-done" : ""}`}
+                      >
+                        {!enrolled ? "Preview →" : isDone ? "Review ✓" : isActive ? "Continue →" : "Start →"}
+                      </Link>
                     </div>
-                    <Link href={`/learn?course=${encodeURIComponent(course.id)}&path=${encodeURIComponent(pathId)}`} className="ghost-btn pdet-course-btn">
-                      {enrolled ? "Open →" : "Preview →"}
-                    </Link>
-                  </div>
-                ))
+                  );
+                })
               )}
             </div>
 
@@ -181,15 +220,25 @@ export default function PathDetailPage() {
               <h2 className="pdet-sidebar-card-title">
                 {enrolled ? "You're on this path" : "Start this path"}
               </h2>
+              {enrolled && path.courses.length > 0 && (
+                <div className="pdet-sidebar-progress">
+                  <div className="pdet-sidebar-progress-bar">
+                    <div className="pdet-sidebar-progress-fill" style={{ width: `${pathPercent}%` }} />
+                  </div>
+                  <span className="pdet-sidebar-progress-label">
+                    {completedCourseIds.size} of {path.courses.length} courses complete
+                  </span>
+                </div>
+              )}
               <p className="pdet-sidebar-card-sub">
                 {enrolled
-                  ? "Continue where you left off. Each course builds on the last."
+                  ? pathPercent === 100 ? "Path complete! Explore another path to keep growing." : "Continue where you left off. Each course builds on the last."
                   : "Enrol to track your progress through every course in order."}
               </p>
               {enrolled ? (
-                path.courses[0] && (
-                  <Link href={`/learn?course=${encodeURIComponent(path.courses[0].id)}&path=${encodeURIComponent(pathId)}`} className="primary-button pdet-enrol-btn">
-                    Continue learning →
+                nextCourse && (
+                  <Link href={`/learn?course=${encodeURIComponent(nextCourse.id)}&path=${encodeURIComponent(pathId)}`} className="primary-button pdet-enrol-btn">
+                    {pathPercent === 100 ? "Review path →" : completedCourseIds.size === 0 ? "Start learning →" : "Continue learning →"}
                   </Link>
                 )
               ) : (
