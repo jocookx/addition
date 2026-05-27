@@ -131,11 +131,13 @@ function ModuleBlock({
   mod,
   modIndex,
   selectedLessonId,
+  confidenceMap,
   onSelect,
 }: {
   mod: CourseModuleProgressItem;
   modIndex: number;
   selectedLessonId: string;
+  confidenceMap: Record<string, "confident" | "reviewed">;
   onSelect: (id: string) => void;
 }) {
   const [collapsed, setCollapsed] = useReducer((v: boolean) => !v, false);
@@ -155,6 +157,7 @@ function ModuleBlock({
           {mod.lessons.map((lesson, li) => {
             const done = lesson.status === "completed";
             const active = lesson.id === selectedLessonId;
+            const confidence = confidenceMap[lesson.id];
             return (
               <article
                 key={lesson.id}
@@ -168,9 +171,17 @@ function ModuleBlock({
                 <div className="lesson-row">
                   <strong>{lesson.title}</strong>
                   <div className="lesson-row-right">
-                    <span className={`lesson-status${done ? " done" : " todo"}`} aria-label={done ? "Completed" : "Not completed"}>
-                      {done ? "✓" : "○"}
-                    </span>
+                    {done ? (
+                      <span
+                        className={`lesson-confidence${confidence === "reviewed" ? " reviewed" : ""}`}
+                        aria-label={confidence === "reviewed" ? "Watched again" : "Got it"}
+                        title={confidence === "reviewed" ? "Needed a rewatch" : "Got it first time"}
+                      >
+                        {confidence === "reviewed" ? "↺" : "✓"}
+                      </span>
+                    ) : (
+                      <span className="lesson-status todo" aria-label="Not completed">○</span>
+                    )}
                     {lesson.durationMin ? (
                       <span className="lesson-time">{lesson.durationMin}m</span>
                     ) : null}
@@ -222,8 +233,8 @@ function LearnPageInner() {
   const [videoMax, toggleVideoMax] = useReducer((v: boolean) => !v, false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [autoAdvanceIn, setAutoAdvanceIn] = useState<number | null>(null);
-  const autoAdvanceRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [watchAgainCount, setWatchAgainCount] = useState(0);
+  const [confidenceMap, setConfidenceMap] = useState<Record<string, "confident" | "reviewed">>({});
 
   // ── auth ─────────────────────────────────────────────────────────────────
 
@@ -282,6 +293,12 @@ function LearnPageInner() {
   useEffect(() => {
     if (!activeCourseId) { setCourse(null); setProgress(null); return; }
     let canceled = false;
+    // Load confidence map from localStorage for this course
+    try {
+      const raw = localStorage.getItem(`addition_confidence_${activeCourseId}`);
+      setConfidenceMap(raw ? (JSON.parse(raw) as Record<string, "confident" | "reviewed">) : {});
+    } catch { setConfidenceMap({}); }
+    setWatchAgainCount(0);
     getCourseDetail(activeCourseId)
       .then((d) => {
         if (canceled) return;
@@ -399,7 +416,6 @@ function LearnPageInner() {
   }
 
   function backToCatalog() {
-    cancelAutoAdvance();
     setActiveCourseId(null);
     setCourse(null);
     setProgress(null);
@@ -407,56 +423,44 @@ function LearnPageInner() {
     if (videoMax) toggleVideoMax();
   }
 
-  function cancelAutoAdvance() {
-    if (autoAdvanceRef.current) {
-      clearInterval(autoAdvanceRef.current);
-      autoAdvanceRef.current = null;
-    }
-    setAutoAdvanceIn(null);
+  function saveConfidence(lessonId: string, value: "confident" | "reviewed") {
+    if (!activeCourseId) return;
+    const next = { ...confidenceMap, [lessonId]: value };
+    setConfidenceMap(next);
+    try { localStorage.setItem(`addition_confidence_${activeCourseId}`, JSON.stringify(next)); } catch { /* storage full */ }
   }
 
-  async function handleMarkComplete() {
+  async function handleGotIt() {
     const token = session?.access_token;
-    if (!token || !activeCourseId || !selectedLessonId || busy || isDone) return;
+    if (!token || !activeCourseId || !selectedLessonId || busy) return;
+    saveConfidence(selectedLessonId, "confident");
+    if (isDone) {
+      // Already marked — just advance to next
+      if (nextLesson) void handleSelectLesson(nextLesson.id);
+      return;
+    }
     setBusy(true);
     try {
       const updated = await completeLesson(token, activeCourseId, selectedLessonId);
       setProgress(updated);
       const isCourseComplete = !nextLesson && updated.percentComplete === 100;
       if (isCourseComplete) {
-        toast({
-          type: "streak",
-          title: "Course complete! 🎉",
-          body: course?.title ?? "Amazing work — all lessons done!",
-          duration: 6000,
-        });
+        toast({ type: "streak", title: "Course complete! 🎉", body: course?.title ?? "All lessons done!", duration: 6000 });
       } else if (nextLesson) {
-        toast({
-          type: "success",
-          title: "Lesson complete!",
-          body: `Up next: ${nextLesson.title}`,
-        });
-        // Auto-advance countdown
-        setAutoAdvanceIn(3);
-        const captured = nextLesson;
-        autoAdvanceRef.current = setInterval(() => {
-          setAutoAdvanceIn((prev) => {
-            if (prev === null || prev <= 1) {
-              clearInterval(autoAdvanceRef.current!);
-              autoAdvanceRef.current = null;
-              void handleSelectLesson(captured.id);
-              return null;
-            }
-            return prev - 1;
-          });
-        }, 1000);
+        // Instant advance — no countdown for micro-lessons
+        void handleSelectLesson(nextLesson.id);
       }
     } catch (e) { setError(parseError(e)); }
     finally { setBusy(false); }
   }
 
+  function handleWatchAgain() {
+    if (!selectedLessonId) return;
+    saveConfidence(selectedLessonId, confidenceMap[selectedLessonId] === "confident" ? "confident" : "reviewed");
+    setWatchAgainCount((n) => n + 1);
+  }
+
   async function handleSelectLesson(id: string) {
-    cancelAutoAdvance();
     setSelectedLessonId(id);
     const token = session?.access_token;
     if (!token || !activeCourseId) return;
@@ -614,8 +618,8 @@ function LearnPageInner() {
             </button>
             {videoSrc ? (
               <iframe
-                key={videoSrc}
-                src={videoSrc}
+                key={`${videoSrc}-${watchAgainCount}`}
+                src={watchAgainCount > 0 ? `${videoSrc}&autoplay=1` : videoSrc}
                 title={activeLesson?.title ?? "Lesson video"}
                 allowFullScreen
               />
@@ -636,26 +640,30 @@ function LearnPageInner() {
               )}
               <strong className="player-lesson-title">{activeLesson?.title ?? "Select a lesson"}</strong>
             </div>
-            {autoAdvanceIn !== null && nextLesson && (
-              <div className="player-auto-advance">
-                <span className="player-auto-advance-label">Next lesson in {autoAdvanceIn}s</span>
-                <button type="button" className="player-auto-advance-skip" onClick={() => { cancelAutoAdvance(); void handleSelectLesson(nextLesson.id); }}>
-                  Skip →
-                </button>
-                <button type="button" className="player-auto-advance-cancel" onClick={cancelAutoAdvance}>
-                  ✕
+            <div className="player-lesson-actions">
+              <div className="player-verdict-btns">
+                {isDone ? (
+                  <span className="player-got-it-done">✓ Got it</span>
+                ) : (
+                  <button
+                    type="button"
+                    className="player-got-it-btn"
+                    onClick={() => void handleGotIt()}
+                    disabled={busy || !activeLesson}
+                  >
+                    {busy ? "Saving…" : "Got it ✓"}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="player-watch-again-btn"
+                  onClick={handleWatchAgain}
+                  disabled={!activeLesson || !videoSrc}
+                  title="Replay this lesson"
+                >
+                  ↺ Watch again
                 </button>
               </div>
-            )}
-            <div className="player-lesson-actions">
-              <button
-                type="button"
-                className={`player-mark-btn${isDone ? " is-done" : ""}`}
-                onClick={() => void handleMarkComplete()}
-                disabled={busy || isDone || !activeLesson}
-              >
-                {isDone ? "✓ Completed" : busy ? "Saving…" : "Mark complete"}
-              </button>
               <div className="player-lesson-actions-right">
                 <button
                   type="button"
@@ -733,6 +741,7 @@ function LearnPageInner() {
                 mod={m}
                 modIndex={i}
                 selectedLessonId={selectedLessonId}
+                confidenceMap={confidenceMap}
                 onSelect={(id) => void handleSelectLesson(id)}
               />
             ))}

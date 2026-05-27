@@ -5881,6 +5881,56 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   background: rgba(116, 209, 132, 0.12);
 }
 
+/* Got it / Watch again — micro-lesson verdict buttons */
+.player-verdict-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.player-got-it-btn {
+  border: 1px solid rgba(116,209,132,0.5);
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9fe1aa;
+  background: rgba(116,209,132,0.10);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.player-got-it-btn:hover:not(:disabled) {
+  background: rgba(116,209,132,0.18);
+  transform: scale3d(0.97,0.97,1);
+}
+.player-got-it-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.player-got-it-done {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9fe1aa;
+  padding: 7px 4px;
+  white-space: nowrap;
+}
+
+.player-watch-again-btn {
+  border: 1px solid var(--rf-border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--rf-muted);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+.player-watch-again-btn:hover:not(:disabled) {
+  border-color: rgba(251,191,36,0.5);
+  color: #fbbf24;
+}
+.player-watch-again-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
 .player-nav-btn {
   width: 34px;
   height: 34px;
@@ -6208,6 +6258,27 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   border-color: rgba(116, 209, 132, 0.65);
   color: #8bdfa0;
   background: rgba(116, 209, 132, 0.15);
+}
+
+/* Confidence indicator (replaces lesson-status for completed lessons) */
+.lesson-confidence {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  line-height: 1;
+  border: 1px solid rgba(116,209,132,0.65);
+  color: #8bdfa0;
+  background: rgba(116,209,132,0.15);
+  cursor: help;
+}
+.lesson-confidence.reviewed {
+  border-color: rgba(251,191,36,0.55);
+  color: #fbbf24;
+  background: rgba(251,191,36,0.12);
 }
 
 .lesson-item:hover {
@@ -9349,14 +9420,26 @@ html[data-theme="light"] .pl-enrolled-badge {
   background: #ffd700; box-shadow: 0 0 8px rgba(255,215,0,0.6);
   margin-top: 4px; flex-shrink: 0;
 }
-.home-tiny-content { display: flex; flex-direction: column; gap: 5px; }
+.home-tiny-content { display: flex; flex-direction: column; gap: 6px; }
+.home-tiny-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .home-tiny-label {
   font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
   color: rgba(255,215,0,0.8);
 }
+.home-tiny-count {
+  font-size: 11px; font-weight: 700; color: rgba(255,215,0,0.65);
+}
+.home-tiny-bar {
+  height: 4px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden;
+}
+.home-tiny-bar-fill {
+  height: 100%; background: #ffd700; border-radius: 4px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 6px rgba(255,215,0,0.4);
+}
 .home-tiny-body { margin: 0; font-size: 13px; line-height: 1.5; color: rgba(236,236,242,0.72); }
 .home-tiny-cta {
-  align-self: flex-start; margin-top: 4px;
+  align-self: flex-start; margin-top: 2px;
   font-size: 12px; padding: 5px 0; color: rgba(255,215,0,0.85) !important;
   background: none !important; border: none !important;
 }

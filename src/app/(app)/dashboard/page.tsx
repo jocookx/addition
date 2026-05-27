@@ -279,25 +279,41 @@ function DashSkeleton() {
   );
 }
 
-function TinyGoal({ onStart, doneToday, streak }: { onStart: () => void; doneToday: boolean; streak: number }) {
-  if (doneToday) {
+const DAILY_GOAL = 5;
+
+function TinyGoal({ onStart, lessonsToday, streak }: { onStart: () => void; lessonsToday: number; streak: number }) {
+  const goalMet = lessonsToday >= DAILY_GOAL;
+  const pct = Math.min(100, Math.round((lessonsToday / DAILY_GOAL) * 100));
+
+  if (goalMet) {
     return (
       <div className="home-tiny home-tiny--done glass-panel">
         <span className="home-tiny-check" aria-hidden="true">✓</span>
         <div className="home-tiny-content">
-          <span className="home-tiny-label">Today&apos;s goal met!</span>
-          <p className="home-tiny-body">{streak >= 2 ? `${streak} day streak — you're on a roll.` : "Great work — come back tomorrow to keep your streak going."}</p>
+          <span className="home-tiny-label">Daily goal complete!</span>
+          <p className="home-tiny-body">
+            {lessonsToday} lesson{lessonsToday !== 1 ? "s" : ""} today
+            {streak >= 2 ? ` · 🔥 ${streak} day streak` : " — great work!"}
+          </p>
         </div>
       </div>
     );
   }
+
   return (
     <div className="home-tiny glass-panel">
       <div className="home-tiny-dot" />
       <div className="home-tiny-content">
-        <span className="home-tiny-label">Today&apos;s Tiny Goal</span>
-        <p className="home-tiny-body">Complete one short lesson. You don&apos;t need to finish the whole course.</p>
-        <button type="button" className="home-tiny-cta ghost-btn" onClick={onStart}>Start a lesson →</button>
+        <div className="home-tiny-header">
+          <span className="home-tiny-label">Daily goal</span>
+          <span className="home-tiny-count">{lessonsToday}/{DAILY_GOAL} lessons</span>
+        </div>
+        <div className="home-tiny-bar">
+          <div className="home-tiny-bar-fill" style={{ width: `${pct}%` }} />
+        </div>
+        <button type="button" className="home-tiny-cta ghost-btn" onClick={onStart}>
+          {lessonsToday === 0 ? "Start first lesson →" : "Keep going →"}
+        </button>
       </div>
     </div>
   );
@@ -1280,7 +1296,7 @@ function DashboardPageInner() {
   const visibleWorkshops = upcomingWorkshops.filter(isFutureWorkshop);
   const workshopCount = visibleWorkshops.length;
   const todayStr = new Date().toISOString().slice(0, 10);
-  const doneToday = (summary?.activity.days ?? []).some((d) => d.day === todayStr && d.count > 0);
+  const lessonsToday = (summary?.activity.days ?? []).find((d) => d.day === todayStr)?.count ?? 0;
 
   // Enrolled paths list (for My Paths section)
   const enrolledPaths = allPaths.filter((p) => enrolledPathIds.has(p.id));
@@ -1382,7 +1398,7 @@ function DashboardPageInner() {
               </div>
               <div className="home-side">
                 <TinyGoal
-                  doneToday={doneToday}
+                  lessonsToday={lessonsToday}
                   streak={streakDays}
                   onStart={() => {
                     if (nextUp) handleContinue(nextUp.courseId, nextUp.nextLessonId);
