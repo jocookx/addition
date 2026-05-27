@@ -248,14 +248,25 @@ function SolveSection() {
   );
 }
 
-function TinyGoal({ onStart }: { onStart: () => void }) {
+function TinyGoal({ onStart, doneToday, streak }: { onStart: () => void; doneToday: boolean; streak: number }) {
+  if (doneToday) {
+    return (
+      <div className="home-tiny home-tiny--done glass-panel">
+        <span className="home-tiny-check" aria-hidden="true">✓</span>
+        <div className="home-tiny-content">
+          <span className="home-tiny-label">Today&apos;s goal met!</span>
+          <p className="home-tiny-body">{streak >= 2 ? `${streak} day streak — you're on a roll.` : "Great work — come back tomorrow to keep your streak going."}</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="home-tiny glass-panel">
       <div className="home-tiny-dot" />
       <div className="home-tiny-content">
         <span className="home-tiny-label">Today&apos;s Tiny Goal</span>
-        <p className="home-tiny-body">Complete one short lesson today. You don&apos;t need to finish the whole course.</p>
-        <button type="button" className="home-tiny-cta ghost-btn" onClick={onStart}>Start Tiny Goal →</button>
+        <p className="home-tiny-body">Complete one short lesson. You don&apos;t need to finish the whole course.</p>
+        <button type="button" className="home-tiny-cta ghost-btn" onClick={onStart}>Start a lesson →</button>
       </div>
     </div>
   );
@@ -1025,6 +1036,7 @@ export default function DashboardPage() {
 function DashboardPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const toast = useToast();
   const initialTab = (searchParams.get("tab") as DashTab) || "home";
   const gatewayParam = searchParams.get("gateway");
   const initialGateway = gatewayParam === "welcome" || gatewayParam === "pro" || gatewayParam === "student" || gatewayParam === "workshop" ? gatewayParam : null;
@@ -1149,6 +1161,23 @@ function DashboardPageInner() {
     return () => { canceled = true; };
   }, [session?.access_token, pathsVersion]);
 
+  // Fire streak toast once per session when streak ≥ 2
+  useEffect(() => {
+    if (!summary) return;
+    const streak = summary.totals.streakDays;
+    if (streak < 2) return;
+    const key = `addition_streak_toast_${new Date().toDateString()}`;
+    if (typeof sessionStorage !== "undefined" && sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, "1");
+    toast({
+      type: "streak",
+      title: `${streak} day streak! 🔥`,
+      body: "You're on a roll — keep it going.",
+      duration: 5000,
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [summary?.totals.streakDays]);
+
   const handleTabChange = useCallback((t: DashTab) => {
     setTab(t);
     const params = new URLSearchParams(searchParams.toString());
@@ -1216,8 +1245,11 @@ function DashboardPageInner() {
 
   const nextUp = summary?.nextUp ?? null;
   const practiseCount = summary?.totals.practicedCommands ?? 0;
+  const streakDays = summary?.totals.streakDays ?? 0;
   const visibleWorkshops = upcomingWorkshops.filter(isFutureWorkshop);
   const workshopCount = visibleWorkshops.length;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const doneToday = (summary?.activity.days ?? []).some((d) => d.day === todayStr && d.count > 0);
 
   // Enrolled paths list (for My Paths section)
   const enrolledPaths = allPaths.filter((p) => enrolledPathIds.has(p.id));
@@ -1245,8 +1277,13 @@ function DashboardPageInner() {
               <p className="dash-header-plan">{formatPlan(userPlan, userBilling)}</p>
             </div>
           </div>
-          {(practiseCount > 0 || workshopCount > 0) && (
+          {(streakDays > 0 || practiseCount > 0 || workshopCount > 0) && (
             <div className="dash-header-nudge">
+              {streakDays > 0 && (
+                <span className="dash-nudge-pill dash-nudge-pill--streak">
+                  🔥 {streakDays} day{streakDays === 1 ? "" : "s"}
+                </span>
+              )}
               {practiseCount > 0 && (
                 <Link href="/practice" className="dash-nudge-pill" style={{ textDecoration: "none" }}>
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -1313,6 +1350,14 @@ function DashboardPageInner() {
                 <RecommendedPracticeCard count={practiseCount} />
               </div>
               <div className="home-side">
+                <TinyGoal
+                  doneToday={doneToday}
+                  streak={streakDays}
+                  onStart={() => {
+                    if (nextUp) handleContinue(nextUp.courseId, nextUp.nextLessonId);
+                    else router.push("/learn");
+                  }}
+                />
                 <MyWorkshopsSection workshops={upcomingWorkshops} />
                 <SavedToolkitCard />
               </div>

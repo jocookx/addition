@@ -409,12 +409,22 @@ function LearnPageInner() {
     try {
       const updated = await completeLesson(token, activeCourseId, selectedLessonId);
       setProgress(updated);
+      const isCourseComplete = !nextLesson && updated.percentComplete === 100;
       if (nextLesson) setSelectedLessonId(nextLesson.id);
-      toast({
-        type: "success",
-        title: "Lesson complete!",
-        body: nextLesson ? `Up next: ${nextLesson.title}` : "All lessons done — great work!",
-      });
+      if (isCourseComplete) {
+        toast({
+          type: "streak",
+          title: "Course complete! 🎉",
+          body: course?.title ?? "Amazing work — all lessons done!",
+          duration: 6000,
+        });
+      } else {
+        toast({
+          type: "success",
+          title: "Lesson complete!",
+          body: nextLesson ? `Up next: ${nextLesson.title}` : "Last lesson — finishing up…",
+        });
+      }
     } catch (e) { setError(parseError(e)); }
     finally { setBusy(false); }
   }

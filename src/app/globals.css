@@ -9243,6 +9243,23 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 .home-tiny-cta:hover { color: #ffd700 !important; }
 
+/* Done-today variant */
+.home-tiny--done {
+  grid-template-columns: 22px minmax(0,1fr);
+  border-color: rgba(34,197,94,0.18);
+  background: rgba(34,197,94,0.04);
+}
+.home-tiny-check {
+  font-size: 13px; color: #22c55e;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(34,197,94,0.14); border-radius: 50%;
+  margin-top: 1px; flex-shrink: 0;
+}
+.home-tiny--done .home-tiny-label { color: rgba(34,197,94,0.85); }
+html[data-theme="light"] .home-tiny--done { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.2); }
+html[data-theme="light"] .home-tiny--done .home-tiny-label { color: #16a34a; }
+
 /* Path + Workshop chips — single-row compact cards */
 .home-chip {
   display: flex; align-items: center; gap: 10px;
@@ -9438,6 +9455,14 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 .dash-nudge-pill:hover { background: rgba(255,255,255,0.1); color: #fff; }
 .dash-nudge-pill--ws { border-color: rgba(167,139,250,0.22); color: rgba(196,181,253,0.8); }
 .dash-nudge-pill--ws:hover { background: rgba(167,139,250,0.1); color: rgba(196,181,253,1); }
+.dash-nudge-pill--streak {
+  border-color: rgba(251,146,60,0.25);
+  color: rgba(251,146,60,0.9);
+  cursor: default;
+  font-size: 12px;
+  font-weight: 700;
+}
+html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color: rgba(194,65,12,0.2); }
 
 /* Inner tab strip */
 .dash-tab-bar {
