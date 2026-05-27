@@ -3312,6 +3312,149 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   padding-inline: 22px;
 }
 
+/* ── Onboarding wizard ─────────────────────────────────────────────────── */
+.onboarding-wizard {
+  width: min(520px, 100%);
+}
+.onboarding-logo {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--accent-hover);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.onboarding-steps {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.onboarding-step-dot {
+  width: 20px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.12);
+  transition: background 0.2s;
+}
+.onboarding-step-dot.is-done,
+.onboarding-step-dot.is-active {
+  background: var(--accent);
+}
+/* Role grid — pill-style chips */
+.onboarding-role-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+.onboarding-role-btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: rgba(236,236,242,0.75);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.onboarding-role-btn:hover {
+  background: rgba(255,255,255,0.09);
+  color: #fff;
+}
+.onboarding-role-btn.is-selected {
+  background: var(--accent-subtle);
+  border-color: rgba(124,58,237,0.55);
+  color: #fff;
+}
+/* Software grid */
+.onboarding-sw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+@media (max-width: 480px) {
+  .onboarding-sw-grid { grid-template-columns: 1fr; }
+}
+.onboarding-sw-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  color: rgba(236,236,242,0.75);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.onboarding-sw-btn strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.onboarding-sw-btn span {
+  font-size: 11px;
+  color: rgba(236,236,242,0.45);
+}
+.onboarding-sw-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+.onboarding-sw-btn.is-selected {
+  background: var(--accent-subtle);
+  border-color: rgba(124,58,237,0.55);
+}
+/* Path list */
+.onboarding-path-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+.onboarding-path-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+.onboarding-path-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+.onboarding-path-btn.is-selected {
+  background: var(--accent-subtle);
+  border-color: rgba(124,58,237,0.55);
+}
+.onboarding-path-btn-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.onboarding-path-btn-body strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+.onboarding-radio {
+  font-size: 16px;
+  color: var(--accent-hover);
+  flex-shrink: 0;
+}
+
 /* Commands reference */
 .reference-view {
   display: grid;

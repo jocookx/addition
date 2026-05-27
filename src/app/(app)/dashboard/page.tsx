@@ -12,11 +12,11 @@ import type { LearningSummary } from "@/domain/learning-summary";
 import type { LearningPathListItem, PathEnrolment, PathLevel } from "@/domain/learning-path";
 import type { UserProfile } from "@/domain/user-profile";
 import { formatWorkshopCountdown } from "@/domain/workshop-lifecycle";
-import { ensureAuthProfile } from "@/lib/api/auth-profile";
+import { ensureAuthProfile, updateAuthProfile } from "@/lib/api/auth-profile";
 import { getBillingCheckoutUrl } from "@/lib/api/billing";
 import { getLearningSummary } from "@/lib/api/learning-summary";
 import { UpgradeModal } from "@/components/upgrade/UpgradeModal";
-import { getPaths, getPathDetail, getMyEnrolments } from "@/lib/api/paths";
+import { getPaths, getPathDetail, getMyEnrolments, enrolInPath } from "@/lib/api/paths";
 import { getMyRegisteredWorkshops } from "@/lib/api/workshops";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
@@ -357,6 +357,183 @@ function SavedToolkitCard() {
   );
 }
 
+// ── Onboarding wizard ──────────────────────────────────────────────────────
+
+const ROLE_OPTIONS = [
+  { id: "Architecture student",       label: "Architecture student" },
+  { id: "Interior design student",    label: "Interior design student" },
+  { id: "Architect",                  label: "Architect" },
+  { id: "Interior designer",          label: "Interior designer" },
+  { id: "Product designer",           label: "Product designer" },
+  { id: "Fashion designer",           label: "Fashion designer" },
+  { id: "Other",                      label: "Other" },
+];
+
+const SW_OPTIONS = [
+  { id: "Rhino",       label: "Rhino 3D",     desc: "3D modelling & NURBS" },
+  { id: "Grasshopper", label: "Grasshopper",   desc: "Visual programming" },
+  { id: "Revit",       label: "Revit",         desc: "BIM & architecture" },
+];
+
+function OnboardingWizard({
+  paths,
+  token,
+  onComplete,
+}: {
+  paths: LearningPathListItem[];
+  token: string;
+  onComplete: (enrolledPathId: string | null) => void;
+}) {
+  const [step, setStep]               = useState<"role" | "software" | "path">("role");
+  const [role, setRole]               = useState("");
+  const [software, setSoftware]       = useState("");
+  const [pathId, setPathId]           = useState("");
+  const [busy, setBusy]               = useState(false);
+
+  const relevantPaths = software
+    ? paths.filter((p) => p.software.includes(software))
+    : paths;
+
+  async function handleFinish() {
+    setBusy(true);
+    try {
+      if (pathId) await enrolInPath(pathId, token);
+      await updateAuthProfile(token, {
+        ...(role ? { role } : {}),
+        ...(software ? { softwarePreferences: [software] } : {}),
+      }).catch(() => {});
+    } catch { /* non-critical — proceed */ }
+    setBusy(false);
+    onComplete(pathId || null);
+  }
+
+  const stepNum = step === "role" ? 1 : step === "software" ? 2 : 3;
+
+  return (
+    <div className="gateway-modal-backdrop" role="presentation" onClick={(e) => e.stopPropagation()}>
+      <section className="gateway-modal onboarding-wizard" role="dialog" aria-modal="true">
+
+        {/* Step indicator */}
+        <div className="onboarding-steps" aria-hidden="true">
+          {[1, 2, 3].map((n) => (
+            <span key={n} className={`onboarding-step-dot${stepNum >= n ? " is-done" : ""}${stepNum === n ? " is-active" : ""}`} />
+          ))}
+        </div>
+
+        {step === "role" && (
+          <>
+            <div className="onboarding-logo" aria-hidden="true">+</div>
+            <h2>Welcome — let&apos;s personalise your experience</h2>
+            <p>How would you describe yourself?</p>
+            <div className="onboarding-role-grid">
+              {ROLE_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  className={`onboarding-role-btn${role === opt.id ? " is-selected" : ""}`}
+                  onClick={() => setRole(opt.id)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+            <div className="gateway-modal-actions">
+              <button
+                type="button"
+                className="primary-button"
+                disabled={!role}
+                onClick={() => setStep("software")}
+              >
+                Continue →
+              </button>
+              <button type="button" className="ghost-btn" onClick={() => onComplete(null)}>
+                Skip for now
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === "software" && (
+          <>
+            <h2>What software do you want to learn?</h2>
+            <p>We&apos;ll tailor your learning path to match.</p>
+            <div className="onboarding-sw-grid">
+              {SW_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  className={`onboarding-sw-btn${software === opt.id ? " is-selected" : ""}`}
+                  onClick={() => setSoftware(opt.id)}
+                >
+                  <strong>{opt.label}</strong>
+                  <span>{opt.desc}</span>
+                </button>
+              ))}
+            </div>
+            <div className="gateway-modal-actions">
+              <button
+                type="button"
+                className="primary-button"
+                disabled={!software}
+                onClick={() => setStep("path")}
+              >
+                Continue →
+              </button>
+              <button type="button" className="ghost-btn" onClick={() => setStep("role")}>
+                ← Back
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === "path" && (
+          <>
+            <h2>Pick your starting path</h2>
+            <p>You can add more paths any time from your dashboard.</p>
+            <div className="onboarding-path-list">
+              {relevantPaths.length === 0 ? (
+                <p className="meta" style={{ padding: "12px 0" }}>No paths available yet for {software}.</p>
+              ) : relevantPaths.map((p) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  className={`onboarding-path-btn${pathId === p.id ? " is-selected" : ""}`}
+                  onClick={() => setPathId(p.id)}
+                >
+                  <div className="onboarding-path-btn-body">
+                    <span className={`pl-level-badge pl-level-badge--${p.level}`}>
+                      {LEVEL_LABELS[p.level] ?? p.level}
+                    </span>
+                    <strong>{p.title}</strong>
+                    <span className="meta">{p.courseCount} course{p.courseCount !== 1 ? "s" : ""}</span>
+                  </div>
+                  <span className="onboarding-radio" aria-hidden="true">
+                    {pathId === p.id ? "●" : "○"}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div className="gateway-modal-actions">
+              <button
+                type="button"
+                className="primary-button"
+                disabled={busy}
+                onClick={() => void handleFinish()}
+              >
+                {busy ? "Setting up…" : pathId ? "Start learning →" : "Continue →"}
+              </button>
+              <button type="button" className="ghost-btn" onClick={() => setStep("software")}>
+                ← Back
+              </button>
+            </div>
+          </>
+        )}
+
+      </section>
+    </div>
+  );
+}
+
 // ── Tab content stubs ──────────────────────────────────────────────────────
 
 function ProgressTab() {
@@ -647,6 +824,8 @@ function DashboardPageInner() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [upcomingWorkshops, setUpcomingWorkshops] = useState<UpcomingWorkshop[]>([]);
   const [activePath, setActivePath] = useState<ActivePathSummary | null>(null);
+  const [allPaths, setAllPaths] = useState<LearningPathListItem[]>([]);
+  const [pathsVersion, setPathsVersion] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState("");
 
@@ -702,6 +881,7 @@ function DashboardPageInner() {
     Promise.all([getPaths(), getMyEnrolments(token), getLearningSummary(token).catch(() => null)])
       .then(async ([paths, enrolments, earlySum]) => {
         if (canceled) return;
+        setAllPaths(paths);
         const enrolledPathIds = new Set(enrolments.map((e) => e.pathId));
         const firstPath = paths.find((p) => enrolledPathIds.has(p.id)) ?? null;
         if (!firstPath) { setActivePath(null); return; }
@@ -751,7 +931,7 @@ function DashboardPageInner() {
         if (!canceled) setActivePath(null);
       });
     return () => { canceled = true; };
-  }, [session?.access_token]);
+  }, [session?.access_token, pathsVersion]);
 
   const handleTabChange = useCallback((t: DashTab) => {
     setTab(t);
@@ -906,7 +1086,17 @@ function DashboardPageInner() {
           )}
         </div>
       </section>
-      {gatewayIntent && (
+      {gatewayIntent === "welcome" && (
+        <OnboardingWizard
+          paths={allPaths}
+          token={session?.access_token ?? ""}
+          onComplete={(enrolledPathId) => {
+            clearGateway();
+            if (enrolledPathId) setPathsVersion((v) => v + 1);
+          }}
+        />
+      )}
+      {gatewayIntent && gatewayIntent !== "welcome" && (
         <GatewayModal
           intent={gatewayIntent}
           billing={searchParams.get("billing") === "yearly" ? "yearly" : "monthly"}
