@@ -223,6 +223,7 @@ const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: Ti
     section: "learn",
     tip: {
       accent: "learn",
+      navHref: "/learn",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
@@ -237,6 +238,7 @@ const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: Ti
     section: "paths",
     tip: {
       accent: "paths",
+      navHref: "/learn",  // sidebar Learn link is the closest anchor when on /paths
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
@@ -252,6 +254,7 @@ const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: Ti
     section: "workshops",
     tip: {
       accent: "workshops",
+      navHref: "/workshops",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2"/>
@@ -267,6 +270,7 @@ const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: Ti
     section: "commands",
     tip: {
       accent: "commands",
+      navHref: "/commands",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
@@ -281,6 +285,7 @@ const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: Ti
     section: "combos",
     tip: {
       accent: "combos",
+      navHref: "/combos",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
@@ -296,6 +301,7 @@ const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: Ti
     section: "practice",
     tip: {
       accent: "practice",
+      navHref: "/practice",
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="5" width="20" height="14" rx="2"/>
@@ -568,9 +574,6 @@ export function AppFrame({
           </div>
         ) : null}
 
-        {currentTip && (
-          <FirstVisitTip key={currentTip.section} section={currentTip.section} tip={currentTip.tip} />
-        )}
         <section id="content-slot">{children}</section>
       </main>
 
@@ -580,6 +583,11 @@ export function AppFrame({
         accessToken={upgradeAccessToken}
         returnTo="/dashboard"
       />
+
+      {/* Tutorial tips — position:fixed, rendered outside main flow */}
+      {currentTip && (
+        <FirstVisitTip key={currentTip.section} section={currentTip.section} tip={currentTip.tip} />
+      )}
     </div>
   );
 }
