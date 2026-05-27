@@ -16922,6 +16922,103 @@ html[data-theme="light"] .home-path-hero { border-left-color: rgba(109,40,217,0.
 html[data-theme="light"] .home-path-hero-name { color: rgba(20,20,40,0.55); }
 html[data-theme="light"] .home-path-hero-progress-label { color: rgba(20,20,40,0.35); }
 
+/* ── First-visit tips ────────────────────────────────────────────────────── */
+.fvt {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding: 14px 16px 14px 18px;
+  border-radius: 12px;
+  border-left: 3px solid var(--fvt-accent, var(--accent));
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  animation: fvtIn 0.28s ease both;
+}
+.fvt--leaving {
+  animation: fvtOut 0.28s ease forwards;
+}
+@keyframes fvtIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fvtOut {
+  from { opacity: 1; transform: translateY(0); max-height: 200px; margin-bottom: 20px; }
+  to   { opacity: 0; transform: translateY(-6px); max-height: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; overflow: hidden; }
+}
+/* Per-section accent colours */
+.fvt--learn     { --fvt-accent: #7c3aed; }
+.fvt--paths     { --fvt-accent: #2563eb; }
+.fvt--workshops { --fvt-accent: #0891b2; }
+.fvt--commands  { --fvt-accent: #059669; }
+.fvt--combos    { --fvt-accent: #d97706; }
+.fvt--practice  { --fvt-accent: #db2777; }
+
+.fvt-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--fvt-accent, var(--accent));
+  opacity: 0.85;
+}
+.fvt-body {
+  flex: 1;
+  min-width: 0;
+}
+.fvt-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(236,236,242,0.9);
+  margin-bottom: 3px;
+}
+.fvt-text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(236,236,242,0.50);
+}
+.fvt-dismiss {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  color: rgba(236,236,242,0.60);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  align-self: center;
+}
+.fvt-dismiss:hover {
+  background: rgba(255,255,255,0.10);
+  color: rgba(236,236,242,0.90);
+}
+/* Light theme */
+html[data-theme="light"] .fvt {
+  background: rgba(0,0,0,0.02);
+  border-top-color: rgba(0,0,0,0.06);
+  border-right-color: rgba(0,0,0,0.06);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+html[data-theme="light"] .fvt-title { color: rgba(20,20,40,0.88); }
+html[data-theme="light"] .fvt-text  { color: rgba(20,20,40,0.50); }
+html[data-theme="light"] .fvt-dismiss {
+  border-color: rgba(0,0,0,0.10);
+  background: rgba(0,0,0,0.04);
+  color: rgba(20,20,40,0.55);
+}
+html[data-theme="light"] .fvt-dismiss:hover {
+  background: rgba(0,0,0,0.08);
+  color: rgba(20,20,40,0.85);
+}
+
 /* ── Route card context line ─────────────────────────────────────────────── */
 .route-card-context {
   font-size: 11px;

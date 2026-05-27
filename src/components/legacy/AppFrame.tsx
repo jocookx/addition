@@ -7,6 +7,7 @@ import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { SOFTWARE_LIST, useSoftwareContext, type SoftwareId } from "@/lib/software-context";
 import { WorkshopCartButton } from "@/components/workshop-cart/WorkshopCartDrawer";
 import { UpgradeModal } from "@/components/upgrade/UpgradeModal";
+import { FirstVisitTip, type TipDef } from "@/components/tutorial/FirstVisitTip";
 
 type AppFrameProps = {
   children: React.ReactNode;
@@ -214,6 +215,106 @@ function SoftwareSwitcher() {
   );
 }
 
+// ── First-visit tips ────────────────────────────────────────────────────────
+
+const PAGE_TIPS: Array<{ match: (p: string) => boolean; section: string; tip: TipDef }> = [
+  {
+    match: (p) => p === "/learn" || p.startsWith("/learn?") || (p.startsWith("/learn/") && !p.includes("?course=")),
+    section: "learn",
+    tip: {
+      accent: "learn",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      ),
+      title: "Browse every course",
+      body: "Filter by software, level, or topic. Click any course to open the lesson list — progress is saved automatically as you go.",
+    },
+  },
+  {
+    match: (p) => p === "/paths" || p.startsWith("/paths?"),
+    section: "paths",
+    tip: {
+      accent: "paths",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+          <path d="M12 7v4M9.5 17.5L12 11M14.5 17.5L12 11"/>
+        </svg>
+      ),
+      title: "Structured learning paths",
+      body: "Each path is a curated sequence of courses — beginner to expert. Enrol once and we track every step so you always know what's next.",
+    },
+  },
+  {
+    match: (p) => p === "/workshops" || p.startsWith("/workshops?"),
+    section: "workshops",
+    tip: {
+      accent: "workshops",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      ),
+      title: "Live instructor-led workshops",
+      body: "Book a real-time session online or in person. Recordings are available after each session — so you never miss a technique.",
+    },
+  },
+  {
+    match: (p) => p === "/commands" || p.startsWith("/commands?"),
+    section: "commands",
+    tip: {
+      accent: "commands",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+      ),
+      title: "Commands reference",
+      body: "Every shortcut and command for Rhino, Grasshopper, Revit and more. Use the software switcher to filter — or search across all tools at once.",
+    },
+  },
+  {
+    match: (p) => p === "/combos" || p.startsWith("/combos?"),
+    section: "combos",
+    tip: {
+      accent: "combos",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      ),
+      title: "Command combos",
+      body: "Multi-step sequences that solve real problems fast. Each combo shows the exact key presses in order — switch software to see the right ones.",
+    },
+  },
+  {
+    match: (p) => p === "/practice" || p.startsWith("/practice?"),
+    section: "practice",
+    tip: {
+      accent: "practice",
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <path d="M9 9h6M9 12h4"/>
+          <circle cx="17" cy="16" r="2.5"/>
+          <path d="M19.5 18.5L22 21"/>
+        </svg>
+      ),
+      title: "Spaced-repetition practice",
+      body: "Addition surfaces commands you're likely to forget before you forget them. Quick flashcard sessions keep your muscle memory sharp.",
+    },
+  },
+];
+
+function useCurrentTip(pathname: string): { section: string; tip: TipDef } | null {
+  const match = PAGE_TIPS.find((entry) => entry.match(pathname));
+  return match ? { section: match.section, tip: match.tip } : null;
+}
+
 export function AppFrame({
   children,
   userName,
@@ -270,6 +371,8 @@ export function AppFrame({
   const utilityView =
     isActivePath(currentPath, "/dashboard") ||
     isActivePath(currentPath, "/settings");
+
+  const currentTip = useCurrentTip(currentPath);
 
   return (
     <div className={`app-shell${sidebarCollapsed ? " sidebar-collapsed" : ""}`}>
@@ -465,6 +568,9 @@ export function AppFrame({
           </div>
         ) : null}
 
+        {currentTip && (
+          <FirstVisitTip key={currentTip.section} section={currentTip.section} tip={currentTip.tip} />
+        )}
         <section id="content-slot">{children}</section>
       </main>
 
