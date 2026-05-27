@@ -21,6 +21,12 @@ import {
 } from "./studio-ui";
 
 type Row = CommandListItem & { _dirty?: boolean };
+type RawCommand = Partial<Omit<CommandListItem, "tags" | "intentCategories" | "objectTypes" | "outcomes">> & {
+  tags?: unknown;
+  intentCategories?: unknown;
+  objectTypes?: unknown;
+  outcomes?: unknown;
+};
 type CommandTabId = "overview" | "usage" | "teaching" | "troubleshooting" | "relationships" | "publish";
 type CommandView = "all" | "rhino" | "grasshopper" | "revit" | "beginner" | "surface" | "curve" | "unused" | "missing-troubleshooting" | "attention";
 
@@ -49,6 +55,32 @@ const COMMAND_VIEWS: SavedView[] = [
   { id: "missing-troubleshooting", label: "Missing Troubleshooting" },
   { id: "attention", label: "Needs Attention" },
 ];
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item ?? "").trim()).filter(Boolean);
+}
+
+function normalizeCommand(command: RawCommand): Row {
+  return {
+    id: String(command.id ?? `new-${Date.now()}`),
+    name: String(command.name ?? ""),
+    software: String(command.software ?? ""),
+    menu: String(command.menu ?? ""),
+    description: String(command.description ?? ""),
+    source: String(command.source ?? ""),
+    icon: String(command.icon ?? ""),
+    gif: String(command.gif ?? ""),
+    shortcut: String(command.shortcut ?? ""),
+    addon: String(command.addon ?? ""),
+    difficulty: String(command.difficulty ?? "beginner"),
+    tags: toStringArray(command.tags),
+    intentCategories: toStringArray(command.intentCategories),
+    objectTypes: toStringArray(command.objectTypes),
+    outcomes: toStringArray(command.outcomes),
+    _dirty: false,
+  };
+}
 
 function commandHealth(command: Row): HealthItem[] {
   return [
@@ -186,9 +218,9 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
         const params = new URLSearchParams({ page: String(page), limit: String(LIMIT) });
         if (query.trim()) params.set("q", query.trim());
         if (softwareFilter !== "All") params.set("software", softwareFilter);
-        const result = await fetchJson<{ commands: CommandListItem[]; total: number }>(`/api/v1/admin/commands?${params}`, { headers });
+        const result = await fetchJson<{ commands: RawCommand[]; total: number }>(`/api/v1/admin/commands?${params}`, { headers });
         if (cancelled) return;
-        const rows = result.commands.map((command) => ({ ...command, _dirty: false }));
+        const rows = (result.commands ?? []).map(normalizeCommand);
         setCommands(rows);
         setSelected((current) => current && rows.some((row) => row.id === current.id) ? current : null);
       } catch (err: unknown) {
@@ -303,7 +335,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
       const saved = isNew
         ? await fetchJson<CommandListItem>("/api/v1/admin/commands", { method: "POST", headers, body: JSON.stringify(payload) })
         : await fetchJson<CommandListItem>(`/api/v1/admin/commands/${command.id}`, { method: "PATCH", headers, body: JSON.stringify(payload) });
-      const row = { ...saved, _dirty: false };
+      const row = normalizeCommand(saved);
       setCommands((current) => current.map((item) => item.id === command.id ? row : item));
       setSelected(row);
       flash("Command saved.");

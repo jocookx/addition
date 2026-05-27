@@ -16,8 +16,30 @@ export type Instructor = {
   created_at?: string;
 };
 
+type RawInstructor = Partial<Omit<Instructor, "expertise">> & {
+  expertise?: unknown;
+};
+
 function splitCsv(value: string) {
   return value.split(",").map((item) => item.trim()).filter(Boolean);
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item ?? "").trim()).filter(Boolean);
+}
+
+function normalizeInstructor(instructor: RawInstructor): Instructor {
+  return {
+    id: String(instructor.id ?? `instructor-${Date.now()}`),
+    name: String(instructor.name ?? "New Instructor"),
+    title: String(instructor.title ?? ""),
+    studio: String(instructor.studio ?? ""),
+    bio: String(instructor.bio ?? ""),
+    expertise: toStringArray(instructor.expertise),
+    image: String(instructor.image ?? ""),
+    created_at: instructor.created_at,
+  };
 }
 
 export function InstructorsTab({ accessToken }: { accessToken: string }) {
@@ -31,8 +53,8 @@ export function InstructorsTab({ accessToken }: { accessToken: string }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetchJson<{ instructors: Instructor[] }>("/api/v1/admin/instructors", { headers })
-      .then((data) => setInstructors(data.instructors))
+    fetchJson<{ instructors: RawInstructor[] }>("/api/v1/admin/instructors", { headers })
+      .then((data) => setInstructors((data.instructors ?? []).map(normalizeInstructor)))
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Instructors failed to load."));
   }, [headers]);
 
@@ -43,26 +65,28 @@ export function InstructorsTab({ accessToken }: { accessToken: string }) {
 
   async function createInstructor() {
     const name = newName.trim() || "New Instructor";
-    const created = await fetchJson<Instructor>("/api/v1/admin/instructors", {
+    const created = await fetchJson<RawInstructor>("/api/v1/admin/instructors", {
       method: "POST",
       headers,
       body: JSON.stringify({ name, title: "Instructor" }),
     });
-    setInstructors((current) => [created, ...current]);
-    setSelected(created);
+    const normalized = normalizeInstructor(created);
+    setInstructors((current) => [normalized, ...current]);
+    setSelected(normalized);
     setNewName("");
     flash("Instructor created.");
   }
 
   async function saveInstructor(instructor = selected) {
     if (!instructor) return;
-    const updated = await fetchJson<Instructor>(`/api/v1/admin/instructors/${encodeURIComponent(instructor.id)}`, {
+    const updated = await fetchJson<RawInstructor>(`/api/v1/admin/instructors/${encodeURIComponent(instructor.id)}`, {
       method: "PATCH",
       headers,
       body: JSON.stringify(instructor),
     });
-    setInstructors((current) => current.map((item) => item.id === updated.id ? updated : item));
-    setSelected(updated);
+    const normalized = normalizeInstructor(updated);
+    setInstructors((current) => current.map((item) => item.id === normalized.id ? normalized : item));
+    setSelected(normalized);
     flash("Instructor saved.");
   }
 

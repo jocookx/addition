@@ -25,10 +25,44 @@ type ProblemEntry = {
   updated_at: string;
 };
 
+type RawProblemEntry = Partial<Omit<ProblemEntry, "alternative_phrasings" | "linked_commands" | "linked_combos" | "linked_lessons" | "linked_courses" | "tags">> & {
+  alternative_phrasings?: unknown;
+  linked_commands?: unknown;
+  linked_combos?: unknown;
+  linked_lessons?: unknown;
+  linked_courses?: unknown;
+  tags?: unknown;
+};
+
 const SOFTWARE = ["", ...LAUNCH_SOFTWARE];
 const STATUS = ["Draft", "Ready to Review", "Published", "Archived"];
 const DIFFICULTY = ["beginner", "intermediate", "advanced"];
 function splitCsv(value: string) { return value.split(",").map((item) => item.trim()).filter(Boolean); }
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item ?? "").trim()).filter(Boolean);
+}
+function normalizeProblemEntry(entry: RawProblemEntry): ProblemEntry {
+  return {
+    id: String(entry.id ?? `problem-${Date.now()}`),
+    question: String(entry.question ?? "Untitled learner question"),
+    alternative_phrasings: toStringArray(entry.alternative_phrasings),
+    software: String(entry.software ?? ""),
+    intent: String(entry.intent ?? ""),
+    difficulty: String(entry.difficulty ?? "beginner"),
+    short_answer: String(entry.short_answer ?? ""),
+    detailed_answer: String(entry.detailed_answer ?? ""),
+    linked_commands: toStringArray(entry.linked_commands),
+    linked_combos: toStringArray(entry.linked_combos),
+    linked_lessons: toStringArray(entry.linked_lessons),
+    linked_courses: toStringArray(entry.linked_courses),
+    common_mistakes: String(entry.common_mistakes ?? ""),
+    tags: toStringArray(entry.tags),
+    frequency: typeof entry.frequency === "number" ? entry.frequency : Number(entry.frequency ?? 0) || 0,
+    status: String(entry.status ?? "Draft"),
+    updated_at: String(entry.updated_at ?? ""),
+  };
+}
 
 export function ProblemSolverTab({ accessToken }: { accessToken: string }) {
   const headers = useMemo(() => ({ "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` }), [accessToken]);
@@ -41,8 +75,8 @@ export function ProblemSolverTab({ accessToken }: { accessToken: string }) {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    fetchJson<{ entries: ProblemEntry[] }>("/api/v1/admin/problem-solver", { headers })
-      .then((data) => setEntries(data.entries))
+    fetchJson<{ entries: RawProblemEntry[] }>("/api/v1/admin/problem-solver", { headers })
+      .then((data) => setEntries((data.entries ?? []).map(normalizeProblemEntry)))
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Problem Solver failed to load."));
   }, [headers]);
 
@@ -50,18 +84,20 @@ export function ProblemSolverTab({ accessToken }: { accessToken: string }) {
 
   async function createEntry() {
     const question = newQuestion.trim() || "Untitled learner question";
-    const created = await fetchJson<ProblemEntry>("/api/v1/admin/problem-solver", { method: "POST", headers, body: JSON.stringify({ question }) });
-    setEntries((current) => [created, ...current]);
-    setSelected(created);
+    const created = await fetchJson<RawProblemEntry>("/api/v1/admin/problem-solver", { method: "POST", headers, body: JSON.stringify({ question }) });
+    const normalized = normalizeProblemEntry(created);
+    setEntries((current) => [normalized, ...current]);
+    setSelected(normalized);
     setNewQuestion("");
     flash("Problem Solver entry created.");
   }
 
   async function saveEntry(entry = selected) {
     if (!entry) return;
-    const updated = await fetchJson<ProblemEntry>(`/api/v1/admin/problem-solver/${entry.id}`, { method: "PATCH", headers, body: JSON.stringify(entry) });
-    setEntries((current) => current.map((item) => item.id === updated.id ? updated : item));
-    setSelected(updated);
+    const updated = await fetchJson<RawProblemEntry>(`/api/v1/admin/problem-solver/${entry.id}`, { method: "PATCH", headers, body: JSON.stringify(entry) });
+    const normalized = normalizeProblemEntry(updated);
+    setEntries((current) => current.map((item) => item.id === normalized.id ? normalized : item));
+    setSelected(normalized);
     flash("Entry saved.");
   }
 

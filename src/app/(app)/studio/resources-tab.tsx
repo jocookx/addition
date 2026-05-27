@@ -22,6 +22,12 @@ type Resource = {
   updated_at: string;
 };
 
+type RawResource = Partial<Omit<Resource, "linked_lessons" | "linked_courses" | "tags">> & {
+  linked_lessons?: unknown;
+  linked_courses?: unknown;
+  tags?: unknown;
+};
+
 const RESOURCE_TYPES = ["Exercise file", "Template", "PDF", "Image", "Video", "Link", "Dataset", "Model file", "Script", "Reference"];
 const SOFTWARE = ["", ...LAUNCH_SOFTWARE];
 const ACCESS = ["Free", "Pro", "Student", "Workshop", "Admin only"];
@@ -29,6 +35,29 @@ const STATUS = ["Draft", "Ready to Review", "Published", "Archived"];
 
 function splitCsv(value: string) {
   return value.split(",").map((item) => item.trim()).filter(Boolean);
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item ?? "").trim()).filter(Boolean);
+}
+
+function normalizeResource(resource: RawResource): Resource {
+  return {
+    id: String(resource.id ?? `resource-${Date.now()}`),
+    title: String(resource.title ?? "Untitled Resource"),
+    type: String(resource.type ?? "Link"),
+    software: String(resource.software ?? ""),
+    file_url: String(resource.file_url ?? ""),
+    external_url: String(resource.external_url ?? ""),
+    description: String(resource.description ?? ""),
+    access_level: String(resource.access_level ?? "Free"),
+    linked_lessons: toStringArray(resource.linked_lessons),
+    linked_courses: toStringArray(resource.linked_courses),
+    status: String(resource.status ?? "Draft"),
+    tags: toStringArray(resource.tags),
+    updated_at: String(resource.updated_at ?? ""),
+  };
 }
 
 export function ResourcesTab({ accessToken }: { accessToken: string }) {
@@ -44,8 +73,8 @@ export function ResourcesTab({ accessToken }: { accessToken: string }) {
   const [newTitle, setNewTitle] = useState("");
 
   useEffect(() => {
-    fetchJson<{ resources: Resource[] }>("/api/v1/admin/resources", { headers })
-      .then((data) => setResources(data.resources))
+    fetchJson<{ resources: RawResource[] }>("/api/v1/admin/resources", { headers })
+      .then((data) => setResources((data.resources ?? []).map(normalizeResource)))
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Resources failed to load."));
   }, [headers]);
 
@@ -56,26 +85,28 @@ export function ResourcesTab({ accessToken }: { accessToken: string }) {
 
   async function createResource() {
     const title = newTitle.trim() || "Untitled Resource";
-    const created = await fetchJson<Resource>("/api/v1/admin/resources", {
+    const created = await fetchJson<RawResource>("/api/v1/admin/resources", {
       method: "POST",
       headers,
       body: JSON.stringify({ title, type: "Link", status: "Draft", access_level: "Free" }),
     });
-    setResources((current) => [created, ...current]);
-    setSelected(created);
+    const normalized = normalizeResource(created);
+    setResources((current) => [normalized, ...current]);
+    setSelected(normalized);
     setNewTitle("");
     flash("Resource created.");
   }
 
   async function saveResource(resource = selected) {
     if (!resource) return;
-    const updated = await fetchJson<Resource>(`/api/v1/admin/resources/${resource.id}`, {
+    const updated = await fetchJson<RawResource>(`/api/v1/admin/resources/${resource.id}`, {
       method: "PATCH",
       headers,
       body: JSON.stringify(resource),
     });
-    setResources((current) => current.map((item) => item.id === updated.id ? updated : item));
-    setSelected(updated);
+    const normalized = normalizeResource(updated);
+    setResources((current) => current.map((item) => item.id === normalized.id ? normalized : item));
+    setSelected(normalized);
     flash("Resource saved.");
   }
 

@@ -82,6 +82,64 @@ function asNumber(value: unknown, fallback: number): number {
   return typeof value === "number" && Number.isFinite(value) ? value : fallback;
 }
 
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item ?? "").trim()).filter(Boolean);
+}
+
+function normalizeDeck(deck: Partial<FlashcardDeck>): FlashcardDeck {
+  return {
+    id: String(deck.id ?? `deck-${Date.now()}`),
+    title: String(deck.title ?? "Untitled Practice Task"),
+    software: String(deck.software ?? ""),
+    topic: String(deck.topic ?? ""),
+    description: String(deck.description ?? ""),
+    sort_order: asNumber(deck.sort_order, 0),
+    published: Boolean(deck.published),
+  };
+}
+
+function normalizeCard(card: Partial<Flashcard>): Flashcard {
+  return {
+    id: String(card.id ?? `card-${Date.now()}`),
+    deck_id: String(card.deck_id ?? ""),
+    front: String(card.front ?? ""),
+    back: String(card.back ?? ""),
+    hint: String(card.hint ?? ""),
+    sort_order: asNumber(card.sort_order, 0),
+  };
+}
+
+function normalizeQuestion(question: Partial<Omit<QuizQuestion, "options" | "tags">> & { options?: unknown; tags?: unknown }): QuizQuestion {
+  const type = question.question_type === "tf" || question.question_type === "short" ? question.question_type : "mc";
+  return {
+    id: String(question.id ?? `question-${Date.now()}`),
+    software: String(question.software ?? ""),
+    topic: String(question.topic ?? ""),
+    question_text: String(question.question_text ?? "Untitled quiz question"),
+    question_type: type,
+    options: toStringArray(question.options),
+    correct_answer: String(question.correct_answer ?? ""),
+    explanation: String(question.explanation ?? ""),
+    difficulty: String(question.difficulty ?? "beginner"),
+    tags: toStringArray(question.tags),
+    published: Boolean(question.published),
+  };
+}
+
+function normalizeCertificate(cert: Partial<Omit<Certificate, "question_ids">> & { question_ids?: unknown }): Certificate {
+  return {
+    id: String(cert.id ?? `certificate-${Date.now()}`),
+    title: String(cert.title ?? "Untitled Certificate"),
+    software: String(cert.software ?? ""),
+    description: String(cert.description ?? ""),
+    passing_score: asNumber(cert.passing_score, 80),
+    question_ids: toStringArray(cert.question_ids),
+    badge_image: String(cert.badge_image ?? ""),
+    published: Boolean(cert.published),
+  };
+}
+
 function Notice({ ok, err, onClose }: { ok: string; err: string; onClose: () => void }) {
   if (ok) return <div className="st-notice st-notice--ok">{ok}</div>;
   if (err) return <div className="st-notice st-notice--err">{err} <button type="button" onClick={onClose}>x</button></div>;
@@ -107,7 +165,7 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
 
   useEffect(() => {
     fetchJson<{ decks: FlashcardDeck[] }>("/api/v1/admin/practice/flashcard-decks", { headers })
-      .then(({ decks: data }) => setDecks(data))
+      .then(({ decks: data }) => setDecks((data ?? []).map(normalizeDeck)))
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Decks failed to load."));
   }, [headers]);
 
@@ -116,7 +174,7 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
       return;
     }
     fetchJson<{ cards: Flashcard[] }>(`/api/v1/admin/practice/flashcards?deck_id=${selected.id}`, { headers })
-      .then(({ cards: data }) => setCards(data))
+      .then(({ cards: data }) => setCards((data ?? []).map(normalizeCard)))
       .catch(() => setCards([]));
   }, [headers, selected]);
 
@@ -132,8 +190,9 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
       headers,
       body: JSON.stringify({ title }),
     });
-    setDecks((current) => [created, ...current]);
-    setSelected(created);
+    const normalized = normalizeDeck(created);
+    setDecks((current) => [normalized, ...current]);
+    setSelected(normalized);
     setNewTitle("");
     flash("Deck created.");
   }
@@ -145,8 +204,9 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
       headers,
       body: JSON.stringify(deck),
     });
-    setDecks((current) => current.map((item) => item.id === updated.id ? updated : item));
-    setSelected(updated);
+    const normalized = normalizeDeck(updated);
+    setDecks((current) => current.map((item) => item.id === normalized.id ? normalized : item));
+    setSelected(normalized);
     flash("Deck saved.");
   }
 
@@ -165,7 +225,7 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
       headers,
       body: JSON.stringify({ deck_id: selected.id, front: cardFront.trim(), back: cardBack.trim(), hint: cardHint.trim(), sort_order: cards.length }),
     });
-    setCards((current) => [...current, created]);
+    setCards((current) => [...current, normalizeCard(created)]);
     setCardFront("");
     setCardBack("");
     setCardHint("");
@@ -204,11 +264,12 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
         topic: asString(fields.topic) || deck.topic,
         description: asString(fields.description) || deck.description,
       };
-      const savedDeck = await fetchJson<FlashcardDeck>(`/api/v1/admin/practice/flashcard-decks/${deck.id}`, {
+      const savedDeckResponse = await fetchJson<FlashcardDeck>(`/api/v1/admin/practice/flashcard-decks/${deck.id}`, {
         method: "PATCH",
         headers,
         body: JSON.stringify(nextDeck),
       });
+      const savedDeck = normalizeDeck(savedDeckResponse);
       const createdCards = await Promise.all(cardsPayload.map((item, index) => {
         const record = item && typeof item === "object" ? item as Record<string, unknown> : {};
         return fetchJson<Flashcard>("/api/v1/admin/practice/flashcards", {
@@ -227,7 +288,7 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
         ? current.map((item) => item.id === savedDeck.id ? savedDeck : item)
         : [savedDeck, ...current]);
       setSelected(savedDeck);
-      setCards((current) => [...current, ...createdCards]);
+      setCards((current) => [...current, ...createdCards.map(normalizeCard)]);
       flash(`AI generated ${createdCards.length} cards.`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "AI deck generation failed.");
@@ -350,7 +411,7 @@ function QuizSection({ accessToken }: { accessToken: string }) {
 
   useEffect(() => {
     fetchJson<{ questions: QuizQuestion[] }>("/api/v1/admin/practice/quiz-questions", { headers })
-      .then(({ questions: data }) => setQuestions(data))
+      .then(({ questions: data }) => setQuestions((data ?? []).map(normalizeQuestion)))
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Questions failed to load."));
   }, [headers]);
 
@@ -362,8 +423,9 @@ function QuizSection({ accessToken }: { accessToken: string }) {
   async function createQuestion() {
     const question = newText.trim() || "Untitled quiz question";
     const created = await fetchJson<QuizQuestion>("/api/v1/admin/practice/quiz-questions", { method: "POST", headers, body: JSON.stringify({ question_text: question, question_type: "mc" }) });
-    setQuestions((current) => [created, ...current]);
-    setSelected(created);
+    const normalized = normalizeQuestion(created);
+    setQuestions((current) => [normalized, ...current]);
+    setSelected(normalized);
     setNewText("");
     flash("Question created.");
   }
@@ -371,8 +433,9 @@ function QuizSection({ accessToken }: { accessToken: string }) {
   async function saveQuestion(question = selected) {
     if (!question) return;
     const updated = await fetchJson<QuizQuestion>(`/api/v1/admin/practice/quiz-questions/${question.id}`, { method: "PATCH", headers, body: JSON.stringify(question) });
-    setQuestions((current) => current.map((item) => item.id === updated.id ? updated : item));
-    setSelected(updated);
+    const normalized = normalizeQuestion(updated);
+    setQuestions((current) => current.map((item) => item.id === normalized.id ? normalized : item));
+    setSelected(normalized);
     flash("Question saved.");
   }
 
@@ -431,8 +494,9 @@ function QuizSection({ accessToken }: { accessToken: string }) {
       const saved = selected
         ? await fetchJson<QuizQuestion>(`/api/v1/admin/practice/quiz-questions/${selected.id}`, { method: "PATCH", headers, body: JSON.stringify({ ...selected, ...payload }) })
         : await fetchJson<QuizQuestion>("/api/v1/admin/practice/quiz-questions", { method: "POST", headers, body: JSON.stringify(payload) });
-      setQuestions((current) => current.some((item) => item.id === saved.id) ? current.map((item) => item.id === saved.id ? saved : item) : [saved, ...current]);
-      setSelected(saved);
+      const normalized = normalizeQuestion(saved);
+      setQuestions((current) => current.some((item) => item.id === normalized.id) ? current.map((item) => item.id === normalized.id ? normalized : item) : [normalized, ...current]);
+      setSelected(normalized);
       setNewText("");
       flash("AI quiz question generated.");
     } catch (err) {
@@ -546,8 +610,8 @@ function CertificatesSection({ accessToken }: { accessToken: string }) {
       fetchJson<{ certificates: Certificate[] }>("/api/v1/admin/practice/certificates", { headers }),
       fetchJson<{ questions: QuizQuestion[] }>("/api/v1/admin/practice/quiz-questions", { headers }),
     ]).then(([certData, questionData]) => {
-      setCerts(certData.certificates);
-      setQuestions(questionData.questions.filter((item) => item.published));
+      setCerts((certData.certificates ?? []).map(normalizeCertificate));
+      setQuestions((questionData.questions ?? []).map(normalizeQuestion).filter((item) => item.published));
     }).catch((err: unknown) => setError(err instanceof Error ? err.message : "Certificates failed to load."));
   }, [headers]);
 
@@ -556,8 +620,9 @@ function CertificatesSection({ accessToken }: { accessToken: string }) {
   async function createCert() {
     const title = newTitle.trim() || "Untitled Certificate";
     const created = await fetchJson<Certificate>("/api/v1/admin/practice/certificates", { method: "POST", headers, body: JSON.stringify({ title }) });
-    setCerts((current) => [created, ...current]);
-    setSelected(created);
+    const normalized = normalizeCertificate(created);
+    setCerts((current) => [normalized, ...current]);
+    setSelected(normalized);
     setNewTitle("");
     flash("Certificate created.");
   }
@@ -565,8 +630,9 @@ function CertificatesSection({ accessToken }: { accessToken: string }) {
   async function saveCert(cert = selected) {
     if (!cert) return;
     const updated = await fetchJson<Certificate>(`/api/v1/admin/practice/certificates/${cert.id}`, { method: "PATCH", headers, body: JSON.stringify(cert) });
-    setCerts((current) => current.map((item) => item.id === updated.id ? updated : item));
-    setSelected(updated);
+    const normalized = normalizeCertificate(updated);
+    setCerts((current) => current.map((item) => item.id === normalized.id ? normalized : item));
+    setSelected(normalized);
     flash("Certificate saved.");
   }
 
@@ -616,8 +682,9 @@ function CertificatesSection({ accessToken }: { accessToken: string }) {
       const saved = selected
         ? await fetchJson<Certificate>(`/api/v1/admin/practice/certificates/${selected.id}`, { method: "PATCH", headers, body: JSON.stringify({ ...selected, ...payload }) })
         : await fetchJson<Certificate>("/api/v1/admin/practice/certificates", { method: "POST", headers, body: JSON.stringify(payload) });
-      setCerts((current) => current.some((item) => item.id === saved.id) ? current.map((item) => item.id === saved.id ? saved : item) : [saved, ...current]);
-      setSelected(saved);
+      const normalized = normalizeCertificate(saved);
+      setCerts((current) => current.some((item) => item.id === normalized.id) ? current.map((item) => item.id === normalized.id ? normalized : item) : [normalized, ...current]);
+      setSelected(normalized);
       setNewTitle("");
       flash("AI certificate generated.");
     } catch (err) {
