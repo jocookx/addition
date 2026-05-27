@@ -20,6 +20,7 @@ import { getPaths, getPathDetail, getMyEnrolments, enrolInPath } from "@/lib/api
 import { getMyRegisteredWorkshops } from "@/lib/api/workshops";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
+import { useToast } from "@/components/toast/ToastContext";
 
 // ── Types & helpers ─────────────────────────────────────────────────────────
 
@@ -384,6 +385,7 @@ function OnboardingWizard({
   token: string;
   onComplete: (enrolledPathId: string | null) => void;
 }) {
+  const toast = useToast();
   const [step, setStep]               = useState<"role" | "software" | "path">("role");
   const [role, setRole]               = useState("");
   const [software, setSoftware]       = useState("");
@@ -404,6 +406,12 @@ function OnboardingWizard({
       }).catch(() => {});
     } catch { /* non-critical — proceed */ }
     setBusy(false);
+    if (pathId) {
+      const pathTitle = paths.find((p) => p.id === pathId)?.title ?? "your path";
+      toast({ type: "success", title: "You're on the path!", body: `Starting: ${pathTitle}` });
+    } else {
+      toast({ type: "success", title: "Welcome to Addition!", body: "Your experience has been personalised." });
+    }
     onComplete(pathId || null);
   }
 

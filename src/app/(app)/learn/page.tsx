@@ -18,6 +18,7 @@ import { AppFrame } from "@/components/legacy/AppFrame";
 import { normalizeSoftwareLabel, useSoftwareContext, SOFTWARE_LIST } from "@/lib/software-context";
 import { rankBySmartMatchWithMeta, type SmartMatchMeta } from "@/lib/search/smart-match";
 import type { LearningPathDetail, LearningPathListItem } from "@/domain/learning-path";
+import { useToast } from "@/components/toast/ToastContext";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -197,6 +198,7 @@ export default function LearnPage() {
 function LearnPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const toast = useToast();
 
   const [supabase] = useState<SupabaseClient | null>(() => getBrowserSupabaseClient());
   const [session, setSession] = useState<Session | null>(null);
@@ -408,6 +410,11 @@ function LearnPageInner() {
       const updated = await completeLesson(token, activeCourseId, selectedLessonId);
       setProgress(updated);
       if (nextLesson) setSelectedLessonId(nextLesson.id);
+      toast({
+        type: "success",
+        title: "Lesson complete!",
+        body: nextLesson ? `Up next: ${nextLesson.title}` : "All lessons done — great work!",
+      });
     } catch (e) { setError(parseError(e)); }
     finally { setBusy(false); }
   }
