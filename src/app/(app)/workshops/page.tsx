@@ -219,6 +219,12 @@ export default function WorkshopsPage() {
 
   const next = upcomingCohorts[0] ?? null;
   const nextDays = next ? daysUntil(next.firstDate) : null;
+  const filtersActive = track !== "All" || level !== "All";
+
+  function clearFilters() {
+    setTrack("All");
+    setLevel("All");
+  }
 
   return (
     <AppFrame title="" subtitle="" topTabs={[]}>
@@ -286,18 +292,32 @@ export default function WorkshopsPage() {
           <div className="ws-loading-pulse" />
         </div>
       ) : error ? (
-        <p className="meta" style={{ color: "var(--danger)", padding: "24px 0" }}>{error}</p>
+        <div className="ws-empty-state">
+          <div className="ws-empty-icon">!</div>
+          <h3>Workshops could not load</h3>
+          <p className="meta">{error}</p>
+          <div className="legacy-card-actions">
+            <button type="button" className="primary-button" onClick={() => window.location.reload()}>Try again</button>
+            <Link className="ghost-btn" href="/learn">Browse courses</Link>
+          </div>
+        </div>
       ) : (
         <>
           {/* Upcoming */}
           {filteredUpcoming.length === 0 ? (
             <div className="ws-empty-state">
-              <div className="ws-empty-icon">◎</div>
-              <h3>No upcoming workshops match your filters</h3>
-              <p className="meta">Try a different track or level, or check back soon for new cohorts.</p>
-              <button type="button" className="ghost-btn" onClick={() => { setTrack("All"); setLevel("All"); }}>
-                Clear filters
-              </button>
+              <div className="ws-empty-icon">o</div>
+              <h3>{filtersActive ? "No upcoming workshops match your filters" : "No upcoming workshops yet"}</h3>
+              <p className="meta">
+                {filtersActive
+                  ? "Try a different track or level."
+                  : "New live cohorts will appear here when they are scheduled. You can keep learning through courses and practice in the meantime."}
+              </p>
+              <div className="legacy-card-actions">
+                {filtersActive ? <button type="button" className="ghost-btn" onClick={clearFilters}>Clear filters</button> : null}
+                <Link className="primary-button" href="/learn">Browse courses</Link>
+                <Link className="ghost-btn" href="/practice">Practise commands</Link>
+              </div>
             </div>
           ) : (
             <>

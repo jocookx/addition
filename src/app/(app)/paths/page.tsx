@@ -51,24 +51,35 @@ export default function PathsPage() {
   const [paths, setPaths]           = useState<LearningPathListItem[]>([]);
   const [enrolments, setEnrolments] = useState<Set<string>>(new Set());
   const [loading, setLoading]       = useState(true);
+  const [error, setError]           = useState("");
   const [filter, setFilter]         = useState<PathLevel | "all">("all");
 
   useEffect(() => {
     const supabase = getBrowserSupabaseClient();
-    if (!supabase) return;
+    if (!supabase) {
+      setError("Learning paths need the app connection to finish loading.");
+      setLoading(false);
+      return;
+    }
     let canceled = false;
     supabase.auth.getSession().then(async ({ data }) => {
-      const t = data.session?.access_token ?? null;
-      if (canceled) return;
-      if (!t) { router.replace("/auth?next=/paths"); return; }
-      const [fetchedPaths, fetchedEnrolments] = await Promise.all([
-        getPaths().catch(() => [] as LearningPathListItem[]),
-        getMyEnrolments(t).catch(() => []),
-      ]);
-      if (canceled) return;
-      setPaths(fetchedPaths);
-      setEnrolments(new Set(fetchedEnrolments.map((e) => e.pathId)));
-      setLoading(false);
+      try {
+        const t = data.session?.access_token ?? null;
+        if (canceled) return;
+        if (!t) { router.replace("/auth?next=/paths"); return; }
+        const [fetchedPaths, fetchedEnrolments] = await Promise.all([
+          getPaths(),
+          getMyEnrolments(t).catch(() => []),
+        ]);
+        if (canceled) return;
+        setPaths(fetchedPaths);
+        setEnrolments(new Set(fetchedEnrolments.map((e) => e.pathId)));
+        setError("");
+      } catch (err) {
+        if (!canceled) setError(err instanceof Error ? err.message : "Learning paths failed to load.");
+      } finally {
+        if (!canceled) setLoading(false);
+      }
     });
     return () => { canceled = true; };
   }, [router]);
@@ -94,11 +105,22 @@ export default function PathsPage() {
         <div className="pl-grid">
           {[1, 2, 3].map((i) => <div key={i} className="pl-card pl-card--skeleton" />)}
         </div>
+      ) : error ? (
+        <div className="ws-empty-state">
+          <div className="ws-empty-icon">!</div>
+          <h3>Learning paths could not load</h3>
+          <p className="meta">{error}</p>
+          <div className="legacy-card-actions">
+            <button type="button" className="primary-button" onClick={() => window.location.reload()}>Try again</button>
+            <Link className="ghost-btn" href="/learn">Browse courses</Link>
+          </div>
+        </div>
       ) : paths.length === 0 ? (
         <div className="ws-empty-state">
-          <div className="ws-empty-icon">◎</div>
+          <div className="ws-empty-icon">o</div>
           <h3>Paths coming soon</h3>
-          <p className="meta">We&apos;re assembling the first learning paths — check back shortly.</p>
+          <p className="meta">We&apos;re assembling the first learning paths. Browse courses while paths are being prepared.</p>
+          <Link className="primary-button" href="/learn">Browse courses</Link>
         </div>
       ) : (
         <>
@@ -108,7 +130,15 @@ export default function PathsPage() {
             ))}
           </div>
           {filtered.length === 0 && (
-            <p className="meta" style={{ marginTop: 24 }}>No paths at this level yet.</p>
+            <div className="ws-empty-state">
+              <div className="ws-empty-icon">o</div>
+              <h3>No paths at this level yet</h3>
+              <p className="meta">Try another level or browse all courses.</p>
+              <div className="legacy-card-actions">
+                <button type="button" className="ghost-btn" onClick={() => setFilter("all")}>Show all levels</button>
+                <Link className="primary-button" href="/learn">Browse courses</Link>
+              </div>
+            </div>
           )}
         </>
       )}

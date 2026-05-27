@@ -59,6 +59,14 @@ export default function ResourcesPage() {
 
   const softwareOptions = useMemo(() => ["All", ...Array.from(new Set(resources.map((item) => item.software).filter(Boolean))).sort()], [resources]);
   const typeOptions = useMemo(() => ["All", ...Array.from(new Set(resources.map((item) => item.type).filter(Boolean))).sort()], [resources]);
+  const hasActiveFilters = Boolean(search.trim() || software !== "All" || type !== "All" || access !== "All");
+
+  function clearFilters() {
+    setSearch("");
+    setSoftware("All");
+    setType("All");
+    setAccess("All");
+  }
 
   return (
     <AppFrame title="Resources" subtitle="Short files, templates and references for digital design work." topTabs={[]}>
@@ -77,13 +85,31 @@ export default function ResourcesPage() {
           <label><span>Access</span><select value={access} onChange={(event) => setAccess(event.target.value)}>{ACCESS_FILTERS.map((item) => <option key={item}>{item}</option>)}</select></label>
         </div>
 
-        {error ? <p className="meta" style={{ color: "var(--danger)" }}>{error}</p> : null}
-
-        {!loading && resources.length === 0 ? (
-          <div style={{ padding: "28px 0", textAlign: "center" }}>
-            <p className="meta">No published resources match this view.</p>
+        {error ? (
+          <div className="ws-empty-state">
+            <div className="ws-empty-icon">!</div>
+            <h3>Resources could not load</h3>
+            <p className="meta">{error}</p>
+            <button type="button" className="primary-button" onClick={() => window.location.reload()}>Try again</button>
           </div>
-        ) : (
+        ) : null}
+
+        {!error && !loading && resources.length === 0 ? (
+          <div className="ws-empty-state">
+            <div className="ws-empty-icon">o</div>
+            <h3>{hasActiveFilters ? "No resources match this view" : "Resources are being prepared"}</h3>
+            <p className="meta">
+              {hasActiveFilters
+                ? "Clear your filters or try a broader search."
+                : "Published files, templates and references will appear here when they are ready."}
+            </p>
+            <div className="legacy-card-actions">
+              {hasActiveFilters ? <button type="button" className="primary-button" onClick={clearFilters}>Clear filters</button> : null}
+              <Link href="/toolkit" className="ghost-btn">Open toolkit</Link>
+              <Link href="/learn" className="ghost-btn">Browse courses</Link>
+            </div>
+          </div>
+        ) : !error ? (
           <div className="toolkit-grid">
             {resources.map((resource) => (
               <article key={resource.id} className="panel toolkit-card">
@@ -112,7 +138,7 @@ export default function ResourcesPage() {
               </article>
             ))}
           </div>
-        )}
+        ) : null}
       </section>
     </AppFrame>
   );
