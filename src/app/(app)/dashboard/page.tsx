@@ -534,10 +534,216 @@ function OnboardingWizard({
   );
 }
 
-// ── Tab content stubs ──────────────────────────────────────────────────────
+// ── My Paths section ──────────────────────────────────────────────────────
 
-function ProgressTab() {
-  return <div className="dash-tab-empty glass-panel">My Progress — coming next.</div>;
+function MyPathsSection({
+  enrolledPaths,
+  activePath,
+}: {
+  enrolledPaths: LearningPathListItem[];
+  activePath: ActivePathSummary | null;
+}) {
+  const router = useRouter();
+  if (enrolledPaths.length === 0) return null; // ContinueHero already has a Join Path CTA
+
+  return (
+    <div className="my-paths-section">
+      <div className="my-paths-header">
+        <h3 className="dash-section-title">My Paths</h3>
+        <Link href="/paths" className="dash-section-more" style={{ textDecoration: "none" }}>
+          Browse all →
+        </Link>
+      </div>
+      <div className="my-paths-list">
+        {enrolledPaths.map((path) => {
+          const isActive = path.id === activePath?.pathId;
+          const pct = isActive ? activePath!.percent : 0;
+          const done = isActive ? activePath!.completedCourses : 0;
+          const total = isActive ? activePath!.totalCourses : path.courseCount;
+          return (
+            <div key={path.id} className={`my-path-card glass-panel${isActive ? " is-active" : ""}`}>
+              <div className="my-path-card-left">
+                <div className="my-path-card-top">
+                  <span className={`pl-level-badge pl-level-badge--${path.level}`}>
+                    {LEVEL_LABELS[path.level] ?? path.level}
+                  </span>
+                  {isActive && <span className="my-path-card-active-pip">Active</span>}
+                </div>
+                <strong className="my-path-card-title">{path.title}</strong>
+                <div className="my-path-card-meta">
+                  {path.software.map((sw) => <span key={sw} className="pl-sw-tag">{sw}</span>)}
+                </div>
+                {isActive && (
+                  <div className="my-path-card-progress">
+                    <div className="my-path-card-bar">
+                      <span style={{ width: `${pct}%` }} />
+                    </div>
+                    <span>{pct}% · {done}/{total} courses</span>
+                  </div>
+                )}
+              </div>
+              <button
+                type="button"
+                className="ghost-btn my-path-card-cta"
+                onClick={() => router.push(`/paths/${path.id}`)}
+              >
+                {isActive ? "Continue →" : "Open →"}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── My Workshops section ───────────────────────────────────────────────────
+
+function MyWorkshopsSection({ workshops }: { workshops: UpcomingWorkshop[] }) {
+  const future = workshops.filter(isFutureWorkshop);
+  if (future.length === 0) {
+    return (
+      <div className="my-ws-empty glass-panel">
+        <div className="my-ws-empty-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div className="my-ws-empty-body">
+          <span className="my-ws-empty-label">My Workshops</span>
+          <p className="my-ws-empty-text">Join a live session with an instructor — online or in person.</p>
+        </div>
+        <Link href="/workshops" className="primary-button my-ws-empty-cta" style={{ textDecoration: "none" }}>
+          Browse workshops →
+        </Link>
+      </div>
+    );
+  }
+  return (
+    <div className="my-ws-section">
+      <div className="my-ws-header">
+        <h3 className="dash-section-title">My Workshops</h3>
+        <Link href="/workshops" className="dash-section-more" style={{ textDecoration: "none" }}>
+          View all →
+        </Link>
+      </div>
+      <div className="my-ws-list">
+        {future.slice(0, 3).map((ws) => {
+          const date = new Date(ws.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+          return (
+            <Link
+              key={ws.id}
+              href={getWorkshopHref(ws.id)}
+              className="my-ws-row glass-panel"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              {ws.image
+                ? <img className="my-ws-row-img" src={ws.image} alt="" aria-hidden="true" />
+                : <span className="my-ws-row-img my-ws-row-img--empty" aria-hidden="true" />}
+              <div className="my-ws-row-body">
+                <strong className="my-ws-row-title">{ws.title}</strong>
+                <span className="my-ws-row-meta">
+                  {date}{ws.time ? ` · ${ws.time}` : ""}{ws.duration ? ` · ${ws.duration}` : ""}
+                </span>
+                <span className="my-ws-row-format">{ws.format === "in-person" ? "In person" : "Online"}</span>
+              </div>
+              <span className="my-ws-row-cta">View →</span>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── Real progress tab ──────────────────────────────────────────────────────
+
+function ProgressTab({ summary }: { summary: LearningSummary | null }) {
+  if (!summary) {
+    return <div className="dash-tab-empty glass-panel">Loading your progress…</div>;
+  }
+  const { totals, courses, activity } = summary;
+  const activeCourses = courses.filter((c) => c.status === "active" || c.status === "completed");
+  const maxDay = Math.max(...activity.days.map((d) => d.count), 1);
+
+  return (
+    <div className="dash-progress">
+      {/* Stats */}
+      <div className="progress-stats">
+        {[
+          { label: "Lessons done",    value: totals.completedLessons },
+          { label: "Courses done",    value: totals.completedCourses },
+          { label: "Day streak",      value: totals.streakDays },
+          { label: "Commands practised", value: totals.practicedCommands },
+        ].map(({ label, value }) => (
+          <div key={label} className="progress-stat glass-panel">
+            <span className="progress-stat-value">{value}</span>
+            <span className="progress-stat-label">{label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Activity bar chart (last 14 days) */}
+      {activity.days.length > 0 && (
+        <div className="progress-activity glass-panel">
+          <h3 className="dash-section-title" style={{ marginBottom: 14 }}>Recent Activity</h3>
+          <div className="progress-activity-bars">
+            {activity.days.slice(-14).map((d) => (
+              <div key={d.day} className="progress-activity-col" title={`${d.day}: ${d.count} actions`}>
+                <div
+                  className="progress-activity-bar"
+                  style={{ height: `${Math.round((d.count / maxDay) * 100)}%` }}
+                />
+                <span className="progress-activity-label">
+                  {new Date(d.day).toLocaleDateString("en-GB", { day: "numeric", month: "short" }).replace(" ", "\n")}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Course list */}
+      {activeCourses.length > 0 && (
+        <div className="progress-courses glass-panel">
+          <h3 className="dash-section-title" style={{ marginBottom: 14 }}>Courses in progress</h3>
+          <div className="progress-course-list">
+            {activeCourses.map((c) => (
+              <div key={c.courseId} className="progress-course-row">
+                <div className="progress-course-info">
+                  <strong className="progress-course-title">{c.title}</strong>
+                  <span className="progress-course-meta">
+                    {c.software} · {c.completedLessons}/{c.totalLessons} lessons
+                    {c.status === "completed" && " · ✓ Complete"}
+                  </span>
+                </div>
+                <div className="progress-course-bar-wrap">
+                  <div className="progress-course-bar">
+                    <span
+                      className={`progress-course-fill${c.status === "completed" ? " is-done" : ""}`}
+                      style={{ width: `${c.percentComplete}%` }}
+                    />
+                  </div>
+                  <span className="progress-course-pct">{c.percentComplete}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {activeCourses.length === 0 && totals.completedLessons === 0 && (
+        <div className="dash-tab-empty glass-panel">
+          <p>Start a course to see your progress here.</p>
+          <Link href="/learn" className="primary-button" style={{ textDecoration: "none", display: "inline-flex", marginTop: 12 }}>
+            Browse Courses →
+          </Link>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function PathTab({ token }: { token: string }) {
@@ -825,6 +1031,7 @@ function DashboardPageInner() {
   const [upcomingWorkshops, setUpcomingWorkshops] = useState<UpcomingWorkshop[]>([]);
   const [activePath, setActivePath] = useState<ActivePathSummary | null>(null);
   const [allPaths, setAllPaths] = useState<LearningPathListItem[]>([]);
+  const [enrolledPathIds, setEnrolledPathIds] = useState<Set<string>>(new Set());
   const [pathsVersion, setPathsVersion] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState("");
@@ -881,9 +1088,10 @@ function DashboardPageInner() {
     Promise.all([getPaths(), getMyEnrolments(token), getLearningSummary(token).catch(() => null)])
       .then(async ([paths, enrolments, earlySum]) => {
         if (canceled) return;
+        const enrolledIds = new Set(enrolments.map((e) => e.pathId));
         setAllPaths(paths);
-        const enrolledPathIds = new Set(enrolments.map((e) => e.pathId));
-        const firstPath = paths.find((p) => enrolledPathIds.has(p.id)) ?? null;
+        setEnrolledPathIds(enrolledIds);
+        const firstPath = paths.find((p) => enrolledIds.has(p.id)) ?? null;
         if (!firstPath) { setActivePath(null); return; }
 
         // Fetch path detail to get ordered course list
@@ -1002,7 +1210,9 @@ function DashboardPageInner() {
   const practiseCount = summary?.totals.practicedCommands ?? 0;
   const visibleWorkshops = upcomingWorkshops.filter(isFutureWorkshop);
   const workshopCount = visibleWorkshops.length;
-  const upcomingWorkshop = visibleWorkshops[0] ?? upcomingWorkshops[0] ?? null;
+
+  // Enrolled paths list (for My Paths section)
+  const enrolledPaths = allPaths.filter((p) => enrolledPathIds.has(p.id));
 
   // Tab badges
   const badges: Partial<Record<DashTab, number>> = {
@@ -1061,13 +1271,28 @@ function DashboardPageInner() {
           )}
         </header>
 
-        {/* ── Inner tabs ── */}
+        {/* ── Section tabs ── */}
+        <div className="dash-section-tabs">
+          {(["home", "progress"] as const).map((t) => (
+            <button
+              key={t}
+              type="button"
+              className={`dash-section-tab${tab === t ? " is-active" : ""}`}
+              onClick={() => handleTabChange(t)}
+            >
+              {t === "home" ? "Dashboard" : "My Progress"}
+            </button>
+          ))}
+        </div>
+
         {error && <p className="meta" style={{ color: "var(--danger)" }}>{error}</p>}
 
         {/* ── Tab content ── */}
         <div className="dash-tab-panel">
           {loading ? (
             <p className="meta">Loading…</p>
+          ) : tab === "progress" ? (
+            <ProgressTab summary={summary} />
           ) : (
             <div className="home-layout">
               <div className="home-main">
@@ -1075,11 +1300,12 @@ function DashboardPageInner() {
                   ? <PathHero activePath={activePath} onContinue={handleContinue} />
                   : <ContinueHero course={nextUp} onContinue={handleContinue} />
                 }
+                <MyPathsSection enrolledPaths={enrolledPaths} activePath={activePath} />
                 <SolveSection />
                 <RecommendedPracticeCard count={practiseCount} />
               </div>
               <div className="home-side">
-                <WorkshopCard ws={upcomingWorkshop} />
+                <MyWorkshopsSection workshops={upcomingWorkshops} />
                 <SavedToolkitCard />
               </div>
             </div>

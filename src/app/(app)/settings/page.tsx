@@ -43,6 +43,16 @@ const GOALS = [
 
 const SOFTWARE = ["Rhino", "Grasshopper", "Revit", "Blender", "AI"];
 
+const ROLES = [
+  "Architecture student",
+  "Interior design student",
+  "Architect",
+  "Interior designer",
+  "Product designer",
+  "Fashion designer",
+  "Other",
+];
+
 function parseError(error: unknown): string {
   return error instanceof Error ? error.message : "Unexpected error.";
 }
@@ -222,7 +232,22 @@ function SettingsPageInner() {
             <label><span>Email</span><input value={profile?.email ?? session?.user.email ?? ""} disabled readOnly /></label>
             <label><span>Phone</span><input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} disabled={loading} /></label>
             <label><span>Organisation / school / company</span><input value={form.organisation} onChange={(event) => setForm({ ...form, organisation: event.target.value })} disabled={loading} /></label>
-            <label><span>Role</span><input value={form.role} onChange={(event) => setForm({ ...form, role: event.target.value })} disabled={loading} /></label>
+            <label style={{ gridColumn: "1 / -1" }}>
+              <span>Role</span>
+              <div className="aa-chip-list" style={{ marginTop: 8 }}>
+                {ROLES.map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    className={`ghost-btn${form.role === r ? " active" : ""}`}
+                    onClick={() => setForm({ ...form, role: r })}
+                    disabled={loading}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
+            </label>
             <label><span>Timezone</span><input value={form.timezone} onChange={(event) => setForm({ ...form, timezone: event.target.value })} disabled={loading} /></label>
           </div>
           <div className="settings-action-row" style={{ marginTop: 16 }}>
