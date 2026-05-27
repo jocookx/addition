@@ -391,11 +391,11 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
       <PageHeader
         eyebrow="Create"
         title="Learning Paths"
-        description="Build high-level journeys that connect courses into clear learner outcomes."
+        description="Review and adjust learner journeys created manually or from the master curriculum CSV."
         action={(
           <div className="aa-action-cluster">
             <button className="aa-primary-button" type="button" onClick={() => void createPath()} disabled={creating}>
-              {creating ? "Creating..." : "+ New Path"}
+              {creating ? "Creating..." : "Manual Path"}
             </button>
             <CsvBulkActions entity="paths" accessToken={accessToken} />
           </div>
@@ -425,6 +425,22 @@ export function PathsTab({ accessToken }: { accessToken: string }) {
           <button type="button" onClick={() => setError("")}>x</button>
         </div>
       )}
+
+      <section className="aa-curriculum-import-panel aa-curriculum-import-panel--compact">
+        <div>
+          <span className="aa-eyebrow">CSV-first path creation</span>
+          <h2>Create paths and their courses together</h2>
+          <p>The master CSV is the cleanest way to create a path with ordered courses, modules, lessons, resources and videos in one import.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions
+            entity="curriculum"
+            accessToken={accessToken}
+            templateLabel="Download Master CSV"
+            importLabel="Import Master CSV"
+          />
+        </div>
+      </section>
 
       <AdminDataTable
         rows={filteredPaths}

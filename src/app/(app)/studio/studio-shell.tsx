@@ -74,7 +74,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [{ id: "dashboard", label: "Dashboard", icon: Icons.dashboard, description: "What needs attention" }],
   },
   {
-    label: "Create",
+    label: "Build",
     items: [
       { id: "courses",     label: "Courses",        icon: Icons.courses,     description: "Modules and lessons" },
       { id: "paths",       label: "Learning Paths", icon: Icons.paths,       description: "Learner journeys" },
@@ -83,7 +83,7 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "Library",
+    label: "Reusable Content",
     items: [
       { id: "commands",       label: "Command Library", icon: Icons.commands,      description: "Reusable actions" },
       { id: "combos",         label: "Workflow Combos", icon: Icons.combos,        description: "Reusable recipes" },
@@ -93,7 +93,7 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "People",
+    label: "Support",
     items: [
       { id: "learners",     label: "Learners",      icon: Icons.learners,     description: "Accounts and access" },
       { id: "progress",     label: "Progress",      icon: Icons.progress,     description: "Completion data" },
@@ -101,7 +101,7 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "Insights",
+    label: "Improve",
     items: [
       { id: "analytics",       label: "Analytics",       icon: Icons.analytics,       description: "Platform metrics" },
       { id: "search-insights", label: "Search Insights", icon: Icons.searchInsights,  description: "Learner demand" },
@@ -133,6 +133,141 @@ const TAB_TEXT: Record<AdminTab, { title: string; description: string }> = {
 };
 
 const PLACEHOLDER_TABS: AdminTab[] = ["progress", "analytics", "search-insights", "settings"];
+
+const WORKFLOWS: Array<{
+  id: string;
+  title: string;
+  body: string;
+  tab: AdminTab;
+  tabs: AdminTab[];
+}> = [
+  {
+    id: "build",
+    title: "Build curriculum",
+    body: "Paths, courses, lessons and reusable content",
+    tab: "courses",
+    tabs: ["courses", "paths", "commands", "combos", "resources", "problem-solver"],
+  },
+  {
+    id: "deliver",
+    title: "Deliver live",
+    body: "Workshops, instructors, joining links and recordings",
+    tab: "workshops",
+    tabs: ["workshops", "instructors"],
+  },
+  {
+    id: "support",
+    title: "Support learners",
+    body: "Accounts, access, progress and certificates",
+    tab: "learners",
+    tabs: ["learners", "progress", "practice", "certificates"],
+  },
+  {
+    id: "improve",
+    title: "Improve platform",
+    body: "Analytics, learner searches and setup",
+    tab: "dashboard",
+    tabs: ["dashboard", "analytics", "search-insights", "settings"],
+  },
+];
+
+function workflowForTab(tab: AdminTab) {
+  return WORKFLOWS.find((workflow) => workflow.tabs.includes(tab)) ?? WORKFLOWS[0];
+}
+
+function StudioWorkflowSwitcher({
+  activeTab,
+  onOpen,
+}: {
+  activeTab: AdminTab;
+  onOpen: (tab: AdminTab) => void;
+}) {
+  const activeWorkflow = workflowForTab(activeTab);
+  return (
+    <section className="aa-workflow-switcher" aria-label="Admin workflows">
+      <div className="aa-workflow-current">
+        <span>Current workflow</span>
+        <strong>{activeWorkflow.title}</strong>
+      </div>
+      <div className="aa-workflow-options">
+        {WORKFLOWS.map((workflow) => (
+          <button
+            key={workflow.id}
+            type="button"
+            className={activeWorkflow.id === workflow.id ? "active" : ""}
+            onClick={() => onOpen(workflow.tab)}
+          >
+            <strong>{workflow.title}</strong>
+            <span>{workflow.body}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function StudioPlaceholderPage({
+  tab,
+  onOpen,
+}: {
+  tab: AdminTab;
+  onOpen: (tab: AdminTab) => void;
+}) {
+  const actions: Partial<Record<AdminTab, Array<{ title: string; body: string; tab?: AdminTab; href?: string }>>> = {
+    progress: [
+      { title: "Review learners", body: "Check enrolments, completions and student access.", tab: "learners" },
+      { title: "Open practice", body: "Inspect practice decks, quizzes and certificates.", tab: "practice" },
+      { title: "Improve courses", body: "Use course health to fix missing content.", tab: "courses" },
+    ],
+    analytics: [
+      { title: "Production dashboard", body: "Start with publish blockers and ready courses.", tab: "dashboard" },
+      { title: "Learner demand", body: "Use search gaps to decide what to create next.", tab: "search-insights" },
+      { title: "Workshop performance", body: "Review live sessions, recordings and delivery state.", tab: "workshops" },
+    ],
+    "search-insights": [
+      { title: "Open search review", body: "Inspect failed and recent learner searches.", href: "/admin/search-review" },
+      { title: "Create missing content", body: "Turn repeated searches into lessons and commands.", tab: "courses" },
+      { title: "Link answers", body: "Map questions to commands, combos and lessons.", tab: "problem-solver" },
+    ],
+    settings: [
+      { title: "Learner settings", body: "Check account fields and access behaviour.", tab: "learners" },
+      { title: "Billing setup", body: "Confirm plans, Stripe links and workshop payments.", tab: "workshops" },
+      { title: "Resource access", body: "Audit free, pro, student and workshop resources.", tab: "resources" },
+    ],
+  };
+  const items = actions[tab] ?? [];
+  return (
+    <div className="aa-placeholder-page">
+      <header className="aa-page-header">
+        <div>
+          <span className="aa-eyebrow">Studio area</span>
+          <h1>{TAB_TEXT[tab].title}</h1>
+          <p>{TAB_TEXT[tab].description}</p>
+        </div>
+      </header>
+      <section className="aa-placeholder-journey">
+        <div className="aa-empty-state">
+          <div className="aa-empty-mark">+</div>
+          <h3>{TAB_TEXT[tab].title} workspace</h3>
+          <p>This workspace has a clear place in the admin journey. Use the connected areas below while the dedicated reporting model is being filled out.</p>
+        </div>
+        <div className="aa-support-actions">
+          {items.map((item) => item.href ? (
+            <Link key={item.title} href={item.href}>
+              <strong>{item.title}</strong>
+              <span>{item.body}</span>
+            </Link>
+          ) : (
+            <button key={item.title} type="button" onClick={() => item.tab && onOpen(item.tab)}>
+              <strong>{item.title}</strong>
+              <span>{item.body}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
 
 function StudioTabLoading({ label = "Loading section..." }: { label?: string }) {
   return <div className="aa-loading">{label}</div>;
@@ -413,7 +548,18 @@ export function StudioShell() {
       </aside>
 
       <main className="adm-portal-main aa-studio-main">
-        {activeTab === "dashboard" && <DashboardTab accessToken={token} onOpenCourses={() => openTab("courses")} />}
+        <StudioWorkflowSwitcher activeTab={activeTab} onOpen={openTab} />
+        {activeTab === "dashboard" && (
+          <DashboardTab
+            accessToken={token}
+            onOpenCourses={() => openTab("courses")}
+            onOpenPaths={() => openTab("paths")}
+            onOpenWorkshops={() => openTab("workshops")}
+            onOpenLearners={() => openTab("learners")}
+            onOpenResources={() => openTab("resources")}
+            onOpenSearchInsights={() => openTab("search-insights")}
+          />
+        )}
         {activeTab === "courses" && <CoursesTab key={`courses-${importRefreshKey}`} accessToken={token} />}
         {activeTab === "paths" && <PathsTab key={`paths-${importRefreshKey}`} accessToken={token} />}
         {activeTab === "workshops" && <WorkshopsTab key={`workshops-${importRefreshKey}`} accessToken={token} />}
@@ -426,21 +572,7 @@ export function StudioShell() {
         {activeTab === "learners" && <LearnersTab accessToken={token} />}
         {activeTab === "certificates" && <PracticeTab key={`certificates-${importRefreshKey}`} accessToken={token} initialSection="certificates" />}
         {PLACEHOLDER_TABS.includes(activeTab) && (
-          <div className="aa-placeholder-page">
-            <header className="aa-page-header">
-              <div>
-                <span className="aa-eyebrow">Studio area</span>
-                <h1>{TAB_TEXT[activeTab].title}</h1>
-                <p>{TAB_TEXT[activeTab].description}</p>
-              </div>
-            </header>
-            <div className="aa-empty-state">
-              <div className="aa-empty-mark">+</div>
-              <h3>{TAB_TEXT[activeTab].title} workspace</h3>
-              <p>This section now has a clear place in the CMS. It can be connected to its dedicated data model without changing the existing working routes.</p>
-              {activeTab === "search-insights" && <Link className="st-create-btn" href="/admin/search-review">Open current Search Review</Link>}
-            </div>
-          </div>
+          <StudioPlaceholderPage tab={activeTab} onOpen={openTab} />
         )}
       </main>
     </div>

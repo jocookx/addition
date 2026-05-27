@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchJson } from "@/lib/api/fetch-json";
 import type { AdminLearner } from "@/app/api/v1/admin/learners/route";
+import { AdminErrorState, AdminLoadingState, EmptyState, PageHeader } from "./studio-ui";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -42,13 +43,15 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
   const [total, setTotal]       = useState(0);
   const [page, setPage]         = useState(1);
   const [q, setQ]               = useState("");
+  const [planFilter, setPlanFilter] = useState("All");
+  const [studentFilter, setStudentFilter] = useState("All");
   const [busyUserId, setBusyUserId] = useState("");
 
   const LIMIT = 50;
 
-  const headers = { Authorization: `Bearer ${accessToken}` };
+  const headers = useMemo(() => ({ Authorization: `Bearer ${accessToken}` }), [accessToken]);
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true); setError("");
     try {
       const params = new URLSearchParams({ page: String(page), limit: String(LIMIT) });
@@ -64,14 +67,21 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, [headers, page, q]);
 
-  useEffect(() => { void load(); }, [page]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { void load(); }, [load]);
 
   const totalPages = Math.ceil(total / LIMIT);
-  const proCount   = learners.filter((l) => l.plan !== "free").length;
-  const activeCount = learners.filter((l) => l.enrollments > 0).length;
-  const pendingStudentCount = learners.filter((l) => l.studentVerificationStatus === "pending").length;
+  const filteredLearners = learners.filter((learner) => {
+    if (planFilter !== "All" && learner.plan !== planFilter) return false;
+    if (studentFilter !== "All" && learner.studentVerificationStatus !== studentFilter) return false;
+    return true;
+  });
+  const proCount   = learners.filter((learner) => learner.plan !== "free").length;
+  const activeCount = learners.filter((learner) => learner.enrollments > 0).length;
+  const pendingStudentCount = learners.filter((learner) => learner.studentVerificationStatus === "pending").length;
+  const planOptions = ["All", ...Array.from(new Set(learners.map((learner) => learner.plan).filter(Boolean))).sort()];
+  const studentOptions = ["All", "not_started", "pending", "approved", "rejected"];
 
   async function reviewStudent(userId: string, status: "approved" | "rejected") {
     setBusyUserId(userId);
@@ -91,9 +101,46 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
   }
 
   return (
-    <div className="st-list-panel">
+    <div className="aa-learners-page">
+      <PageHeader
+        eyebrow="People"
+        title="Learners"
+        description="Manage learner access, student verification and support signals from one place."
+        meta={<span>{loading ? "Loading..." : `${total} learner accounts`}</span>}
+      />
+      <div className="aa-course-filter-bar">
+        <label className="aa-compact-search">
+          <span>Search</span>
+          <input
+            value={q}
+            onChange={(event) => setQ(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                setPage(1);
+                void load();
+              }
+            }}
+            placeholder="Search email or name..."
+          />
+        </label>
+        <label>
+          <span>Plan</span>
+          <select value={planFilter} onChange={(event) => setPlanFilter(event.target.value)}>
+            {planOptions.map((option) => <option key={option}>{option}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Student</span>
+          <select value={studentFilter} onChange={(event) => setStudentFilter(event.target.value)}>
+            {studentOptions.map((option) => <option key={option}>{option}</option>)}
+          </select>
+        </label>
+        <button type="button" className="st-save-btn" onClick={() => { setPage(1); void load(); }}>Search</button>
+      </div>
+      {error && <AdminErrorState message={error} onRetry={() => void load()} />}
+      <div className="st-list-panel">
       {/* ── Toolbar ── */}
-      <div className="st-toolbar">
+      <div className="st-toolbar" hidden>
         <input
           className="st-search"
           value={q}
@@ -107,8 +154,6 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
           {loading ? "…" : `${total} learners`}
         </span>
       </div>
-
-      {error && <div className="st-notice st-notice--err">{error}</div>}
 
       {/* ── KPI strip ── */}
       {!loading && (
@@ -134,7 +179,7 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
 
       {/* ── Table ── */}
       {loading ? (
-        <div className="st-loading">Loading learners…</div>
+        <AdminLoadingState title="Loading learners" description="Checking accounts, plans and verification state..." />
       ) : (
         <div className="st-learner-table-wrap">
           <table className="st-learner-table">
@@ -151,7 +196,7 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
               </tr>
             </thead>
             <tbody>
-              {learners.map((l) => (
+              {filteredLearners.map((l) => (
                 <tr key={l.id} className="st-learner-row">
                   <td>
                     <div className="st-learner-user">
@@ -180,10 +225,10 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
                   <td className="st-muted">{new Date(l.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}
-              {learners.length === 0 && (
+              {filteredLearners.length === 0 && (
                 <tr>
-                  <td colSpan={8} style={{ textAlign: "center", padding: "32px", color: "rgba(236,236,242,0.3)" }}>
-                    No learners found.
+                  <td colSpan={8}>
+                    <EmptyState title="No learners match this view" description="Clear filters or search for a different learner." />
                   </td>
                 </tr>
               )}
@@ -200,6 +245,7 @@ export function LearnersTab({ accessToken }: { accessToken: string }) {
           <button type="button" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)}>Next ›</button>
         </div>
       )}
+    </div>
     </div>
   );
 }

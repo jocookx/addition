@@ -44,7 +44,25 @@ export function courseIsPublishReady(course: StudioPayload["items"][number]) {
     .every((item) => item.ok);
 }
 
-export function DashboardTab({ accessToken, onOpenCourses }: { accessToken: string; onOpenCourses: () => void }) {
+type DashboardTabProps = {
+  accessToken: string;
+  onOpenCourses: () => void;
+  onOpenPaths: () => void;
+  onOpenWorkshops: () => void;
+  onOpenLearners: () => void;
+  onOpenResources: () => void;
+  onOpenSearchInsights: () => void;
+};
+
+export function DashboardTab({
+  accessToken,
+  onOpenCourses,
+  onOpenPaths,
+  onOpenWorkshops,
+  onOpenLearners,
+  onOpenResources,
+  onOpenSearchInsights,
+}: DashboardTabProps) {
   const [payload, setPayload] = useState<StudioPayload | null>(null);
   const [error, setError] = useState("");
 
@@ -70,6 +88,12 @@ export function DashboardTab({ accessToken, onOpenCourses }: { accessToken: stri
   }, [payload]);
 
   const recent = stats.courses.slice(0, 4);
+  const publishBlockers = stats.missingVideos + stats.missingScripts;
+  const nextBestAction = publishBlockers > 0
+    ? `${publishBlockers} content fixes before publishing`
+    : stats.readyCourses > 0
+      ? `${stats.readyCourses} courses ready for final review`
+      : "Plan the next course, path or workshop";
   const pipeline = [
     ["Ideas", 0],
     ["Drafts", stats.draftCourses],
@@ -78,6 +102,36 @@ export function DashboardTab({ accessToken, onOpenCourses }: { accessToken: stri
     ["Ready to Review", stats.readyCourses],
     ["Published", stats.courses.length - stats.draftCourses],
   ] as const;
+  const operatingLanes = [
+    {
+      title: "Content Production",
+      body: `${stats.draftCourses} drafts, ${stats.readyCourses} ready for review`,
+      action: "Open Courses",
+      onClick: onOpenCourses,
+    },
+    {
+      title: "Learning Journeys",
+      body: "Order courses into clear paths for learners",
+      action: "Open Paths",
+      onClick: onOpenPaths,
+    },
+    {
+      title: "Live Delivery",
+      body: "Check workshop schedule, joining links and recordings",
+      action: "Open Workshops",
+      onClick: onOpenWorkshops,
+    },
+    {
+      title: "Learner Access",
+      body: "Review plans, student verification and account issues",
+      action: "Open Learners",
+      onClick: onOpenLearners,
+    },
+  ];
+  const supportActions = [
+    { label: "Publish resources", body: "Files, templates and links", onClick: onOpenResources },
+    { label: "Review learner searches", body: "Find demand and missing content", onClick: onOpenSearchInsights },
+  ];
 
   if (error) return <div className="st-notice st-notice--err">{error}</div>;
 
@@ -86,24 +140,28 @@ export function DashboardTab({ accessToken, onOpenCourses }: { accessToken: stri
       <PageHeader
         eyebrow="Overview"
         title="CMS Studio"
-        description="Plan, create, connect, review, publish and improve Addition Academy content."
+        description="Run the learning platform from one clear production queue."
         action={<button type="button" className="st-create-btn" onClick={onOpenCourses}>Continue editing</button>}
       />
 
       <section className="aa-hero-panel">
         <div>
-          <span className="aa-eyebrow">Welcome back</span>
-          <h2>Build the next useful learning block.</h2>
-          <p>The studio highlights missing videos, missing scripts, drafts and courses that are close to publish-ready.</p>
+          <span className="aa-eyebrow">Today&apos;s admin focus</span>
+          <h2>{nextBestAction}</h2>
+          <p>Use this dashboard as the operating room: production, journeys, live delivery, learner access and resources.</p>
         </div>
-        <button type="button" className="st-save-btn" onClick={onOpenCourses}>Open Courses</button>
+        <div className="aa-hero-actions">
+          <button type="button" className="st-save-btn" onClick={onOpenCourses}>Open production queue</button>
+          <button type="button" className="aa-secondary-button" onClick={onOpenWorkshops}>Check live delivery</button>
+        </div>
       </section>
 
-      <section className="aa-quick-grid">
-        {["Plan a Course", "Write a Lesson Script", "Add Command Card", "Create Workflow Combo", "Create Workshop", "Review Learner Searches"].map((label) => (
-          <button key={label} type="button" className="aa-quick-card" onClick={label.includes("Course") || label.includes("Lesson") ? onOpenCourses : undefined}>
-            <strong>{label}</strong>
-            <span>{label.includes("Search") ? "Use learner demand to plan content" : "Start from the studio workflow"}</span>
+      <section className="aa-quick-grid aa-operating-lanes" aria-label="Admin operating lanes">
+        {operatingLanes.map((lane) => (
+          <button key={lane.title} type="button" className="aa-quick-card" onClick={lane.onClick}>
+            <strong>{lane.title}</strong>
+            <span>{lane.body}</span>
+            <small>{lane.action}</small>
           </button>
         ))}
       </section>
@@ -134,6 +192,21 @@ export function DashboardTab({ accessToken, onOpenCourses }: { accessToken: stri
             <div><strong>{stats.missingScripts}</strong><span>lessons missing scripts or notes</span></div>
             <div><strong>{stats.draftCourses}</strong><span>courses still in draft</span></div>
             <div><strong>{stats.readyCourses}</strong><span>courses close to publish-ready</span></div>
+          </div>
+        </div>
+
+        <div className="aa-panel aa-admin-support-panel">
+          <div className="aa-panel-head">
+            <h3>Support Queue</h3>
+            <p>Operational work that keeps the learner experience clean</p>
+          </div>
+          <div className="aa-support-actions">
+            {supportActions.map((item) => (
+              <button key={item.label} type="button" onClick={item.onClick}>
+                <strong>{item.label}</strong>
+                <span>{item.body}</span>
+              </button>
+            ))}
           </div>
         </div>
 

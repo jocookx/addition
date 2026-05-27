@@ -276,6 +276,34 @@ function ListEditor({ label, items, onChange }: { label: string; items: string[]
   );
 }
 
+function WorkshopReadinessPanel({
+  workshop,
+  onOpenTab,
+}: {
+  workshop: AdminWorkshop;
+  onOpenTab: (tab: WorkshopTab) => void;
+}) {
+  const deliveryReady = Boolean(workshop.joinUrl?.trim() || workshop.location.trim());
+  const bookingReady = workshop.capacity > 0 && Boolean(workshop.price.trim()) && (workshop.pricePence === 0 || Boolean(workshop.stripePaymentLink?.trim()));
+  const recordingReady = workshop.recordingStatus === "available" && Boolean(workshop.recordingUrl?.trim());
+  const items: Array<{ tab: WorkshopTab; title: string; detail: string; ok: boolean }> = [
+    { tab: "overview", title: "Promise", detail: workshop.description.trim() ? "Description set" : "Needs description", ok: Boolean(workshop.title.trim() && workshop.description.trim()) },
+    { tab: "schedule", title: "Delivery", detail: deliveryReady ? "Join details ready" : "Add join/location", ok: deliveryReady },
+    { tab: "booking", title: "Booking", detail: bookingReady ? "Checkout ready" : "Check capacity/payment", ok: bookingReady },
+    { tab: "recording", title: "Replay", detail: recordingReady ? "Recording available" : workshop.recordingStatus ?? "None", ok: recordingReady },
+  ];
+  return (
+    <div className="aa-editor-journey aa-workshop-readiness" aria-label="Workshop readiness">
+      {items.map((item) => (
+        <button key={item.tab} type="button" className={item.ok ? "complete" : ""} onClick={() => onOpenTab(item.tab)}>
+          <span>{item.title}</span>
+          <small>{item.detail}</small>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function WorkshopsTab({ accessToken }: { accessToken: string }) {
   const [workshops, setWorkshops] = useState<AdminWorkshop[]>([]);
   const [selected, setSelected] = useState<AdminWorkshop | null>(null);
@@ -406,6 +434,10 @@ export function WorkshopsTab({ accessToken }: { accessToken: string }) {
     return true;
   });
   const pastCount = workshops.filter((item) => daysUntil(item.date) < -1).length;
+  const upcomingCount = workshops.filter((item) => item.upcoming && daysUntil(item.date) >= -1).length;
+  const draftCount = workshops.filter((item) => !item.upcoming && daysUntil(item.date) >= -1).length;
+  const attentionCount = workshops.filter((item) => workshopHealth(item).some((health) => !health.ok)).length;
+  const recordingReadyCount = workshops.filter((item) => item.recordingStatus === "available").length;
   const workshopColumns: TableColumn<AdminWorkshop>[] = [
     {
       id: "title",
@@ -448,13 +480,32 @@ export function WorkshopsTab({ accessToken }: { accessToken: string }) {
         eyebrow="Create"
         title="Live Workshops"
         description="Plan, publish and manage live learning sessions with clear booking readiness."
-        action={<div className="aa-action-cluster"><button type="button" className="aa-primary-button" disabled={creating} onClick={() => void createWorkshop()}>+ New Workshop</button><CsvBulkActions entity="workshops" accessToken={accessToken} /></div>}
+        action={<button type="button" className="aa-primary-button" disabled={creating} onClick={() => void createWorkshop()}>Manual Workshop</button>}
       >
         <label className="st-toggle-label"><input type="checkbox" checked={showPast} onChange={(event) => setShowPast(event.target.checked)} />Show {pastCount} past</label>
       </PageHeader>
 
+      <section className="aa-curriculum-import-panel">
+        <div>
+          <span className="aa-eyebrow">CSV-first workshop schedule</span>
+          <h2>Import workshops with booking, live and recording details</h2>
+          <p>Use one sheet for schedule, capacity, Stripe links, Zoom/live links, pre-work, resources and recording access. Manual editing stays available for final delivery checks.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions entity="workshops" accessToken={accessToken} templateLabel="Download Workshops CSV" importLabel="Import Workshops CSV" />
+        </div>
+      </section>
+
       {notice && <div className="st-notice st-notice--ok">{notice}</div>}
       {error && <div className="st-notice st-notice--err">{error} <button type="button" onClick={() => setError("")}>x</button></div>}
+
+      <div className="aa-course-summary-strip aa-workshop-summary-strip">
+        <span>{workshops.length} workshops</span>
+        <span>{upcomingCount} upcoming</span>
+        <span>{draftCount} drafts</span>
+        <span>{attentionCount} need attention</span>
+        <span>{recordingReadyCount} recordings ready</span>
+      </div>
 
       <AdminDataTable
         rows={visible}
@@ -515,6 +566,8 @@ export function WorkshopsTab({ accessToken }: { accessToken: string }) {
               <div className="aa-tabs">
                 {TABS.map((tab) => <button key={tab.id} type="button" className={activeTab === tab.id ? "active" : ""} onClick={() => setActiveTab(tab.id)}>{tab.label}</button>)}
               </div>
+
+              <WorkshopReadinessPanel workshop={selected} onOpenTab={setActiveTab} />
 
               <div className="aa-editor-body">
                 {activeTab === "overview" && (

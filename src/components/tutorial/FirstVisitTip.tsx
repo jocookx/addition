@@ -29,12 +29,14 @@ function resolvePos(anchor: HTMLElement, popupW = 288, popupH = 148): Pos {
 
   // Sidebar items live in the left ~260 px
   if (r.left < 260 && r.right < 280) {
-    // Arrow points LEFT, popup sits to the right of the sidebar
+    // Arrow points LEFT, popup sits to the right of the sidebar.
+    // Clamp left so the card never starts inside the sidebar column (260px wide).
+    const SIDEBAR_W = 260;
     const top = Math.min(
       Math.max(r.top + r.height / 2 - popupH / 2, 12),
       vh - popupH - 12,
     );
-    const left = r.right + 16;
+    const left = Math.max(r.right + 16, SIDEBAR_W + 16);
     const arrowOffset = r.top + r.height / 2 - top;
     return { top, left, arrowDir: "left", arrowOffset };
   }
@@ -69,7 +71,7 @@ export function FirstVisitTip({ section, tip }: { section: string; tip: TipDef }
   useEffect(() => {
     try {
       if (!localStorage.getItem(STORAGE_PREFIX + section)) {
-        setVisible(true);
+        window.setTimeout(() => setVisible(true), 0);
       }
     } catch {
       // localStorage blocked — skip tip

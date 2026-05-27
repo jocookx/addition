@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
 
 type EntityKey =
+  | "curriculum"
   | "courses"
   | "paths"
   | "workshops"
@@ -47,6 +48,11 @@ function int(value: string, fallback = 0): number {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
+function positiveInt(value: string, fallback: number | null = null): number | null {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 function text(row: Record<string, string>, key: string, fallback = ""): string {
   return (row[key] || fallback).trim();
 }
@@ -56,6 +62,60 @@ function optionalId(row: Record<string, string>, prefix: string, titleKey = "tit
 }
 
 const CONFIGS: Record<EntityKey, EntityConfig> = {
+  curriculum: {
+    label: "Master Curriculum",
+    table: "",
+    columns: [
+      "path_id", "path_title", "path_slug", "path_description", "path_outcome", "path_level", "path_audience", "path_software", "path_published", "path_sort_order",
+      "course_id", "course_title", "course_summary", "course_promise", "course_learning_outcome", "course_software", "course_level", "course_category", "course_access_level", "course_status", "course_sort_order", "course_image",
+      "module_id", "module_title", "module_sort_order",
+      "lesson_id", "lesson_title", "lesson_sort_order", "lesson_video_url", "lesson_video_id", "lesson_image", "lesson_content", "lesson_duration_min", "lesson_status", "lesson_access_level",
+      "resource_ids", "resource_titles", "resource_urls", "resource_type", "resource_access_level",
+    ],
+    sample: {
+      path_id: "path-rhino-beginner",
+      path_title: "Rhino Beginner",
+      path_slug: "rhino-beginner",
+      path_description: "A complete beginner path from Rhino fundamentals to confident modelling.",
+      path_outcome: "Model clean architectural geometry with Rhino.",
+      path_level: "explorer",
+      path_audience: "Architecture and design learners",
+      path_software: "Rhino",
+      path_published: "false",
+      path_sort_order: "1",
+      course_id: "course-rhino-creating-geometry",
+      course_title: "Creating Geometry",
+      course_summary: "Create curves, surfaces and solids in Rhino.",
+      course_promise: "Understand the geometry creation tools used in real design workflows.",
+      course_learning_outcome: "Create and control curves, surfaces and solids.",
+      course_software: "Rhino",
+      course_level: "Beginner",
+      course_category: "Course",
+      course_access_level: "Free",
+      course_status: "Draft",
+      course_sort_order: "4",
+      course_image: "",
+      module_id: "mod-creating-geometry-curves",
+      module_title: "Curves",
+      module_sort_order: "1",
+      lesson_id: "lesson-creating-geometry-001",
+      lesson_title: "Drawing accurate lines",
+      lesson_sort_order: "1",
+      lesson_video_url: "",
+      lesson_video_id: "",
+      lesson_image: "",
+      lesson_content: "Lesson notes, script or outline.",
+      lesson_duration_min: "6",
+      lesson_status: "Draft",
+      lesson_access_level: "Free",
+      resource_ids: "res-rhino-line-exercise",
+      resource_titles: "Line exercise file",
+      resource_urls: "https://example.com/line-exercise.3dm",
+      resource_type: "Exercise file",
+      resource_access_level: "Free",
+    },
+    mapRow: (row) => row,
+  },
   courses: {
     label: "Courses",
     table: "addition_courses",
@@ -134,7 +194,11 @@ const CONFIGS: Record<EntityKey, EntityConfig> = {
   workshops: {
     label: "Live Workshops",
     table: "addition_workshops",
-    columns: ["id", "title", "date", "time", "timezone", "duration", "format", "location", "price", "price_pence", "capacity", "upcoming", "track", "level", "week", "software", "image", "description", "learn", "included", "principles", "stripe_payment_link"],
+    columns: [
+      "id", "title", "date", "time", "timezone", "duration", "format", "location", "price", "price_pence", "capacity", "upcoming", "track", "level", "week", "software", "image", "description", "learn", "included", "principles", "stripe_payment_link",
+      "start_time", "end_time", "live_provider", "join_url", "host_url", "meeting_id", "passcode", "live_embed_url", "calendar_url", "pre_work", "resources",
+      "recording_status", "recording_url", "recording_embed_url", "recording_duration", "recording_thumbnail", "recording_access_level",
+    ],
     sample: {
       id: "",
       title: "Rhino Clean Modelling Workshop",
@@ -144,7 +208,7 @@ const CONFIGS: Record<EntityKey, EntityConfig> = {
       duration: "2 hours",
       format: "online",
       location: "Zoom",
-      price: "£49",
+      price: "GBP 49",
       price_pence: "4900",
       capacity: "20",
       upcoming: "true",
@@ -158,6 +222,23 @@ const CONFIGS: Record<EntityKey, EntityConfig> = {
       included: "Recording|Exercise file",
       principles: "Model cleanly|Check edges",
       stripe_payment_link: "",
+      start_time: "2026-06-01T18:00:00+01:00",
+      end_time: "2026-06-01T20:00:00+01:00",
+      live_provider: "zoom",
+      join_url: "",
+      host_url: "",
+      meeting_id: "",
+      passcode: "",
+      live_embed_url: "",
+      calendar_url: "",
+      pre_work: "Install Rhino|Download exercise files",
+      resources: "res-rhino-workshop-files|res-rhino-cheat-sheet",
+      recording_status: "none",
+      recording_url: "",
+      recording_embed_url: "",
+      recording_duration: "",
+      recording_thumbnail: "",
+      recording_access_level: "booked_users",
     },
     mapRow: (row) => ({
       ...(text(row, "id") ? { id: text(row, "id") } : {}),
@@ -182,6 +263,23 @@ const CONFIGS: Record<EntityKey, EntityConfig> = {
       included: list(text(row, "included")),
       principles: list(text(row, "principles")),
       stripe_payment_link: text(row, "stripe_payment_link") || null,
+      start_time: text(row, "start_time") || null,
+      end_time: text(row, "end_time") || null,
+      live_provider: text(row, "live_provider", "zoom"),
+      join_url: text(row, "join_url"),
+      host_url: text(row, "host_url"),
+      meeting_id: text(row, "meeting_id"),
+      passcode: text(row, "passcode"),
+      live_embed_url: text(row, "live_embed_url"),
+      calendar_url: text(row, "calendar_url"),
+      pre_work: list(text(row, "pre_work")),
+      resources: list(text(row, "resources")),
+      recording_status: text(row, "recording_status", "none"),
+      recording_url: text(row, "recording_url"),
+      recording_embed_url: text(row, "recording_embed_url"),
+      recording_duration: text(row, "recording_duration"),
+      recording_thumbnail: text(row, "recording_thumbnail"),
+      recording_access_level: text(row, "recording_access_level", "booked_users"),
     }),
   },
   commands: {
@@ -475,20 +573,274 @@ function parseCsv(csv: string): Record<string, string>[] {
   );
 }
 
+type MasterModule = {
+  id: string;
+  title: string;
+  sortOrder: number;
+  lessons: Array<{
+    id: string;
+    title: string;
+    sortOrder: number;
+    video: string;
+    videoId: string;
+    image: string;
+    content: string;
+    durationMin: number | null;
+    resources: Array<{ name: string; url: string }>;
+    status: string;
+    accessLevel: string;
+  }>;
+};
+
+type MasterCourse = {
+  id: string;
+  sortOrder: number;
+  row: Record<string, unknown>;
+  modules: Map<string, MasterModule>;
+};
+
+type MasterPath = {
+  id: string;
+  sortOrder: number;
+  row: Record<string, unknown>;
+  courseIds: Map<string, number>;
+};
+
+function masterId(row: Record<string, string>, key: string, prefix: string, titleKey: string): string {
+  return text(row, key) || `${prefix}-${slugify(text(row, titleKey), randomUUID().slice(0, 8))}`;
+}
+
+function resourceItems(row: Record<string, string>): Array<{ id: string; title: string; url: string }> {
+  const ids = list(text(row, "resource_ids"));
+  const titles = list(text(row, "resource_titles"));
+  const urls = list(text(row, "resource_urls"));
+  const max = Math.max(ids.length, titles.length, urls.length);
+  const items: Array<{ id: string; title: string; url: string }> = [];
+  for (let index = 0; index < max; index += 1) {
+    const title = titles[index] || ids[index] || `Resource ${index + 1}`;
+    const url = urls[index] || "";
+    if (!title && !url) continue;
+    items.push({
+      id: ids[index] || `res-${slugify(title, randomUUID().slice(0, 8))}`,
+      title,
+      url,
+    });
+  }
+  return items;
+}
+
+async function importMasterCurriculum(csv: string): Promise<{ entity: string; imported: number; totalRows: number }> {
+  const parsedRows = parseCsv(csv);
+  const paths = new Map<string, MasterPath>();
+  const courses = new Map<string, MasterCourse>();
+  const resources = new Map<string, Record<string, unknown>>();
+
+  for (let rowIndex = 0; rowIndex < parsedRows.length; rowIndex += 1) {
+    const row = parsedRows[rowIndex];
+    if (!Object.values(row).some(Boolean)) continue;
+
+    const pathId = masterId(row, "path_id", "path", "path_title");
+    const courseId = masterId(row, "course_id", "course", "course_title");
+    const moduleId = masterId(row, "module_id", "module", "module_title");
+    const lessonId = masterId(row, "lesson_id", "lesson", "lesson_title");
+    const pathSort = int(text(row, "path_sort_order"), 0);
+    const courseSort = int(text(row, "course_sort_order"), rowIndex);
+    const moduleSort = int(text(row, "module_sort_order"), rowIndex);
+    const lessonSort = int(text(row, "lesson_sort_order"), rowIndex);
+
+    if (!paths.has(pathId)) {
+      paths.set(pathId, {
+        id: pathId,
+        sortOrder: pathSort,
+        row: {
+          id: pathId,
+          title: text(row, "path_title", "Untitled path"),
+          slug: text(row, "path_slug") || slugify(text(row, "path_title"), pathId),
+          description: text(row, "path_description"),
+          outcome: text(row, "path_outcome"),
+          level: text(row, "path_level", "explorer"),
+          audience: text(row, "path_audience"),
+          software: list(text(row, "path_software")),
+          image: text(row, "path_image"),
+          published: bool(text(row, "path_published")),
+          sort_order: pathSort,
+          updated_at: new Date().toISOString(),
+        },
+        courseIds: new Map(),
+      });
+    }
+    paths.get(pathId)?.courseIds.set(courseId, courseSort);
+
+    if (!courses.has(courseId)) {
+      courses.set(courseId, {
+        id: courseId,
+        sortOrder: courseSort,
+        row: {
+          id: courseId,
+          type: "course",
+          title: text(row, "course_title", "Untitled course"),
+          software: text(row, "course_software") || text(row, "path_software"),
+          summary: text(row, "course_summary"),
+          course_promise: text(row, "course_promise"),
+          learning_outcome: text(row, "course_learning_outcome"),
+          category: text(row, "course_category"),
+          level: text(row, "course_level"),
+          access_level: text(row, "course_access_level", "Free"),
+          status: text(row, "course_status", "Draft"),
+          draft: text(row, "course_status").toLowerCase() !== "published",
+          image: text(row, "course_image"),
+          modules: [],
+          updated_at: new Date().toISOString(),
+        },
+        modules: new Map(),
+      });
+    }
+
+    const course = courses.get(courseId);
+    if (!course) continue;
+    if (!course.modules.has(moduleId)) {
+      course.modules.set(moduleId, { id: moduleId, title: text(row, "module_title", "Untitled module"), sortOrder: moduleSort, lessons: [] });
+    }
+
+    const lessonResources = resourceItems(row);
+    const moduleItem = course.modules.get(moduleId);
+    moduleItem?.lessons.push({
+      id: lessonId,
+      title: text(row, "lesson_title", "Untitled lesson"),
+      sortOrder: lessonSort,
+      video: text(row, "lesson_video_url"),
+      videoId: text(row, "lesson_video_id"),
+      image: text(row, "lesson_image"),
+      content: text(row, "lesson_content"),
+      durationMin: positiveInt(text(row, "lesson_duration_min")),
+      resources: lessonResources.map((item) => ({ name: item.title, url: item.url })),
+      status: text(row, "lesson_status", "Draft"),
+      accessLevel: text(row, "lesson_access_level", text(row, "course_access_level", "Free")),
+    });
+
+    for (const resource of lessonResources) {
+      resources.set(resource.id, {
+        id: resource.id,
+        title: resource.title,
+        type: text(row, "resource_type", "Link"),
+        software: text(row, "course_software") || text(row, "path_software"),
+        file_url: resource.url,
+        external_url: resource.url,
+        description: text(row, "resource_description"),
+        access_level: text(row, "resource_access_level", text(row, "course_access_level", "Free")),
+        linked_lessons: [lessonId],
+        linked_courses: [courseId],
+        status: text(row, "resource_status", "Draft"),
+        tags: list(text(row, "resource_tags")),
+        updated_at: new Date().toISOString(),
+      });
+    }
+  }
+
+  const courseRows = [...courses.values()].map((course) => {
+    const modules = [...course.modules.values()]
+      .sort((a, b) => a.sortOrder - b.sortOrder)
+      .map((moduleItem) => ({
+        id: moduleItem.id,
+        title: moduleItem.title,
+        lessons: moduleItem.lessons
+          .sort((a, b) => a.sortOrder - b.sortOrder)
+          .map((lesson) => ({
+          ...lesson,
+        })),
+      }));
+    return { ...course.row, modules };
+  });
+
+  const moduleRows = [...courses.values()].flatMap((course) =>
+    [...course.modules.values()].map((moduleItem) => ({
+      id: moduleItem.id,
+      course_id: course.id,
+      title: moduleItem.title,
+      sort_order: moduleItem.sortOrder,
+      updated_at: new Date().toISOString(),
+    })),
+  );
+
+  const lessonRows = [...courses.values()].flatMap((course) =>
+    [...course.modules.values()].flatMap((moduleItem) =>
+      moduleItem.lessons.sort((a, b) => a.sortOrder - b.sortOrder).map((lesson) => ({
+        id: lesson.id,
+        module_id: moduleItem.id,
+        course_id: course.id,
+        title: lesson.title,
+        video_url: lesson.video,
+        video_id: lesson.videoId || null,
+        image: lesson.image,
+        content: lesson.content,
+        duration_min: lesson.durationMin,
+        sort_order: lesson.sortOrder,
+        metadata: {
+          status: lesson.status,
+          accessLevel: lesson.accessLevel,
+          resources: lesson.resources,
+        },
+        updated_at: new Date().toISOString(),
+      })),
+    ),
+  );
+
+  const pathRows = [...paths.values()].map((path) => ({
+    ...path.row,
+    course_ids: [...path.courseIds.entries()]
+      .sort((a, b) => a[1] - b[1])
+      .map(([courseId]) => courseId),
+  }));
+
+  const db = createSupabaseServiceClient();
+  if (courseRows.length) {
+    const { error } = await db.from("addition_courses").upsert(courseRows, { onConflict: "id" });
+    if (error) throw new Error(`Courses: ${error.message}`);
+  }
+  if (moduleRows.length) {
+    const { error } = await db.from("addition_modules").upsert(moduleRows, { onConflict: "id" });
+    if (error) throw new Error(`Modules: ${error.message}`);
+  }
+  if (lessonRows.length) {
+    const { error } = await db.from("addition_lessons").upsert(lessonRows, { onConflict: "id" });
+    if (error) throw new Error(`Lessons: ${error.message}`);
+  }
+  if (pathRows.length) {
+    const { error } = await db.from("addition_learning_paths").upsert(pathRows, { onConflict: "id" });
+    if (error) throw new Error(`Paths: ${error.message}`);
+  }
+  const resourceRows = [...resources.values()];
+  if (resourceRows.length) {
+    const { error } = await db.from("addition_resources").upsert(resourceRows, { onConflict: "id" });
+    if (error) throw new Error(`Resources: ${error.message}`);
+  }
+
+  return {
+    entity: "Master Curriculum",
+    imported: courseRows.length + moduleRows.length + lessonRows.length + pathRows.length + resourceRows.length,
+    totalRows: parsedRows.length,
+  };
+}
+
 export function getCsvTemplate(entity: string): { fileName: string; csv: string } | null {
-  const config = CONFIGS[entity as EntityKey];
+  const normalizedEntity = entity === "master-curriculum" ? "curriculum" : entity;
+  const config = CONFIGS[normalizedEntity as EntityKey];
   if (!config) return null;
   const csv = [
     config.columns.join(","),
     config.columns.map((column) => escapeCsv(config.sample[column])).join(","),
   ].join("\n");
   return {
-    fileName: `addition-${entity}-template.csv`,
+    fileName: `addition-${normalizedEntity}-template.csv`,
     csv: `${csv}\n`,
   };
 }
 
 export async function importCsvRows(entity: string, csv: string): Promise<{ entity: string; imported: number; totalRows: number }> {
+  if (entity === "curriculum" || entity === "master-curriculum") {
+    return importMasterCurriculum(csv);
+  }
+
   const config = CONFIGS[entity as EntityKey];
   if (!config) throw new Error("Unknown CSV import type.");
 

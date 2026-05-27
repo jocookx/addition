@@ -256,7 +256,7 @@ export function CombosTab({ accessToken }: { accessToken: string }) {
         eyebrow="Library"
         title="Workflow Combos"
         description="Build reusable problem-solving recipes from existing commands."
-        action={<div className="aa-action-cluster"><button type="button" className="aa-primary-button" onClick={createCombo}>+ New Combo</button><CsvBulkActions entity="combos" accessToken={accessToken} /></div>}
+        action={<button type="button" className="aa-primary-button" onClick={createCombo}>Manual Combo</button>}
       >
         <input className="aa-search-input" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search combos..." />
         <select className="aa-search-input" value={softwareFilter} onChange={(event) => setSoftwareFilter(event.target.value)}>
@@ -268,6 +268,17 @@ export function CombosTab({ accessToken }: { accessToken: string }) {
           {DIFFICULTY_OPTIONS.map((option) => <option key={option}>{option}</option>)}
         </select>
       </PageHeader>
+
+      <section className="aa-curriculum-import-panel">
+        <div>
+          <span className="aa-eyebrow">CSV-first workflow combos</span>
+          <h2>Import repeatable command recipes as a batch</h2>
+          <p>Use the combo sheet for title, software, difficulty, tags and ordered command steps. Enter steps as Command:Teaching note separated with pipes.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions entity="combos" accessToken={accessToken} templateLabel="Download Combos CSV" importLabel="Import Combos CSV" />
+        </div>
+      </section>
 
       {notice && <div className="st-notice st-notice--ok">{notice}</div>}
       {error && <div className="st-notice st-notice--err">{error} <button type="button" onClick={() => setError("")}>x</button></div>}

@@ -273,7 +273,18 @@ function FlashcardsSection({ accessToken }: { accessToken: string }) {
 
   return (
     <div className="aa-library-page">
-      <PageHeader eyebrow="Library" title="Practice Tasks" description="Reusable learner practice, flashcards, quiz questions and certificate checks." action={<div className="aa-action-cluster"><button className="aa-primary-button" type="button" onClick={() => void createDeck()}>+ New Deck</button><button className="aa-secondary-button" type="button" disabled={aiBusy} onClick={() => void generateDeck()}>{aiBusy ? "Generating..." : "AI deck"}</button><CsvBulkActions entity="practice-decks" accessToken={accessToken} /></div>} />
+      <PageHeader eyebrow="Library" title="Practice Tasks" description="Reusable learner practice, flashcards, quiz questions and certificate checks." action={<div className="aa-action-cluster"><button className="aa-primary-button" type="button" onClick={() => void createDeck()}>Manual Deck</button><button className="aa-secondary-button" type="button" disabled={aiBusy} onClick={() => void generateDeck()}>{aiBusy ? "Generating..." : "AI deck"}</button></div>} />
+      <section className="aa-curriculum-import-panel">
+        <div>
+          <span className="aa-eyebrow">CSV-first practice tasks</span>
+          <h2>Import decks first, then import cards into those decks</h2>
+          <p>Use the deck CSV for the practice structure, then the cards CSV for front, back, hint and order. Manual editing stays available for polishing individual tasks.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions entity="practice-decks" accessToken={accessToken} templateLabel="Download Decks CSV" importLabel="Import Decks CSV" />
+          <CsvBulkActions entity="flashcards" accessToken={accessToken} templateLabel="Download Cards CSV" importLabel="Import Cards CSV" />
+        </div>
+      </section>
       <Notice ok={notice} err={error} onClose={() => setError("")} />
       <div className="aa-course-filter-bar">
         <label className="aa-compact-search"><span>Search</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search practice tasks..." /></label>
@@ -456,7 +467,17 @@ function QuizSection({ accessToken }: { accessToken: string }) {
 
   return (
     <div className="aa-library-page">
-      <PageHeader eyebrow="Library" title="Quiz Bank" description="Reusable quiz questions for practice and certification." action={<div className="aa-action-cluster"><button className="aa-primary-button" type="button" onClick={() => void createQuestion()}>+ New Question</button><button className="aa-secondary-button" type="button" disabled={aiBusy} onClick={() => void generateQuestion()}>{aiBusy ? "Generating..." : "AI question"}</button><CsvBulkActions entity="quiz-questions" accessToken={accessToken} /></div>} />
+      <PageHeader eyebrow="Library" title="Quiz Bank" description="Reusable quiz questions for practice and certification." action={<div className="aa-action-cluster"><button className="aa-primary-button" type="button" onClick={() => void createQuestion()}>Manual Question</button><button className="aa-secondary-button" type="button" disabled={aiBusy} onClick={() => void generateQuestion()}>{aiBusy ? "Generating..." : "AI question"}</button></div>} />
+      <section className="aa-curriculum-import-panel">
+        <div>
+          <span className="aa-eyebrow">CSV-first quiz bank</span>
+          <h2>Import reusable quiz questions before editing manually</h2>
+          <p>Use one sheet for question text, type, answer, explanation, software, topic, difficulty, options, tags and published state.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions entity="quiz-questions" accessToken={accessToken} templateLabel="Download Quiz CSV" importLabel="Import Quiz CSV" />
+        </div>
+      </section>
       <Notice ok={notice} err={error} onClose={() => setError("")} />
       <div className="aa-course-filter-bar">
         <label className="aa-compact-search"><span>Search</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search questions..." /></label>

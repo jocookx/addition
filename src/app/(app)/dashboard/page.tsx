@@ -183,14 +183,14 @@ function ContinueHero({ course, onContinue }: {
       <div className="home-hero home-hero--empty glass-panel">
         <div className="home-hero-body">
           <span className="home-hero-eyebrow">Start Learning</span>
-          <h2 className="home-hero-course">Ready when you are</h2>
-          <p className="home-hero-why">Choose a course and start building real skills — one lesson at a time, at your own pace.</p>
+          <h2 className="home-hero-course">Find your learning path</h2>
+          <p className="home-hero-why">Follow a structured path from beginner to expert — every lesson is under a minute, built to revisit until it sticks.</p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
-            <Link href="/learn" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
-              Browse Courses →
+            <Link href="/paths" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
+              Browse Learning Paths →
             </Link>
-            <Link href="/paths" className="ghost-btn home-hero-cta" style={{ textDecoration: "none" }}>
-              Join a Path →
+            <Link href="/learn" className="ghost-btn home-hero-cta" style={{ textDecoration: "none" }}>
+              Browse courses →
             </Link>
           </div>
         </div>
@@ -604,13 +604,55 @@ function OnboardingWizard({
 
 function MyPathsSection({
   enrolledPaths,
+  allPaths,
   activePath,
 }: {
   enrolledPaths: LearningPathListItem[];
+  allPaths: LearningPathListItem[];
   activePath: ActivePathSummary | null;
 }) {
   const router = useRouter();
-  if (enrolledPaths.length === 0) return null; // ContinueHero already has a Join Path CTA
+
+  // No enrolments — show suggested paths so the user can get started
+  if (enrolledPaths.length === 0) {
+    const suggested = allPaths.slice(0, 3);
+    if (suggested.length === 0) return null;
+    return (
+      <div className="my-paths-section">
+        <div className="my-paths-header">
+          <h3 className="dash-section-title">Learning Paths</h3>
+          <Link href="/paths" className="dash-section-more" style={{ textDecoration: "none" }}>
+            View all →
+          </Link>
+        </div>
+        <div className="my-paths-list">
+          {suggested.map((path) => (
+            <div key={path.id} className="my-path-card glass-panel">
+              <div className="my-path-card-left">
+                <div className="my-path-card-top">
+                  <span className={`pl-level-badge pl-level-badge--${path.level}`}>
+                    {LEVEL_LABELS[path.level] ?? path.level}
+                  </span>
+                </div>
+                <strong className="my-path-card-title">{path.title}</strong>
+                <div className="my-path-card-meta">
+                  {path.software.map((sw) => <span key={sw} className="pl-sw-tag">{sw}</span>)}
+                  <span className="my-path-card-courses-meta">{path.courseCount} course{path.courseCount !== 1 ? "s" : ""}</span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="ghost-btn my-path-card-cta"
+                onClick={() => router.push(`/paths/${path.id}`)}
+              >
+                Explore →
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="my-paths-section">
@@ -1392,7 +1434,7 @@ function DashboardPageInner() {
                   ? <PathHero activePath={activePath} onContinue={handleContinue} />
                   : <ContinueHero course={nextUp} onContinue={handleContinue} />
                 }
-                <MyPathsSection enrolledPaths={enrolledPaths} activePath={activePath} />
+                <MyPathsSection enrolledPaths={enrolledPaths} allPaths={allPaths} activePath={activePath} />
                 <SolveSection />
                 <RecommendedPracticeCard count={practiseCount} />
               </div>

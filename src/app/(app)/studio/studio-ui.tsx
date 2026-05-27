@@ -226,10 +226,14 @@ export function CsvBulkActions({
   entity,
   accessToken,
   onImported,
+  templateLabel = "Template",
+  importLabel = "Import",
 }: {
   entity: string;
   accessToken: string;
   onImported?: () => void;
+  templateLabel?: string;
+  importLabel?: string;
 }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [busy, setBusy] = useState(false);
@@ -305,10 +309,10 @@ export function CsvBulkActions({
   return (
     <div className="aa-csv-actions">
       <button type="button" className="aa-secondary-button" disabled={busy} onClick={() => void downloadTemplate()}>
-        {busy ? "Working..." : "Template"}
+        {busy ? "Working..." : templateLabel}
       </button>
       <button type="button" className="aa-secondary-button" disabled={busy} onClick={() => inputRef.current?.click()}>
-        Import
+        {importLabel}
       </button>
       <input
         ref={inputRef}

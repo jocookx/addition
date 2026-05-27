@@ -480,8 +480,8 @@ export function AppFrame({
 
       <nav className="mobile-bottom-nav" aria-label="Main navigation">
         <Link href="/dashboard" className={`mob-nav-btn${isActivePath(currentPath, "/dashboard") ? " active" : ""}`}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          <span>Account</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
         </Link>
         <Link href="/learn" className={`mob-nav-btn${
           ["/skills", "/learn", "/paths", "/combos", "/commands"].some(p => isActivePath(currentPath, p))
@@ -489,6 +489,11 @@ export function AppFrame({
         }`}>
           <CoursesIcon size={20} />
           <span>Learn</span>
+        </Link>
+        <Link href="/practice" className={`mob-nav-btn${isActivePath(currentPath, "/practice") ? " active" : ""}`}>
+          <PracticeIcon size={20} />
+          <span>Practice</span>
+          {quizDueCount > 0 ? <span className="mob-nav-badge">{quizDueCount}</span> : null}
         </Link>
         <Link href="/workshops" className={`mob-nav-btn${isActivePath(currentPath, "/workshops") ? " active" : ""}`}>
           <WorkshopsIcon size={20} />

@@ -12381,6 +12381,14 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
   letter-spacing: 0;
 }
 
+.aa-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .aa-quick-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -12404,6 +12412,17 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 8px;
   background: rgba(255,255,255,0.035);
+}
+
+.aa-operating-lanes .aa-quick-card {
+  min-height: 116px;
+  grid-template-rows: auto 1fr auto;
+}
+
+.aa-operating-lanes .aa-quick-card small {
+  color: rgba(196,181,253,0.86);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .aa-quick-card span,
@@ -12485,6 +12504,106 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
   font-size: 22px;
 }
 
+.aa-admin-support-panel {
+  grid-column: 1 / -1;
+}
+
+.aa-placeholder-journey {
+  display: grid;
+  gap: 14px;
+  padding: 24px 32px 32px;
+}
+
+.aa-workflow-switcher {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr;
+  gap: 12px;
+  align-items: stretch;
+  padding: 12px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.86);
+  backdrop-filter: blur(16px);
+}
+
+.aa-workflow-current {
+  display: grid;
+  gap: 3px;
+  align-content: center;
+  padding: 10px 12px;
+  border: 1px solid rgba(124,58,237,0.24);
+  border-radius: 8px;
+  background: rgba(124,58,237,0.12);
+}
+
+.aa-workflow-current span,
+.aa-workflow-options span {
+  color: rgba(236,236,242,0.48);
+  font-size: 11px;
+}
+
+.aa-workflow-current strong,
+.aa-workflow-options strong {
+  color: rgba(236,236,242,0.92);
+  font-size: 13px;
+}
+
+.aa-workflow-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.aa-workflow-options button {
+  display: grid;
+  gap: 3px;
+  min-height: 58px;
+  padding: 10px 12px;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.035);
+  cursor: pointer;
+}
+
+.aa-workflow-options button:hover,
+.aa-workflow-options button.active {
+  border-color: rgba(124,58,237,0.38);
+  background: rgba(124,58,237,0.14);
+}
+
+.aa-support-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.aa-support-actions button,
+.aa-support-actions a {
+  display: grid;
+  gap: 5px;
+  padding: 14px;
+  text-align: left;
+  color: rgba(236,236,242,0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.035);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.aa-support-actions button:hover,
+.aa-support-actions a:hover {
+  background: rgba(255,255,255,0.055);
+}
+
+.aa-support-actions span {
+  color: rgba(236,236,242,0.5);
+  font-size: 12px;
+}
+
 .aa-course-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -12503,6 +12622,50 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 .aa-course-card strong {
   display: block;
   margin: 10px 0 4px;
+}
+
+.aa-editor-next-step {
+  margin: 8px 0 0;
+  color: rgba(196,181,253,0.86);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.aa-editor-journey {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 8px;
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.018);
+}
+
+.aa-editor-journey button {
+  display: grid;
+  gap: 4px;
+  min-height: 58px;
+  padding: 10px;
+  text-align: left;
+  color: rgba(236,236,242,0.75);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.035);
+  cursor: pointer;
+}
+
+.aa-editor-journey button.active {
+  border-color: rgba(124,58,237,0.48);
+  background: rgba(124,58,237,0.16);
+  color: rgba(236,236,242,0.95);
+}
+
+.aa-editor-journey button.complete {
+  border-color: rgba(74,222,128,0.22);
+}
+
+.aa-editor-journey small {
+  color: rgba(236,236,242,0.48);
+  font-size: 11px;
 }
 
 .aa-status,
@@ -13579,6 +13742,44 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
   background: rgba(255,255,255,0.03);
 }
 
+.aa-curriculum-import-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin: 18px 32px 14px;
+  padding: 18px;
+  border: 1px solid rgba(124,58,237,0.26);
+  border-radius: 8px;
+  background: rgba(124,58,237,0.09);
+}
+
+.aa-curriculum-import-panel--compact {
+  margin-top: 12px;
+}
+
+.aa-curriculum-import-panel h2 {
+  margin: 4px 0 6px;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.aa-curriculum-import-panel p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(236,236,242,0.58);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.aa-curriculum-import-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .aa-course-views,
 .aa-course-column-presets {
   display: flex;
@@ -14109,6 +14310,22 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 }
 
 @media (max-width: 1100px) {
+  .aa-curriculum-import-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .aa-curriculum-import-actions {
+    justify-content: flex-start;
+  }
+
+  .aa-workflow-switcher {
+    grid-template-columns: 1fr;
+  }
+
+  .aa-workflow-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .aa-course-shell,
   .aa-overview-grid,
   .aa-dashboard-grid,
@@ -14134,6 +14351,15 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 }
 
 @media (max-width: 760px) {
+  .aa-workflow-switcher {
+    position: static;
+    padding: 10px 16px;
+  }
+
+  .aa-workflow-options {
+    grid-template-columns: 1fr;
+  }
+
   .aa-page-header {
     grid-template-columns: 1fr;
     position: static;
@@ -17235,7 +17461,8 @@ html[data-theme="light"] .dash-section-more:hover { color: rgba(20,20,40,0.75); 
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.my-path-card-meta { display: flex; gap: 4px; flex-wrap: wrap; }
+.my-path-card-meta { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.my-path-card-courses-meta { font-size: 11px; color: var(--rf-light); }
 .my-path-card-progress { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
 .my-path-card-bar {
   flex: 1;
@@ -17428,7 +17655,7 @@ html[data-theme="light"] .progress-course-pct   { color: rgba(20,20,40,0.45); }
 .fvt-scrim {
   position: fixed;
   inset: 0;
-  z-index: 198;
+  z-index: 9998;
   background: rgba(0,0,0,0.30);
   backdrop-filter: blur(2px);
   animation: fvtScrimIn 0.25s ease both;
@@ -17442,7 +17669,7 @@ html[data-theme="light"] .progress-course-pct   { color: rgba(20,20,40,0.45); }
 /* Popup card */
 .fvt {
   position: fixed;
-  z-index: 199;
+  z-index: 9999;
   width: 292px;
   padding: 18px 18px 14px;
   border-radius: 16px;
@@ -17626,6 +17853,56 @@ html[data-theme="light"] .fvt-title { color: #111; }
 html[data-theme="light"] .fvt-body  { color: rgba(20,20,40,0.55); }
 html[data-theme="light"] .fvt-skip  { border-color: rgba(0,0,0,0.10); color: rgba(20,20,40,0.35); }
 html[data-theme="light"] .fvt-skip:hover { background: rgba(0,0,0,0.05); color: rgba(20,20,40,0.7); }
+
+/* ── 404 / Error pages ───────────────────────────────────────────────────── */
+.notfound-shell {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rf-bg, #08090f);
+  padding: var(--sp-8);
+}
+.notfound-card {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.notfound-code {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(255,255,255,0.08);
+  letter-spacing: -4px;
+  user-select: none;
+}
+.notfound-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+.notfound-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
+  line-height: 1.6;
+}
+.notfound-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+html[data-theme="light"] .notfound-shell { background: #f5f5f7; }
+html[data-theme="light"] .notfound-code  { color: rgba(0,0,0,0.06); }
+html[data-theme="light"] .notfound-title { color: #111; }
+html[data-theme="light"] .notfound-body  { color: rgba(0,0,0,0.45); }
 
 /* ── Route card context line ─────────────────────────────────────────────── */
 .route-card-context {

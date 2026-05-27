@@ -247,23 +247,35 @@ export function UpgradeModal({ isOpen, onClose, accessToken, returnTo = "/dashbo
             </div>
 
             {/* Billing interval toggle */}
-            <div className="upgrade-billing-toggle" role="group" aria-label="Billing interval">
-              <button
-                type="button"
-                className={`upgrade-toggle-btn${interval === "monthly" ? " active" : ""}`}
-                onClick={() => setInterval("monthly")}
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                className={`upgrade-toggle-btn${interval === "yearly" ? " active" : ""}`}
-                onClick={() => setInterval("yearly")}
-              >
-                Yearly
-                <span className="upgrade-toggle-save">save ~20%</span>
-              </button>
-            </div>
+            {(() => {
+              const proMonthly = prices.find((p) => p.plan === "pro" && p.interval === "monthly");
+              const proYearly  = prices.find((p) => p.plan === "pro" && p.interval === "yearly");
+              const savingsPct =
+                proMonthly && proYearly
+                  ? Math.round(100 - (proYearly.amount / (proMonthly.amount * 12)) * 100)
+                  : null;
+              return (
+                <div className="upgrade-billing-toggle" role="group" aria-label="Billing interval">
+                  <button
+                    type="button"
+                    className={`upgrade-toggle-btn${interval === "monthly" ? " active" : ""}`}
+                    onClick={() => setInterval("monthly")}
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    type="button"
+                    className={`upgrade-toggle-btn${interval === "yearly" ? " active" : ""}`}
+                    onClick={() => setInterval("yearly")}
+                  >
+                    Yearly
+                    {savingsPct && savingsPct > 0 && (
+                      <span className="upgrade-toggle-save">save {savingsPct}%</span>
+                    )}
+                  </button>
+                </div>
+              );
+            })()}
 
             {/* Plan cards */}
             <div className="upgrade-plan-cards">

@@ -206,6 +206,10 @@ function courseHealthLabel(course: StudioCourse) {
   return `${score}% - ${issue}`;
 }
 
+function firstRequiredFix(course: StudioCourse): string {
+  return missingHealth(courseHealth(course)).find((item) => item.severity === "required")?.label ?? "Ready for final review";
+}
+
 function templateModules(template: CourseTemplate): StudioModule[] {
   const titles: Record<CourseTemplate, string[]> = {
     blank: [],
@@ -736,14 +740,31 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
       <PageHeader
         eyebrow="Create"
         title="Courses"
-        description="Create and manage the course catalogue without editing database records directly."
+        description="Import full curriculum by CSV, then use this CRUD to review, fix and publish courses."
         action={(
           <div className="aa-action-cluster">
-            <button type="button" className="aa-primary-button" onClick={createCourse}>+ New Course</button>
+            <button type="button" className="aa-primary-button" onClick={createCourse}>Manual Course</button>
             <CsvBulkActions entity="courses" accessToken={accessToken} />
           </div>
         )}
       />
+
+      <section className="aa-curriculum-import-panel">
+        <div>
+          <span className="aa-eyebrow">Recommended workflow</span>
+          <h2>Import Path → Courses → Modules → Lessons from one CSV</h2>
+          <p>Use the master CSV for bulk creation. Each row is a lesson; repeated path, course and module IDs are grouped automatically.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions
+            entity="curriculum"
+            accessToken={accessToken}
+            templateLabel="Download Master CSV"
+            importLabel="Import Master CSV"
+          />
+          <button type="button" className="aa-secondary-button" onClick={createCourse}>Create one course manually</button>
+        </div>
+      </section>
 
       <div className="aa-course-summary-strip">
         <span>{courses.length} courses</span>
@@ -848,6 +869,12 @@ export function CoursesTab({ accessToken }: { accessToken: string }) {
                 ))}
               </div>
 
+              <CourseEditorJourney
+                course={selectedCourse}
+                activeTab={courseTab}
+                onTabChange={setCourseTab}
+              />
+
               <div className="aa-editor-body">
                 {courseTab === "overview" && (
                   <CourseOverview
@@ -944,6 +971,7 @@ function CourseHeader({
           <span>{lessonCount(course)} lessons</span>
           <span>{minutesForCourse(course) || 0} min</span>
         </div>
+        <p className="aa-editor-next-step">Next: {firstRequiredFix(course)}</p>
       </div>
       <div className="aa-course-actions">
         <StatusBadge status={courseStatus(course)} />
@@ -967,6 +995,60 @@ function CourseHeader({
         </MoreMenu>
       </div>
     </header>
+  );
+}
+
+function CourseEditorJourney({
+  course,
+  activeTab,
+  onTabChange,
+}: {
+  course: StudioCourse;
+  activeTab: CourseTab;
+  onTabChange: (tab: CourseTab) => void;
+}) {
+  const lessons = lessonCount(course);
+  const requiredMissing = missingHealth(courseHealth(course)).filter((item) => item.severity === "required");
+  const steps: Array<{ tab: CourseTab; title: string; detail: string; ok: boolean }> = [
+    {
+      tab: "overview",
+      title: "Define",
+      detail: course.summary?.trim() ? "Promise set" : "Add promise",
+      ok: Boolean(course.title.trim() && course.summary?.trim() && course.software?.trim()),
+    },
+    {
+      tab: "curriculum",
+      title: "Structure",
+      detail: `${course.modules.length} modules`,
+      ok: course.modules.length > 0,
+    },
+    {
+      tab: "lessons",
+      title: "Produce",
+      detail: `${lessons} lessons`,
+      ok: lessons > 0 && !courseHasMissingVideo(course) && !courseHasMissingScript(course),
+    },
+    {
+      tab: "publish",
+      title: "Publish",
+      detail: requiredMissing[0]?.label ?? "Ready",
+      ok: requiredMissing.length === 0,
+    },
+  ];
+  return (
+    <div className="aa-editor-journey" aria-label="Course production journey">
+      {steps.map((step) => (
+        <button
+          key={step.tab}
+          type="button"
+          className={`${activeTab === step.tab ? "active" : ""}${step.ok ? " complete" : ""}`}
+          onClick={() => onTabChange(step.tab)}
+        >
+          <span>{step.title}</span>
+          <small>{step.detail}</small>
+        </button>
+      ))}
+    </div>
   );
 }
 

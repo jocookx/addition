@@ -357,7 +357,7 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
         eyebrow="Library"
         title="Command Library"
         description="Create reusable software command cards once, then connect them to lessons, workflow combos and problem-solver answers."
-        action={<div className="aa-action-cluster"><button className="aa-primary-button" type="button" onClick={createCommand}>+ New Command</button><CsvBulkActions entity="commands" accessToken={accessToken} /></div>}
+        action={<button className="aa-primary-button" type="button" onClick={createCommand}>Manual Command</button>}
       >
         <label className="aa-admin-search aa-admin-search--wide">
           <span>Search</span>
@@ -412,6 +412,17 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
           <button type="button" className="aa-clear-filters" onClick={clearCommandFilters}>Reset</button>
         )}
       </PageHeader>
+
+      <section className="aa-curriculum-import-panel">
+        <div>
+          <span className="aa-eyebrow">CSV-first command library</span>
+          <h2>Import command metadata before editing one-by-one</h2>
+          <p>Use one sheet for command name, software, menu path, shortcut, action intent, object type, outcomes, tags and media URLs. Manual editing stays available for clean-up.</p>
+        </div>
+        <div className="aa-curriculum-import-actions">
+          <CsvBulkActions entity="commands" accessToken={accessToken} templateLabel="Download Commands CSV" importLabel="Import Commands CSV" />
+        </div>
+      </section>
 
       {notice && <div className="st-notice st-notice--ok">{notice}</div>}
       {error && (
