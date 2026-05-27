@@ -21,6 +21,11 @@ type AdminCombo = {
   draft: boolean;
 };
 
+type RawAdminCombo = Partial<Omit<AdminCombo, "commands" | "tags">> & {
+  commands?: unknown;
+  tags?: unknown;
+};
+
 type ComboTab = "overview" | "sequence" | "steps" | "troubleshooting" | "relationships" | "publish";
 type ComboView = "all" | "rhino" | "grasshopper" | "beginner" | "unused" | "missing-steps" | "attention";
 
@@ -54,6 +59,40 @@ function comboHealth(combo: AdminCombo): HealthItem[] {
     { label: "Tags", ok: combo.tags.length > 0, severity: "recommended" },
     { label: "Preview image", ok: Boolean(combo.image.trim()), severity: "recommended" },
   ];
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item ?? "").trim()).filter(Boolean);
+}
+
+function normalizeComboSteps(value: unknown): ComboStep[] {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => {
+    if (typeof item === "string") return { name: item.trim(), note: "" };
+    if (item && typeof item === "object") {
+      const record = item as Record<string, unknown>;
+      return {
+        name: String(record.name ?? "").trim(),
+        note: String(record.note ?? "").trim(),
+      };
+    }
+    return { name: "", note: "" };
+  }).filter((step) => step.name);
+}
+
+function normalizeCombo(row: RawAdminCombo): AdminCombo {
+  return {
+    id: String(row.id ?? `combo-${Date.now()}`),
+    title: String(row.title ?? "Untitled Workflow Combo"),
+    software: String(row.software ?? ""),
+    difficulty: String(row.difficulty ?? "beginner"),
+    description: String(row.description ?? ""),
+    image: String(row.image ?? ""),
+    commands: normalizeComboSteps(row.commands),
+    tags: toStringArray(row.tags),
+    draft: typeof row.draft === "boolean" ? row.draft : true,
+  };
 }
 
 function TagEditor({ tags, onChange }: { tags: string[]; onChange: (tags: string[]) => void }) {
@@ -143,12 +182,12 @@ export function CombosTab({ accessToken }: { accessToken: string }) {
 
   useEffect(() => {
     Promise.all([
-      fetchJson<{ combos: AdminCombo[] }>("/api/v1/admin/combos", { headers }),
+      fetchJson<{ combos: RawAdminCombo[] }>("/api/v1/admin/combos", { headers }),
       fetchJson<{ commands: CommandListItem[] }>("/api/v1/admin/commands?limit=200", { headers }).catch(() => ({ commands: [] })),
     ])
       .then(([comboRes, commandRes]) => {
-        setCombos(comboRes.combos);
-        setCommands(commandRes.commands);
+        setCombos((comboRes.combos ?? []).map(normalizeCombo));
+        setCommands(commandRes.commands ?? []);
         setSelected(null);
         setLoading(false);
       })
@@ -173,13 +212,14 @@ export function CombosTab({ accessToken }: { accessToken: string }) {
   async function createCombo() {
     const title = newTitle.trim() || "Untitled Workflow Combo";
     try {
-      const created = await fetchJson<AdminCombo>("/api/v1/admin/combos", {
+      const created = await fetchJson<RawAdminCombo>("/api/v1/admin/combos", {
         method: "POST",
         headers,
         body: JSON.stringify({ title, software: softwareFilter !== "All" ? softwareFilter : "", commands: [], draft: true }),
       });
-      setCombos((prev) => [created, ...prev]);
-      setSelected(created);
+      const normalized = normalizeCombo(created);
+      setCombos((prev) => [normalized, ...prev]);
+      setSelected(normalized);
       setNewTitle("");
       setActiveTab("overview");
       flash("Workflow combo created.");
@@ -191,13 +231,14 @@ export function CombosTab({ accessToken }: { accessToken: string }) {
   async function saveCombo(combo: AdminCombo) {
     setSaving(true);
     try {
-      const updated = await fetchJson<AdminCombo>(`/api/v1/admin/combos/${combo.id}`, {
+      const updated = await fetchJson<RawAdminCombo>(`/api/v1/admin/combos/${combo.id}`, {
         method: "PATCH",
         headers,
         body: JSON.stringify(combo),
       });
-      setCombos((prev) => prev.map((item) => item.id === updated.id ? updated : item));
-      setSelected(updated);
+      const normalized = normalizeCombo(updated);
+      setCombos((prev) => prev.map((item) => item.id === normalized.id ? normalized : item));
+      setSelected(normalized);
       flash("Saved.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Save failed.");
