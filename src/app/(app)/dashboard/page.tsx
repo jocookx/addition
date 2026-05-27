@@ -248,6 +248,37 @@ function SolveSection() {
   );
 }
 
+function DashSkeleton() {
+  return (
+    <div className="home-layout">
+      <div className="home-main">
+        {/* Hero shimmer */}
+        <div className="skeleton-card dash-skel-hero">
+          <div className="skeleton-line w-40 h-lg" style={{ marginBottom: 10 }} />
+          <div className="skeleton-line w-80 h-lg" style={{ marginBottom: 18 }} />
+          <div className="skeleton-line w-60" />
+          <div className="skeleton-line w-40" style={{ marginTop: 20, height: 36, borderRadius: 8 }} />
+        </div>
+        {/* Paths shimmer */}
+        <div className="skeleton-card dash-skel-paths">
+          <div className="skeleton-line w-40" style={{ marginBottom: 14 }} />
+          {[1, 2].map((i) => (
+            <div key={i} className="skeleton-line" style={{ height: 56, borderRadius: 10, marginBottom: 8 }} />
+          ))}
+        </div>
+        {/* Solve shimmer */}
+        <div className="skeleton-card" style={{ height: 100 }} />
+      </div>
+      <div className="home-side">
+        {/* Tiny goal shimmer */}
+        <div className="skeleton-card" style={{ height: 90 }} />
+        {/* Workshops shimmer */}
+        <div className="skeleton-card" style={{ height: 140 }} />
+      </div>
+    </div>
+  );
+}
+
 function TinyGoal({ onStart, doneToday, streak }: { onStart: () => void; doneToday: boolean; streak: number }) {
   if (doneToday) {
     return (
@@ -1335,7 +1366,7 @@ function DashboardPageInner() {
         {/* ── Tab content ── */}
         <div className="dash-tab-panel">
           {loading ? (
-            <p className="meta">Loading…</p>
+            <DashSkeleton />
           ) : tab === "progress" ? (
             <ProgressTab summary={summary} />
           ) : (

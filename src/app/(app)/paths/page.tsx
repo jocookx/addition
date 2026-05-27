@@ -22,10 +22,13 @@ function PathCard({
   enrolled: boolean;
 }) {
   return (
-    <Link href={`/paths/${path.id}`} className="pl-card" style={{ textDecoration: "none", color: "inherit" }}>
+    <Link href={`/paths/${path.id}`} className={`pl-card${enrolled ? " pl-card--enrolled" : ""}`} style={{ textDecoration: "none", color: "inherit" }}>
       <div className="pl-card-head">
         <span className={`pl-level-badge pl-level-badge--${path.level}`}>{LEVEL_LABELS[path.level]}</span>
-        <span className="pl-card-stat">{path.courseCount} course{path.courseCount !== 1 ? "s" : ""}</span>
+        <div className="pl-card-head-right">
+          {enrolled && <span className="pl-enrolled-badge">Enrolled</span>}
+          <span className="pl-card-stat">{path.courseCount} course{path.courseCount !== 1 ? "s" : ""}</span>
+        </div>
       </div>
 
       <h2 className="pl-card-title">{path.title}</h2>

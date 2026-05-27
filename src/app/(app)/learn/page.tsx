@@ -206,6 +206,7 @@ function LearnPageInner() {
 
   const [activeSoftware] = useSoftwareContext();
   const [catalog, setCatalog] = useState<CourseCatalogListItem[]>([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
   const [paths, setPaths] = useState<LearningPathListItem[]>([]);
   const [pathDetails, setPathDetails] = useState<Record<string, LearningPathDetail>>({});
   const [activePathId, setActivePathId] = useState("all");
@@ -268,7 +269,8 @@ function LearnPageInner() {
           setActiveCourseId(urlCourse);
         }
       })
-      .catch((e) => { if (!canceled) setError(parseError(e)); });
+      .catch((e) => { if (!canceled) setError(parseError(e)); })
+      .finally(() => { if (!canceled) setCatalogLoading(false); });
     return () => { canceled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -486,7 +488,18 @@ function LearnPageInner() {
           )}
 
           {error && <p className="meta" style={{ color: "var(--danger)" }}>{error}</p>}
-          {filteredCatalog.length ? (
+          {catalogLoading ? (
+            <div className="card-grid">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="skeleton-card catalog-skel-card">
+                  <div className="skeleton-thumb" style={{ height: 12, width: "55%", marginBottom: 12 }} />
+                  <div className="skeleton-line w-80 h-lg" style={{ marginBottom: 8 }} />
+                  <div className="skeleton-line w-60" style={{ marginBottom: 16 }} />
+                  <div className="skeleton-line w-40" style={{ height: 8 }} />
+                </div>
+              ))}
+            </div>
+          ) : filteredCatalog.length ? (
             <div className="card-grid">
               {filteredCatalog.map(({ item: c, matchLabel, matchSnippet, matchLessonId }) => (
                 <CourseCard

@@ -8606,6 +8606,33 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   color: rgba(196,181,253,0.75);
   margin-left: auto;
 }
+
+/* Enrolled state */
+.pl-card--enrolled {
+  border-color: rgba(34,197,94,0.20);
+}
+.pl-card--enrolled .pl-card-cta { color: rgba(134,239,172,0.8); }
+.pl-card-head-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pl-enrolled-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.28);
+  color: #86efac;
+  letter-spacing: 0.03em;
+}
+html[data-theme="light"] .pl-enrolled-badge {
+  background: rgba(22,163,74,0.10);
+  border-color: rgba(22,163,74,0.25);
+  color: #16a34a;
+}
+
 .pl-card-actions {
   display: flex;
   gap: 6px;
@@ -17434,6 +17461,26 @@ html[data-theme="light"] .fvt-skip:hover { background: rgba(0,0,0,0.05); color: 
   margin-bottom: 4px;
 }
 html[data-theme="light"] .route-card-context { color: rgba(20,20,40,0.35); }
+
+/* ── Dashboard & catalog skeleton screens ───────────────────────────────── */
+.dash-skel-hero {
+  min-height: 160px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.dash-skel-paths {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.catalog-skel-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+}
 
 /* ── Toast notifications ─────────────────────────────────────────────────── */
 .toast-stack {

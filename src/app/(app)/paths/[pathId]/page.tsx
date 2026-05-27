@@ -8,6 +8,7 @@ import { AppFrame } from "@/components/legacy/AppFrame";
 import type { LearningPathDetail, PathLevel } from "@/domain/learning-path";
 import { getPathDetail, enrolInPath, getMyEnrolments } from "@/lib/api/paths";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
+import { useToast } from "@/components/toast/ToastContext";
 
 const LEVEL_LABELS: Record<PathLevel, string> = {
   explorer: "Beginner",
@@ -18,6 +19,7 @@ const LEVEL_LABELS: Record<PathLevel, string> = {
 export default function PathDetailPage() {
   const { pathId } = useParams<{ pathId: string }>();
   const router = useRouter();
+  const toast = useToast();
   const [path, setPath]           = useState<LearningPathDetail | null>(null);
   const [enrolled, setEnrolled]   = useState(false);
   const [token, setToken]         = useState<string | null>(null);
@@ -48,9 +50,19 @@ export default function PathDetailPage() {
   async function handleEnrol() {
     if (!token) return;
     setEnrolling(true);
-    await enrolInPath(pathId, token).catch(() => {});
-    setEnrolled(true);
-    setEnrolling(false);
+    try {
+      await enrolInPath(pathId, token);
+      setEnrolled(true);
+      toast({
+        type: "success",
+        title: "Path started!",
+        body: path?.title ?? "You're enrolled — let's get learning.",
+      });
+    } catch {
+      toast({ type: "error", title: "Couldn't enrol", body: "Please try again." });
+    } finally {
+      setEnrolling(false);
+    }
   }
 
   if (loading) {

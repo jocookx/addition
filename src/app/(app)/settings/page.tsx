@@ -9,6 +9,7 @@ import { getAuthProfile, updateAuthProfile } from "@/lib/api/auth-profile";
 import { getBillingPortalUrl } from "@/lib/api/billing";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
+import { useToast } from "@/components/toast/ToastContext";
 
 type StudentVerification = {
   status: "not_started" | "pending" | "approved" | "rejected";
@@ -77,6 +78,7 @@ export default function SettingsPage() {
 function SettingsPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const toast = useToast();
   const [supabase] = useState<SupabaseClient | null>(() => getBrowserSupabaseClient());
   const [session, setSession] = useState<Session | null>(null);
   const [booted, setBooted] = useState(() => !getBrowserSupabaseClient());
@@ -94,7 +96,6 @@ function SettingsPageInner() {
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [resetMsg, setResetMsg] = useState("");
   const [billingBusy, setBillingBusy] = useState(false);
@@ -151,9 +152,10 @@ function SettingsPageInner() {
 
   useEffect(() => {
     const checkout = searchParams.get("checkout");
-    if (checkout === "success") setMessage("Subscription updated.");
-    if (checkout === "cancelled") setMessage("Checkout cancelled. No changes were made.");
-  }, [searchParams]);
+    if (checkout === "success") toast({ type: "success", title: "Subscription updated!", body: "Your plan has been upgraded." });
+    if (checkout === "cancelled") toast({ type: "info", title: "Checkout cancelled", body: "No changes were made." });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const plan = profile?.plan ?? "free";
   const isPaid = plan === "pro" || plan === "team" || plan === "student";
@@ -167,11 +169,10 @@ function SettingsPageInner() {
     if (!token || !profileValid) return;
     setSaving(true);
     setError("");
-    setMessage("");
     try {
       const next = await updateAuthProfile(token, form);
       setProfile(next);
-      setMessage("Account updated.");
+      toast({ type: "success", title: "Profile saved!" });
     } catch (err) {
       setError(parseError(err));
     } finally {
@@ -184,7 +185,11 @@ function SettingsPageInner() {
     const { error: resetError } = await supabase.auth.resetPasswordForEmail(session.user.email, {
       redirectTo: typeof window !== "undefined" ? `${window.location.origin}/auth/callback` : undefined,
     });
-    setResetMsg(resetError ? parseError(resetError) : "Reset link sent. Check your email.");
+    if (resetError) {
+      setResetMsg(parseError(resetError));
+    } else {
+      toast({ type: "info", title: "Reset link sent", body: "Check your email inbox." });
+    }
   }
 
   async function openBillingPortal() {
@@ -223,7 +228,6 @@ function SettingsPageInner() {
       topTabs={[]}
     >
       {error ? <p className="meta" style={{ color: "var(--danger)", paddingBottom: 12 }}>{error}</p> : null}
-      {message ? <p className="meta" style={{ color: "var(--success)", paddingBottom: 12 }}>{message}</p> : null}
 
       <div className="settings-layout">
         <SettingsCard title="Profile">
