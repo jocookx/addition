@@ -1,0 +1,2720 @@
+[
+  {
+    "name": "3DFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/3dface.png",
+    "suggestedAssetPath": "rhino9/3dface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/3dface.png"
+  },
+  {
+    "name": "AddNgonsToMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/addngonstomesh.png",
+    "suggestedAssetPath": "rhino9/addngonstomesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/addngonstomesh.png"
+  },
+  {
+    "name": "Align",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/align.png",
+    "suggestedAssetPath": "rhino9/align.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/align.png"
+  },
+  {
+    "name": "AlignVertices",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/alignvertices.png",
+    "suggestedAssetPath": "rhino9/alignvertices.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/alignvertices.png"
+  },
+  {
+    "name": "Angle",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/angle.png",
+    "suggestedAssetPath": "rhino9/angle.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/angle.png"
+  },
+  {
+    "name": "ApplyCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/applycrv_rt.png",
+    "suggestedAssetPath": "rhino9/applycrv_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/applycrv_rt.png"
+  },
+  {
+    "name": "ApplyMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/applymesh.png",
+    "suggestedAssetPath": "rhino9/applymesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/applymesh.png"
+  },
+  {
+    "name": "ArcBlend",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/arcblend.png",
+    "suggestedAssetPath": "rhino9/arcblend.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/arcblend.png"
+  },
+  {
+    "name": "Arc",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/arc.png",
+    "suggestedAssetPath": "rhino9/arc.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/arc.png"
+  },
+  {
+    "name": "AreaCentroid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/areacentroid.png",
+    "suggestedAssetPath": "rhino9/areacentroid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/areacentroid.png"
+  },
+  {
+    "name": "AreaMoments",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/areamoments.png",
+    "suggestedAssetPath": "rhino9/areamoments.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/areamoments.png"
+  },
+  {
+    "name": "Area",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/area.png",
+    "suggestedAssetPath": "rhino9/area.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/area.png"
+  },
+  {
+    "name": "Array",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/array.png",
+    "suggestedAssetPath": "rhino9/array.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/array.png"
+  },
+  {
+    "name": "ArrayCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/arraycrv.png",
+    "suggestedAssetPath": "rhino9/arraycrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/arraycrv.png"
+  },
+  {
+    "name": "ArrayHole",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/arrayhole.png",
+    "suggestedAssetPath": "rhino9/arrayhole.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/arrayhole.png"
+  },
+  {
+    "name": "ArraySrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/arraysrf.png",
+    "suggestedAssetPath": "rhino9/arraysrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/arraysrf.png"
+  },
+  {
+    "name": "AttachGHSData",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/attachghsdata.png",
+    "suggestedAssetPath": "rhino9/attachghsdata.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/attachghsdata.png"
+  },
+  {
+    "name": "Audit",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/audit.png",
+    "suggestedAssetPath": "rhino9/audit.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/audit.png"
+  },
+  {
+    "name": "BackgroundBitmap",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/backgroundbitmap.png",
+    "suggestedAssetPath": "rhino9/backgroundbitmap.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/backgroundbitmap.png"
+  },
+  {
+    "name": "Bend",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/bend.png",
+    "suggestedAssetPath": "rhino9/bend.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/bend.png"
+  },
+  {
+    "name": "Bevel",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/bevel_mesh.png",
+    "suggestedAssetPath": "rhino9/bevel_mesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/bevel_mesh.png"
+  },
+  {
+    "name": "BlendCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/blendcrv.png",
+    "suggestedAssetPath": "rhino9/blendcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/blendcrv.png"
+  },
+  {
+    "name": "BlendEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/blendedge_rt.png",
+    "suggestedAssetPath": "rhino9/blendedge_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/blendedge_rt.png"
+  },
+  {
+    "name": "BlendSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/blendsrf.png",
+    "suggestedAssetPath": "rhino9/blendsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/blendsrf.png"
+  },
+  {
+    "name": "Block",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/block.png",
+    "suggestedAssetPath": "rhino9/block.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/block.png"
+  },
+  {
+    "name": "BooleanUnion",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/booleanunion.png",
+    "suggestedAssetPath": "rhino9/booleanunion.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/booleanunion.png"
+  },
+  {
+    "name": "Boss",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/boss.png",
+    "suggestedAssetPath": "rhino9/boss.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/boss.png"
+  },
+  {
+    "name": "Bounce",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/bounce.png",
+    "suggestedAssetPath": "rhino9/bounce.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/bounce.png"
+  },
+  {
+    "name": "BoundingBox",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/boundingbox.png",
+    "suggestedAssetPath": "rhino9/boundingbox.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/boundingbox.png"
+  },
+  {
+    "name": "Box",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/box.png",
+    "suggestedAssetPath": "rhino9/box.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/box.png"
+  },
+  {
+    "name": "BoxEdit",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/boxedit.png",
+    "suggestedAssetPath": "rhino9/boxedit.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/boxedit.png"
+  },
+  {
+    "name": "Bridge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/bridge.png",
+    "suggestedAssetPath": "rhino9/bridge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/bridge.png"
+  },
+  {
+    "name": "CageEdit",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cageedit.png",
+    "suggestedAssetPath": "rhino9/cageedit.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cageedit.png"
+  },
+  {
+    "name": "Calc",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/calc.png",
+    "suggestedAssetPath": "rhino9/calc.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/calc.png"
+  },
+  {
+    "name": "Cancel",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cancel.png",
+    "suggestedAssetPath": "rhino9/cancel.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cancel.png"
+  },
+  {
+    "name": "Cap",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cap.png",
+    "suggestedAssetPath": "rhino9/cap.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cap.png"
+  },
+  {
+    "name": "Catenary",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/catenary.png",
+    "suggestedAssetPath": "rhino9/catenary.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/catenary.png"
+  },
+  {
+    "name": "Chamfer",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/chamfer.png",
+    "suggestedAssetPath": "rhino9/chamfer.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/chamfer.png"
+  },
+  {
+    "name": "ChamferEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/chamferedge.png",
+    "suggestedAssetPath": "rhino9/chamferedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/chamferedge.png"
+  },
+  {
+    "name": "ChamferSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/chamfersrf.png",
+    "suggestedAssetPath": "rhino9/chamfersrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/chamfersrf.png"
+  },
+  {
+    "name": "ChangeDegree",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/changedegree.png",
+    "suggestedAssetPath": "rhino9/changedegree.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/changedegree.png"
+  },
+  {
+    "name": "Check",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/check.png",
+    "suggestedAssetPath": "rhino9/check.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/check.png"
+  },
+  {
+    "name": "Circle",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/circle.png",
+    "suggestedAssetPath": "rhino9/circle.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/circle.png"
+  },
+  {
+    "name": "Clash",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/clash.png",
+    "suggestedAssetPath": "rhino9/clash.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/clash.png"
+  },
+  {
+    "name": "ClearAllMeshes",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/clearallmeshes.png",
+    "suggestedAssetPath": "rhino9/clearallmeshes.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/clearallmeshes.png"
+  },
+  {
+    "name": "ClearUndo",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/clearundo.png",
+    "suggestedAssetPath": "rhino9/clearundo.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/clearundo.png"
+  },
+  {
+    "name": "ClippingPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/clippingplane.png",
+    "suggestedAssetPath": "rhino9/clippingplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/clippingplane.png"
+  },
+  {
+    "name": "Named Views",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedview.png",
+    "suggestedAssetPath": "rhino9/namedview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedview.png"
+  },
+  {
+    "name": "CloseCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/closecrv.png",
+    "suggestedAssetPath": "rhino9/closecrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/closecrv.png"
+  },
+  {
+    "name": "ClosestPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/closestpt.png",
+    "suggestedAssetPath": "rhino9/closestpt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/closestpt.png"
+  },
+  {
+    "name": "CollapseMeshEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/collapsemeshedge.png",
+    "suggestedAssetPath": "rhino9/collapsemeshedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/collapsemeshedge.png"
+  },
+  {
+    "name": "CollapseMeshFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/collapsemeshface.png",
+    "suggestedAssetPath": "rhino9/collapsemeshface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/collapsemeshface.png"
+  },
+  {
+    "name": "CollapseMeshVertex",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/collapsemeshvertex.png",
+    "suggestedAssetPath": "rhino9/collapsemeshvertex.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/collapsemeshvertex.png"
+  },
+  {
+    "name": "Commands",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/commands_rt.png",
+    "suggestedAssetPath": "rhino9/commands_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/commands_rt.png"
+  },
+  {
+    "name": "Cone",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cone.png",
+    "suggestedAssetPath": "rhino9/cone.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cone.png"
+  },
+  {
+    "name": "Conic",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/conic.png",
+    "suggestedAssetPath": "rhino9/conic.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/conic.png"
+  },
+  {
+    "name": "Connect",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/connect.png",
+    "suggestedAssetPath": "rhino9/connect.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/connect.png"
+  },
+  {
+    "name": "ContinueCurve",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/continuecurve.png",
+    "suggestedAssetPath": "rhino9/continuecurve.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/continuecurve.png"
+  },
+  {
+    "name": "Contour",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/contour.png",
+    "suggestedAssetPath": "rhino9/contour.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/contour.png"
+  },
+  {
+    "name": "Convert",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/convert_arcs.png",
+    "suggestedAssetPath": "rhino9/convert_arcs.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/convert_arcs.png"
+  },
+  {
+    "name": "Dot",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dot.png",
+    "suggestedAssetPath": "rhino9/dot.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dot.png"
+  },
+  {
+    "name": "points",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/point.png",
+    "suggestedAssetPath": "rhino9/point.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/point.png"
+  },
+  {
+    "name": "text",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/text.png",
+    "suggestedAssetPath": "rhino9/text.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/text.png"
+  },
+  {
+    "name": "ConvertTextToBlockAttribute",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/converttexttoblockattribute.png",
+    "suggestedAssetPath": "rhino9/converttexttoblockattribute.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/converttexttoblockattribute.png"
+  },
+  {
+    "name": "ConvertToSingleSpans",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/converttosinglespans.png",
+    "suggestedAssetPath": "rhino9/converttosinglespans.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/converttosinglespans.png"
+  },
+  {
+    "name": "Copy",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/copy.png",
+    "suggestedAssetPath": "rhino9/copy.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/copy.png"
+  },
+  {
+    "name": "CopyHole",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/copyhole_rt.png",
+    "suggestedAssetPath": "rhino9/copyhole_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/copyhole_rt.png"
+  },
+  {
+    "name": "CPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cplane.png",
+    "suggestedAssetPath": "rhino9/cplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cplane.png"
+  },
+  {
+    "name": "Crease",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/crease.png",
+    "suggestedAssetPath": "rhino9/crease.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/crease.png"
+  },
+  {
+    "name": "CreateSolid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/createsolid.png",
+    "suggestedAssetPath": "rhino9/createsolid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/createsolid.png"
+  },
+  {
+    "name": "CreateUVCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/createuvcrv.png",
+    "suggestedAssetPath": "rhino9/createuvcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/createuvcrv.png"
+  },
+  {
+    "name": "Crv2View",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/crv2view.png",
+    "suggestedAssetPath": "rhino9/crv2view.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/crv2view.png"
+  },
+  {
+    "name": "CrvDeviation",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/crvdeviation.png",
+    "suggestedAssetPath": "rhino9/crvdeviation.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/crvdeviation.png"
+  },
+  {
+    "name": "CrvSeam",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/crvseam.png",
+    "suggestedAssetPath": "rhino9/crvseam.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/crvseam.png"
+  },
+  {
+    "name": "CrvStart",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/crvstart.png",
+    "suggestedAssetPath": "rhino9/crvstart.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/crvstart.png"
+  },
+  {
+    "name": "CSec",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/csec.png",
+    "suggestedAssetPath": "rhino9/csec.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/csec.png"
+  },
+  {
+    "name": "CullControlPolygon",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cullcontrolpolygon.png",
+    "suggestedAssetPath": "rhino9/cullcontrolpolygon.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cullcontrolpolygon.png"
+  },
+  {
+    "name": "CullDegenerateMeshFaces",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/culldegeneratemeshfaces.png",
+    "suggestedAssetPath": "rhino9/culldegeneratemeshfaces.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/culldegeneratemeshfaces.png"
+  },
+  {
+    "name": "Curvature",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/curvature.png",
+    "suggestedAssetPath": "rhino9/curvature.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/curvature.png"
+  },
+  {
+    "name": "CurveBoolean",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/curveboolean.png",
+    "suggestedAssetPath": "rhino9/curveboolean.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/curveboolean.png"
+  },
+  {
+    "name": "Curve",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/curve.png",
+    "suggestedAssetPath": "rhino9/curve.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/curve.png"
+  },
+  {
+    "name": "CurveThroughPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/curvethroughpt_rt.png",
+    "suggestedAssetPath": "rhino9/curvethroughpt_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/curvethroughpt_rt.png"
+  },
+  {
+    "name": "Cut",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cut.png",
+    "suggestedAssetPath": "rhino9/cut.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cut.png"
+  },
+  {
+    "name": "CutPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cutplane.png",
+    "suggestedAssetPath": "rhino9/cutplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cutplane.png"
+  },
+  {
+    "name": "Cylinder",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cylinder.png",
+    "suggestedAssetPath": "rhino9/cylinder.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cylinder.png"
+  },
+  {
+    "name": "DeleteFaces",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/deletefaces_mesh.png",
+    "suggestedAssetPath": "rhino9/deletefaces_mesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/deletefaces_mesh.png"
+  },
+  {
+    "name": "DeleteSubCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/deletesubcrv.png",
+    "suggestedAssetPath": "rhino9/deletesubcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/deletesubcrv.png"
+  },
+  {
+    "name": "Detail",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/detail_add.png",
+    "suggestedAssetPath": "rhino9/detail_add.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/detail_add.png"
+  },
+  {
+    "name": "Diameter",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/diameter.png",
+    "suggestedAssetPath": "rhino9/diameter.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/diameter.png"
+  },
+  {
+    "name": "Digitize",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/digitize.png",
+    "suggestedAssetPath": "rhino9/digitize.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/digitize.png"
+  },
+  {
+    "name": "Dir",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dir.png",
+    "suggestedAssetPath": "rhino9/dir.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dir.png"
+  },
+  {
+    "name": "DisplayProperties",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/displayproperties.png",
+    "suggestedAssetPath": "rhino9/displayproperties.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/displayproperties.png"
+  },
+  {
+    "name": "Distance",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/distance.png",
+    "suggestedAssetPath": "rhino9/distance.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/distance.png"
+  },
+  {
+    "name": "DivideAlongCreases",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dividealongcreases.png",
+    "suggestedAssetPath": "rhino9/dividealongcreases.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dividealongcreases.png"
+  },
+  {
+    "name": "Divide",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/divide.png",
+    "suggestedAssetPath": "rhino9/divide.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/divide.png"
+  },
+  {
+    "name": "DocumentProperties",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/documentproperties.png",
+    "suggestedAssetPath": "rhino9/documentproperties.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/documentproperties.png"
+  },
+  {
+    "name": "Domain",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/domain_rt.png",
+    "suggestedAssetPath": "rhino9/domain_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/domain_rt.png"
+  },
+  {
+    "name": "DraftAngleAnalysis",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/draftangleanalysis.png",
+    "suggestedAssetPath": "rhino9/draftangleanalysis.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/draftangleanalysis.png"
+  },
+  {
+    "name": "DragMode",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dragmode.png",
+    "suggestedAssetPath": "rhino9/dragmode.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dragmode.png"
+  },
+  {
+    "name": "Drape",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/drape.png",
+    "suggestedAssetPath": "rhino9/drape.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/drape.png"
+  },
+  {
+    "name": "DupBorder",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dupborder.png",
+    "suggestedAssetPath": "rhino9/dupborder.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dupborder.png"
+  },
+  {
+    "name": "DupEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dupedge.png",
+    "suggestedAssetPath": "rhino9/dupedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dupedge.png"
+  },
+  {
+    "name": "DupFaceBorder",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dupfaceborder.png",
+    "suggestedAssetPath": "rhino9/dupfaceborder.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dupfaceborder.png"
+  },
+  {
+    "name": "DupLayer",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/duplayer.png",
+    "suggestedAssetPath": "rhino9/duplayer.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/duplayer.png"
+  },
+  {
+    "name": "DupMeshEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dupmeshedge_rt.png",
+    "suggestedAssetPath": "rhino9/dupmeshedge_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dupmeshedge_rt.png"
+  },
+  {
+    "name": "DupMeshHoleBoundary",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/dupmeshholeboundary.png",
+    "suggestedAssetPath": "rhino9/dupmeshholeboundary.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/dupmeshholeboundary.png"
+  },
+  {
+    "name": "EarthAnchorPoint",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/earthanchorpoint.png",
+    "suggestedAssetPath": "rhino9/earthanchorpoint.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/earthanchorpoint.png"
+  },
+  {
+    "name": "EdgeContinuity",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/edgecontinuity.png",
+    "suggestedAssetPath": "rhino9/edgecontinuity.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/edgecontinuity.png"
+  },
+  {
+    "name": "EdgeSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/edgesrf.png",
+    "suggestedAssetPath": "rhino9/edgesrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/edgesrf.png"
+  },
+  {
+    "name": "EditLightByHighlight",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/editlightbyhighlight.png",
+    "suggestedAssetPath": "rhino9/editlightbyhighlight.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/editlightbyhighlight.png"
+  },
+  {
+    "name": "EditLightByLooking",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/editlightbylooking.png",
+    "suggestedAssetPath": "rhino9/editlightbylooking.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/editlightbylooking.png"
+  },
+  {
+    "name": "Ellipse",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/ellipse.png",
+    "suggestedAssetPath": "rhino9/ellipse.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/ellipse.png"
+  },
+  {
+    "name": "Ellipsoid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/ellipsoid.png",
+    "suggestedAssetPath": "rhino9/ellipsoid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/ellipsoid.png"
+  },
+  {
+    "name": "EMap",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/emap.png",
+    "suggestedAssetPath": "rhino9/emap.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/emap.png"
+  },
+  {
+    "name": "EndBulge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/endbulge.png",
+    "suggestedAssetPath": "rhino9/endbulge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/endbulge.png"
+  },
+  {
+    "name": "Environments",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/environments.png",
+    "suggestedAssetPath": "rhino9/environments.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/environments.png"
+  },
+  {
+    "name": "EvaluatePt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/evaluatept.png",
+    "suggestedAssetPath": "rhino9/evaluatept.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/evaluatept.png"
+  },
+  {
+    "name": "EvaluateUVPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/evaluatept_rt.png",
+    "suggestedAssetPath": "rhino9/evaluatept_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/evaluatept_rt.png"
+  },
+  {
+    "name": "Explode",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/explode.png",
+    "suggestedAssetPath": "rhino9/explode.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/explode.png"
+  },
+  {
+    "name": "ExportBitmaps",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/exportbitmaps.png",
+    "suggestedAssetPath": "rhino9/exportbitmaps.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/exportbitmaps.png"
+  },
+  {
+    "name": "Export",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/export_save_rt.png",
+    "suggestedAssetPath": "rhino9/export_save_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/export_save_rt.png"
+  },
+  {
+    "name": "ExtendCrvOnSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extendcrvonsrf.png",
+    "suggestedAssetPath": "rhino9/extendcrvonsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extendcrvonsrf.png"
+  },
+  {
+    "name": "ExtendDynamic",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extenddynamic.png",
+    "suggestedAssetPath": "rhino9/extenddynamic.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extenddynamic.png"
+  },
+  {
+    "name": "Extend",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extend.png",
+    "suggestedAssetPath": "rhino9/extend.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extend.png"
+  },
+  {
+    "name": "ExtendSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extendsrf.png",
+    "suggestedAssetPath": "rhino9/extendsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extendsrf.png"
+  },
+  {
+    "name": "ExtractBadSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractbadsrf_rt.png",
+    "suggestedAssetPath": "rhino9/extractbadsrf_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractbadsrf_rt.png"
+  },
+  {
+    "name": "ExtractControlPolygon",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractcontrolpolygon.png",
+    "suggestedAssetPath": "rhino9/extractcontrolpolygon.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractcontrolpolygon.png"
+  },
+  {
+    "name": "ExtractIsocurve",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractisocurve.png",
+    "suggestedAssetPath": "rhino9/extractisocurve.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractisocurve.png"
+  },
+  {
+    "name": "ExtractMeshEdges",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractmeshedges.png",
+    "suggestedAssetPath": "rhino9/extractmeshedges.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractmeshedges.png"
+  },
+  {
+    "name": "ExtractMeshFaces",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractmeshfaces.png",
+    "suggestedAssetPath": "rhino9/extractmeshfaces.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractmeshfaces.png"
+  },
+  {
+    "name": "ExtractPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractpt.png",
+    "suggestedAssetPath": "rhino9/extractpt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractpt.png"
+  },
+  {
+    "name": "ExtractRenderMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/extractrendermesh.png",
+    "suggestedAssetPath": "rhino9/extractrendermesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractrendermesh.png"
+  },
+  {
+    "name": "render",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/render.png",
+    "suggestedAssetPath": "rhino9/render.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/render.png"
+  },
+  {
+    "name": "ExtractSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractsrf.png",
+    "suggestedAssetPath": "rhino9/extractsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractsrf.png"
+  },
+  {
+    "name": "ExtractSubCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractsubcrv.png",
+    "suggestedAssetPath": "rhino9/extractsubcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractsubcrv.png"
+  },
+  {
+    "name": "ExtractWireframe",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extractwireframe.png",
+    "suggestedAssetPath": "rhino9/extractwireframe.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extractwireframe.png"
+  },
+  {
+    "name": "ExtrudeCrvAlongCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudecrvalongcrv.png",
+    "suggestedAssetPath": "rhino9/extrudecrvalongcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudecrvalongcrv.png"
+  },
+  {
+    "name": "ExtrudeCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudecrv.png",
+    "suggestedAssetPath": "rhino9/extrudecrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudecrv.png"
+  },
+  {
+    "name": "ExtrudeCrvTapered",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudecrvtapered.png",
+    "suggestedAssetPath": "rhino9/extrudecrvtapered.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudecrvtapered.png"
+  },
+  {
+    "name": "ExtrudeCrvToPoint",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudecrvtopoint.png",
+    "suggestedAssetPath": "rhino9/extrudecrvtopoint.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudecrvtopoint.png"
+  },
+  {
+    "name": "ExtrudeMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudemesh.png",
+    "suggestedAssetPath": "rhino9/extrudemesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudemesh.png"
+  },
+  {
+    "name": "ExtrudeSrfAlongCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudesrfalongcrv.png",
+    "suggestedAssetPath": "rhino9/extrudesrfalongcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudesrfalongcrv.png"
+  },
+  {
+    "name": "ExtrudeSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudesrf.png",
+    "suggestedAssetPath": "rhino9/extrudesrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudesrf.png"
+  },
+  {
+    "name": "ExtrudeSrfTapered",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudesrftapered.png",
+    "suggestedAssetPath": "rhino9/extrudesrftapered.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudesrftapered.png"
+  },
+  {
+    "name": "ExtrudeSrfToPoint",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudesrftopoint.png",
+    "suggestedAssetPath": "rhino9/extrudesrftopoint.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudesrftopoint.png"
+  },
+  {
+    "name": "ExtrudeSubD",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/extrudesubd.png",
+    "suggestedAssetPath": "rhino9/extrudesubd.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/extrudesubd.png"
+  },
+  {
+    "name": "Fair",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fair.png",
+    "suggestedAssetPath": "rhino9/fair.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fair.png"
+  },
+  {
+    "name": "FileExplorer",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fileexplorer.png",
+    "suggestedAssetPath": "rhino9/fileexplorer.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fileexplorer.png"
+  },
+  {
+    "name": "Fill",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fill.png",
+    "suggestedAssetPath": "rhino9/fill.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fill.png"
+  },
+  {
+    "name": "Fillet",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fillet.png",
+    "suggestedAssetPath": "rhino9/fillet.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fillet.png"
+  },
+  {
+    "name": "FilletEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/filletedge.png",
+    "suggestedAssetPath": "rhino9/filletedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/filletedge.png"
+  },
+  {
+    "name": "FilletSrfCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/filletsrfcrv.png",
+    "suggestedAssetPath": "rhino9/filletsrfcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/filletsrfcrv.png"
+  },
+  {
+    "name": "FillMeshHole",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fillmeshhole.png",
+    "suggestedAssetPath": "rhino9/fillmeshhole.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fillmeshhole.png"
+  },
+  {
+    "name": "FindText",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/findtext.png",
+    "suggestedAssetPath": "rhino9/findtext.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/findtext.png"
+  },
+  {
+    "name": "Fin",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fin.png",
+    "suggestedAssetPath": "rhino9/fin.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fin.png"
+  },
+  {
+    "name": "FitCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fitcrv.png",
+    "suggestedAssetPath": "rhino9/fitcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fitcrv.png"
+  },
+  {
+    "name": "FitSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fitsrf.png",
+    "suggestedAssetPath": "rhino9/fitsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fitsrf.png"
+  },
+  {
+    "name": "FixedLengthCrvEdit",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/fixedlengthcrvedit.png",
+    "suggestedAssetPath": "rhino9/fixedlengthcrvedit.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/fixedlengthcrvedit.png"
+  },
+  {
+    "name": "FlatShade",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/flatshade.png",
+    "suggestedAssetPath": "rhino9/flatshade.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/flatshade.png"
+  },
+  {
+    "name": "FlattenSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/flattensrf_rt.png",
+    "suggestedAssetPath": "rhino9/flattensrf_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/flattensrf_rt.png"
+  },
+  {
+    "name": "Flip",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/flip.png",
+    "suggestedAssetPath": "rhino9/flip.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/flip.png"
+  },
+  {
+    "name": "FlowAlongSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/flowalongsrf.png",
+    "suggestedAssetPath": "rhino9/flowalongsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/flowalongsrf.png"
+  },
+  {
+    "name": "Flow",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/flow.png",
+    "suggestedAssetPath": "rhino9/flow.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/flow.png"
+  },
+  {
+    "name": "FoldFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/foldface.png",
+    "suggestedAssetPath": "rhino9/foldface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/foldface.png"
+  },
+  {
+    "name": "GCon",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/gcon.png",
+    "suggestedAssetPath": "rhino9/gcon.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/gcon.png"
+  },
+  {
+    "name": "GeometricTolerance",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/general/new9.png",
+    "suggestedAssetPath": "rhino9/new9.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new9.png"
+  },
+  {
+    "name": "GlobalEdgeContinuity",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/general/new9.png",
+    "suggestedAssetPath": "rhino9/new9.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new9.png"
+  },
+  {
+    "name": "Grasshopper",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/grasshopper.png",
+    "suggestedAssetPath": "rhino9/grasshopper.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/grasshopper.png"
+  },
+  {
+    "name": "GroundPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/groundplane.png",
+    "suggestedAssetPath": "rhino9/groundplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/groundplane.png"
+  },
+  {
+    "name": "Group",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/group.png",
+    "suggestedAssetPath": "rhino9/group.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/group.png"
+  },
+  {
+    "name": "Gumball",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/gumball.png",
+    "suggestedAssetPath": "rhino9/gumball.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/gumball.png"
+  },
+  {
+    "name": "HandleCurve",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/handlecurve.png",
+    "suggestedAssetPath": "rhino9/handlecurve.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/handlecurve.png"
+  },
+  {
+    "name": "Hatch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/hatch.png",
+    "suggestedAssetPath": "rhino9/hatch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/hatch.png"
+  },
+  {
+    "name": "Heightfield",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/heightfield.png",
+    "suggestedAssetPath": "rhino9/heightfield.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/heightfield.png"
+  },
+  {
+    "name": "Helix",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/helix.png",
+    "suggestedAssetPath": "rhino9/helix.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/helix.png"
+  },
+  {
+    "name": "Help",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/help.png",
+    "suggestedAssetPath": "rhino9/help.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/help.png"
+  },
+  {
+    "name": "Hide",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/hide.png",
+    "suggestedAssetPath": "rhino9/hide.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/hide.png"
+  },
+  {
+    "name": "History",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/history.png",
+    "suggestedAssetPath": "rhino9/history.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/history.png"
+  },
+  {
+    "name": "Hydrostatics",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/hydrostatics.png",
+    "suggestedAssetPath": "rhino9/hydrostatics.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/hydrostatics.png"
+  },
+  {
+    "name": "Hyperlink",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/hyperlink.png",
+    "suggestedAssetPath": "rhino9/hyperlink.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/hyperlink.png"
+  },
+  {
+    "name": "InfinitePlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/iplane.png",
+    "suggestedAssetPath": "rhino9/iplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/iplane.png"
+  },
+  {
+    "name": "InsertControlPoint",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/insertcontrolpoint.png",
+    "suggestedAssetPath": "rhino9/insertcontrolpoint.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/insertcontrolpoint.png"
+  },
+  {
+    "name": "InsertEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/insertedge.png",
+    "suggestedAssetPath": "rhino9/insertedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/insertedge.png"
+  },
+  {
+    "name": "Insert",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/insert.png",
+    "suggestedAssetPath": "rhino9/insert.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/insert.png"
+  },
+  {
+    "name": "InsertLineIntoCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/insertlineintocrv.png",
+    "suggestedAssetPath": "rhino9/insertlineintocrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/insertlineintocrv.png"
+  },
+  {
+    "name": "InsertPoint",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/insertpoint.png",
+    "suggestedAssetPath": "rhino9/insertpoint.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/insertpoint.png"
+  },
+  {
+    "name": "Inset",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/inset_subd.png",
+    "suggestedAssetPath": "rhino9/inset_subd.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/inset_subd.png"
+  },
+  {
+    "name": "InterpCrvOnSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/interpcrvonsrf.png",
+    "suggestedAssetPath": "rhino9/interpcrvonsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/interpcrvonsrf.png"
+  },
+  {
+    "name": "Intersect",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/intersect.png",
+    "suggestedAssetPath": "rhino9/intersect.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/intersect.png"
+  },
+  {
+    "name": "IntersectSelf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/intersectself.png",
+    "suggestedAssetPath": "rhino9/intersectself.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/intersectself.png"
+  },
+  {
+    "name": "IsolateToViewports",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/general/new9.png",
+    "suggestedAssetPath": "rhino9/new9.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new9.png"
+  },
+  {
+    "name": "Isometric",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/isometric.png",
+    "suggestedAssetPath": "rhino9/isometric.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/isometric.png"
+  },
+  {
+    "name": "Join",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/join.png",
+    "suggestedAssetPath": "rhino9/join.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/join.png"
+  },
+  {
+    "name": "JoinEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/joinedge.png",
+    "suggestedAssetPath": "rhino9/joinedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/joinedge.png"
+  },
+  {
+    "name": "LayerBook",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/layerbook.png",
+    "suggestedAssetPath": "rhino9/layerbook.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/layerbook.png"
+  },
+  {
+    "name": "Layer",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/layer.png",
+    "suggestedAssetPath": "rhino9/layer.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/layer.png"
+  },
+  {
+    "name": "Layout",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/layout.png",
+    "suggestedAssetPath": "rhino9/layout.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/layout.png"
+  },
+  {
+    "name": "Layouts",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/layouts.png",
+    "suggestedAssetPath": "rhino9/layouts.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/layouts.png"
+  },
+  {
+    "name": "Leader",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/leader.png",
+    "suggestedAssetPath": "rhino9/leader.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/leader.png"
+  },
+  {
+    "name": "Length",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/length.png",
+    "suggestedAssetPath": "rhino9/length.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/length.png"
+  },
+  {
+    "name": "Lights",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/lights.png",
+    "suggestedAssetPath": "rhino9/lights.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/lights.png"
+  },
+  {
+    "name": "Line",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/line.png",
+    "suggestedAssetPath": "rhino9/line.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/line.png"
+  },
+  {
+    "name": "Lock",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/lock.png",
+    "suggestedAssetPath": "rhino9/lock.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/lock.png"
+  },
+  {
+    "name": "LockViewport",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/lockviewport.png",
+    "suggestedAssetPath": "rhino9/lockviewport.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/lockviewport.png"
+  },
+  {
+    "name": "Loft",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/loft.png",
+    "suggestedAssetPath": "rhino9/loft.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/loft.png"
+  },
+  {
+    "name": "Maelstrom",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/maelstrom.png",
+    "suggestedAssetPath": "rhino9/maelstrom.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/maelstrom.png"
+  },
+  {
+    "name": "Make2D",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/make2d.png",
+    "suggestedAssetPath": "rhino9/make2d.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/make2d.png"
+  },
+  {
+    "name": "MakeHole",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/makehole.png",
+    "suggestedAssetPath": "rhino9/makehole.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/makehole.png"
+  },
+  {
+    "name": "MakePeriodic",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/makeperiodic.png",
+    "suggestedAssetPath": "rhino9/makeperiodic.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/makeperiodic.png"
+  },
+  {
+    "name": "MakeSubDFriendly",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/makesubdfriendly.png",
+    "suggestedAssetPath": "rhino9/makesubdfriendly.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/makesubdfriendly.png"
+  },
+  {
+    "name": "MakeUniform",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/makeuniform.png",
+    "suggestedAssetPath": "rhino9/makeuniform.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/makeuniform.png"
+  },
+  {
+    "name": "MarkFoci",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/markfoci.png",
+    "suggestedAssetPath": "rhino9/markfoci.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/markfoci.png"
+  },
+  {
+    "name": "Markup",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/general/new9.png",
+    "suggestedAssetPath": "rhino9/new9.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new9.png"
+  },
+  {
+    "name": "Match",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/match.png",
+    "suggestedAssetPath": "rhino9/match.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/match.png"
+  },
+  {
+    "name": "MatchCrvDir",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/matchcurvedir.png",
+    "suggestedAssetPath": "rhino9/matchcurvedir.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/matchcurvedir.png"
+  },
+  {
+    "name": "MatchLayer",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/matchlayer_rt.png",
+    "suggestedAssetPath": "rhino9/matchlayer_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/matchlayer_rt.png"
+  },
+  {
+    "name": "MatchMeshEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/matchmeshedge.png",
+    "suggestedAssetPath": "rhino9/matchmeshedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/matchmeshedge.png"
+  },
+  {
+    "name": "MatchProperties",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/matchproperties.png",
+    "suggestedAssetPath": "rhino9/matchproperties.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/matchproperties.png"
+  },
+  {
+    "name": "MatchSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/matchsrf.png",
+    "suggestedAssetPath": "rhino9/matchsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/matchsrf.png"
+  },
+  {
+    "name": "Materials",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/materialeditor.png",
+    "suggestedAssetPath": "rhino9/materialeditor.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/materialeditor.png"
+  },
+  {
+    "name": "MaxViewport",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/maxviewport.png",
+    "suggestedAssetPath": "rhino9/maxviewport.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/maxviewport.png"
+  },
+  {
+    "name": "MergeCoplanarFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/mergecoplanarface.png",
+    "suggestedAssetPath": "rhino9/mergecoplanarface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/mergecoplanarface.png"
+  },
+  {
+    "name": "MergeFaces",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/mergefaces.png",
+    "suggestedAssetPath": "rhino9/mergefaces.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/mergefaces.png"
+  },
+  {
+    "name": "MergeSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/mergesrf.png",
+    "suggestedAssetPath": "rhino9/mergesrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/mergesrf.png"
+  },
+  {
+    "name": "MeshBooleanUnion",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshbooleanunion.png",
+    "suggestedAssetPath": "rhino9/meshbooleanunion.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshbooleanunion.png"
+  },
+  {
+    "name": "MeshBox",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshbox.png",
+    "suggestedAssetPath": "rhino9/meshbox.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshbox.png"
+  },
+  {
+    "name": "MeshCone",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshcone.png",
+    "suggestedAssetPath": "rhino9/meshcone.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshcone.png"
+  },
+  {
+    "name": "Mesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/mesh.png",
+    "suggestedAssetPath": "rhino9/mesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/mesh.png"
+  },
+  {
+    "name": "MeshCylinder",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshcylinder.png",
+    "suggestedAssetPath": "rhino9/meshcylinder.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshcylinder.png"
+  },
+  {
+    "name": "MeshEllipsoid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshellipsoid.png",
+    "suggestedAssetPath": "rhino9/meshellipsoid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshellipsoid.png"
+  },
+  {
+    "name": "MeshFromLines",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshfromlines.png",
+    "suggestedAssetPath": "rhino9/meshfromlines.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshfromlines.png"
+  },
+  {
+    "name": "MeshIntersect",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshintersect.png",
+    "suggestedAssetPath": "rhino9/meshintersect.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshintersect.png"
+  },
+  {
+    "name": "MeshOutline",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshoutline.png",
+    "suggestedAssetPath": "rhino9/meshoutline.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshoutline.png"
+  },
+  {
+    "name": "MeshPatch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshpatch.png",
+    "suggestedAssetPath": "rhino9/meshpatch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshpatch.png"
+  },
+  {
+    "name": "MeshPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshplane.png",
+    "suggestedAssetPath": "rhino9/meshplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshplane.png"
+  },
+  {
+    "name": "MeshPolyline",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshpolyline.png",
+    "suggestedAssetPath": "rhino9/meshpolyline.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshpolyline.png"
+  },
+  {
+    "name": "MeshRepair",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshrepair.png",
+    "suggestedAssetPath": "rhino9/meshrepair.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshrepair.png"
+  },
+  {
+    "name": "MeshSphere",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshsphere.png",
+    "suggestedAssetPath": "rhino9/meshsphere.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshsphere.png"
+  },
+  {
+    "name": "MeshSplit",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshsplit.png",
+    "suggestedAssetPath": "rhino9/meshsplit.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshsplit.png"
+  },
+  {
+    "name": "MeshToNURB",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshtonurb_rt.png",
+    "suggestedAssetPath": "rhino9/meshtonurb_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshtonurb_rt.png"
+  },
+  {
+    "name": "MeshTorus",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshtorus.png",
+    "suggestedAssetPath": "rhino9/meshtorus.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshtorus.png"
+  },
+  {
+    "name": "MeshTrim",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshtrim.png",
+    "suggestedAssetPath": "rhino9/meshtrim.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshtrim.png"
+  },
+  {
+    "name": "MeshTruncatedCone",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/meshtruncatedcone.png",
+    "suggestedAssetPath": "rhino9/meshtruncatedcone.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/meshtruncatedcone.png"
+  },
+  {
+    "name": "Mirror",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/mirror.png",
+    "suggestedAssetPath": "rhino9/mirror.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/mirror.png"
+  },
+  {
+    "name": "ModelBasepoint",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/modelbasepoint.png",
+    "suggestedAssetPath": "rhino9/modelbasepoint.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/modelbasepoint.png"
+  },
+  {
+    "name": "MoveCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/movecrv.png",
+    "suggestedAssetPath": "rhino9/movecrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/movecrv.png"
+  },
+  {
+    "name": "MoveEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/moveedge.png",
+    "suggestedAssetPath": "rhino9/moveedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/moveedge.png"
+  },
+  {
+    "name": "MoveFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/moveface.png",
+    "suggestedAssetPath": "rhino9/moveface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/moveface.png"
+  },
+  {
+    "name": "MoveHole",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/movehole.png",
+    "suggestedAssetPath": "rhino9/movehole.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/movehole.png"
+  },
+  {
+    "name": "Move",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/move.png",
+    "suggestedAssetPath": "rhino9/move.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/move.png"
+  },
+  {
+    "name": "MoveTargetToObjects",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/movetargettoobjects.png",
+    "suggestedAssetPath": "rhino9/movetargettoobjects.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/movetargettoobjects.png"
+  },
+  {
+    "name": "MoveUntrimmedEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/moveuntrimmededge_rt.png",
+    "suggestedAssetPath": "rhino9/moveuntrimmededge_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/moveuntrimmededge_rt.png"
+  },
+  {
+    "name": "MoveUntrimmedFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/moveuntrimmedface_rt.png",
+    "suggestedAssetPath": "rhino9/moveuntrimmedface_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/moveuntrimmedface_rt.png"
+  },
+  {
+    "name": "MoveUVN",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/moveuvn.png",
+    "suggestedAssetPath": "rhino9/moveuvn.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/moveuvn.png"
+  },
+  {
+    "name": "MPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/mplane.png",
+    "suggestedAssetPath": "rhino9/mplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/mplane.png"
+  },
+  {
+    "name": "MultiPipe",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/multipipe.png",
+    "suggestedAssetPath": "rhino9/multipipe.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/multipipe.png"
+  },
+  {
+    "name": "NamedCPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cplane_panel.png",
+    "suggestedAssetPath": "rhino9/cplane_panel.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cplane_panel.png"
+  },
+  {
+    "name": "NamedPosition",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedposition.png",
+    "suggestedAssetPath": "rhino9/namedposition.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedposition.png"
+  },
+  {
+    "name": "NamedSelections",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedselections.png",
+    "suggestedAssetPath": "rhino9/namedselections.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedselections.png"
+  },
+  {
+    "name": "NamedView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedview.png",
+    "suggestedAssetPath": "rhino9/namedview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedview.png"
+  },
+  {
+    "name": "NetworkSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/networksrf.png",
+    "suggestedAssetPath": "rhino9/networksrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/networksrf.png"
+  },
+  {
+    "name": "New",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/new.png",
+    "suggestedAssetPath": "rhino9/new.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new.png"
+  },
+  {
+    "name": "Notes",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/notes.png",
+    "suggestedAssetPath": "rhino9/notes.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/notes.png"
+  },
+  {
+    "name": "Offset",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offset.png",
+    "suggestedAssetPath": "rhino9/offset.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offset.png"
+  },
+  {
+    "name": "OffsetCrvOnSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offsetcrvonsrf.png",
+    "suggestedAssetPath": "rhino9/offsetcrvonsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offsetcrvonsrf.png"
+  },
+  {
+    "name": "OffsetMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offsetmesh.png",
+    "suggestedAssetPath": "rhino9/offsetmesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offsetmesh.png"
+  },
+  {
+    "name": "OffsetMultiple",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offsetmultiple.png",
+    "suggestedAssetPath": "rhino9/offsetmultiple.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offsetmultiple.png"
+  },
+  {
+    "name": "OffsetNormal",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offsetnormal.png",
+    "suggestedAssetPath": "rhino9/offsetnormal.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offsetnormal.png"
+  },
+  {
+    "name": "OffsetSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offsetsrf.png",
+    "suggestedAssetPath": "rhino9/offsetsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offsetsrf.png"
+  },
+  {
+    "name": "OffsetSubD",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/offsetsubd.png",
+    "suggestedAssetPath": "rhino9/offsetsubd.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/offsetsubd.png"
+  },
+  {
+    "name": "OneView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/oneview.png",
+    "suggestedAssetPath": "rhino9/oneview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/oneview.png"
+  },
+  {
+    "name": "OptionsExport",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/optionsexport.png",
+    "suggestedAssetPath": "rhino9/optionsexport.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/optionsexport.png"
+  },
+  {
+    "name": "Options",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/options.png",
+    "suggestedAssetPath": "rhino9/options.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/options.png"
+  },
+  {
+    "name": "Orient3Pt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/orient3pt_orient_rt.png",
+    "suggestedAssetPath": "rhino9/orient3pt_orient_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/orient3pt_orient_rt.png"
+  },
+  {
+    "name": "OrientCameraToSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/orientcameratosrf.png",
+    "suggestedAssetPath": "rhino9/orientcameratosrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/orientcameratosrf.png"
+  },
+  {
+    "name": "OrientCrvToEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/orientcrvtoedge.png",
+    "suggestedAssetPath": "rhino9/orientcrvtoedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/orientcrvtoedge.png"
+  },
+  {
+    "name": "OrientOnCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/orientoncrv.png",
+    "suggestedAssetPath": "rhino9/orientoncrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/orientoncrv.png"
+  },
+  {
+    "name": "OrientOnSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/orientonsrf.png",
+    "suggestedAssetPath": "rhino9/orientonsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/orientonsrf.png"
+  },
+  {
+    "name": "Orient",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/orient.png",
+    "suggestedAssetPath": "rhino9/orient.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/orient.png"
+  },
+  {
+    "name": "Ortho",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/ortho.png",
+    "suggestedAssetPath": "rhino9/ortho.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/ortho.png"
+  },
+  {
+    "name": "Overlap",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/general/new9.png",
+    "suggestedAssetPath": "rhino9/new9.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new9.png"
+  },
+  {
+    "name": "PackageManager",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/packagemanager.png",
+    "suggestedAssetPath": "rhino9/packagemanager.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/packagemanager.png"
+  },
+  {
+    "name": "PackSubDFaces",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/packsubdfaces.png",
+    "suggestedAssetPath": "rhino9/packsubdfaces.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/packsubdfaces.png"
+  },
+  {
+    "name": "PackTextures",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/packtextures.png",
+    "suggestedAssetPath": "rhino9/packtextures.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/packtextures.png"
+  },
+  {
+    "name": "Pan",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pan.png",
+    "suggestedAssetPath": "rhino9/pan.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pan.png"
+  },
+  {
+    "name": "Parabola",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/parabola.png",
+    "suggestedAssetPath": "rhino9/parabola.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/parabola.png"
+  },
+  {
+    "name": "Paraboloid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/paraboloid.png",
+    "suggestedAssetPath": "rhino9/paraboloid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/paraboloid.png"
+  },
+  {
+    "name": "PatchSingleFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/patchsingleface.png",
+    "suggestedAssetPath": "rhino9/patchsingleface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/patchsingleface.png"
+  },
+  {
+    "name": "Patch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/patch.png",
+    "suggestedAssetPath": "rhino9/patch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/patch.png"
+  },
+  {
+    "name": "PerspectiveAngle",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/perspectiveangle.png",
+    "suggestedAssetPath": "rhino9/perspectiveangle.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/perspectiveangle.png"
+  },
+  {
+    "name": "PerspectiveMatch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/perspectivematch.png",
+    "suggestedAssetPath": "rhino9/perspectivematch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/perspectivematch.png"
+  },
+  {
+    "name": "Picture",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/picture.png",
+    "suggestedAssetPath": "rhino9/picture.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/picture.png"
+  },
+  {
+    "name": "Pipe",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pipe.png",
+    "suggestedAssetPath": "rhino9/pipe.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pipe.png"
+  },
+  {
+    "name": "PlanarSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/planarsrf.png",
+    "suggestedAssetPath": "rhino9/planarsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/planarsrf.png"
+  },
+  {
+    "name": "Plane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/plane.png",
+    "suggestedAssetPath": "rhino9/plane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/plane.png"
+  },
+  {
+    "name": "PlaneThroughPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/planethroughpt.png",
+    "suggestedAssetPath": "rhino9/planethroughpt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/planethroughpt.png"
+  },
+  {
+    "name": "PlugInManager",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pluginmanager.png",
+    "suggestedAssetPath": "rhino9/pluginmanager.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pluginmanager.png"
+  },
+  {
+    "name": "PointCloud",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pointcloud.png",
+    "suggestedAssetPath": "rhino9/pointcloud.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pointcloud.png"
+  },
+  {
+    "name": "PointDeviation",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pointdeviation.png",
+    "suggestedAssetPath": "rhino9/pointdeviation.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pointdeviation.png"
+  },
+  {
+    "name": "Point",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/point.png",
+    "suggestedAssetPath": "rhino9/point.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/point.png"
+  },
+  {
+    "name": "PointGrid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pointgrid.png",
+    "suggestedAssetPath": "rhino9/pointgrid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pointgrid.png"
+  },
+  {
+    "name": "PointsFromUV",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pointsfromuv.png",
+    "suggestedAssetPath": "rhino9/pointsfromuv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pointsfromuv.png"
+  },
+  {
+    "name": "PointsOn",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pointson.png",
+    "suggestedAssetPath": "rhino9/pointson.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pointson.png"
+  },
+  {
+    "name": "PolygonCount",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/polygoncount.png",
+    "suggestedAssetPath": "rhino9/polygoncount.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/polygoncount.png"
+  },
+  {
+    "name": "Polygon",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/polygon.png",
+    "suggestedAssetPath": "rhino9/polygon.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/polygon.png"
+  },
+  {
+    "name": "Polyline",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/polyline.png",
+    "suggestedAssetPath": "rhino9/polyline.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/polyline.png"
+  },
+  {
+    "name": "PrintDisplay",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/printdisplay.png",
+    "suggestedAssetPath": "rhino9/printdisplay.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/printdisplay.png"
+  },
+  {
+    "name": "Print",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/print.png",
+    "suggestedAssetPath": "rhino9/print.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/print.png"
+  },
+  {
+    "name": "Project",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/project.png",
+    "suggestedAssetPath": "rhino9/project.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/project.png"
+  },
+  {
+    "name": "ProjectToCPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/projecttocplane.png",
+    "suggestedAssetPath": "rhino9/projecttocplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/projecttocplane.png"
+  },
+  {
+    "name": "Properties",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/properties.png",
+    "suggestedAssetPath": "rhino9/properties.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/properties.png"
+  },
+  {
+    "name": "Pull",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pull.png",
+    "suggestedAssetPath": "rhino9/pull.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pull.png"
+  },
+  {
+    "name": "Purge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/purge.png",
+    "suggestedAssetPath": "rhino9/purge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/purge.png"
+  },
+  {
+    "name": "PushPull",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pushpull.png",
+    "suggestedAssetPath": "rhino9/pushpull.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pushpull.png"
+  },
+  {
+    "name": "Pyramid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pyramid.png",
+    "suggestedAssetPath": "rhino9/pyramid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pyramid.png"
+  },
+  {
+    "name": "QuadRemesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/quadremesh.png",
+    "suggestedAssetPath": "rhino9/quadremesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/quadremesh.png"
+  },
+  {
+    "name": "RailRevolve",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/railrevolve_rt.png",
+    "suggestedAssetPath": "rhino9/railrevolve_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/railrevolve_rt.png"
+  },
+  {
+    "name": "RebuildEdges",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rebuildedges.png",
+    "suggestedAssetPath": "rhino9/rebuildedges.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rebuildedges.png"
+  },
+  {
+    "name": "RebuildMeshNormals",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rebuildmeshnormals.png",
+    "suggestedAssetPath": "rhino9/rebuildmeshnormals.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rebuildmeshnormals.png"
+  },
+  {
+    "name": "RebuildMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rebuildmesh.png",
+    "suggestedAssetPath": "rhino9/rebuildmesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rebuildmesh.png"
+  },
+  {
+    "name": "Rebuild",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rebuild.png",
+    "suggestedAssetPath": "rhino9/rebuild.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rebuild.png"
+  },
+  {
+    "name": "Rectangle",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rectangle_corner.png",
+    "suggestedAssetPath": "rhino9/rectangle_corner.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rectangle_corner.png"
+  },
+  {
+    "name": "ReduceMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/reducemesh.png",
+    "suggestedAssetPath": "rhino9/reducemesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/reducemesh.png"
+  },
+  {
+    "name": "RefitTrim",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/refittrim.png",
+    "suggestedAssetPath": "rhino9/refittrim.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/refittrim.png"
+  },
+  {
+    "name": "RefreshAllTextures",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/refreshalltextures.png",
+    "suggestedAssetPath": "rhino9/refreshalltextures.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/refreshalltextures.png"
+  },
+  {
+    "name": "RemapCPlane",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/remapcplane.png",
+    "suggestedAssetPath": "rhino9/remapcplane.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/remapcplane.png"
+  },
+  {
+    "name": "RemovePerFaceColors",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/removeperfacecolors.png",
+    "suggestedAssetPath": "rhino9/removeperfacecolors.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/removeperfacecolors.png"
+  },
+  {
+    "name": "RenderMergeIdenticalMaterials",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rendermergeidenticalmaterials.png",
+    "suggestedAssetPath": "rhino9/rendermergeidenticalmaterials.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rendermergeidenticalmaterials.png"
+  },
+  {
+    "name": "Render",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/render.png",
+    "suggestedAssetPath": "rhino9/render.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/render.png"
+  },
+  {
+    "name": "RepairSubD",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/repairsubd.png",
+    "suggestedAssetPath": "rhino9/repairsubd.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/repairsubd.png"
+  },
+  {
+    "name": "Repeat",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/repeat.png",
+    "suggestedAssetPath": "rhino9/repeat.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/repeat.png"
+  },
+  {
+    "name": "Rescue3dmFile",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/rescue3dmfile.png",
+    "suggestedAssetPath": "rhino9/rescue3dmfile.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rescue3dmfile.png"
+  },
+  {
+    "name": "RevCloud",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/revcloud.png",
+    "suggestedAssetPath": "rhino9/revcloud.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/revcloud.png"
+  },
+  {
+    "name": "Revert",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/revert.png",
+    "suggestedAssetPath": "rhino9/revert.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/revert.png"
+  },
+  {
+    "name": "Revolve",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/revolve.png",
+    "suggestedAssetPath": "rhino9/revolve.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/revolve.png"
+  },
+  {
+    "name": "Ribbon",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/ribbon.png",
+    "suggestedAssetPath": "rhino9/ribbon.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/ribbon.png"
+  },
+  {
+    "name": "Rib",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/rib.png",
+    "suggestedAssetPath": "rhino9/rib.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rib.png"
+  },
+  {
+    "name": "leaders",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/leader.png",
+    "suggestedAssetPath": "rhino9/leader.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/leader.png"
+  },
+  {
+    "name": "Rotate3D",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/rotate3d_rt.png",
+    "suggestedAssetPath": "rhino9/rotate3d_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rotate3d_rt.png"
+  },
+  {
+    "name": "RotateCamera",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/rotatecamera_rt.png",
+    "suggestedAssetPath": "rhino9/rotatecamera_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rotatecamera_rt.png"
+  },
+  {
+    "name": "RotateHole",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/rotatehole.png",
+    "suggestedAssetPath": "rhino9/rotatehole.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rotatehole.png"
+  },
+  {
+    "name": "Rotate",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/rotate.png",
+    "suggestedAssetPath": "rhino9/rotate.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rotate.png"
+  },
+  {
+    "name": "RotateView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/rotateview.png",
+    "suggestedAssetPath": "rhino9/rotateview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/rotateview.png"
+  },
+  {
+    "name": "text objects",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/text.png",
+    "suggestedAssetPath": "rhino9/text.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/text.png"
+  },
+  {
+    "name": "Named CPlanes",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/cplane_panel.png",
+    "suggestedAssetPath": "rhino9/cplane_panel.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/cplane_panel.png"
+  },
+  {
+    "name": "Save",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/save.png",
+    "suggestedAssetPath": "rhino9/save.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/save.png"
+  },
+  {
+    "name": "Scale",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/scale.png",
+    "suggestedAssetPath": "rhino9/scale.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/scale.png"
+  },
+  {
+    "name": "ScaleTextHeight",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons/scaletextheight.png",
+    "suggestedAssetPath": "rhino9/scaletextheight.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/scaletextheight.png"
+  },
+  {
+    "name": "SelectionFilter",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/selectionfilter.png",
+    "suggestedAssetPath": "rhino9/selectionfilter.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/selectionfilter.png"
+  },
+  {
+    "name": "Named View",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedview.png",
+    "suggestedAssetPath": "rhino9/namedview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedview.png"
+  },
+  {
+    "name": "point",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/point.png",
+    "suggestedAssetPath": "rhino9/point.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/point.png"
+  },
+  {
+    "name": "control points",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/pointson.png",
+    "suggestedAssetPath": "rhino9/pointson.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/pointson.png"
+  },
+  {
+    "name": "SetObjectDisplayMode",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setobjectdisplaymode.png",
+    "suggestedAssetPath": "rhino9/setobjectdisplaymode.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setobjectdisplaymode.png"
+  },
+  {
+    "name": "SetPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setpt.png",
+    "suggestedAssetPath": "rhino9/setpt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setpt.png"
+  },
+  {
+    "name": "SetSpotlightToView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setspotlighttoview.png",
+    "suggestedAssetPath": "rhino9/setspotlighttoview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setspotlighttoview.png"
+  },
+  {
+    "name": "SetSurfaceTangent",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setsurfacetangent.png",
+    "suggestedAssetPath": "rhino9/setsurfacetangent.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setsurfacetangent.png"
+  },
+  {
+    "name": "SetView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setview_top.png",
+    "suggestedAssetPath": "rhino9/setview_top.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setview_top.png"
+  },
+  {
+    "name": "SetViewToSpotlight",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setviewtospotlight.png",
+    "suggestedAssetPath": "rhino9/setviewtospotlight.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setviewtospotlight.png"
+  },
+  {
+    "name": "SetWorkingFolder",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setworkingfolder.png",
+    "suggestedAssetPath": "rhino9/setworkingfolder.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setworkingfolder.png"
+  },
+  {
+    "name": "Shade",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/shade.png",
+    "suggestedAssetPath": "rhino9/shade.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/shade.png"
+  },
+  {
+    "name": "Shear",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/shear.png",
+    "suggestedAssetPath": "rhino9/shear.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/shear.png"
+  },
+  {
+    "name": "ShortPath",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/shortpath.png",
+    "suggestedAssetPath": "rhino9/shortpath.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/shortpath.png"
+  },
+  {
+    "name": "ShowEdges",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/showedges.png",
+    "suggestedAssetPath": "rhino9/showedges.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/showedges.png"
+  },
+  {
+    "name": "ShowEnds",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/showends.png",
+    "suggestedAssetPath": "rhino9/showends.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/showends.png"
+  },
+  {
+    "name": "ShrinkTrimmedSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/shrinktrimmedsrf.png",
+    "suggestedAssetPath": "rhino9/shrinktrimmedsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/shrinktrimmedsrf.png"
+  },
+  {
+    "name": "ShrinkWrap",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/shrinkwrap.png",
+    "suggestedAssetPath": "rhino9/shrinkwrap.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/shrinkwrap.png"
+  },
+  {
+    "name": "Silhouette",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/silhouette.png",
+    "suggestedAssetPath": "rhino9/silhouette.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/silhouette.png"
+  },
+  {
+    "name": "SimplifyCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/simplifycrv.png",
+    "suggestedAssetPath": "rhino9/simplifycrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/simplifycrv.png"
+  },
+  {
+    "name": "Sketch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/sketch.png",
+    "suggestedAssetPath": "rhino9/sketch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/sketch.png"
+  },
+  {
+    "name": "Slab",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/slab.png",
+    "suggestedAssetPath": "rhino9/slab.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/slab.png"
+  },
+  {
+    "name": "Slide",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/slide.png",
+    "suggestedAssetPath": "rhino9/slide.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/slide.png"
+  },
+  {
+    "name": "Smash",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/smash.png",
+    "suggestedAssetPath": "rhino9/smash.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/smash.png"
+  },
+  {
+    "name": "Smooth",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/smooth.png",
+    "suggestedAssetPath": "rhino9/smooth.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/smooth.png"
+  },
+  {
+    "name": "Named Positions",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedposition.png",
+    "suggestedAssetPath": "rhino9/namedposition.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedposition.png"
+  },
+  {
+    "name": "locked",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/lock.png",
+    "suggestedAssetPath": "rhino9/lock.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/lock.png"
+  },
+  {
+    "name": "hidden",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/hide.png",
+    "suggestedAssetPath": "rhino9/hide.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/hide.png"
+  },
+  {
+    "name": "display mode",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/setobjectdisplaymode.png",
+    "suggestedAssetPath": "rhino9/setobjectdisplaymode.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/setobjectdisplaymode.png"
+  },
+  {
+    "name": "position",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/namedposition.png",
+    "suggestedAssetPath": "rhino9/namedposition.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/namedposition.png"
+  },
+  {
+    "name": "SnapToMeshObject",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/snaptomeshobject.png",
+    "suggestedAssetPath": "rhino9/snaptomeshobject.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/snaptomeshobject.png"
+  },
+  {
+    "name": "SnapToSubDObject",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/snaptosubdobject.png",
+    "suggestedAssetPath": "rhino9/snaptosubdobject.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/snaptosubdobject.png"
+  },
+  {
+    "name": "SoftEditCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/softeditcrv.png",
+    "suggestedAssetPath": "rhino9/softeditcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/softeditcrv.png"
+  },
+  {
+    "name": "SoftEditSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/softeditsrf_rt.png",
+    "suggestedAssetPath": "rhino9/softeditsrf_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/softeditsrf_rt.png"
+  },
+  {
+    "name": "SoftMove",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/softmove.png",
+    "suggestedAssetPath": "rhino9/softmove.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/softmove.png"
+  },
+  {
+    "name": "SoftTransform",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/softtransform.png",
+    "suggestedAssetPath": "rhino9/softtransform.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/softtransform.png"
+  },
+  {
+    "name": "Sphere",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/sphere.png",
+    "suggestedAssetPath": "rhino9/sphere.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/sphere.png"
+  },
+  {
+    "name": "Spiral",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/spiral.png",
+    "suggestedAssetPath": "rhino9/spiral.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/spiral.png"
+  },
+  {
+    "name": "SplitDisjointMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/splitdisjointmesh.png",
+    "suggestedAssetPath": "rhino9/splitdisjointmesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/splitdisjointmesh.png"
+  },
+  {
+    "name": "Split",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/split.png",
+    "suggestedAssetPath": "rhino9/split.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/split.png"
+  },
+  {
+    "name": "SplitEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/splitedge.png",
+    "suggestedAssetPath": "rhino9/splitedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/splitedge.png"
+  },
+  {
+    "name": "SplitFace",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/splitface.png",
+    "suggestedAssetPath": "rhino9/splitface.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/splitface.png"
+  },
+  {
+    "name": "SplitMeshEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/splitmeshedge.png",
+    "suggestedAssetPath": "rhino9/splitmeshedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/splitmeshedge.png"
+  },
+  {
+    "name": "Splop",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/splop.png",
+    "suggestedAssetPath": "rhino9/splop.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/splop.png"
+  },
+  {
+    "name": "squished",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/squish.png",
+    "suggestedAssetPath": "rhino9/squish.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/squish.png"
+  },
+  {
+    "name": "Squish",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/squish.png",
+    "suggestedAssetPath": "rhino9/squish.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/squish.png"
+  },
+  {
+    "name": "SrfControlPtGrid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/srfcontrolptgrid_rt.png",
+    "suggestedAssetPath": "rhino9/srfcontrolptgrid_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/srfcontrolptgrid_rt.png"
+  },
+  {
+    "name": "SrfPt",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/srfpt.png",
+    "suggestedAssetPath": "rhino9/srfpt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/srfpt.png"
+  },
+  {
+    "name": "SrfPtGrid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/srfptgrid.png",
+    "suggestedAssetPath": "rhino9/srfptgrid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/srfptgrid.png"
+  },
+  {
+    "name": "SrfSeam",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/srfseam.png",
+    "suggestedAssetPath": "rhino9/srfseam.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/srfseam.png"
+  },
+  {
+    "name": "Stitch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/stitch.png",
+    "suggestedAssetPath": "rhino9/stitch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/stitch.png"
+  },
+  {
+    "name": "Stretch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/stretch.png",
+    "suggestedAssetPath": "rhino9/stretch.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/stretch.png"
+  },
+  {
+    "name": "SubCrv",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/subcrv.png",
+    "suggestedAssetPath": "rhino9/subcrv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/subcrv.png"
+  },
+  {
+    "name": "SubDDisplayToggle",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/subddisplaytoggle.png",
+    "suggestedAssetPath": "rhino9/subddisplaytoggle.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/subddisplaytoggle.png"
+  },
+  {
+    "name": "SubDExpandEdges",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/subdexpandedges.png",
+    "suggestedAssetPath": "rhino9/subdexpandedges.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/subdexpandedges.png"
+  },
+  {
+    "name": "SubDLoft",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/subdloft.png",
+    "suggestedAssetPath": "rhino9/subdloft.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/subdloft.png"
+  },
+  {
+    "name": "SubDMatch",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/general/new9.png",
+    "suggestedAssetPath": "rhino9/new9.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/new9.png"
+  },
+  {
+    "name": "SubDSpinEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/subdspinedge.png",
+    "suggestedAssetPath": "rhino9/subdspinedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/subdspinedge.png"
+  },
+  {
+    "name": "SubDSweep1",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/subdsweep1.png",
+    "suggestedAssetPath": "rhino9/subdsweep1.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/subdsweep1.png"
+  },
+  {
+    "name": "Sun",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/sun.png",
+    "suggestedAssetPath": "rhino9/sun.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/sun.png"
+  },
+  {
+    "name": "SwapMeshEdge",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/swapmeshedge.png",
+    "suggestedAssetPath": "rhino9/swapmeshedge.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/swapmeshedge.png"
+  },
+  {
+    "name": "Sweep1",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/sweep1.png",
+    "suggestedAssetPath": "rhino9/sweep1.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/sweep1.png"
+  },
+  {
+    "name": "Sweep2",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/sweep2.png",
+    "suggestedAssetPath": "rhino9/sweep2.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/sweep2.png"
+  },
+  {
+    "name": "Symmetry",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/symmetry_crv.png",
+    "suggestedAssetPath": "rhino9/symmetry_crv.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/symmetry_crv.png"
+  },
+  {
+    "name": "Synchronize Views",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/synchronizeviews.png",
+    "suggestedAssetPath": "rhino9/synchronizeviews.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/synchronizeviews.png"
+  },
+  {
+    "name": "SynchronizeRenderColors",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/synchronizerendercolors.png",
+    "suggestedAssetPath": "rhino9/synchronizerendercolors.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/synchronizerendercolors.png"
+  },
+  {
+    "name": "SystemInfo",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/systeminfo.png",
+    "suggestedAssetPath": "rhino9/systeminfo.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/systeminfo.png"
+  },
+  {
+    "name": "Taper",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/taper.png",
+    "suggestedAssetPath": "rhino9/taper.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/taper.png"
+  },
+  {
+    "name": "Text",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/text.png",
+    "suggestedAssetPath": "rhino9/text.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/text.png"
+  },
+  {
+    "name": "TextObject",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/textobject.png",
+    "suggestedAssetPath": "rhino9/textobject.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/textobject.png"
+  },
+  {
+    "name": "Textures",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/textures.png",
+    "suggestedAssetPath": "rhino9/textures.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/textures.png"
+  },
+  {
+    "name": "ThicknessAnalysis",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/thicknessanalysis.png",
+    "suggestedAssetPath": "rhino9/thicknessanalysis.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/thicknessanalysis.png"
+  },
+  {
+    "name": "TiltView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/tiltview.png",
+    "suggestedAssetPath": "rhino9/tiltview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/tiltview.png"
+  },
+  {
+    "name": "ToNURBS",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/tonurbs.png",
+    "suggestedAssetPath": "rhino9/tonurbs.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/tonurbs.png"
+  },
+  {
+    "name": "Torus",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/torus.png",
+    "suggestedAssetPath": "rhino9/torus.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/torus.png"
+  },
+  {
+    "name": "ToSubD",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/tosubd.png",
+    "suggestedAssetPath": "rhino9/tosubd.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/tosubd.png"
+  },
+  {
+    "name": "TriangulateMesh",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/triangulatemesh.png",
+    "suggestedAssetPath": "rhino9/triangulatemesh.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/triangulatemesh.png"
+  },
+  {
+    "name": "Trim",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/trim.png",
+    "suggestedAssetPath": "rhino9/trim.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/trim.png"
+  },
+  {
+    "name": "TruncatedCone",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/truncatedcone.png",
+    "suggestedAssetPath": "rhino9/truncatedcone.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/truncatedcone.png"
+  },
+  {
+    "name": "TruncatedPyramid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/truncatedpyramid.png",
+    "suggestedAssetPath": "rhino9/truncatedpyramid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/truncatedpyramid.png"
+  },
+  {
+    "name": "Tube",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/tube.png",
+    "suggestedAssetPath": "rhino9/tube.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/tube.png"
+  },
+  {
+    "name": "Turntable",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/turntable.png",
+    "suggestedAssetPath": "rhino9/turntable.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/turntable.png"
+  },
+  {
+    "name": "TweenCurves",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/tweencurves.png",
+    "suggestedAssetPath": "rhino9/tweencurves.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/tweencurves.png"
+  },
+  {
+    "name": "TweenSurfaces",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/tweensurfaces.png",
+    "suggestedAssetPath": "rhino9/tweensurfaces.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/tweensurfaces.png"
+  },
+  {
+    "name": "Twist",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/twist.png",
+    "suggestedAssetPath": "rhino9/twist.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/twist.png"
+  },
+  {
+    "name": "Undo",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/undo.png",
+    "suggestedAssetPath": "rhino9/undo.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/undo.png"
+  },
+  {
+    "name": "UndoView",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/undoview.png",
+    "suggestedAssetPath": "rhino9/undoview.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/undoview.png"
+  },
+  {
+    "name": "UnifyMeshNormals",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/unifymeshnormals.png",
+    "suggestedAssetPath": "rhino9/unifymeshnormals.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/unifymeshnormals.png"
+  },
+  {
+    "name": "UnrollSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/unrollsrf.png",
+    "suggestedAssetPath": "rhino9/unrollsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/unrollsrf.png"
+  },
+  {
+    "name": "VariableBlendSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/variableblendsrf_rt.png",
+    "suggestedAssetPath": "rhino9/variableblendsrf_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/variableblendsrf_rt.png"
+  },
+  {
+    "name": "VariableChamferSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/variablechamfersrf.png",
+    "suggestedAssetPath": "rhino9/variablechamfersrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/variablechamfersrf.png"
+  },
+  {
+    "name": "VariableFilletSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/variablefilletsrf.png",
+    "suggestedAssetPath": "rhino9/variablefilletsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/variablefilletsrf.png"
+  },
+  {
+    "name": "VariableOffsetSrf",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/variableoffsetsrf.png",
+    "suggestedAssetPath": "rhino9/variableoffsetsrf.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/variableoffsetsrf.png"
+  },
+  {
+    "name": "ViewportProperties (Rhino 5)",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/viewportproperties.png",
+    "suggestedAssetPath": "rhino9/viewportproperties.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/viewportproperties.png"
+  },
+  {
+    "name": "VolumeCentroid",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/volumecentroid.png",
+    "suggestedAssetPath": "rhino9/volumecentroid.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/volumecentroid.png"
+  },
+  {
+    "name": "VolumeMoments",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/volumemoments.png",
+    "suggestedAssetPath": "rhino9/volumemoments.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/volumemoments.png"
+  },
+  {
+    "name": "Volume",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/volume.png",
+    "suggestedAssetPath": "rhino9/volume.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/volume.png"
+  },
+  {
+    "name": "WalkAbout",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/walkabout.png",
+    "suggestedAssetPath": "rhino9/walkabout.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/walkabout.png"
+  },
+  {
+    "name": "WebBrowser",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/webbrowser.png",
+    "suggestedAssetPath": "rhino9/webbrowser.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/webbrowser.png"
+  },
+  {
+    "name": "Weight",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/weight.png",
+    "suggestedAssetPath": "rhino9/weight.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/weight.png"
+  },
+  {
+    "name": "Weld",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/weld.png",
+    "suggestedAssetPath": "rhino9/weld.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/weld.png"
+  },
+  {
+    "name": "WireCut",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/wirecut.png",
+    "suggestedAssetPath": "rhino9/wirecut.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/wirecut.png"
+  },
+  {
+    "name": "Worksession",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/worksession_rt.png",
+    "suggestedAssetPath": "rhino9/worksession_rt.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/worksession_rt.png"
+  },
+  {
+    "name": "Zebra",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/zebra.png",
+    "suggestedAssetPath": "rhino9/zebra.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/zebra.png"
+  },
+  {
+    "name": "Zoom",
+    "mcneelUrl": "https://docs.mcneel.com/rhino/9/help/en-us/image/command_icons_v9/zoom.png",
+    "suggestedAssetPath": "rhino9/zoom.png",
+    "appIconPath": "/api/v1/rhino-asset/rhino9/zoom.png"
+  }
+]

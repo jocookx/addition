@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Properties",
+    "shortcut": "Ctrl-C-Ctrl-V",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "Dragging",
+    "shortcut": "Ctrl-Shift-Shift-Ctrl",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "General",
+    "shortcut": "Ctrl-O-Ctrl-S",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "Common Editing Keys",
+    "shortcut": "X-Delete",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "Common Editor Keys",
+    "shortcut": "A-Alt-A-A",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "3D Viewport Keys",
+    "shortcut": "MMB-Shift-MMB-Ctrl",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "Animation",
+    "shortcut": "I-Alt-I-Shift",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "Python Scripting",
+    "shortcut": "Ctrl-C-Shift-Ctrl",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "macOS",
+    "shortcut": "Cmd-Ctrl-Cmd-Comma",
+    "source": "https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html"
+  },
+  {
+    "name": "Shortcut :",
+    "shortcut": "MMB-Numpad2-Numpad4-Numpad6",
+    "source": "https://docs.blender.org/manual/en/latest/editors/3dview/navigate/navigation.html"
+  },
+  {
+    "name": "Keyframe Animation",
+    "shortcut": "I-G-R-S",
+    "source": "https://docs.blender.org/manual/en/latest/animation/keyframes/editing.html"
+  },
+  {
+    "name": "Pan",
+    "shortcut": "MMB",
+    "source": "https://docs.blender.org/manual/en/latest/editors/graph_editor/introduction.html"
+  },
+  {
+    "name": "Zoom",
+    "shortcut": "Wheel",
+    "source": "https://docs.blender.org/manual/en/latest/editors/graph_editor/introduction.html"
+  },
+  {
+    "name": "Scale View",
+    "shortcut": "Ctrl-MMB",
+    "source": "https://docs.blender.org/manual/en/latest/editors/graph_editor/introduction.html"
+  },
+  {
+    "name": "Playhead & 2D Cursor",
+    "shortcut": "LMB-Shift-RMB",
+    "source": "https://docs.blender.org/manual/en/latest/editors/graph_editor/introduction.html"
+  },
+  {
+    "name": "Before Current Frame [",
+    "shortcut": "Shift-Ctrl-LMB",
+    "source": "https://docs.blender.org/manual/en/latest/editors/graph_editor/introduction.html"
+  },
+  {
+    "name": "After Current Frame ]",
+    "shortcut": "Shift-Ctrl-LMB",
+    "source": "https://docs.blender.org/manual/en/latest/editors/graph_editor/introduction.html"
+  },
+  {
+    "name": "Snapping",
+    "shortcut": "Ctrl",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  },
+  {
+    "name": "Start Frame Offset",
+    "shortcut": "LMB-G",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  },
+  {
+    "name": "End Frame",
+    "shortcut": "LMB-G-Shift-LMB",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  },
+  {
+    "name": "Slip Keyframes",
+    "shortcut": "LMB-Return-Spacebar-Esc",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  },
+  {
+    "name": "Retiming Keys",
+    "shortcut": "R-Ctrl-LMB-G",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  },
+  {
+    "name": "Menu :",
+    "shortcut": "I",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  },
+  {
+    "name": "Context Menu",
+    "shortcut": "RMB",
+    "source": "https://docs.blender.org/manual/en/latest/video_editing/edit/montage/editing.html"
+  }
+]
