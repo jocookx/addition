@@ -6,7 +6,7 @@
     "sourceCommandIndex": "https://help.autodesk.com/cloudhelp/2016/ENU/Maya-Tech-Docs/Commands/index.html",
     "provenance": "Authored from model knowledge (cutoff Jan 2026). Original explanations — not copied from Autodesk documentation. Shortcuts/menu paths are factual data. Run scripts/command-scrapers/scrape-maya.mjs to sync with Autodesk's live shortcut reference.",
     "iconNote": "Autodesk icon artwork is proprietary; app renders software chip fallback until licensed icons are sourced.",
-    "lastScrapeMerge": "2026-07-27T14:40:53.746Z"
+    "lastScrapeMerge": "2026-07-27T15:25:02.961Z"
   },
   "commands": [
     {
