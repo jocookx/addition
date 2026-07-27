@@ -671,7 +671,10 @@ function LearnPageInner() {
                 src={watchAgainCount > 0 ? withAutoplay(videoSrc) : videoSrc}
                 title={activeLesson?.title ?? "Lesson video"}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                referrerPolicy="no-referrer"
+                // "origin" (not "no-referrer") — YouTube refuses embeds with no
+                // referrer (error 153) and Cloudflare Stream domain-locking
+                // needs the origin to validate playback.
+                referrerPolicy="origin"
                 allowFullScreen
               />
             ) : videoLoading ? (

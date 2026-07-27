@@ -78,6 +78,10 @@
      light page and draw white scrollbars over the dark content. */
   color-scheme: dark;
 
+  /* Screen-edge gutter on phones — every full-bleed element must use the
+     same value or it overflows the viewport and forces sideways panning. */
+  --mobile-gutter: 16px;
+
   /* Expose the safe-area env values as CSS custom properties so
      calc() expressions can reference them easily                */
   --safe-top:    env(safe-area-inset-top,    0px);
@@ -1684,10 +1688,10 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
    force the page to scroll sideways. */
 @media (max-width: 860px) {
   .directory-toolbar {
-    margin-left: calc(var(--sp-md) * -1);
-    margin-right: calc(var(--sp-md) * -1);
-    padding-left: var(--sp-md);
-    padding-right: var(--sp-md);
+    margin-left: calc(var(--mobile-gutter) * -1);
+    margin-right: calc(var(--mobile-gutter) * -1);
+    padding-left: var(--mobile-gutter);
+    padding-right: var(--mobile-gutter);
   }
 }
 
@@ -3562,6 +3566,8 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
     min-width: 0;
   }
 
+  /* Match the specificity of the desktop nowrap rule above */
+  .reference-view > .commands-toolbar > .commands-toolbar-right,
   .commands-toolbar-right {
     white-space: normal;
     flex-wrap: wrap;
@@ -5272,7 +5278,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   }
 
   .main {
-    padding: var(--sp-md) var(--sp-md) calc(60px + env(safe-area-inset-bottom, 0px) + var(--sp-md));
+    padding: var(--mobile-gutter) var(--mobile-gutter) calc(60px + env(safe-area-inset-bottom, 0px) + var(--sp-md));
   }
 
   .mobile-bottom-nav {
@@ -5368,21 +5374,43 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 @media (max-width: 640px) {
   .sw-prompt-grid,
   .cmd-category-grid,
-  .cmd-subcat-grid,
-  .commands-grid {
+  .cmd-subcat-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Two-up command cards on phones — full-width cards read huge */
+  .commands-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .reference-search {
     min-width: 0;
   }
 
+  /* Full-screen sheet on phones — feels native and the Close control is
+     pinned so there is always a visible way out of a command. */
   .cmd-modal-backdrop {
-    padding: 12px;
+    padding: 0;
+    align-items: stretch;
   }
 
   .cmd-modal {
-    padding: 18px;
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: 0;
+    padding: 0 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cmd-modal-head {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 0 -16px;
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px;
+    background: var(--rf-card);
+    border-bottom: 1px solid var(--rf-divider);
   }
 
   .cmd-modal-title-wrap h3 {
@@ -6377,7 +6405,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 /* Responsive: player stacks on tablet/mobile */
 @media (max-width: 900px) {
   .player { grid-template-columns: 1fr; }
-  .lesson-panel { position: static; max-height: none; }
+  .lesson-panel { position: static; max-height: none; overflow: visible; }
 }
 
 /* Phone: pin the video to the top of the screen; the lesson bar and course
@@ -6397,7 +6425,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
     top: 0;
     z-index: 30;
     /* Full-bleed across the .main gutter so nothing scrolls past its edges */
-    margin: 0 calc(-1 * var(--sp-md));
+    margin: 0 calc(-1 * var(--mobile-gutter));
     border-radius: 0;
     border-left: 0;
     border-right: 0;
@@ -17335,6 +17363,20 @@ html[data-theme="light"] .cmd-preview-media {
   .commands-row-layout {
     display: block;
   }
+
+  /* No preview panel at this width — rows must fit the screen. The desktop
+     template's 120px/180px column minimums add up wider than a phone and
+     were the source of the sideways-panning bug. */
+  .commands-row-layout .cmd-list-row {
+    grid-template-columns: 34px 22px minmax(0, 0.6fr) minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 860px) {
+  /* .cmd-list-meta is hidden at this width — collapse to four tracks */
+  .commands-row-layout .cmd-list-row {
+    grid-template-columns: 34px 22px minmax(0, 1fr) auto;
+  }
 }
 
 /* ── Dashboard path section ─────────────────────────────────────────────── */
@@ -18149,6 +18191,16 @@ html[data-theme="light"] .toast-close:hover { color: rgba(20,20,40,0.6); }
 
   .main {
     overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  /* The bulletproof guard: on .main, clip computes to hidden (its y-axis
+     scrolls), and a hidden axis can still be panned programmatically —
+     tapping a focusable element that pokes past the edge scrolls the whole
+     page sideways with no touch gesture to bring it back. #content-slot is
+     not a scroll container, so its clip stays a true clip: no sideways
+     movement is possible at all. */
+  #content-slot {
     overflow-x: clip;
   }
 

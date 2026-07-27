@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SaveButton } from "@/components/legacy/SaveButton";
 import { TagChips } from "@/components/legacy/TagChips";
 import type { CommandListItem } from "@/domain/command";
@@ -312,6 +312,24 @@ export function ToolActionDetailModal({
   const terms = getSoftwareTerms(command.software);
   const name = cleanName(command.name);
   const isGrasshopper = command.software === "Grasshopper";
+
+  // The phone back gesture / Android back button must close the modal, not
+  // navigate away from the site. Push a history entry while the modal is
+  // open; popping it (back gesture) closes the modal, and closing the modal
+  // any other way consumes the entry.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+  useEffect(() => {
+    const handlePop = () => onCloseRef.current();
+    window.history.pushState({ cmdModal: true }, "");
+    window.addEventListener("popstate", handlePop);
+    return () => {
+      window.removeEventListener("popstate", handlePop);
+      if (window.history.state?.cmdModal) window.history.back();
+    };
+  }, []);
 
   // Related: same software, same top-level menu group (or same library for GH/Dynamo)
   const relatedCommands = commands
