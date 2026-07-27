@@ -43,10 +43,13 @@ function isActivePath(currentPath: string, href: string): boolean {
   return currentPath === href || currentPath.startsWith(`${href}/`) || currentPath.startsWith(`${href}?`);
 }
 
+// Ordered free-first and by granularity: commands are the free daily-use
+// anchor, combos chain commands, courses teach the whole craft. The order
+// mirrors the upgrade path left to right.
 const topLevelTabs = [
-  { href: "/learn",    label: "Courses"  },
-  { href: "/combos",   label: "Combos"   },
   { href: "/commands", label: "Commands" },
+  { href: "/combos",   label: "Combos"   },
+  { href: "/learn",    label: "Courses"  },
 ];
 
 
