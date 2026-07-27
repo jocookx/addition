@@ -1,8 +1,9 @@
 "use client";
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @next/next/no-img-element --
-   Dashboard was intentionally narrowed to four core panels; older tab sections are
-   kept in-file until the post-hardening dashboard pass removes or reuses them. */
+   Dashboard is a launcher, not a report: Next Up hero, daily rep, this week's
+   workshops, progress snapshot, quiet explore links. Ordered by how often the
+   moment occurs (reference daily, practice near-daily, study weekly). */
 
 import { useEffect, useState, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -64,8 +65,6 @@ type ActivePathSummary = {
   totalCourses: number;
   nextCourse: NextPathCourse | null;
 };
-
-const QUICK_SEARCHES = ["Offset walls", "Array windows", "Clean curves", "Export drawings"];
 
 function greeting(): string {
   const h = new Date().getHours();
@@ -179,18 +178,20 @@ function ContinueHero({ course, onContinue }: {
   onContinue: (courseId: string, lessonId: string | null) => void;
 }) {
   if (!course) {
+    // Day-one / free user: lead with the free command library — value before
+    // any paywall — with paths as the structured next step.
     return (
       <div className="home-hero home-hero--empty glass-panel">
         <div className="home-hero-body">
-          <span className="home-hero-eyebrow">Start Learning</span>
-          <h2 className="home-hero-course">Find your learning path</h2>
-          <p className="home-hero-why">Follow a structured path from beginner to expert — every lesson is under a minute, built to revisit until it sticks.</p>
+          <span className="home-hero-eyebrow">Start Here</span>
+          <h2 className="home-hero-course">Learn the commands</h2>
+          <p className="home-hero-why">The fastest way in: master the essential commands for your software — free, searchable by what you want to do.</p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
-            <Link href="/paths" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
-              Browse Learning Paths →
+            <Link href="/commands" className="primary-button home-hero-cta" style={{ textDecoration: "none" }}>
+              Browse commands →
             </Link>
-            <Link href="/learn" className="ghost-btn home-hero-cta" style={{ textDecoration: "none" }}>
-              Browse courses →
+            <Link href="/paths" className="ghost-btn home-hero-cta" style={{ textDecoration: "none" }}>
+              Find a learning path
             </Link>
           </div>
         </div>
@@ -219,202 +220,81 @@ function ContinueHero({ course, onContinue }: {
   );
 }
 
-function SolveSection() {
-  const router = useRouter();
-  const [value, setValue] = useState("");
-  const submit = useCallback((q: string) => {
-    const t = q.trim();
-    if (t) router.push(`/search?q=${encodeURIComponent(t)}`);
-  }, [router]);
+/**
+ * Daily rep row — the "on the bus" one-tap: streak + what's due, straight
+ * into flashcards. Replaces the separate TinyGoal + RecommendedPractice cards.
+ */
+function DailyRep({ lessonsToday, streak, practiseCount }: {
+  lessonsToday: number;
+  streak: number;
+  practiseCount: number;
+}) {
+  const goalMet = lessonsToday >= DAILY_GOAL;
+  const mins = Math.max(1, Math.round((practiseCount * 15) / 60));
   return (
-    <div className="home-solve glass-panel">
-      <div className="home-solve-head">
-        <h3 className="home-solve-title">Solve a Problem</h3>
-        <p className="home-solve-sub">Search across commands, combos, lessons, and courses.</p>
+    <div className="home-rep glass-panel">
+      <span className={`home-rep-streak${streak > 0 ? " is-lit" : ""}`} aria-label={`${streak} day streak`}>
+        🔥 {streak}
+      </span>
+      <div className="home-rep-info">
+        <span className="home-rep-label">{goalMet ? "Daily goal complete!" : "Daily practice"}</span>
+        <span className="home-rep-sub">
+          {practiseCount > 0
+            ? `${practiseCount} command${practiseCount === 1 ? "" : "s"} due · ~${mins} min`
+            : `${lessonsToday}/${DAILY_GOAL} lessons today`}
+        </span>
       </div>
-      <div className="home-solve-bar">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input className="home-solve-input" type="text" placeholder="Search commands, combos, lessons…"
-          value={value} onChange={e => setValue(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && submit(value)} autoComplete="off" />
-      </div>
-      <div className="home-solve-chips">
-        <span className="home-solve-chips-label">Try:</span>
-        {QUICK_SEARCHES.map(q => (
-          <button key={q} type="button" className="home-solve-chip" onClick={() => submit(q)}>{q}</button>
-        ))}
-      </div>
+      <Link href="/practice" className="primary-button home-rep-cta" style={{ textDecoration: "none" }}>
+        Practise →
+      </Link>
     </div>
+  );
+}
+
+/** One-line progress strip; tapping opens the My Progress tab. */
+function ProgressSnapshot({ summary, onOpen }: { summary: LearningSummary | null; onOpen: () => void }) {
+  if (!summary) return null;
+  const t = summary.totals;
+  return (
+    <button type="button" className="home-snapshot glass-panel" onClick={onOpen}>
+      <span className="home-snap-item"><strong>{t.eventsLast7Days}</strong> this week</span>
+      <span className="home-snap-item"><strong>{t.completedLessons}</strong> lessons</span>
+      <span className="home-snap-item"><strong>{t.masteredCommands}</strong> commands learned</span>
+      <span className="home-snap-more">My Progress →</span>
+    </button>
+  );
+}
+
+/** Quiet link row for the destinations that used to be full-height cards. */
+function ExploreRow() {
+  return (
+    <nav className="home-explore" aria-label="Explore">
+      <Link href="/paths" className="home-explore-link">Learning paths</Link>
+      <Link href="/toolkit" className="home-explore-link">Saved toolkit</Link>
+      <Link href="/workshops" className="home-explore-link">Workshops</Link>
+    </nav>
   );
 }
 
 function DashSkeleton() {
   return (
     <div className="home-layout">
-      <div className="home-main">
-        {/* Hero shimmer */}
-        <div className="skeleton-card dash-skel-hero">
-          <div className="skeleton-line w-40 h-lg" style={{ marginBottom: 10 }} />
-          <div className="skeleton-line w-80 h-lg" style={{ marginBottom: 18 }} />
-          <div className="skeleton-line w-60" />
-          <div className="skeleton-line w-40" style={{ marginTop: 20, height: 36, borderRadius: 8 }} />
-        </div>
-        {/* Paths shimmer */}
-        <div className="skeleton-card dash-skel-paths">
-          <div className="skeleton-line w-40" style={{ marginBottom: 14 }} />
-          {[1, 2].map((i) => (
-            <div key={i} className="skeleton-line" style={{ height: 56, borderRadius: 10, marginBottom: 8 }} />
-          ))}
-        </div>
-        {/* Solve shimmer */}
-        <div className="skeleton-card" style={{ height: 100 }} />
+      {/* Hero shimmer */}
+      <div className="skeleton-card dash-skel-hero">
+        <div className="skeleton-line w-40 h-lg" style={{ marginBottom: 10 }} />
+        <div className="skeleton-line w-80 h-lg" style={{ marginBottom: 18 }} />
+        <div className="skeleton-line w-60" />
+        <div className="skeleton-line w-40" style={{ marginTop: 20, height: 36, borderRadius: 8 }} />
       </div>
-      <div className="home-side">
-        {/* Tiny goal shimmer */}
-        <div className="skeleton-card" style={{ height: 90 }} />
-        {/* Workshops shimmer */}
-        <div className="skeleton-card" style={{ height: 140 }} />
-      </div>
+      {/* Daily rep shimmer */}
+      <div className="skeleton-card" style={{ height: 72 }} />
+      {/* Snapshot shimmer */}
+      <div className="skeleton-card" style={{ height: 52 }} />
     </div>
   );
 }
 
 const DAILY_GOAL = 5;
-
-function TinyGoal({ onStart, lessonsToday, streak }: { onStart: () => void; lessonsToday: number; streak: number }) {
-  const goalMet = lessonsToday >= DAILY_GOAL;
-  const pct = Math.min(100, Math.round((lessonsToday / DAILY_GOAL) * 100));
-
-  if (goalMet) {
-    return (
-      <div className="home-tiny home-tiny--done glass-panel">
-        <span className="home-tiny-check" aria-hidden="true">✓</span>
-        <div className="home-tiny-content">
-          <span className="home-tiny-label">Daily goal complete!</span>
-          <p className="home-tiny-body">
-            {lessonsToday} lesson{lessonsToday !== 1 ? "s" : ""} today
-            {streak >= 2 ? ` · 🔥 ${streak} day streak` : " — great work!"}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="home-tiny glass-panel">
-      <div className="home-tiny-dot" />
-      <div className="home-tiny-content">
-        <div className="home-tiny-header">
-          <span className="home-tiny-label">Daily goal</span>
-          <span className="home-tiny-count">{lessonsToday}/{DAILY_GOAL} lessons</span>
-        </div>
-        <div className="home-tiny-bar">
-          <div className="home-tiny-bar-fill" style={{ width: `${pct}%` }} />
-        </div>
-        <button type="button" className="home-tiny-cta ghost-btn" onClick={onStart}>
-          {lessonsToday === 0 ? "Start first lesson →" : "Keep going →"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function PathSection({ activePath }: { activePath: { title: string; percent: number; milestone?: string } | null }) {
-  if (!activePath) {
-    return (
-      <div className="home-path-empty glass-panel">
-        <div className="home-path-empty-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
-            <path d="M12 7v4M9.5 17.5L12 11M14.5 17.5L12 11"/>
-          </svg>
-        </div>
-        <div className="home-path-empty-body">
-          <span className="home-path-empty-label">Learning Path</span>
-          <p className="home-path-empty-text">Follow a structured path from beginner to expert.</p>
-        </div>
-        <Link href="/paths" className="primary-button home-path-empty-cta" style={{ textDecoration: "none" }}>
-          Join a Learning Path →
-        </Link>
-      </div>
-    );
-  }
-  return (
-    <div className="home-path-active glass-panel">
-      <div className="home-path-active-head">
-        <span className="home-path-active-label">My Path</span>
-        <Link href="/paths" className="home-path-active-change" style={{ textDecoration: "none" }}>Change →</Link>
-      </div>
-      <p className="home-path-active-title">{activePath.title}</p>
-      {activePath.milestone && (
-        <p className="home-path-active-milestone">{activePath.milestone}</p>
-      )}
-      <div className="home-path-active-progress">
-        <div className="home-path-active-bar"><span style={{ width: `${activePath.percent}%` }} /></div>
-        <span className="home-path-active-pct">{activePath.percent}%</span>
-      </div>
-      <Link href="/paths" className="ghost-btn home-path-active-cta" style={{ textDecoration: "none" }}>
-        Continue Path →
-      </Link>
-    </div>
-  );
-}
-
-function WorkshopCard({ ws }: { ws: UpcomingWorkshop | null }) {
-  if (!ws) {
-    return (
-      <Link href="/workshops" className="home-chip glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
-        <span className="home-chip-label">Workshop</span>
-        <span className="home-chip-action">Book a session →</span>
-      </Link>
-    );
-  }
-  const date = new Date(ws.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
-  const format = ws.format === "in-person" ? "In person" : "Online";
-  const countdown = formatWorkshopCountdown(ws);
-  return (
-    <Link href={getWorkshopHref(ws.id)} className="home-workshop-card glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
-      {ws.image ? (
-        <img className="home-workshop-img" src={ws.image} alt="" aria-hidden="true" />
-      ) : (
-        <span className="home-workshop-img home-workshop-img--empty" aria-hidden="true" />
-      )}
-      <span className="home-workshop-shade" aria-hidden="true" />
-      <span className="home-workshop-tag">Workshop</span>
-      <span className="home-workshop-hover">
-        <span className="home-workshop-title">{ws.title}</span>
-        <span className="home-workshop-meta">
-          {date}
-          {ws.time ? ` · ${ws.time}` : ""}
-          {ws.duration ? ` · ${ws.duration}` : ""}
-        </span>
-        <span className="home-workshop-foot">
-          <span>{format}</span>
-          {ws.price ? <span>{ws.price}</span> : null}
-        </span>
-        <span className="home-workshop-meta">{countdown}</span>
-      </span>
-    </Link>
-  );
-}
-
-function RecommendedPracticeCard({ count }: { count: number }) {
-  return (
-    <Link href="/practice" className="home-chip glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
-      <span className="home-chip-label">Recommended Practice</span>
-      <span className="home-chip-action">{count > 0 ? `${count} commands to practise` : "Start command recall"} →</span>
-    </Link>
-  );
-}
-
-function SavedToolkitCard() {
-  return (
-    <Link href="/toolkit" className="home-chip glass-panel" style={{ textDecoration: "none", color: "inherit" }}>
-      <span className="home-chip-label">Saved Toolkit / Resources</span>
-      <span className="home-chip-action">Open saved items →</span>
-    </Link>
-  );
-}
 
 // ── Onboarding wizard ──────────────────────────────────────────────────────
 
@@ -600,139 +480,17 @@ function OnboardingWizard({
   );
 }
 
-// ── My Paths section ──────────────────────────────────────────────────────
-
-function MyPathsSection({
-  enrolledPaths,
-  allPaths,
-  activePath,
-}: {
-  enrolledPaths: LearningPathListItem[];
-  allPaths: LearningPathListItem[];
-  activePath: ActivePathSummary | null;
-}) {
-  const router = useRouter();
-
-  // No enrolments — show suggested paths so the user can get started
-  if (enrolledPaths.length === 0) {
-    const suggested = allPaths.slice(0, 3);
-    if (suggested.length === 0) return null;
-    return (
-      <div className="my-paths-section">
-        <div className="my-paths-header">
-          <h3 className="dash-section-title">Learning Paths</h3>
-          <Link href="/paths" className="dash-section-more" style={{ textDecoration: "none" }}>
-            View all →
-          </Link>
-        </div>
-        <div className="my-paths-list">
-          {suggested.map((path) => (
-            <div key={path.id} className="my-path-card glass-panel">
-              <div className="my-path-card-left">
-                <div className="my-path-card-top">
-                  <span className={`pl-level-badge pl-level-badge--${path.level}`}>
-                    {LEVEL_LABELS[path.level] ?? path.level}
-                  </span>
-                </div>
-                <strong className="my-path-card-title">{path.title}</strong>
-                <div className="my-path-card-meta">
-                  {path.software.map((sw) => <span key={sw} className="pl-sw-tag">{sw}</span>)}
-                  <span className="my-path-card-courses-meta">{path.courseCount} course{path.courseCount !== 1 ? "s" : ""}</span>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="ghost-btn my-path-card-cta"
-                onClick={() => router.push(`/paths/${path.id}`)}
-              >
-                Explore →
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="my-paths-section">
-      <div className="my-paths-header">
-        <h3 className="dash-section-title">My Paths</h3>
-        <Link href="/paths" className="dash-section-more" style={{ textDecoration: "none" }}>
-          Browse all →
-        </Link>
-      </div>
-      <div className="my-paths-list">
-        {enrolledPaths.map((path) => {
-          const isActive = path.id === activePath?.pathId;
-          const pct = isActive ? activePath!.percent : 0;
-          const done = isActive ? activePath!.completedCourses : 0;
-          const total = isActive ? activePath!.totalCourses : path.courseCount;
-          return (
-            <div key={path.id} className={`my-path-card glass-panel${isActive ? " is-active" : ""}`}>
-              <div className="my-path-card-left">
-                <div className="my-path-card-top">
-                  <span className={`pl-level-badge pl-level-badge--${path.level}`}>
-                    {LEVEL_LABELS[path.level] ?? path.level}
-                  </span>
-                  {isActive && <span className="my-path-card-active-pip">Active</span>}
-                </div>
-                <strong className="my-path-card-title">{path.title}</strong>
-                <div className="my-path-card-meta">
-                  {path.software.map((sw) => <span key={sw} className="pl-sw-tag">{sw}</span>)}
-                </div>
-                {isActive && (
-                  <div className="my-path-card-progress">
-                    <div className="my-path-card-bar">
-                      <span style={{ width: `${pct}%` }} />
-                    </div>
-                    <span>{pct}% · {done}/{total} courses</span>
-                  </div>
-                )}
-              </div>
-              <button
-                type="button"
-                className="ghost-btn my-path-card-cta"
-                onClick={() => router.push(`/paths/${path.id}`)}
-              >
-                {isActive ? "Continue →" : "Open →"}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 // ── My Workshops section ───────────────────────────────────────────────────
 
 function MyWorkshopsSection({ workshops }: { workshops: UpcomingWorkshop[] }) {
   const future = workshops.filter(isFutureWorkshop);
-  if (future.length === 0) {
-    return (
-      <div className="my-ws-empty glass-panel">
-        <div className="my-ws-empty-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/>
-            <line x1="8" y1="21" x2="16" y2="21"/>
-            <line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
-        </div>
-        <div className="my-ws-empty-body">
-          <span className="my-ws-empty-label">My Workshops</span>
-          <p className="my-ws-empty-text">Join a live session with an instructor — online or in person.</p>
-        </div>
-        <Link href="/workshops" className="primary-button my-ws-empty-cta" style={{ textDecoration: "none" }}>
-          Browse workshops →
-        </Link>
-      </div>
-    );
-  }
+  // Nothing booked → no placeholder card; the Explore row links to /workshops.
+  if (future.length === 0) return null;
   return (
     <div className="my-ws-section">
       <div className="my-ws-header">
-        <h3 className="dash-section-title">My Workshops</h3>
+        <h3 className="dash-section-title">This Week</h3>
         <Link href="/workshops" className="dash-section-more" style={{ textDecoration: "none" }}>
           View all →
         </Link>
@@ -1340,9 +1098,6 @@ function DashboardPageInner() {
   const todayStr = new Date().toISOString().slice(0, 10);
   const lessonsToday = (summary?.activity.days ?? []).find((d) => d.day === todayStr)?.count ?? 0;
 
-  // Enrolled paths list (for My Paths section)
-  const enrolledPaths = allPaths.filter((p) => enrolledPathIds.has(p.id));
-
   // Tab badges
   const badges: Partial<Record<DashTab, number>> = {
     workshops: workshopCount,
@@ -1363,46 +1118,20 @@ function DashboardPageInner() {
             <div className="dash-user-avatar">{initials(userName, userEmail)}</div>
             <div className="dash-header-name">
               <p className="dash-greeting">{greeting()}, {userName}</p>
-              <p className="dash-header-plan">{formatPlan(userPlan, userBilling)}</p>
+              <p className="dash-header-plan">
+                {formatPlan(userPlan, userBilling)}
+                {!isPro && (
+                  <button
+                    type="button"
+                    className="dash-upgrade-link"
+                    onClick={() => setUpgradeModalOpen(true)}
+                  >
+                    Upgrade →
+                  </button>
+                )}
+              </p>
             </div>
           </div>
-          {(streakDays > 0 || practiseCount > 0 || workshopCount > 0) && (
-            <div className="dash-header-nudge">
-              {streakDays > 0 && (
-                <span className="dash-nudge-pill dash-nudge-pill--streak">
-                  🔥 {streakDays} day{streakDays === 1 ? "" : "s"}
-                </span>
-              )}
-              {practiseCount > 0 && (
-                <Link href="/practice" className="dash-nudge-pill" style={{ textDecoration: "none" }}>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                  </svg>
-                  {practiseCount} to practise
-                </Link>
-              )}
-              {workshopCount > 0 && (
-                <Link href="/workshops" className="dash-nudge-pill dash-nudge-pill--ws" style={{ textDecoration: "none" }}>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <rect x="2" y="3" width="20" height="14" rx="2"/>
-                    <line x1="12" y1="17" x2="12" y2="21"/>
-                  </svg>
-                  {workshopCount} workshop{workshopCount === 1 ? "" : "s"}
-                </Link>
-              )}
-            </div>
-          )}
-          {!isPro && (
-            <div className="dash-upgrade-wrap">
-              <button
-                type="button"
-                className="primary-button dash-upgrade-btn"
-                onClick={() => setUpgradeModalOpen(true)}
-              >
-                Upgrade to Pro
-              </button>
-            </div>
-          )}
         </header>
 
         {/* ── Section tabs ── */}
@@ -1429,27 +1158,19 @@ function DashboardPageInner() {
             <ProgressTab summary={summary} />
           ) : (
             <div className="home-layout">
-              <div className="home-main">
-                {activePath
-                  ? <PathHero activePath={activePath} onContinue={handleContinue} />
-                  : <ContinueHero course={nextUp} onContinue={handleContinue} />
-                }
-                <MyPathsSection enrolledPaths={enrolledPaths} allPaths={allPaths} activePath={activePath} />
-                <SolveSection />
-                <RecommendedPracticeCard count={practiseCount} />
-              </div>
-              <div className="home-side">
-                <TinyGoal
-                  lessonsToday={lessonsToday}
-                  streak={streakDays}
-                  onStart={() => {
-                    if (nextUp) handleContinue(nextUp.courseId, nextUp.nextLessonId);
-                    else router.push("/learn");
-                  }}
-                />
-                <MyWorkshopsSection workshops={upcomingWorkshops} />
-                <SavedToolkitCard />
-              </div>
+              {/* 1. Next Up — one tap back into the lesson */}
+              {activePath
+                ? <PathHero activePath={activePath} onContinue={handleContinue} />
+                : <ContinueHero course={nextUp} onContinue={handleContinue} />
+              }
+              {/* 2. Daily rep — streak + what's due, one tap into flashcards */}
+              <DailyRep lessonsToday={lessonsToday} streak={streakDays} practiseCount={practiseCount} />
+              {/* 3. This week — only when something is actually booked */}
+              <MyWorkshopsSection workshops={upcomingWorkshops} />
+              {/* 4. Progress at a glance */}
+              <ProgressSnapshot summary={summary} onOpen={() => handleTabChange("progress")} />
+              {/* 5. Everything else as quiet links */}
+              <ExploreRow />
             </div>
           )}
         </div>

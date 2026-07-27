@@ -9420,14 +9420,124 @@ html[data-theme="light"] .pl-enrolled-badge {
 
 /* ── Home / Dashboard (ported from vanilla app.css) ───────────────────────── */
 
+/* Launcher layout — one prioritised column, ordered by moment frequency */
 .home-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.45fr);
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  align-items: start;
+  max-width: 720px;
 }
-.home-main { display: flex; flex-direction: column; gap: 14px; }
-.home-side { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Daily rep row — streak + due practice, one tap into flashcards ── */
+.home-rep {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+}
+.home-rep-streak {
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(236,236,242,0.35);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.home-rep-streak.is-lit { color: #fbbf24; }
+.home-rep-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.home-rep-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--rf-white);
+}
+.home-rep-sub {
+  font-size: 12px;
+  color: var(--rf-muted);
+}
+.home-rep-cta {
+  flex-shrink: 0;
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
+/* ── Progress snapshot strip ── */
+.home-snapshot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: border-color 0.15s;
+}
+.home-snapshot:hover { border-color: rgba(124,58,237,0.35); }
+.home-snap-item {
+  font-size: 12px;
+  color: var(--rf-muted);
+  white-space: nowrap;
+}
+.home-snap-item strong {
+  font-size: 14px;
+  color: var(--rf-white);
+  margin-right: 3px;
+}
+.home-snap-more {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(167,139,250,0.8);
+  white-space: nowrap;
+}
+
+/* ── Quiet explore links ── */
+.home-explore {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 2px 2px 8px;
+}
+.home-explore-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rf-muted);
+  text-decoration: none;
+  border: 1px solid var(--rf-border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.home-explore-link:hover {
+  color: var(--rf-white);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* ── Header upgrade link (quiet, replaces the old header button) ── */
+.dash-upgrade-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 8px;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  color: rgba(167,139,250,0.85);
+  cursor: pointer;
+}
+.dash-upgrade-link:hover { color: #c4b5fd; }
+
+html[data-theme="light"] .home-rep-streak { color: rgba(20,20,40,0.35); }
+html[data-theme="light"] .home-rep-streak.is-lit { color: #d97706; }
+html[data-theme="light"] .home-snap-more,
+html[data-theme="light"] .dash-upgrade-link { color: rgba(109,40,217,0.8); }
 
 /* Continue / Start Learning hero */
 .home-hero {
@@ -9701,7 +9811,7 @@ html[data-theme="light"] .home-tiny--done .home-tiny-label { color: #16a34a; }
 }
 
 @media (max-width: 860px) {
-  .home-layout { grid-template-columns: 1fr; }
+
   .home-hero { grid-template-columns: 140px minmax(0,1fr); }
 }
 @media (max-width: 520px) {
