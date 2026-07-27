@@ -1666,6 +1666,18 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   .directory-toolbar .segment-nav { width: 100%; overflow-x: auto; }
 }
 
+/* Mobile: .main's side padding shrinks to --sp-md, so the full-bleed margins
+   must match it — the desktop -32px margins overflow the 24px gutter and
+   force the page to scroll sideways. */
+@media (max-width: 860px) {
+  .directory-toolbar {
+    margin-left: calc(var(--sp-md) * -1);
+    margin-right: calc(var(--sp-md) * -1);
+    padding-left: var(--sp-md);
+    padding-right: var(--sp-md);
+  }
+}
+
 .segment-nav {
   display: inline-flex;
   gap: 2px;
@@ -3674,7 +3686,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   top: calc(100% + 10px);
   left: 0;
   z-index: 100;
-  width: 320px;
+  width: min(320px, calc(100vw - 24px));
   max-height: 78vh;
   overflow-y: auto;
   background: var(--rf-card);
@@ -13910,7 +13922,8 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
   z-index: 30;
   display: grid;
   gap: 10px;
-  min-width: 300px;
+  min-width: min(300px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
   padding: 12px;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
@@ -18084,6 +18097,49 @@ html[data-theme="light"] .toast-close:hover { color: rgba(20,20,40,0.6); }
     left: 12px;
   }
   .toast {
+    max-width: 100%;
+  }
+}
+
+/* ── Mobile: vertical scrolling only ─────────────────────────────────────────
+   Below the mobile breakpoint the page must never scroll sideways — content
+   always fits the screen width. Components reflow to a single column in
+   their own rules above; this layer enforces the invariant for anything
+   that slips through (long jargon words, wide media, fixed-width strays).
+   Deliberate exceptions are inner chip/tab rows that scroll within their
+   own bounds (.segment-nav, .dash-tab-bar, .ws-filter-group). */
+@media (max-width: 860px) {
+  /* Marketing pages scroll on the body; app pages scroll inside .main.
+     Neither may ever pan horizontally. */
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  .main {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  /* Long unbreakable strings (command names, URLs, file names) wrap
+     instead of pushing the layout wider than the screen. Set on body so it
+     inherits through both the app shell and the marketing pages. */
+  body {
+    overflow-wrap: break-word;
+  }
+
+  /* Code / command syntax wraps on phones rather than forcing width */
+  .main pre,
+  .main code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Media can never exceed the screen width */
+  .main img,
+  .main video,
+  .main iframe {
     max-width: 100%;
   }
 }
