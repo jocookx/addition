@@ -3528,7 +3528,10 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 
 @media (max-width: 760px) {
   .reference-view {
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr) — a bare 1fr track has an `auto` minimum, so the
+       toolbar's intrinsic width would push the column wider than the
+       screen and clip the whole commands view. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .reference-view > .commands-toolbar {
@@ -3540,6 +3543,15 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   .commands-toolbar-right {
     grid-column: 1 / -1;
     width: 100%;
+  }
+
+  .command-discovery-search {
+    min-width: 0;
+  }
+
+  .commands-toolbar-right {
+    white-space: normal;
+    flex-wrap: wrap;
   }
 }
 
