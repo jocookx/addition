@@ -1,0 +1,3591 @@
+{
+  "meta": {
+    "software": "InDesign",
+    "version": "InDesign 2026",
+    "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+    "provenance": "Authored from model knowledge (cutoff Jan 2026). Original explanations — not copied from Adobe documentation. Shortcuts/menu paths are factual data.",
+    "iconNote": "Adobe icon artwork is proprietary; app renders software chip fallback."
+  },
+  "commands": [
+    {
+      "name": "Selection Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "V",
+      "addon": "",
+      "description": "Selects, moves and resizes frames and their content as whole objects. The default state for laying out a portfolio spread — reach for it whenever you need to reposition images or text frames.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "select",
+        "move",
+        "layout"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "move",
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "arrow tool"
+      ],
+      "related_commands": [
+        "Direct Selection Tool",
+        "Free Transform Tool"
+      ]
+    },
+    {
+      "name": "Direct Selection Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "A",
+      "addon": "",
+      "description": "Selects the content inside a frame or the individual anchor points of a path. Use it to reposition a placed drawing within its crop or to reshape a custom frame edge.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "select",
+        "content",
+        "path"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout",
+        "curve"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "white arrow"
+      ],
+      "related_commands": [
+        "Selection Tool",
+        "Content Grabber"
+      ]
+    },
+    {
+      "name": "Type Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "T",
+      "addon": "",
+      "description": "Creates text frames and edits the text inside them. The workhorse for captions, project descriptions and running copy in a publication.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "type",
+        "text",
+        "frame"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layout",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "text tool"
+      ],
+      "related_commands": [
+        "Type on a Path Tool",
+        "Character Panel"
+      ]
+    },
+    {
+      "name": "Type on a Path Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "Shift+T",
+      "addon": "",
+      "description": "Flows text along any drawn path instead of inside a frame. Handy for labels that follow a site boundary or a curved diagram annotation.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "type",
+        "path",
+        "label"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Type Tool",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Line Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "\\",
+      "addon": "",
+      "description": "Draws straight rules and leader lines. Designers use it for keying diagrams, underlining headings and building simple linework on layout pages.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "line",
+        "rule",
+        "draw"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Pencil Tool"
+      ]
+    },
+    {
+      "name": "Pen Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Draws precise Bézier paths point by point, which can act as graphic linework or as custom frames for images. Useful when a portfolio spread needs a non-rectangular image crop.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "pen",
+        "path",
+        "bezier"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Add Anchor Point Tool",
+        "Scissors Tool"
+      ]
+    },
+    {
+      "name": "Add Anchor Point Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "=",
+      "addon": "",
+      "description": "Adds an anchor point to an existing path so you can bend it further. Reach for it when a frame edge or rule needs an extra kink without redrawing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "anchor",
+        "path",
+        "edit"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Delete Anchor Point Tool"
+      ]
+    },
+    {
+      "name": "Delete Anchor Point Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "-",
+      "addon": "",
+      "description": "Removes an anchor point from a path while keeping the path intact. Use it to simplify traced shapes or tidy imported vector outlines.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "anchor",
+        "path",
+        "simplify"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Add Anchor Point Tool"
+      ]
+    },
+    {
+      "name": "Pencil Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "N",
+      "addon": "",
+      "description": "Draws freehand paths as you drag, smoothing them into editable curves. Occasionally useful for loose sketch-style annotations on presentation pages.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "freehand",
+        "sketch",
+        "draw"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Line Tool"
+      ]
+    },
+    {
+      "name": "Rectangle Frame Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "F",
+      "addon": "",
+      "description": "Draws empty placeholder frames marked with an X, ready to receive placed images. Ideal for blocking out a grid of image slots before the photography is final.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "frame",
+        "placeholder",
+        "image"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "picture frame"
+      ],
+      "related_commands": [
+        "Rectangle Tool",
+        "Place"
+      ]
+    },
+    {
+      "name": "Rectangle Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "M",
+      "addon": "",
+      "description": "Draws rectangles that can carry a fill and stroke, useful as colour blocks, backgrounds and diagram elements. Hold Shift while dragging to draw a square.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "rectangle",
+        "block"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ellipse Tool",
+        "Rectangle Frame Tool"
+      ]
+    },
+    {
+      "name": "Ellipse Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "L",
+      "addon": "",
+      "description": "Draws ellipses and, with Shift held, perfect circles. Useful for key markers, north-point bases and circular image frames.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "circle",
+        "ellipse"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool",
+        "Polygon Tool"
+      ]
+    },
+    {
+      "name": "Polygon Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Draws polygons and stars with a settable number of sides. Double-click the tool to set the side count before drawing hexagonal diagram tiles or similar shapes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "polygon"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool",
+        "Ellipse Tool"
+      ]
+    },
+    {
+      "name": "Gap Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Adjusts the white space between frames, resizing the neighbouring objects on either side as you drag. Brilliant for fine-tuning gutters in a dense image grid without breaking the overall layout.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "gap",
+        "spacing",
+        "grid"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "move",
+        "scale"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Align Panel",
+        "Gridify While Drawing"
+      ]
+    },
+    {
+      "name": "Scissors Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "C",
+      "addon": "",
+      "description": "Cuts a path or frame edge at the point you click, splitting it into open segments. Use it to break a rule into pieces or open up a closed frame.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "cut",
+        "split",
+        "path"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Delete Anchor Point Tool"
+      ]
+    },
+    {
+      "name": "Free Transform Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "E",
+      "addon": "",
+      "description": "Moves, scales, rotates and shears a selection from a single tool. Convenient when you are iterating quickly on the size and angle of collage elements.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "transform",
+        "scale",
+        "rotate"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "move",
+        "scale",
+        "rotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rotate Tool",
+        "Scale Tool"
+      ]
+    },
+    {
+      "name": "Rotate Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "R",
+      "addon": "",
+      "description": "Rotates a selection around a reference point you can reposition. Useful for angling site plans to true north or tilting graphic elements deliberately.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "rotate",
+        "transform"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "rotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Free Transform Tool",
+        "Scale Tool"
+      ]
+    },
+    {
+      "name": "Scale Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "S",
+      "addon": "",
+      "description": "Resizes a selection around a chosen reference point, proportionally with Shift held. Reach for it when an image and its frame need enlarging together from a fixed corner.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "scale",
+        "resize",
+        "transform"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Free Transform Tool",
+        "Rotate Tool"
+      ]
+    },
+    {
+      "name": "Shear Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "O",
+      "addon": "",
+      "description": "Skews a selection along an axis, useful for faux-axonometric graphics built directly in layout. A quick way to make flat plans read as planometric tiles on a cover.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shear",
+        "skew",
+        "axonometric"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "skew tool"
+      ],
+      "related_commands": [
+        "Free Transform Tool",
+        "Rotate Tool"
+      ]
+    },
+    {
+      "name": "Gradient Swatch Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "G",
+      "addon": "",
+      "description": "Drags the direction and extent of a gradient fill across a frame. Use it to re-angle a sky fade or a subtle background wash.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "gradient",
+        "fill",
+        "colour"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Gradient Feather Tool",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Gradient Feather Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "Shift+G",
+      "addon": "",
+      "description": "Fades an object gradually to transparent along the direction you drag. A favourite for softening the edge of a large render so text sits legibly over it.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "feather",
+        "transparency",
+        "fade"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Gradient Swatch Tool",
+        "Effects Panel"
+      ]
+    },
+    {
+      "name": "Eyedropper Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "I",
+      "addon": "",
+      "description": "Samples colour or formatting from one object and applies it to another. A fast way to keep caption styling and accent colours consistent across a document.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "eyedropper",
+        "sample",
+        "colour"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Colour Theme Tool",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Colour Theme Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "Shift+I",
+      "addon": "",
+      "description": "Extracts a palette of colours from placed imagery and adds it to your swatches. Useful for building a publication palette that harmonises with the project photography.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "palette",
+        "colour",
+        "theme"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Eyedropper Tool",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Measure Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "K",
+      "addon": "",
+      "description": "Measures distances and angles between any two points on the page, reporting in the Info panel. Reach for it when checking that margins and image gaps actually match the intended grid.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "measure",
+        "distance",
+        "check"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Rulers",
+        "Align Panel"
+      ]
+    },
+    {
+      "name": "Hand Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "H",
+      "addon": "",
+      "description": "Pans the page view by dragging; hold the spacebar for the same behaviour from any tool. The everyday way to move around a spread while zoomed in.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "pan",
+        "navigate",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "pan tool"
+      ],
+      "related_commands": [
+        "Zoom Tool",
+        "Fit Page in Window"
+      ]
+    },
+    {
+      "name": "Zoom Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "Z",
+      "addon": "",
+      "description": "Zooms into the area you click or drag over; hold Alt to zoom out. Use it for close inspection of linework, kerning and image resolution.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "zoom",
+        "navigate",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hand Tool",
+        "Zoom In"
+      ]
+    },
+    {
+      "name": "Page Tool",
+      "software": "InDesign",
+      "menu": "Toolbar",
+      "shortcut": "Shift+P",
+      "addon": "",
+      "description": "Selects a page as an object so you can give it a different size within the same document. Useful for gatefolds or a portfolio that mixes page formats.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "page",
+        "size",
+        "gatefold"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Document Setup",
+        "Pages Panel"
+      ]
+    },
+    {
+      "name": "Place",
+      "software": "InDesign",
+      "menu": "File > Place",
+      "shortcut": "Ctrl+D",
+      "addon": "",
+      "description": "Imports images, PDFs and text files into the document, loading the cursor so you can click or drag them into frames. The core command for bringing renders, drawings and CAD PDFs into a portfolio.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "import",
+        "place",
+        "image",
+        "link"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "import"
+      ],
+      "related_commands": [
+        "Links Panel",
+        "Fit Content Proportionally"
+      ]
+    },
+    {
+      "name": "Fit Content Proportionally",
+      "software": "InDesign",
+      "menu": "Object > Fitting > Fit Content Proportionally",
+      "shortcut": "Ctrl+Alt+Shift+E",
+      "addon": "",
+      "description": "Scales the placed image to fit entirely inside its frame without distortion, possibly leaving empty space. Use it when the whole drawing must remain visible.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fitting",
+        "frame",
+        "image",
+        "proportional"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fill Frame Proportionally",
+        "Fit Frame to Content"
+      ]
+    },
+    {
+      "name": "Fill Frame Proportionally",
+      "software": "InDesign",
+      "menu": "Object > Fitting > Fill Frame Proportionally",
+      "shortcut": "Ctrl+Alt+Shift+C",
+      "addon": "",
+      "description": "Scales the image so it covers the frame completely without distortion, cropping any overflow. The default choice for edge-to-edge photographic layouts.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fitting",
+        "frame",
+        "crop",
+        "proportional"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Content Proportionally",
+        "Centre Content"
+      ]
+    },
+    {
+      "name": "Fit Frame to Content",
+      "software": "InDesign",
+      "menu": "Object > Fitting > Fit Frame to Content",
+      "shortcut": "Ctrl+Alt+C",
+      "addon": "",
+      "description": "Snaps the frame edges to the exact bounds of the content inside. Handy for tidying caption frames or trimming a frame to a placed logo.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fitting",
+        "frame",
+        "tidy"
+      ],
+      "intent_categories": [
+        "transform",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Content to Frame",
+        "Fill Frame Proportionally"
+      ]
+    },
+    {
+      "name": "Fit Content to Frame",
+      "software": "InDesign",
+      "menu": "Object > Fitting > Fit Content to Frame",
+      "shortcut": "Ctrl+Alt+E",
+      "addon": "",
+      "description": "Stretches the content to match the frame exactly, distorting it if the proportions differ. Use with care — mainly for abstract textures where distortion does not matter.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fitting",
+        "frame",
+        "stretch"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Content Proportionally",
+        "Fit Frame to Content"
+      ]
+    },
+    {
+      "name": "Centre Content",
+      "software": "InDesign",
+      "menu": "Object > Fitting > Centre Content",
+      "shortcut": "Ctrl+Shift+E",
+      "addon": "",
+      "description": "Centres the placed image within its frame without scaling it. A quick recovery when a crop has drifted off-centre during editing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fitting",
+        "centre",
+        "frame"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "center content"
+      ],
+      "related_commands": [
+        "Fill Frame Proportionally",
+        "Content Grabber"
+      ]
+    },
+    {
+      "name": "Content Grabber",
+      "software": "InDesign",
+      "menu": "On-canvas control (hover over frame centre)",
+      "shortcut": "",
+      "addon": "",
+      "description": "The circular target that appears over a frame lets you drag the image inside without moving the frame itself. The fastest way to adjust a crop while composing a spread.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "crop",
+        "content",
+        "frame",
+        "adjust"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "doughnut"
+      ],
+      "related_commands": [
+        "Direct Selection Tool",
+        "Centre Content"
+      ]
+    },
+    {
+      "name": "Thread Text Frames",
+      "software": "InDesign",
+      "menu": "Click a frame's out-port, then click or draw the next frame",
+      "shortcut": "",
+      "addon": "",
+      "description": "Links text frames so a story flows continuously from one to the next across columns and pages. Essential for long project narratives and essays in a publication.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "text",
+        "thread",
+        "flow",
+        "story"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "link text frames"
+      ],
+      "related_commands": [
+        "Show Text Threads",
+        "Primary Text Frame"
+      ]
+    },
+    {
+      "name": "Show Text Threads",
+      "software": "InDesign",
+      "menu": "View > Extras > Show Text Threads",
+      "shortcut": "Ctrl+Alt+Y",
+      "addon": "",
+      "description": "Displays the links between threaded text frames as visible connectors. Turn it on when auditing how a long story flows through a document.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "text",
+        "thread",
+        "view",
+        "audit"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "layout",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Thread Text Frames",
+        "Story Editor"
+      ]
+    },
+    {
+      "name": "Primary Text Frame",
+      "software": "InDesign",
+      "menu": "Parent page frame flag (or New Document dialog)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Marks a parent-page text frame as the main story container, so text reflows automatically when you change the parent or add pages. Useful for report-style documents with continuous body copy.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "text",
+        "parent",
+        "master",
+        "flow"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "master text frame"
+      ],
+      "related_commands": [
+        "Thread Text Frames",
+        "Parent Pages"
+      ]
+    },
+    {
+      "name": "Paste Into",
+      "software": "InDesign",
+      "menu": "Edit > Paste Into",
+      "shortcut": "Ctrl+Alt+V",
+      "addon": "",
+      "description": "Pastes the clipboard contents inside a selected frame, using the frame as a mask. Use it to clip a group of diagram elements to a tidy rectangle.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "paste",
+        "mask",
+        "clip",
+        "frame"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy",
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Paste in Place",
+        "Content Grabber"
+      ]
+    },
+    {
+      "name": "Paste in Place",
+      "software": "InDesign",
+      "menu": "Edit > Paste in Place",
+      "shortcut": "Ctrl+Alt+Shift+V",
+      "addon": "",
+      "description": "Pastes an object at exactly the same coordinates it was copied from, even on another page. Perfect for keeping repeated elements aligned across spreads.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "paste",
+        "position",
+        "align",
+        "copy"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Paste Into",
+        "Step and Repeat"
+      ]
+    },
+    {
+      "name": "Pages Panel",
+      "software": "InDesign",
+      "menu": "Window > Pages",
+      "shortcut": "F12",
+      "addon": "",
+      "description": "Shows thumbnails of every page and parent page, and is where you add, rearrange and apply parents. The command centre for structuring a multi-page portfolio.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "pages",
+        "panel",
+        "structure",
+        "navigate"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Insert Pages",
+        "Parent Pages"
+      ]
+    },
+    {
+      "name": "Insert Pages",
+      "software": "InDesign",
+      "menu": "Layout > Pages > Insert Pages",
+      "shortcut": "Ctrl+Shift+P",
+      "addon": "",
+      "description": "Adds a chosen number of pages at a specific position with a chosen parent applied. Quicker than dragging thumbnails when expanding a document by whole chapters.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "pages",
+        "insert",
+        "add"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "add pages"
+      ],
+      "related_commands": [
+        "Pages Panel",
+        "Go to Page"
+      ]
+    },
+    {
+      "name": "Go to Page",
+      "software": "InDesign",
+      "menu": "Layout > Go to Page",
+      "shortcut": "Ctrl+J",
+      "addon": "",
+      "description": "Jumps straight to a page number you type. Saves endless scrolling in a hundred-page portfolio document.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "pages",
+        "navigate",
+        "jump"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout",
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Pages Panel",
+        "Insert Pages"
+      ]
+    },
+    {
+      "name": "Parent Pages",
+      "software": "InDesign",
+      "menu": "Pages panel (upper section)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Template pages whose items — grids, folios, running heads — repeat on every document page they are applied to. Set these up first so the whole publication stays consistent.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "parent",
+        "master",
+        "template",
+        "consistency"
+      ],
+      "intent_categories": [
+        "organise",
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "master pages"
+      ],
+      "related_commands": [
+        "Override Parent Page Item",
+        "Current Page Number Marker"
+      ]
+    },
+    {
+      "name": "Override Parent Page Item",
+      "software": "InDesign",
+      "menu": "Ctrl+Shift+click a parent item on a document page",
+      "shortcut": "Ctrl+Shift+click",
+      "addon": "",
+      "description": "Unlocks a single parent-page item on one page so it can be edited locally. Use it when one spread needs its folio moved or a grid line removed.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "parent",
+        "master",
+        "override",
+        "edit"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Parent Pages",
+        "Pages Panel"
+      ]
+    },
+    {
+      "name": "Current Page Number Marker",
+      "software": "InDesign",
+      "menu": "Type > Insert Special Character > Markers > Current Page Number",
+      "shortcut": "Ctrl+Alt+Shift+N",
+      "addon": "",
+      "description": "Inserts a marker that always displays the page it sits on, so folios update automatically. Place it in a text frame on the parent page once and never number pages by hand.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "page number",
+        "folio",
+        "marker",
+        "automatic"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "auto page number"
+      ],
+      "related_commands": [
+        "Parent Pages",
+        "Numbering and Section Options"
+      ]
+    },
+    {
+      "name": "Numbering and Section Options",
+      "software": "InDesign",
+      "menu": "Layout > Numbering & Section Options",
+      "shortcut": "",
+      "addon": "",
+      "description": "Starts a new numbering section, changes the numbering style or restarts the count at a chosen page. Useful when a portfolio has front matter numbered in roman numerals.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "section",
+        "numbering",
+        "pages"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Current Page Number Marker",
+        "Pages Panel"
+      ]
+    },
+    {
+      "name": "Document Setup",
+      "software": "InDesign",
+      "menu": "File > Document Setup",
+      "shortcut": "Ctrl+Alt+P",
+      "addon": "",
+      "description": "Changes page size, facing-pages mode, bleed and slug for the whole document after creation. Revisit it when a printer requests different bleed or the format changes late in a project.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "document",
+        "setup",
+        "page size",
+        "bleed"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Margins and Columns",
+        "Page Tool"
+      ]
+    },
+    {
+      "name": "Margins and Columns",
+      "software": "InDesign",
+      "menu": "Layout > Margins and Columns",
+      "shortcut": "",
+      "addon": "",
+      "description": "Sets the margin frame and column grid for the selected pages or parents. The starting point for any layout grid before a single frame is drawn.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "margins",
+        "columns",
+        "grid",
+        "layout"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Create Guides",
+        "Document Setup"
+      ]
+    },
+    {
+      "name": "Create Guides",
+      "software": "InDesign",
+      "menu": "Layout > Create Guides",
+      "shortcut": "",
+      "addon": "",
+      "description": "Generates an evenly spaced grid of ruler guides in rows and columns, fitted to the page or the margins. The quickest way to build a modular grid for image placement.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "grid",
+        "layout",
+        "modular"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Margins and Columns",
+        "Show/Hide Guides"
+      ]
+    },
+    {
+      "name": "Show/Hide Guides",
+      "software": "InDesign",
+      "menu": "View > Grids & Guides > Show/Hide Guides",
+      "shortcut": "Ctrl+;",
+      "addon": "",
+      "description": "Toggles the visibility of all ruler guides. Flick them off to judge a spread cleanly, and back on to keep aligning.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "view",
+        "toggle"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Lock Guides",
+        "Smart Guides"
+      ]
+    },
+    {
+      "name": "Lock Guides",
+      "software": "InDesign",
+      "menu": "View > Grids & Guides > Lock Guides",
+      "shortcut": "Ctrl+Alt+;",
+      "addon": "",
+      "description": "Locks all ruler guides so they cannot be nudged while you move frames. Lock the grid as soon as it is right — stray guides ruin alignment discipline.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "lock",
+        "protect"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show/Hide Guides",
+        "Create Guides"
+      ]
+    },
+    {
+      "name": "Smart Guides",
+      "software": "InDesign",
+      "menu": "View > Grids & Guides > Smart Guides",
+      "shortcut": "Ctrl+U",
+      "addon": "",
+      "description": "Shows temporary alignment and spacing hints as you drag objects, snapping to edges, centres and equal gaps. Keep it on for fast, accurate freehand arrangement.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "smart guides",
+        "snap",
+        "align"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Snap to Guides",
+        "Align Panel"
+      ]
+    },
+    {
+      "name": "Snap to Guides",
+      "software": "InDesign",
+      "menu": "View > Grids & Guides > Snap to Guides",
+      "shortcut": "Ctrl+Shift+;",
+      "addon": "",
+      "description": "Makes dragged objects click onto nearby ruler guides. Toggle it off temporarily when you need to place something deliberately just off-grid.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "snap",
+        "guides",
+        "precision"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Smart Guides",
+        "Show/Hide Guides"
+      ]
+    },
+    {
+      "name": "Show Baseline Grid",
+      "software": "InDesign",
+      "menu": "View > Grids & Guides > Show Baseline Grid",
+      "shortcut": "Ctrl+Alt+'",
+      "addon": "",
+      "description": "Displays the horizontal grid that body text baselines can lock to, keeping lines level across columns. Turn it on when setting long captions and essays so text aligns across the spread.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "baseline",
+        "grid",
+        "typography",
+        "align"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Show Document Grid",
+        "Paragraph Panel"
+      ]
+    },
+    {
+      "name": "Show Document Grid",
+      "software": "InDesign",
+      "menu": "View > Grids & Guides > Show Document Grid",
+      "shortcut": "Ctrl+'",
+      "addon": "",
+      "description": "Displays a uniform squared grid over the whole pasteboard, useful for sketch-style alignment independent of the margin grid. Handy when composing diagrams directly in InDesign.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "grid",
+        "document",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Baseline Grid",
+        "Show/Hide Guides"
+      ]
+    },
+    {
+      "name": "Show Rulers",
+      "software": "InDesign",
+      "menu": "View > Show Rulers",
+      "shortcut": "Ctrl+R",
+      "addon": "",
+      "description": "Toggles the page rulers, from which you drag out new guides. Also the quickest way to check the measurement units in play.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "rulers",
+        "guides",
+        "units"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Create Guides",
+        "Measure Tool"
+      ]
+    },
+    {
+      "name": "Align Panel",
+      "software": "InDesign",
+      "menu": "Window > Object & Layout > Align",
+      "shortcut": "Shift+F7",
+      "addon": "",
+      "description": "Aligns and distributes selected objects relative to each other, the margins or the page, including equal spacing between items. Indispensable for regimenting rows of drawings and captions.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "align",
+        "distribute",
+        "panel",
+        "spacing"
+      ],
+      "intent_categories": [
+        "organise",
+        "transform"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "move",
+        "array"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "distribute"
+      ],
+      "related_commands": [
+        "Smart Guides",
+        "Gap Tool"
+      ]
+    },
+    {
+      "name": "Gridify While Drawing",
+      "software": "InDesign",
+      "menu": "Press arrow keys while dragging a frame tool",
+      "shortcut": "Arrow keys while dragging",
+      "addon": "",
+      "description": "Tapping the arrow keys while dragging a frame splits it into a live grid of equal frames. The fastest way to lay out a contact-sheet of process images.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "grid",
+        "frames",
+        "array",
+        "layout"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "super step and repeat"
+      ],
+      "related_commands": [
+        "Step and Repeat",
+        "Gap Tool"
+      ]
+    },
+    {
+      "name": "Character Panel",
+      "software": "InDesign",
+      "menu": "Window > Type & Tables > Character",
+      "shortcut": "Ctrl+T",
+      "addon": "",
+      "description": "Controls font, size, leading, kerning, tracking and baseline shift for selected text. Open it whenever type needs fine adjustment beyond what a style provides.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "character",
+        "panel",
+        "font"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Paragraph Panel",
+        "Character Styles"
+      ]
+    },
+    {
+      "name": "Paragraph Panel",
+      "software": "InDesign",
+      "menu": "Window > Type & Tables > Paragraph",
+      "shortcut": "Ctrl+Alt+T",
+      "addon": "",
+      "description": "Controls alignment, indents, space before and after, hyphenation and baseline-grid locking for paragraphs. Pair it with styles to keep publication typography systematic.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "paragraph",
+        "panel",
+        "alignment"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Character Panel",
+        "Paragraph Styles"
+      ]
+    },
+    {
+      "name": "Paragraph Styles",
+      "software": "InDesign",
+      "menu": "Window > Styles > Paragraph Styles",
+      "shortcut": "F11",
+      "addon": "",
+      "description": "Stores complete paragraph formatting as named, reusable styles that update globally when edited. The backbone of a consistent portfolio — define body, caption and heading styles before flowing text.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "styles",
+        "paragraph",
+        "consistency",
+        "typography"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "annotation",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Character Styles",
+        "Object Styles"
+      ]
+    },
+    {
+      "name": "Character Styles",
+      "software": "InDesign",
+      "menu": "Window > Styles > Character Styles",
+      "shortcut": "Shift+F11",
+      "addon": "",
+      "description": "Stores character-level formatting — such as bold figure numbers or coloured emphasis — that can be applied within a paragraph. Use them inside nested styles for automatic run-in formatting.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "styles",
+        "character",
+        "typography"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Paragraph Styles",
+        "Nested Styles"
+      ]
+    },
+    {
+      "name": "Nested Styles",
+      "software": "InDesign",
+      "menu": "Paragraph Style Options > Drop Caps and Nested Styles",
+      "shortcut": "",
+      "addon": "",
+      "description": "Automatically applies a character style to a defined portion of each paragraph, such as everything up to the first colon. Perfect for caption labels like 'Fig. 04:' that should style themselves.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "styles",
+        "nested",
+        "automation",
+        "captions"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Paragraph Styles",
+        "Character Styles"
+      ]
+    },
+    {
+      "name": "Glyphs Panel",
+      "software": "InDesign",
+      "menu": "Type > Glyphs",
+      "shortcut": "Alt+Shift+F11",
+      "addon": "",
+      "description": "Browses every character a font contains, including arrows, fractions and alternates, for insertion by double-click. Reach for it when a caption needs a proper multiplication sign or section mark.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "glyphs",
+        "symbols",
+        "font",
+        "special characters"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Character Panel",
+        "Type Tool"
+      ]
+    },
+    {
+      "name": "Story Editor",
+      "software": "InDesign",
+      "menu": "Edit > Edit in Story Editor",
+      "shortcut": "Ctrl+Y",
+      "addon": "",
+      "description": "Opens the selected story in a plain text-editing window, showing overset text and style names without layout distractions. The efficient place to edit long copy before worrying about how it sits on the page.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "text",
+        "editing",
+        "story",
+        "overset"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Find/Change",
+        "Show Text Threads"
+      ]
+    },
+    {
+      "name": "Find/Change",
+      "software": "InDesign",
+      "menu": "Edit > Find/Change",
+      "shortcut": "Ctrl+F",
+      "addon": "",
+      "description": "Searches and replaces text, formatting, glyphs or objects across a story or the whole document, with GREP pattern support. Use it to fix double spaces, update a project name everywhere or restyle every en dash.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "find",
+        "replace",
+        "grep",
+        "cleanup"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "annotation",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "search and replace"
+      ],
+      "related_commands": [
+        "Story Editor",
+        "Check Spelling"
+      ]
+    },
+    {
+      "name": "Check Spelling",
+      "software": "InDesign",
+      "menu": "Edit > Spelling > Check Spelling",
+      "shortcut": "Ctrl+I",
+      "addon": "",
+      "description": "Steps through possible spelling errors across the document with suggested corrections. Run it before any portfolio goes to print — a typo in a project title is an expensive mistake.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "spelling",
+        "proofing",
+        "text"
+      ],
+      "intent_categories": [
+        "analyse",
+        "document"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "spellcheck"
+      ],
+      "related_commands": [
+        "Find/Change",
+        "Story Editor"
+      ]
+    },
+    {
+      "name": "Show Hidden Characters",
+      "software": "InDesign",
+      "menu": "Type > Show Hidden Characters",
+      "shortcut": "Ctrl+Alt+I",
+      "addon": "",
+      "description": "Reveals invisible characters such as spaces, tabs, paragraph returns and frame breaks. Turn it on when diagnosing mysterious gaps or reflow problems in set text.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "hidden characters",
+        "invisibles",
+        "text",
+        "debug"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "annotation",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "show invisibles"
+      ],
+      "related_commands": [
+        "Story Editor",
+        "Find/Change"
+      ]
+    },
+    {
+      "name": "Increase Type Size",
+      "software": "InDesign",
+      "menu": "Keyboard shortcut on selected text",
+      "shortcut": "Ctrl+Shift+>",
+      "addon": "",
+      "description": "Bumps the selected text up by the preference increment, with Ctrl+Alt+Shift+> for larger jumps. Useful for quickly testing heading scales directly on the page.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "size",
+        "increase"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Decrease Type Size",
+        "Character Panel"
+      ]
+    },
+    {
+      "name": "Decrease Type Size",
+      "software": "InDesign",
+      "menu": "Keyboard shortcut on selected text",
+      "shortcut": "Ctrl+Shift+<",
+      "addon": "",
+      "description": "Reduces the selected text by the preference increment. Pair with its opposite to tune hierarchy by eye rather than by numbers.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "size",
+        "decrease"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Increase Type Size",
+        "Character Panel"
+      ]
+    },
+    {
+      "name": "Align Text Left / Centre / Right",
+      "software": "InDesign",
+      "menu": "Paragraph panel alignment buttons",
+      "shortcut": "Ctrl+Shift+L / C / R",
+      "addon": "",
+      "description": "Sets paragraph alignment to left, centred or right with one shortcut each. Muscle-memory basics for switching caption alignment as layouts evolve.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "alignment",
+        "paragraph",
+        "text"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Justify Text",
+        "Paragraph Panel"
+      ]
+    },
+    {
+      "name": "Justify Text",
+      "software": "InDesign",
+      "menu": "Paragraph panel alignment buttons",
+      "shortcut": "Ctrl+Shift+J",
+      "addon": "",
+      "description": "Justifies the paragraph with the last line aligned left. Common for dense report body text; check hyphenation settings afterwards to avoid rivers.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "justify",
+        "alignment",
+        "body text"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Align Text Left / Centre / Right",
+        "Paragraph Panel"
+      ]
+    },
+    {
+      "name": "Create Outlines",
+      "software": "InDesign",
+      "menu": "Type > Create Outlines",
+      "shortcut": "Ctrl+Shift+O",
+      "addon": "",
+      "description": "Converts live text into editable vector paths, breaking the link to the font. Use it for logotype lockups or when artwork must travel without font files — but keep a live-text copy for edits.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "outlines",
+        "vector",
+        "type",
+        "convert"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "annotation",
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "convert to outlines"
+      ],
+      "related_commands": [
+        "Type Tool",
+        "Package"
+      ]
+    },
+    {
+      "name": "Fill with Placeholder Text",
+      "software": "InDesign",
+      "menu": "Type > Fill with Placeholder Text",
+      "shortcut": "",
+      "addon": "",
+      "description": "Fills the selected text frame with dummy copy so you can judge type colour and layout before real text exists. Useful in early portfolio drafts when project descriptions are still being written.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "placeholder",
+        "lorem ipsum",
+        "draft"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "annotation",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "lorem ipsum"
+      ],
+      "related_commands": [
+        "Type Tool",
+        "Paragraph Styles"
+      ]
+    },
+    {
+      "name": "Group",
+      "software": "InDesign",
+      "menu": "Object > Group",
+      "shortcut": "Ctrl+G",
+      "addon": "",
+      "description": "Combines selected objects so they move and scale as one unit. Group each drawing with its caption and key before rearranging spreads.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "group",
+        "organise",
+        "objects"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ungroup",
+        "Lock"
+      ]
+    },
+    {
+      "name": "Ungroup",
+      "software": "InDesign",
+      "menu": "Object > Ungroup",
+      "shortcut": "Ctrl+Shift+G",
+      "addon": "",
+      "description": "Releases a group back into its individual objects. Note you can also double-click into a group to edit members without ungrouping at all.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "ungroup",
+        "objects"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "split"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Group",
+        "Lock"
+      ]
+    },
+    {
+      "name": "Lock",
+      "software": "InDesign",
+      "menu": "Object > Lock",
+      "shortcut": "Ctrl+L",
+      "addon": "",
+      "description": "Locks the selected objects in place so they cannot be selected or moved. Lock background images and grids while you fiddle with foreground elements.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "lock",
+        "protect",
+        "objects"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Unlock All on Spread",
+        "Layers Panel"
+      ]
+    },
+    {
+      "name": "Unlock All on Spread",
+      "software": "InDesign",
+      "menu": "Object > Unlock All on Spread",
+      "shortcut": "Ctrl+Alt+L",
+      "addon": "",
+      "description": "Releases every locked object on the current spread at once. The quick undo for a heavy-handed locking session.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "unlock",
+        "objects",
+        "spread"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Lock",
+        "Layers Panel"
+      ]
+    },
+    {
+      "name": "Bring to Front",
+      "software": "InDesign",
+      "menu": "Object > Arrange > Bring to Front",
+      "shortcut": "Ctrl+Shift+]",
+      "addon": "",
+      "description": "Moves the selection to the top of the stacking order within its layer. Use it to pop captions and keys above overlapping imagery.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "arrange",
+        "stacking",
+        "front"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Send to Back",
+        "Bring Forward"
+      ]
+    },
+    {
+      "name": "Send to Back",
+      "software": "InDesign",
+      "menu": "Object > Arrange > Send to Back",
+      "shortcut": "Ctrl+Shift+[",
+      "addon": "",
+      "description": "Drops the selection to the bottom of the stacking order within its layer. Handy for pushing a background wash behind everything else on the page.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "arrange",
+        "stacking",
+        "back"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Bring to Front",
+        "Send Backward"
+      ]
+    },
+    {
+      "name": "Bring Forward",
+      "software": "InDesign",
+      "menu": "Object > Arrange > Bring Forward",
+      "shortcut": "Ctrl+]",
+      "addon": "",
+      "description": "Raises the selection one step in the stacking order. Useful for fine control when several overlapping elements build up a collage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "arrange",
+        "stacking",
+        "forward"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Send Backward",
+        "Bring to Front"
+      ]
+    },
+    {
+      "name": "Send Backward",
+      "software": "InDesign",
+      "menu": "Object > Arrange > Send Backward",
+      "shortcut": "Ctrl+[",
+      "addon": "",
+      "description": "Lowers the selection one step in the stacking order. Pair with Bring Forward to shuffle overlapping collage layers precisely.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "arrange",
+        "stacking",
+        "backward"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Bring Forward",
+        "Send to Back"
+      ]
+    },
+    {
+      "name": "Text Wrap",
+      "software": "InDesign",
+      "menu": "Window > Text Wrap",
+      "shortcut": "Ctrl+Alt+W",
+      "addon": "",
+      "description": "Makes text flow around an object's bounding box, shape or clipping path with adjustable offsets. Use it to run copy around a cut-out axonometric or a pulled quote.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "text wrap",
+        "runaround",
+        "layout"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layout",
+        "annotation"
+      ],
+      "outcomes": [
+        "offset"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "runaround"
+      ],
+      "related_commands": [
+        "Paste Into",
+        "Paragraph Panel"
+      ]
+    },
+    {
+      "name": "Corner Options",
+      "software": "InDesign",
+      "menu": "Object > Corner Options",
+      "shortcut": "",
+      "addon": "",
+      "description": "Applies rounded, bevelled or inset corners to rectangular frames with a set radius. Use sparingly — a subtle radius can soften diagram boxes without looking gimmicky.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "corners",
+        "rounded",
+        "frame"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "rounded corners"
+      ],
+      "related_commands": [
+        "Rectangle Tool",
+        "Object Styles"
+      ]
+    },
+    {
+      "name": "Drop Shadow",
+      "software": "InDesign",
+      "menu": "Object > Effects > Drop Shadow",
+      "shortcut": "Ctrl+Alt+M",
+      "addon": "",
+      "description": "Adds a configurable shadow behind the selected object, with control over angle, blur, spread and opacity. Occasionally useful for lifting a model photograph off a flat background.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "shadow",
+        "effects",
+        "depth"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effects Panel",
+        "Object Styles"
+      ]
+    },
+    {
+      "name": "Effects Panel",
+      "software": "InDesign",
+      "menu": "Window > Effects",
+      "shortcut": "Ctrl+Shift+F10",
+      "addon": "",
+      "description": "Sets opacity and blending mode per object, fill, stroke or text, and opens the full effects dialog. The place to multiply a colour tint over a photograph or fade an underlay drawing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "effects",
+        "opacity",
+        "blending",
+        "transparency"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "transparency panel"
+      ],
+      "related_commands": [
+        "Drop Shadow",
+        "Gradient Feather Tool"
+      ]
+    },
+    {
+      "name": "Object Styles",
+      "software": "InDesign",
+      "menu": "Window > Styles > Object Styles",
+      "shortcut": "Ctrl+F7",
+      "addon": "",
+      "description": "Saves frame formatting — stroke, fill, effects, text wrap, fitting — as reusable styles. Define one style for image frames and one for caption boxes so the whole document updates from a single edit.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "styles",
+        "object",
+        "consistency"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Paragraph Styles",
+        "Effects Panel"
+      ]
+    },
+    {
+      "name": "Step and Repeat",
+      "software": "InDesign",
+      "menu": "Edit > Step and Repeat",
+      "shortcut": "Ctrl+Alt+U",
+      "addon": "",
+      "description": "Duplicates the selection a set number of times with fixed offsets, or as a grid. Ideal for building rows of thumbnail frames or repeating diagram modules precisely.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "duplicate",
+        "array",
+        "repeat",
+        "grid"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy",
+        "array"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Gridify While Drawing",
+        "Duplicate"
+      ]
+    },
+    {
+      "name": "Duplicate",
+      "software": "InDesign",
+      "menu": "Edit > Duplicate",
+      "shortcut": "Ctrl+Alt+Shift+D",
+      "addon": "",
+      "description": "Creates a copy of the selection offset by the last step-and-repeat values. Faster than copy-paste when propagating an element along a row.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "duplicate",
+        "copy",
+        "offset"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Step and Repeat",
+        "Paste in Place"
+      ]
+    },
+    {
+      "name": "Insert Table",
+      "software": "InDesign",
+      "menu": "Table > Insert Table",
+      "shortcut": "Ctrl+Alt+Shift+T",
+      "addon": "",
+      "description": "Creates a table inside a text frame with a chosen number of rows and columns. Use it for area schedules, drawing issue registers and project data sheets.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "table",
+        "schedule",
+        "data"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "layout",
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Table Options",
+        "Convert Text to Table"
+      ]
+    },
+    {
+      "name": "Convert Text to Table",
+      "software": "InDesign",
+      "menu": "Table > Convert Text to Table",
+      "shortcut": "",
+      "addon": "",
+      "description": "Turns tab- or comma-separated text into a proper table. The fast route when schedule data arrives pasted from a spreadsheet.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "table",
+        "convert",
+        "data"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layout",
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Insert Table",
+        "Table Options"
+      ]
+    },
+    {
+      "name": "Table Options",
+      "software": "InDesign",
+      "menu": "Table > Table Options > Table Setup",
+      "shortcut": "Ctrl+Alt+Shift+B",
+      "addon": "",
+      "description": "Controls table borders, row and column strokes, fills and header rows. Strip the default borders here to achieve clean, rule-light schedule styling.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "table",
+        "options",
+        "borders",
+        "styling"
+      ],
+      "intent_categories": [
+        "edit",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Insert Table",
+        "Insert Row"
+      ]
+    },
+    {
+      "name": "Insert Row",
+      "software": "InDesign",
+      "menu": "Table > Insert > Row",
+      "shortcut": "Ctrl+9",
+      "addon": "",
+      "description": "Adds rows above or below the current table row. Note that Tab at the end of a table also appends a row on the fly.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "table",
+        "row",
+        "insert"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Insert Column",
+        "Insert Table"
+      ]
+    },
+    {
+      "name": "Insert Column",
+      "software": "InDesign",
+      "menu": "Table > Insert > Column",
+      "shortcut": "Ctrl+Alt+9",
+      "addon": "",
+      "description": "Adds columns to the left or right of the current table column. Use with Table Options to keep the schedule grid consistent as data grows.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "table",
+        "column",
+        "insert"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Insert Row",
+        "Table Options"
+      ]
+    },
+    {
+      "name": "Swatches Panel",
+      "software": "InDesign",
+      "menu": "Window > Colour > Swatches",
+      "shortcut": "F5",
+      "addon": "",
+      "description": "Stores the document's named colours, tints and gradients for consistent reuse. Build a small, disciplined palette here — portfolio colour drift is a classic amateur tell.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "swatches",
+        "colour",
+        "palette"
+      ],
+      "intent_categories": [
+        "organise",
+        "visualise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Colour Theme Tool",
+        "Eyedropper Tool"
+      ]
+    },
+    {
+      "name": "Toggle Fill and Stroke",
+      "software": "InDesign",
+      "menu": "Toolbar fill/stroke control",
+      "shortcut": "X",
+      "addon": "",
+      "description": "Switches whether colour edits target the fill or the stroke of the selection. Press Shift+X to swap the two colours outright.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fill",
+        "stroke",
+        "colour",
+        "toggle"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Swatches Panel",
+        "Default Fill and Stroke"
+      ]
+    },
+    {
+      "name": "Default Fill and Stroke",
+      "software": "InDesign",
+      "menu": "Toolbar fill/stroke control",
+      "shortcut": "D",
+      "addon": "",
+      "description": "Resets the selection to the default of no fill and a black stroke. A quick way back to neutral when colour experiments go wrong.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fill",
+        "stroke",
+        "default",
+        "reset"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Toggle Fill and Stroke",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Links Panel",
+      "software": "InDesign",
+      "menu": "Window > Links",
+      "shortcut": "Ctrl+Shift+D",
+      "addon": "",
+      "description": "Lists every placed file with its status, resolution and location, and lets you relink, update or reveal originals. Check it before export — modified or missing links print as low-resolution previews.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "links",
+        "images",
+        "status",
+        "relink"
+      ],
+      "intent_categories": [
+        "organise",
+        "analyse"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Place",
+        "Package"
+      ]
+    },
+    {
+      "name": "Package",
+      "software": "InDesign",
+      "menu": "File > Package",
+      "shortcut": "Ctrl+Alt+Shift+P",
+      "addon": "",
+      "description": "Gathers the document, all linked images and fonts into one folder for handover or archiving. The standard way to send a portfolio file to a printer or a collaborator.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "package",
+        "handover",
+        "archive",
+        "fonts"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "collect for output"
+      ],
+      "related_commands": [
+        "Links Panel",
+        "Preflight Panel"
+      ]
+    },
+    {
+      "name": "Preflight Panel",
+      "software": "InDesign",
+      "menu": "Window > Output > Preflight",
+      "shortcut": "Ctrl+Alt+Shift+F",
+      "addon": "",
+      "description": "Continuously checks the document against a profile for problems like missing links, overset text and low-resolution images. Watch the green/red dot in the status bar and fix errors before export day.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "preflight",
+        "errors",
+        "quality",
+        "print"
+      ],
+      "intent_categories": [
+        "analyse",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Package",
+        "Links Panel"
+      ]
+    },
+    {
+      "name": "Layers Panel",
+      "software": "InDesign",
+      "menu": "Window > Layers",
+      "shortcut": "F7",
+      "addon": "",
+      "description": "Organises page objects into named layers that can be hidden, locked or reordered. Keep imagery, linework and text on separate layers so complex spreads stay manageable.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "organise",
+        "panel"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Lock",
+        "Bring to Front"
+      ]
+    },
+    {
+      "name": "Export",
+      "software": "InDesign",
+      "menu": "File > Export",
+      "shortcut": "Ctrl+E",
+      "addon": "",
+      "description": "Exports the document to PDF (Print or Interactive), IDML, EPUB, JPEG and other formats. Use PDF (Print) with a press profile for printed portfolios and PDF (Interactive) for screen versions with hyperlinks.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "export",
+        "pdf",
+        "output"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "export pdf"
+      ],
+      "related_commands": [
+        "Adobe PDF Presets",
+        "Package"
+      ]
+    },
+    {
+      "name": "Adobe PDF Presets",
+      "software": "InDesign",
+      "menu": "File > Adobe PDF Presets",
+      "shortcut": "",
+      "addon": "",
+      "description": "Exports directly using saved PDF settings such as High Quality Print or Press Quality, or defines your own. Save a preset with correct bleed and downsampling so every issue of the portfolio exports identically.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "pdf",
+        "presets",
+        "export",
+        "print"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export",
+        "Preflight Panel"
+      ]
+    },
+    {
+      "name": "Export IDML",
+      "software": "InDesign",
+      "menu": "File > Export > InDesign Markup (IDML)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Saves the document in the interchange format that older InDesign versions can open. The standard rescue when a collaborator runs a previous release, and a useful repair trick for misbehaving files.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "idml",
+        "compatibility",
+        "interchange"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export",
+        "Package"
+      ]
+    },
+    {
+      "name": "Print",
+      "software": "InDesign",
+      "menu": "File > Print",
+      "shortcut": "Ctrl+P",
+      "addon": "",
+      "description": "Sends the document to a printer with control over scale, marks, bleed and imposition basics. Useful for quick in-house proofs of spreads before committing to a full export.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "print",
+        "proof",
+        "output"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Export",
+        "Adobe PDF Presets"
+      ]
+    },
+    {
+      "name": "Preview Screen Mode",
+      "software": "InDesign",
+      "menu": "View > Screen Mode > Preview",
+      "shortcut": "W",
+      "addon": "",
+      "description": "Hides guides, frame edges and the pasteboard to show the page as it will print. Tap it constantly while designing to judge spreads without the scaffolding.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "preview",
+        "screen mode",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Presentation Mode",
+        "Bleed Screen Mode"
+      ]
+    },
+    {
+      "name": "Presentation Mode",
+      "software": "InDesign",
+      "menu": "View > Screen Mode > Presentation",
+      "shortcut": "Shift+W",
+      "addon": "",
+      "description": "Displays the document full screen with all panels hidden, paging with the arrow keys. Perfect for reviewing a portfolio with tutors or clients straight from InDesign.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "presentation",
+        "full screen",
+        "review"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Preview Screen Mode",
+        "Fit Spread in Window"
+      ]
+    },
+    {
+      "name": "Bleed Screen Mode",
+      "software": "InDesign",
+      "menu": "View > Screen Mode > Bleed",
+      "shortcut": "",
+      "addon": "",
+      "description": "Shows the page plus the bleed area so you can confirm images genuinely extend past the trim. Check it before export on any full-bleed layout.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "bleed",
+        "screen mode",
+        "print"
+      ],
+      "intent_categories": [
+        "visualise",
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Preview Screen Mode",
+        "Document Setup"
+      ]
+    },
+    {
+      "name": "Zoom In",
+      "software": "InDesign",
+      "menu": "View > Zoom In",
+      "shortcut": "Ctrl+=",
+      "addon": "",
+      "description": "Magnifies the view one increment; Ctrl+- zooms back out. Combine with spacebar panning for fluid navigation around detailed spreads.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "zoom",
+        "view",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Zoom Tool",
+        "Fit Page in Window"
+      ]
+    },
+    {
+      "name": "Fit Page in Window",
+      "software": "InDesign",
+      "menu": "View > Fit Page in Window",
+      "shortcut": "Ctrl+0",
+      "addon": "",
+      "description": "Zooms so the current page exactly fills the window. The reflex shortcut for stepping back to judge the whole composition.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fit",
+        "zoom",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Spread in Window",
+        "Actual Size"
+      ]
+    },
+    {
+      "name": "Fit Spread in Window",
+      "software": "InDesign",
+      "menu": "View > Fit Spread in Window",
+      "shortcut": "Ctrl+Alt+0",
+      "addon": "",
+      "description": "Zooms to show the full facing-page spread. Essential for portfolio work, where the spread — not the single page — is the unit of design.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fit",
+        "spread",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Page in Window",
+        "Presentation Mode"
+      ]
+    },
+    {
+      "name": "Actual Size",
+      "software": "InDesign",
+      "menu": "View > Actual Size",
+      "shortcut": "Ctrl+1",
+      "addon": "",
+      "description": "Sets the zoom to 100 percent so type appears at roughly printed size. Use it to sanity-check whether captions will really be readable on paper.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "zoom",
+        "actual size",
+        "view"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "100%"
+      ],
+      "related_commands": [
+        "Zoom In",
+        "Fit Page in Window"
+      ]
+    },
+    {
+      "name": "Overprint Preview",
+      "software": "InDesign",
+      "menu": "View > Overprint Preview",
+      "shortcut": "Ctrl+Alt+Shift+Y",
+      "addon": "",
+      "description": "Simulates how inks, overprints and transparency will actually output, at the cost of slower redraw. Switch it on for a final on-screen check of rich blacks and spot colours.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "overprint",
+        "preview",
+        "print",
+        "colour"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Preflight Panel",
+        "Preview Screen Mode"
+      ]
+    },
+    {
+      "name": "Quick Apply",
+      "software": "InDesign",
+      "menu": "Edit > Quick Apply",
+      "shortcut": "Ctrl+Enter",
+      "addon": "",
+      "description": "Opens a search box that applies any style, menu command or script by typing part of its name. A keyboard-first way to apply paragraph styles without hunting through panels.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/indesign/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "quick apply",
+        "styles",
+        "speed"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layout",
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Paragraph Styles",
+        "Object Styles"
+      ]
+    }
+  ]
+}
