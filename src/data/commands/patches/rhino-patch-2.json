@@ -1,0 +1,4279 @@
+{
+  "GumballSettings": {
+    "description": "Opens the settings for the gumball manipulation widget, letting you tune drag behaviour, snapping and which handles are shown. Reach for it when the gumball feels too twitchy or is cluttering the viewport.",
+    "menu": "Tools",
+    "tags": [
+      "Interface",
+      "Gumball"
+    ],
+    "intent_categories": [
+      "transform",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Gumball"
+    ]
+  },
+  "HandleCurve": {
+    "description": "Draws a curve by placing points with adjustable tangent handles, much like pen-tool drawing in illustration software. Useful when you want direct control over tangency as you sketch a profile.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Drawing"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Curve",
+      "InterpCrv",
+      "HBar"
+    ]
+  },
+  "HatchBase": {
+    "description": "Sets the base point from which hatch patterns are measured, so pattern lines align consistently across a drawing. Designers use it to line up brick or tile hatches with actual wall setting-out.",
+    "menu": "Dimension",
+    "tags": [
+      "Hatch",
+      "Annotation"
+    ],
+    "intent_categories": [
+      "document"
+    ],
+    "object_types": [
+      "annotation"
+    ],
+    "outcomes": [
+      "annotate"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Hatch",
+      "HatchScale"
+    ]
+  },
+  "HatchScale": {
+    "description": "Controls the global scaling applied to hatch patterns in the model, so you can tune pattern density across every hatch at once. Handy when hatches read too dense or too sparse at your printing scale.",
+    "menu": "Dimension",
+    "tags": [
+      "Hatch",
+      "Annotation"
+    ],
+    "intent_categories": [
+      "document",
+      "edit"
+    ],
+    "object_types": [
+      "annotation"
+    ],
+    "outcomes": [
+      "scale"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Hatch",
+      "HatchBase"
+    ]
+  },
+  "HBar": {
+    "description": "Turns on the handlebar editor, which lets you drag a tangent handlebar along a curve or surface to reshape it intuitively. A friendlier alternative to raw control-point editing for smooth shape tweaks.",
+    "menu": "Edit",
+    "tags": [
+      "Curve",
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "smooth"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "HandleCurve",
+      "PointsOn"
+    ]
+  },
+  "Help": {
+    "description": "Opens Rhino's help system, jumping to the topic for the current command when one is running. The quickest way to check a command's options mid-task.",
+    "menu": "Tools",
+    "tags": [
+      "Interface",
+      "Reference"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "CommandHelp"
+    ]
+  },
+  "HideInDetail": {
+    "description": "Hides the selected objects only within the active layout detail, leaving them visible in the model and in other details. Essential for tailoring what each drawing view shows on a sheet.",
+    "menu": "Edit",
+    "tags": [
+      "Visibility",
+      "Layout"
+    ],
+    "intent_categories": [
+      "organise",
+      "document"
+    ],
+    "object_types": [
+      "layout"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "ShowInDetail",
+      "HideLayersInDetail",
+      "Hide"
+    ]
+  },
+  "HideLayersInDetail": {
+    "description": "Turns off the layers of the selected objects, but only in the active layout detail. Lets each detail on a sheet show a different mix of layers without touching the model-wide layer states.",
+    "menu": "Edit",
+    "tags": [
+      "Visibility",
+      "Layers",
+      "Layout"
+    ],
+    "intent_categories": [
+      "organise",
+      "document"
+    ],
+    "object_types": [
+      "layer",
+      "layout"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "HideInDetail",
+      "Layer"
+    ]
+  },
+  "HidePt": {
+    "description": "Hides the selected control points so they stay out of the way while you edit the rest. Useful on dense point grids where accidental grabs are a constant risk.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points",
+      "Visibility"
+    ],
+    "intent_categories": [
+      "organise",
+      "edit"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "PointsOn",
+      "PointsOff",
+      "InvertPt"
+    ]
+  },
+  "HideSwap": {
+    "description": "Swaps the visibility state of everything: hidden objects become visible and visible objects become hidden. A quick way to flip between two working sets of geometry.",
+    "menu": "Edit",
+    "tags": [
+      "Visibility"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Hide",
+      "Show",
+      "LockSwap"
+    ]
+  },
+  "HighlightObjectLayers": {
+    "description": "Highlights the layers of the selected objects in the Layers panel so you can see instantly where things live. A lifesaver in models with long, deeply nested layer trees.",
+    "menu": "Edit",
+    "tags": [
+      "Layers",
+      "Selection"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Layer",
+      "OneLayerOn",
+      "MatchLayer"
+    ]
+  },
+  "HistoryPurge": {
+    "description": "Removes construction-history records from the selected objects, breaking the parent-child update link. Do this when history is no longer wanted or is causing unexpected updates.",
+    "menu": "Edit",
+    "tags": [
+      "History"
+    ],
+    "intent_categories": [
+      "organise",
+      "edit"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "History",
+      "HistoryUpdate"
+    ]
+  },
+  "HistoryUpdate": {
+    "description": "Forces history-linked child objects to update to match their edited parents. Used when history updating is set to manual, or when you want to trigger a refresh on demand.",
+    "menu": "Edit",
+    "tags": [
+      "History"
+    ],
+    "intent_categories": [
+      "edit",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "History",
+      "HistoryPurge"
+    ]
+  },
+  "Hydrostatics": {
+    "description": "Calculates hydrostatic values such as displaced volume, waterline area and centre of buoyancy for hull-like surfaces and solids. A marine design tool for checking how a hull sits in the water.",
+    "menu": "Analyze",
+    "tags": [
+      "Analysis",
+      "Marine"
+    ],
+    "intent_categories": [
+      "analyse"
+    ],
+    "object_types": [
+      "surface",
+      "solid",
+      "mesh"
+    ],
+    "outcomes": [
+      "measure"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Volume",
+      "VolumeCentroid"
+    ]
+  },
+  "Hyperlink": {
+    "description": "Attaches a web address to an object so supporting information, such as a product page or specification, is one click away. Useful for embedding references directly into a model.",
+    "menu": "Edit",
+    "tags": [
+      "Attributes"
+    ],
+    "intent_categories": [
+      "organise",
+      "document"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Notes",
+      "Properties"
+    ]
+  },
+  "IgesImportOptions": {
+    "description": "Sets the options Rhino uses when importing IGES files, such as which translation preset to apply. Reach for it when IGES data from a consultant comes in badly and needs different import handling.",
+    "menu": "File",
+    "tags": [
+      "Import/Export",
+      "IGES"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Import",
+      "ReadEveryIGESEntity"
+    ]
+  },
+  "ImportAnnotationStyles": {
+    "description": "Imports annotation styles from another Rhino file into the current model, so dimensions and text match office standards. Saves rebuilding styles by hand on every new project.",
+    "menu": "Dimension",
+    "tags": [
+      "Annotation",
+      "Standards"
+    ],
+    "intent_categories": [
+      "document",
+      "organise"
+    ],
+    "object_types": [
+      "annotation"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "DocumentProperties"
+    ]
+  },
+  "ImportLayout": {
+    "description": "Brings layout pages from another Rhino file into the current model, including their details and title-block geometry. Ideal for reusing a practice's standard sheet setups.",
+    "menu": "File",
+    "tags": [
+      "Layout",
+      "Import/Export"
+    ],
+    "intent_categories": [
+      "document",
+      "organise"
+    ],
+    "object_types": [
+      "layout"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Layout",
+      "Layouts"
+    ]
+  },
+  "InfinitePlane": {
+    "description": "Creates an infinite plane object that other commands can use, for example as a cutter in intersections or booleans where a bounded plane would be too small. A construction helper rather than final geometry.",
+    "menu": "Surface",
+    "tags": [
+      "Surface",
+      "Construction"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Plane",
+      "CutPlane",
+      "ClippingPlane"
+    ]
+  },
+  "InsertControlPoint": {
+    "description": "Adds a control point to a curve, or a whole row of points to a surface, where you click. Gives finer local control before detailed point editing.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "InsertKnot",
+      "RemoveControlPoint"
+    ]
+  },
+  "InsertEditPoint": {
+    "description": "Adds an edit point to a curve, inserting the underlying knot so the curve gains a new point it passes through. Useful when you edit curves via edit points rather than control points.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "EditPtOn",
+      "InsertControlPoint"
+    ]
+  },
+  "InsertKink": {
+    "description": "Inserts a kink at a chosen point on a curve so it can form a sharp corner there. Use it when a smooth curve needs to break into an angle without being split into pieces.",
+    "menu": "Edit",
+    "tags": [
+      "Curve",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "InsertControlPoint",
+      "InsertKnot"
+    ]
+  },
+  "InsertLineIntoCrv": {
+    "description": "Replaces the portion of a curve between two picked points with a straight line segment. A tidy way to flatten part of a freeform curve without trimming and rejoining by hand.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Line"
+    ]
+  },
+  "IntersectSelf": {
+    "description": "Finds the places where an object crosses itself and marks the self-intersections. Helpful for diagnosing problem curves or meshes before offsets, booleans or fabrication.",
+    "menu": "Curve",
+    "tags": [
+      "Analysis",
+      "Intersection"
+    ],
+    "intent_categories": [
+      "analyse",
+      "create"
+    ],
+    "object_types": [
+      "curve",
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Intersect",
+      "IntersectTwoSets"
+    ]
+  },
+  "IntersectTwoSets": {
+    "description": "Intersects every object in one set with the objects in a second set, ignoring intersections within each set. Cleaner than plain Intersect when you only care about crossings between two families of geometry.",
+    "menu": "Curve",
+    "tags": [
+      "Intersection",
+      "Curve From Objects"
+    ],
+    "intent_categories": [
+      "create",
+      "analyse"
+    ],
+    "object_types": [
+      "curve",
+      "surface",
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Intersect",
+      "IntersectSelf"
+    ]
+  },
+  "InvertPt": {
+    "description": "Inverts the current control-point selection, deselecting picked points and selecting the rest. Speeds up point editing when it is easier to pick what you do not want.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points",
+      "Selection"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Invert",
+      "HidePt"
+    ]
+  },
+  "IsolateLock": {
+    "description": "Isolates the selection by locking everything else instead of hiding it, so surrounding geometry stays visible for context but cannot be selected or snagged. Good for focused edits inside a busy model.",
+    "menu": "Edit",
+    "tags": [
+      "Visibility",
+      "Locking"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Isolate",
+      "Unisolate",
+      "Unlock"
+    ]
+  },
+  "IsolateToViewports": {
+    "description": "Isolates the selected objects on a per-viewport basis, hiding everything else only in the chosen viewport while other viewports stay complete. Useful for comparing a focused view with the full model side by side.",
+    "menu": "Edit",
+    "tags": [
+      "Visibility",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "organise",
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Isolate",
+      "HideInDetail"
+    ]
+  },
+  "Isometric": {
+    "description": "Sets the viewport to an isometric parallel projection from a chosen quadrant such as north-east or south-west. The classic axonometric-style view architects use for explanatory drawings.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Projection"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Perspective",
+      "Plan"
+    ]
+  },
+  "JoinEdge": {
+    "description": "Force-joins two naked edges that sit outside joining tolerance. A repair tool of last resort for gappy polysurfaces; use sparingly as it hides rather than fixes the underlying gap.",
+    "menu": "Analyze",
+    "tags": [
+      "Edge Tools",
+      "Repair"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface",
+      "solid"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "ShowEdges",
+      "RebuildEdges",
+      "Join"
+    ]
+  },
+  "Lasso": {
+    "description": "Selects objects by drawing a freehand loop around them, rather than a rectangular window. Handy when the things you want are scattered among things you do not.",
+    "menu": "Edit",
+    "tags": [
+      "Selection"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "SelBrush",
+      "SelBoundary"
+    ]
+  },
+  "Layer States": {
+    "description": "Opens the Layer States panel, where you save and restore snapshots of layer visibility, colour and lock settings. Perfect for flipping between drawing setups such as plans, presentations and working states.",
+    "menu": "Edit",
+    "tags": [
+      "Layers",
+      "Panels"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Layer"
+    ]
+  },
+  "LayerBook": {
+    "description": "Steps through the model's layers one at a time like slides, showing each in turn. Useful for assembly sequences or walking a client through a scheme layer by layer.",
+    "menu": "View",
+    "tags": [
+      "Layers",
+      "Presentation"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Layer"
+    ]
+  },
+  "LayoutProperties": {
+    "description": "Edits the properties of the active layout page, such as its name and paper size. Use it to fix a sheet set up at the wrong size without recreating it.",
+    "menu": "View",
+    "tags": [
+      "Layout"
+    ],
+    "intent_categories": [
+      "document"
+    ],
+    "object_types": [
+      "layout"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Layout",
+      "Layouts"
+    ]
+  },
+  "Layouts": {
+    "description": "Opens the Layouts panel listing every layout page in the file for quick navigation, renaming and management. Much faster than tab-hunting in documents with many sheets.",
+    "menu": "View",
+    "tags": [
+      "Layout",
+      "Panels"
+    ],
+    "intent_categories": [
+      "document",
+      "organise"
+    ],
+    "object_types": [
+      "layout"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Layout",
+      "LayoutProperties"
+    ]
+  },
+  "Libraries": {
+    "description": "Opens the Libraries panel for browsing content such as materials, environments and textures, ready to drag into the model. A shop window for render assets.",
+    "menu": "Render",
+    "tags": [
+      "Panels",
+      "Rendering"
+    ],
+    "intent_categories": [
+      "organise",
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Materials"
+    ]
+  },
+  "Lights": {
+    "description": "Opens the Lights panel listing all lights in the model, where you can select, toggle and edit them. The control room for a rendering's lighting setup.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Lighting",
+      "Panels"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Spotlight",
+      "RectangularLight"
+    ]
+  },
+  "Lines": {
+    "description": "Draws a connected chain of line segments where each segment becomes a separate line object, unlike Polyline which makes one joined object. Useful when you want individually editable segments.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Drawing"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Line",
+      "Polyline"
+    ]
+  },
+  "LineThroughPt": {
+    "description": "Fits a single best-fit line through a set of selected points. A quick regression helper for finding the underlying direction in survey points or scan data.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Points"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve",
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Line",
+      "PlaneThroughPt"
+    ]
+  },
+  "LinetypeDisplay": {
+    "description": "Controls how linetypes such as dashed and dotted patterns display in model viewports, including their scaling. Lets you check that centre lines and hidden lines will read correctly before printing.",
+    "menu": "View",
+    "tags": [
+      "Display",
+      "Linetypes"
+    ],
+    "intent_categories": [
+      "visualise",
+      "document"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Linetypes",
+      "PrintDisplay"
+    ]
+  },
+  "Linetypes": {
+    "description": "Opens the document's linetype list, where you load and manage dash patterns used by curves and layers. Set these up early so drawings export and print with correct line conventions.",
+    "menu": "File",
+    "tags": [
+      "Attributes",
+      "Linetypes"
+    ],
+    "intent_categories": [
+      "organise",
+      "document"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "LinetypeDisplay",
+      "DocumentProperties"
+    ]
+  },
+  "LoadScript": {
+    "description": "Loads a RhinoScript file into the session so its subroutines are available to run. Part of the classic RhinoScript automation workflow.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "RunScript"
+    ]
+  },
+  "LockSwap": {
+    "description": "Swaps the locked state of everything: locked objects unlock and unlocked objects lock. Quick for alternating between editing a set of objects and protecting it.",
+    "menu": "Edit",
+    "tags": [
+      "Locking",
+      "Visibility"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Lock",
+      "Unlock",
+      "HideSwap"
+    ]
+  },
+  "LockViewport": {
+    "description": "Locks the active detail so its view cannot be accidentally panned or zoomed. Essential once a layout detail is set to a precise drawing scale.",
+    "menu": "View",
+    "tags": [
+      "Layout",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "document",
+      "organise"
+    ],
+    "object_types": [
+      "view",
+      "layout"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Layout",
+      "NextDetail"
+    ]
+  },
+  "Login": {
+    "description": "Signs in to your Rhino account for licensing and cloud services. Needed when using Cloud Zoo licences or shared team resources.",
+    "menu": "Tools",
+    "tags": [
+      "Account",
+      "Licensing"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Logout"
+    ]
+  },
+  "Logout": {
+    "description": "Signs out of your Rhino account, releasing the licence and cloud services on this machine. Use it before switching accounts or freeing a licence for a colleague.",
+    "menu": "Tools",
+    "tags": [
+      "Account",
+      "Licensing"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Login"
+    ]
+  },
+  "MacroEditor": {
+    "description": "Opens an editor for writing and testing command macros, with a button to run them directly. The stepping stone between typed commands and full scripting.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Macros"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "ReadCommandFile",
+      "RunScript"
+    ]
+  },
+  "Macros": {
+    "description": "Opens the Macros panel where command macros can be stored, organised and run without writing full scripts. A convenient home for the repetitive command sequences you use every day.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Macros",
+      "Panels"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MacroEditor"
+    ]
+  },
+  "MakeNonPeriodic": {
+    "description": "Converts a closed periodic curve or surface into a non-periodic one, introducing a seam that can hold a kink. Sometimes needed before edits that require a defined start and end.",
+    "menu": "Edit",
+    "tags": [
+      "Curve",
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "MakePeriodic"
+    ]
+  },
+  "MakeSubDFriendly": {
+    "description": "Rebuilds a curve so its structure suits SubD tools, avoiding surprises when creating SubD geometry from curves. Run it on profile curves before lofting or sweeping into SubD.",
+    "menu": "SubD",
+    "tags": [
+      "SubD",
+      "Curve"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "subd"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "SubDLoft",
+      "Rebuild"
+    ]
+  },
+  "MakeUniform": {
+    "description": "Makes the knot spacing of a curve or surface uniform, evening out how control points influence the shape. The geometry may shift slightly, so use it on design surfaces rather than fitted data.",
+    "menu": "Edit",
+    "tags": [
+      "Curve",
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "smooth"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "MakeUniformUV",
+      "Rebuild"
+    ]
+  },
+  "MakeUniformUV": {
+    "description": "Makes a surface's knot spacing uniform in the U or V direction you choose, rather than both at once. Gives more control than MakeUniform when only one direction is misbehaving.",
+    "menu": "Edit",
+    "tags": [
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface"
+    ],
+    "outcomes": [
+      "smooth"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "MakeUniform",
+      "Rebuild"
+    ]
+  },
+  "MappingWidget": {
+    "description": "Shows the texture-mapping widget for the selected objects so you can move, rotate and scale how textures wrap onto them. Reach for it when a material's pattern sits at the wrong size or angle.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Texture Mapping"
+    ],
+    "intent_categories": [
+      "visualise",
+      "edit"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MappingWidgetOff",
+      "ApplyBoxMapping"
+    ]
+  },
+  "MappingWidgetOff": {
+    "description": "Hides the texture-mapping widgets shown by MappingWidget. Tidies the viewport once mapping adjustments are done.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Texture Mapping"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MappingWidget"
+    ]
+  },
+  "MarkFoci": {
+    "description": "Places point objects at the foci of selected ellipses and conic curves. Useful for setting-out geometry that depends on focal points, such as reflector or whispering-gallery studies.",
+    "menu": "Curve",
+    "tags": [
+      "Points",
+      "Curve"
+    ],
+    "intent_categories": [
+      "create",
+      "analyse"
+    ],
+    "object_types": [
+      "curve",
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Ellipse",
+      "Point"
+    ]
+  },
+  "MatchAnnotation": {
+    "description": "Applies the properties of one annotation to other annotations so notes and dimensions read consistently. A quick fix for drawings where text and dimension formatting has drifted.",
+    "menu": "Dimension",
+    "tags": [
+      "Annotation"
+    ],
+    "intent_categories": [
+      "document",
+      "edit"
+    ],
+    "object_types": [
+      "annotation"
+    ],
+    "outcomes": [
+      "annotate"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MatchProperties"
+    ]
+  },
+  "MatchCrvDir": {
+    "description": "Flips the direction of curves to match a master curve. Worth running before lofting or sweeping, where mismatched curve directions cause twisted results.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Dir",
+      "Flip"
+    ]
+  },
+  "MatchLayer": {
+    "description": "Moves selected objects onto the layer of a picked target object. Faster than hunting through the Layers panel when tidying a model's organisation.",
+    "menu": "Edit",
+    "tags": [
+      "Layers"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "ChangeLayer",
+      "HighlightObjectLayers"
+    ]
+  },
+  "MatchMapping": {
+    "description": "Copies texture mapping from a source object onto other objects so a material's pattern flows consistently across them. Saves redoing mapping widgets object by object.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Texture Mapping"
+    ],
+    "intent_categories": [
+      "visualise",
+      "edit"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MappingWidget",
+      "MatchProperties"
+    ]
+  },
+  "Materials": {
+    "description": "Opens the Materials panel where render materials are created, edited and assigned. The main workspace for defining how surfaces look in renderings.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Materials",
+      "Panels"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Rendering",
+      "Libraries"
+    ]
+  },
+  "Maximize": {
+    "description": "Maximises the Rhino application window to fill the screen. A window-management convenience mainly used from scripts and macros.",
+    "menu": "View",
+    "tags": [
+      "Window",
+      "Interface"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Minimize",
+      "Restore"
+    ]
+  },
+  "Minimize": {
+    "description": "Minimises the Rhino application window to the taskbar. Mostly useful in scripts that hand control to another program temporarily.",
+    "menu": "View",
+    "tags": [
+      "Window",
+      "Interface"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Maximize",
+      "Restore"
+    ]
+  },
+  "Merge2MeshFaces": {
+    "description": "Merges two adjacent mesh faces into a single face. A small-scale clean-up tool for simplifying unnecessarily triangulated areas of a mesh.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Repair"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "DeleteMeshFaces"
+    ]
+  },
+  "MergeAllEdges": {
+    "description": "Merges adjacent edge segments along surface and polysurface borders into single edges wherever they meet smoothly. Tidies fragmented edge counts left behind by trims and joins.",
+    "menu": "Analyze",
+    "tags": [
+      "Edge Tools"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface",
+      "solid"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MergeEdge",
+      "SplitEdge"
+    ]
+  },
+  "MergeCoplanarFace": {
+    "description": "Merges a picked planar face of a polysurface with its adjacent coplanar faces, simplifying boxy solids after booleans. Reduces face clutter without changing the shape.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "solid"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MergeAllCoplanarFaces"
+    ]
+  },
+  "MergeEdge": {
+    "description": "Merges adjacent edge segments of a surface or polysurface into one edge. Use it on a specific edge chain when MergeAllEdges is more than you need.",
+    "menu": "Analyze",
+    "tags": [
+      "Edge Tools"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface",
+      "solid"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MergeAllEdges",
+      "SplitEdge"
+    ]
+  },
+  "MeshEllipsoid": {
+    "description": "Creates an ellipsoid as a mesh primitive rather than a NURBS surface. Handy when building lightweight massing or export-ready mesh scenes.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Primitives"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "MeshSphere",
+      "Ellipsoid"
+    ]
+  },
+  "MeshFromLines": {
+    "description": "Builds a mesh whose edges follow a network of intersecting lines. Useful for turning a drawn wireframe grid, such as a space-frame layout, directly into mesh faces.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh",
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MeshPatch",
+      "MeshPolyline"
+    ]
+  },
+  "MeshFromPoints": {
+    "description": "Creates mesh faces over an ordered grid of points. Useful for reconstructing terrain or scanned grids as a single mesh surface.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Points"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh",
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MeshPatch",
+      "PointGrid"
+    ]
+  },
+  "MeshIntersect": {
+    "description": "Intersects meshes with each other and returns the intersection as polylines. The mesh counterpart of Intersect, useful for section lines through scanned or exported models.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Intersection"
+    ],
+    "intent_categories": [
+      "create",
+      "analyse"
+    ],
+    "object_types": [
+      "mesh",
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MeshSplit",
+      "MeshBooleanIntersection"
+    ]
+  },
+  "MeshPatch": {
+    "description": "Fills a set of curves and points with a triangulated mesh patch. A quick route from surveyed contours or scattered spot levels to a terrain mesh.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Terrain"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh",
+      "curve",
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Patch",
+      "MeshFromPoints"
+    ]
+  },
+  "MeshPolyline": {
+    "description": "Fills a closed polyline with mesh faces, turning an outline directly into a flat mesh. Useful for quick planar mesh panels without going through NURBS surfaces.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh",
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "MeshPatch",
+      "PlanarMesh"
+    ]
+  },
+  "MeshSelfIntersect": {
+    "description": "Finds the places where a mesh passes through itself and marks them. An important check before 3D printing or exporting, where self-intersections cause failures.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Analysis",
+      "Repair"
+    ],
+    "intent_categories": [
+      "analyse"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MeshRepair",
+      "Check"
+    ]
+  },
+  "MeshTruncatedCone": {
+    "description": "Creates a truncated cone as a mesh primitive. One of the mesh equivalents of Rhino's solid primitives, for lightweight or export-focused modelling.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Primitives"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "TCone",
+      "MeshCone"
+    ]
+  },
+  "MigratePlugins": {
+    "description": "Brings plug-ins installed in a previous Rhino version across to the current one. Run it after upgrading so your toolset follows you.",
+    "menu": "Tools",
+    "tags": [
+      "Plug-ins",
+      "Setup"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PlugInManager"
+    ]
+  },
+  "MirrorHole": {
+    "description": "Mirrors an existing hole feature across a line on the same planar solid face. Quicker than cutting a matching hole from scratch on symmetrical parts.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Holes"
+    ],
+    "intent_categories": [
+      "edit",
+      "transform"
+    ],
+    "object_types": [
+      "solid"
+    ],
+    "outcomes": [
+      "mirror",
+      "copy"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "PlaceHole",
+      "RotateHole"
+    ]
+  },
+  "ModelBasepoint": {
+    "description": "Sets the base point used when this file is inserted or linked into another model. Set it deliberately so blocks and references land where you expect, for example on a site datum.",
+    "menu": "File",
+    "tags": [
+      "Blocks",
+      "Coordination"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Insert",
+      "Block"
+    ]
+  },
+  "ModifyRadius": {
+    "description": "Changes the radius of an existing circle or arc without redrawing it. A fast, precise edit for setting-out geometry.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Circle",
+      "Arc"
+    ]
+  },
+  "MoveTargetToObjects": {
+    "description": "Moves the view camera's target onto the selected objects so orbiting pivots around them. Cures the frustration of a view that rotates about empty space.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Camera"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Zoom",
+      "Camera"
+    ]
+  },
+  "MoveUntrimmedEdge": {
+    "description": "Drags an untrimmed surface edge to a new position, reshaping the surface while keeping its structure. A direct-editing tool for simple surface adjustments.",
+    "menu": "Surface",
+    "tags": [
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface"
+    ],
+    "outcomes": [
+      "move"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "MoveEdge"
+    ]
+  },
+  "MPlane": {
+    "description": "Attaches a mobile construction plane to an object so the CPlane follows the object as it moves or rotates. Very useful when detailing components that sit at odd angles.",
+    "menu": "View",
+    "tags": [
+      "CPlane"
+    ],
+    "intent_categories": [
+      "organise",
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "CPlane",
+      "NamedCPlane"
+    ]
+  },
+  "MultiPause": {
+    "description": "A macro helper that pauses a macro for any number of user picks until Enter is pressed. Use it where a plain Pause, which accepts one input, is not enough.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Macros"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Pause",
+      "MacroEditor"
+    ]
+  },
+  "Named CPlanes": {
+    "description": "Opens the Named CPlanes panel, where construction planes can be saved and restored by name. Invaluable on projects with sloping or rotated setting-out grids.",
+    "menu": "View",
+    "tags": [
+      "CPlane",
+      "Panels"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "CPlane",
+      "NamedCPlane",
+      "MPlane"
+    ]
+  },
+  "Named Positions": {
+    "description": "Opens the Named Positions panel, which stores arrangements of objects so you can move things and later snap them back. Great for comparing design options or building exploded views.",
+    "menu": "Transform",
+    "tags": [
+      "Positions",
+      "Panels"
+    ],
+    "intent_categories": [
+      "organise",
+      "transform"
+    ],
+    "object_types": [],
+    "outcomes": [
+      "move"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "NamedPosition"
+    ]
+  },
+  "Named Views": {
+    "description": "Opens the Named Views panel, where camera positions are saved and restored by name. The backbone of repeatable renders and consistent layout details.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Panels"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NamedView"
+    ]
+  },
+  "NamedPosition": {
+    "description": "Saves the current position of selected objects under a name so they can be returned there later, even after being moved. Useful for exploded axonometrics and option studies.",
+    "menu": "Transform",
+    "tags": [
+      "Positions"
+    ],
+    "intent_categories": [
+      "organise",
+      "transform"
+    ],
+    "object_types": [],
+    "outcomes": [
+      "move"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": []
+  },
+  "NamedSelections": {
+    "description": "Saves selection sets by name so a group of objects can be reselected in one click. A big time-saver for recurring edits on the same scattered set of geometry.",
+    "menu": "Edit",
+    "tags": [
+      "Selection",
+      "Panels"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": []
+  },
+  "NewViewport": {
+    "description": "Creates an additional viewport with its own camera and display settings. Useful for adding a dedicated perspective or detail view alongside the standard set.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "4View",
+      "NewFloatingViewport"
+    ]
+  },
+  "NextDetail": {
+    "description": "Activates the next detail on the current layout. Lets you cycle through a sheet's views from the keyboard while setting them up.",
+    "menu": "View",
+    "tags": [
+      "Layout",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "document",
+      "visualise"
+    ],
+    "object_types": [
+      "layout",
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PrevDetail",
+      "Detail"
+    ]
+  },
+  "NextOrthoViewport": {
+    "description": "Switches focus to the next orthographic viewport, cycling through plan and elevation views without reaching for the mouse. A small navigation convenience for multi-viewport work.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NextViewport",
+      "NextPerspectiveViewport"
+    ]
+  },
+  "NextPerspectiveViewport": {
+    "description": "Switches focus to the next perspective viewport in the model. Useful when several perspective views are open for different camera studies.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NextViewport",
+      "NextOrthoViewport"
+    ]
+  },
+  "NextU": {
+    "description": "Moves the control-point selection to the neighbouring point in the surface's U direction. Keyboard-friendly navigation for precise point editing on dense grids.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points"
+    ],
+    "intent_categories": [
+      "edit",
+      "organise"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "NextV",
+      "PrevU",
+      "PrevV"
+    ]
+  },
+  "NextV": {
+    "description": "Moves the control-point selection to the neighbouring point in the surface's V direction. Pairs with NextU for stepping through a surface's point grid.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points"
+    ],
+    "intent_categories": [
+      "edit",
+      "organise"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "NextU",
+      "PrevU",
+      "PrevV"
+    ]
+  },
+  "NextViewport": {
+    "description": "Makes the next viewport active, cycling through them in order. Quick keyboard navigation between views.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PrevViewport",
+      "NextViewportToTop"
+    ]
+  },
+  "NextViewportToTop": {
+    "description": "Makes the next viewport active and brings it to the front. Useful when floating viewports overlap and the one you want is buried.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NextViewport",
+      "PushViewportToBack"
+    ]
+  },
+  "NoEcho": {
+    "description": "Stops commands echoing their text output to the command history. Used inside scripts and macros to keep the command line quiet while they run.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Pause"
+    ]
+  },
+  "NonmanifoldMerge": {
+    "description": "Merges surfaces and polysurfaces into a single non-manifold polysurface, keeping shared internal faces rather than discarding them. Used in analysis and fabrication workflows where internal partitions matter.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Advanced"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface",
+      "solid"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Join",
+      "BooleanUnion"
+    ]
+  },
+  "Notifications": {
+    "description": "Opens the Notifications panel, which collects messages about updates, licensing and other events. Check it when the notification icon lights up.",
+    "menu": "Tools",
+    "tags": [
+      "Interface",
+      "Panels"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": []
+  },
+  "OffsetMesh": {
+    "description": "Offsets a mesh by a distance, optionally closing the result into a solid. The mesh equivalent of shelling, often used to give scanned or exported geometry a printable thickness.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh"
+    ],
+    "intent_categories": [
+      "create",
+      "edit"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [
+      "offset",
+      "thicken"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "OffsetSrf",
+      "Shell"
+    ]
+  },
+  "OffsetMultiple": {
+    "description": "Offsets several curves at once by the same distance. Saves repeating Offset curve by curve when producing wall thicknesses or path edges across a drawing.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Offset"
+    ],
+    "intent_categories": [
+      "create",
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [
+      "offset"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Offset",
+      "OffsetSrf"
+    ]
+  },
+  "OffsetNormal": {
+    "description": "Offsets a curve that lies on a surface in the direction normal to that surface. Useful for building ribs, fins or upstands off doubly curved surfaces where a flat offset would be wrong.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Offset"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "offset"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Offset",
+      "OffsetCrvOnSrf",
+      "Fin"
+    ]
+  },
+  "OneLayerOff": {
+    "description": "Turns off the layer of an object you pick. A one-click declutter tool when you can see the offending geometry but do not know its layer name.",
+    "menu": "Edit",
+    "tags": [
+      "Layers",
+      "Visibility"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "OneLayerOn",
+      "Layer"
+    ]
+  },
+  "OptionsExport": {
+    "description": "Saves Rhino's options and settings out to a file. Use it to back up your setup or share office-standard settings across machines.",
+    "menu": "Tools",
+    "tags": [
+      "Settings"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "OptionsImport",
+      "Options"
+    ]
+  },
+  "OptionsImport": {
+    "description": "Loads Rhino options and settings from a previously exported file. The other half of moving a familiar setup onto a new machine or standardising a team.",
+    "menu": "Tools",
+    "tags": [
+      "Settings"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "OptionsExport",
+      "Options"
+    ]
+  },
+  "OptionsPage": {
+    "description": "Opens the Options dialog directly at a named page. Mainly used in toolbar buttons and macros that jump straight to a specific setting.",
+    "menu": "Tools",
+    "tags": [
+      "Settings",
+      "Macros"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Options",
+      "PropertiesPage"
+    ]
+  },
+  "OrientCameraToSrf": {
+    "description": "Aims the viewport camera perpendicular to a picked surface, looking straight at it. The quickest way to get a true face-on view of an angled facade or panel.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Camera"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view",
+      "surface"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "SetView",
+      "Plan"
+    ]
+  },
+  "OrientCrvToEdge": {
+    "description": "Copies or moves a curve onto a surface edge, orienting it to match the edge. Handy for placing profile curves ready for sweeps along an edge.",
+    "menu": "Transform",
+    "tags": [
+      "Transform",
+      "Curve"
+    ],
+    "intent_categories": [
+      "transform"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "move",
+      "copy",
+      "rotate"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Orient",
+      "OrientOnSrf"
+    ]
+  },
+  "OrthoAngle": {
+    "description": "Changes the angle that Ortho constrains to, which is 90 degrees by default. Set it to 30 or 45 degrees when working on angled grids or chamfered plans.",
+    "menu": "Tools",
+    "tags": [
+      "Modelling Aids"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Ortho"
+    ]
+  },
+  "OrthoSnapToCPlaneZ": {
+    "description": "Toggles whether Ortho also constrains movement vertically along the construction plane's Z axis. Turn it on to draw and drag straight up and down while modelling in 3D.",
+    "menu": "Tools",
+    "tags": [
+      "Modelling Aids"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Ortho",
+      "OrthoAngle"
+    ]
+  },
+  "PasteAsBlock": {
+    "description": "Pastes the clipboard contents as a block instance rather than loose geometry. Useful for keeping repeated pasted elements lightweight and centrally editable.",
+    "menu": "Edit",
+    "tags": [
+      "Clipboard",
+      "Blocks"
+    ],
+    "intent_categories": [
+      "create",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [
+      "copy"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Paste",
+      "PasteAt",
+      "Block"
+    ]
+  },
+  "PasteAt": {
+    "description": "Pastes the clipboard contents at a point you pick rather than at its original coordinates. Saves a paste-then-move step when bringing geometry between files.",
+    "menu": "Edit",
+    "tags": [
+      "Clipboard"
+    ],
+    "intent_categories": [
+      "create",
+      "transform"
+    ],
+    "object_types": [],
+    "outcomes": [
+      "copy",
+      "move"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Paste",
+      "PasteAsBlock"
+    ]
+  },
+  "Paraboloid": {
+    "description": "Draws a paraboloid surface, optionally capped into a solid. Useful for dish, reflector and canopy-style forms with true parabolic geometry.",
+    "menu": "Surface",
+    "tags": [
+      "Surface",
+      "Primitives"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "surface",
+      "solid"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Ellipsoid",
+      "Cone"
+    ]
+  },
+  "Pause": {
+    "description": "A macro helper that pauses the macro for one user input, such as a pick or a value. The basic building block for interactive command macros.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Macros"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "MultiPause",
+      "MacroEditor"
+    ]
+  },
+  "PerspectiveAngle": {
+    "description": "Sets the lens angle of the perspective viewport's camera. Widen it for tight interior views, narrow it for flattering exterior shots with less distortion.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Camera"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Camera",
+      "Perspective"
+    ]
+  },
+  "PerspectiveMatch": {
+    "description": "Matches the perspective camera to a background photograph by picking corresponding points, so the model lines up with the image. The key tool for dropping a proposal into a site photo.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Camera",
+      "Visualisation"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "BackgroundBitmap",
+      "Camera"
+    ]
+  },
+  "PlaceHole": {
+    "description": "Cuts a round hole into a planar face of a solid, with control over depth and direction. Faster and more deliberate than boolean-subtracting a cylinder by hand.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Holes"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "solid"
+    ],
+    "outcomes": [
+      "cut"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RoundHole",
+      "RevolvedHole",
+      "MoveHole"
+    ]
+  },
+  "Planar": {
+    "description": "Toggles Planar mode, which keeps successive picks at the same construction-plane elevation as the previous point. Keeps 3D polylines and curves flat without constant elevator snapping.",
+    "menu": "Tools",
+    "tags": [
+      "Modelling Aids"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Ortho"
+    ]
+  },
+  "PlanarDifference": {
+    "description": "Boolean-subtracts coplanar closed regions from one another, returning the trimmed 2D result. A drafting-style boolean for cleaning up overlapping outlines and hatch regions.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Boolean",
+      "2D"
+    ],
+    "intent_categories": [
+      "edit",
+      "create"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [
+      "cut"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "CurveBoolean",
+      "PlanarUnion",
+      "PlanarIntersection"
+    ]
+  },
+  "PlanarIntersection": {
+    "description": "Keeps only the overlapping area of coplanar closed regions, discarding the rest. Useful for finding the common footprint of stacked plan outlines.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Boolean",
+      "2D"
+    ],
+    "intent_categories": [
+      "edit",
+      "create"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [
+      "cut"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "CurveBoolean",
+      "PlanarUnion",
+      "PlanarDifference"
+    ]
+  },
+  "PlanarMesh": {
+    "description": "Fills planar closed curves with a flat mesh, the mesh equivalent of PlanarSrf. Quick floors, panels and grounds for mesh-based scenes.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "mesh",
+      "curve"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PlanarSrf",
+      "Mesh"
+    ]
+  },
+  "PlanarUnion": {
+    "description": "Merges coplanar closed regions into combined outlines, dissolving their overlaps. Good for consolidating overlapping plan shapes into a single boundary.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Boolean",
+      "2D"
+    ],
+    "intent_categories": [
+      "edit",
+      "create"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [
+      "join"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "CurveBoolean",
+      "PlanarDifference",
+      "PlanarIntersection"
+    ]
+  },
+  "Plane": {
+    "description": "Draws a rectangular flat surface from corner to corner, with options for centre-out and three-point placement. The fastest way to make a ground plane, wall panel or backdrop.",
+    "menu": "Surface",
+    "tags": [
+      "Surface",
+      "Primitives"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PlanarSrf",
+      "Rectangle"
+    ]
+  },
+  "PlayAnimation": {
+    "description": "Plays back the animation set up with Rhino's animation tools, such as a turntable or sun study, in the viewport. Preview the motion before committing to recording frames.",
+    "menu": "Render",
+    "tags": [
+      "Animation"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RecordAnimation"
+    ]
+  },
+  "PlugInManager": {
+    "description": "Lists installed plug-ins and lets you load, disable or install them. The place to go when a plug-in's commands stop appearing.",
+    "menu": "Tools",
+    "tags": [
+      "Plug-ins"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MigratePlugins"
+    ]
+  },
+  "PointCloudSection": {
+    "description": "Cuts section profiles through a point cloud with a plane, extracting the points or polyline along the cut. The bridge from raw scan data to usable plan and section linework.",
+    "menu": "Curve",
+    "tags": [
+      "Point Cloud",
+      "Sections"
+    ],
+    "intent_categories": [
+      "create",
+      "analyse"
+    ],
+    "object_types": [
+      "point",
+      "curve"
+    ],
+    "outcomes": [
+      "cut"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Section",
+      "PointCloud"
+    ]
+  },
+  "PointGrid": {
+    "description": "Creates a rectangular grid of point objects. Useful as a scaffold for paving setouts, facade studies or anything needing a regular array of reference points.",
+    "menu": "Curve",
+    "tags": [
+      "Points"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [
+      "array"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Point",
+      "Points"
+    ]
+  },
+  "PolygonCount": {
+    "description": "Reports how many render-mesh polygons the selection or scene contains. A quick weight check before exporting to real-time engines or worrying about display performance.",
+    "menu": "Analyze",
+    "tags": [
+      "Mesh",
+      "Analysis"
+    ],
+    "intent_categories": [
+      "analyse"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [
+      "measure"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "ReduceMesh"
+    ]
+  },
+  "PolylineOnMesh": {
+    "description": "Draws a polyline whose points are constrained to a mesh surface. Ideal for sketching routes, paths or cut lines over scanned terrain.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Mesh"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve",
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Polyline",
+      "InterpCrvOnSrf"
+    ]
+  },
+  "PopupMenu": {
+    "description": "Opens the customisable pop-up command menu at the cursor, usually bound to the middle mouse button. Keeps favourite commands one click away without hunting through toolbars.",
+    "menu": "Tools",
+    "tags": [
+      "Interface"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PopupToolbar",
+      "PopupPopular"
+    ]
+  },
+  "PopupPopular": {
+    "description": "Pops up a menu of your most-used commands at the cursor. A self-updating shortcut list based on how you actually work.",
+    "menu": "Tools",
+    "tags": [
+      "Interface"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PopupMenu",
+      "PopupToolbar"
+    ]
+  },
+  "PopupToolbar": {
+    "description": "Pops up a chosen toolbar at the cursor for a quick pick, after which it disappears. Gives access to a whole toolbar without permanently docking it.",
+    "menu": "Tools",
+    "tags": [
+      "Interface"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "PopupMenu",
+      "Toolbar"
+    ]
+  },
+  "PrevDetail": {
+    "description": "Activates the previous detail on the current layout. Pairs with NextDetail for cycling through a sheet's views.",
+    "menu": "View",
+    "tags": [
+      "Layout",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "document",
+      "visualise"
+    ],
+    "object_types": [
+      "layout",
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NextDetail",
+      "Detail"
+    ]
+  },
+  "PrevU": {
+    "description": "Moves the control-point selection to the previous point in the surface's U direction. Part of the keyboard navigation set for precise point editing.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points"
+    ],
+    "intent_categories": [
+      "edit",
+      "organise"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "NextU",
+      "NextV",
+      "PrevV"
+    ]
+  },
+  "PrevV": {
+    "description": "Moves the control-point selection to the previous point in the surface's V direction. Part of the keyboard navigation set for precise point editing.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points"
+    ],
+    "intent_categories": [
+      "edit",
+      "organise"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "NextU",
+      "NextV",
+      "PrevU"
+    ]
+  },
+  "PrevViewport": {
+    "description": "Makes the previous viewport active, cycling backwards through them. The reverse of NextViewport.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NextViewport"
+    ]
+  },
+  "PrintDisplay": {
+    "description": "Previews print output in the viewport, showing lineweights and print colours as they will plot. Check drawings with this on before sending anything to print.",
+    "menu": "View",
+    "tags": [
+      "Display",
+      "Printing"
+    ],
+    "intent_categories": [
+      "document",
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Print",
+      "LinetypeDisplay"
+    ]
+  },
+  "PropertiesPage": {
+    "description": "Opens the Properties panel directly at a named page. Like OptionsPage, it exists mainly for toolbar buttons and macros that jump straight to a setting.",
+    "menu": "Edit",
+    "tags": [
+      "Interface",
+      "Macros"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Properties",
+      "OptionsPage"
+    ]
+  },
+  "PushViewportToBack": {
+    "description": "Sends the active viewport behind the others in the stacking order. Useful for shuffling overlapping floating viewports.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "NextViewportToTop"
+    ]
+  },
+  "ReadCommandFile": {
+    "description": "Runs a plain text file of Rhino commands line by line. Simple batch automation without writing a proper script.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "RunScript",
+      "MacroEditor"
+    ]
+  },
+  "ReadEveryIGESEntity": {
+    "description": "An import troubleshooting toggle that forces Rhino to read every entity in an IGES file, including types normally skipped. Try it when an IGES import appears to be missing geometry.",
+    "menu": "File",
+    "tags": [
+      "Import/Export",
+      "IGES"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "IgesImportOptions",
+      "Import"
+    ]
+  },
+  "ReadViewportsFromFile": {
+    "description": "Loads the viewport arrangement and views saved in another model file. Useful for standardising view setups across project files.",
+    "menu": "View",
+    "tags": [
+      "View",
+      "Viewport"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "NamedView",
+      "4View"
+    ]
+  },
+  "RebuildCrvNonUniform": {
+    "description": "Refits a curve with non-uniformly spaced control points to a tolerance, placing fewer points on straight runs and more where the curve bends. Often gives cleaner results than plain Rebuild on mixed geometry.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [
+      "smooth"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Rebuild",
+      "FitCrv"
+    ]
+  },
+  "RebuildEdges": {
+    "description": "Restores surface edges to their exact original positions after they have been forced by JoinEdge or drifted out of tolerance. A repair step when edge gaps start causing downstream failures.",
+    "menu": "Analyze",
+    "tags": [
+      "Edge Tools",
+      "Repair"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface",
+      "solid"
+    ],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "JoinEdge",
+      "ShowEdges"
+    ]
+  },
+  "RebuildMeshNormals": {
+    "description": "Recalculates a mesh's normals from its face geometry, discarding any custom vertex normals. The usual fix for odd shading on imported meshes.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "Repair"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "mesh"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "UnifyMeshNormals",
+      "Flip"
+    ]
+  },
+  "RecordAnimation": {
+    "description": "Renders each frame of the set-up animation out to image files. The production step after previewing with PlayAnimation, ready for assembling into video.",
+    "menu": "Render",
+    "tags": [
+      "Animation",
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "PlayAnimation",
+      "Render"
+    ]
+  },
+  "RedoMultiple": {
+    "description": "Redoes several undone steps in one go. The counterpart to UndoMultiple for stepping back and forth through model history quickly.",
+    "menu": "Edit",
+    "tags": [
+      "Undo"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Redo",
+      "UndoMultiple"
+    ]
+  },
+  "RedoView": {
+    "description": "Re-applies a view change undone with UndoView. Lets you step forward again through camera history without re-navigating.",
+    "menu": "View",
+    "tags": [
+      "View"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [
+      "navigate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "UndoView"
+    ]
+  },
+  "ReducePolyline": {
+    "description": "Removes vertices from a polyline while keeping it within a tolerance of the original. Simplifies dense traced or imported polylines into manageable geometry.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve"
+    ],
+    "outcomes": [
+      "smooth"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "SimplifyCrv",
+      "Rebuild"
+    ]
+  },
+  "RefitTrim": {
+    "description": "Refits a trimmed surface so a trimmed edge becomes a natural untrimmed edge. Valuable in continuity work, where matching and merging need untrimmed edges to succeed.",
+    "menu": "Surface",
+    "tags": [
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "ShrinkTrimmedSrf",
+      "Untrim"
+    ]
+  },
+  "RefreshAllTextures": {
+    "description": "Reloads every texture image from disk, picking up edits made outside Rhino. Use it after tweaking a texture in an image editor so the viewport catches up.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Textures"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Materials"
+    ]
+  },
+  "RefreshShade": {
+    "description": "Discards and regenerates the display meshes of selected objects. The go-to fix when shaded surfaces look faceted, torn or out of date.",
+    "menu": "Render",
+    "tags": [
+      "Display",
+      "Mesh"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "ClearAllMeshes"
+    ]
+  },
+  "ReleaseFromCage": {
+    "description": "Disconnects objects from their cage-edit control object, freezing them in their current deformed shape. Do this once a cage deformation is final.",
+    "menu": "Transform",
+    "tags": [
+      "Transform",
+      "Cage Editing"
+    ],
+    "intent_categories": [
+      "transform",
+      "edit"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "CageEdit"
+    ]
+  },
+  "RememberCopyOptions": {
+    "description": "Toggles whether transform commands remember your last Copy yes/no choice between uses. Set it to suit whether you usually move or usually duplicate.",
+    "menu": "Transform",
+    "tags": [
+      "Transform",
+      "Settings"
+    ],
+    "intent_categories": [
+      "organise",
+      "transform"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Copy",
+      "Move"
+    ]
+  },
+  "RemoveControlPoint": {
+    "description": "Deletes control points from a curve, or a whole row from a surface, letting the shape relax accordingly. Used to simplify over-defined geometry.",
+    "menu": "Edit",
+    "tags": [
+      "Control Points",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "InsertControlPoint",
+      "RemoveKnot"
+    ]
+  },
+  "RemoveGuide": {
+    "description": "Deletes guide lines placed with AddGuide. Keeps the infinite construction guides tidy once setting-out is done.",
+    "menu": "Tools",
+    "tags": [
+      "Modelling Aids",
+      "Guides"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "AddGuide"
+    ]
+  },
+  "RemoveMappingChannel": {
+    "description": "Deletes a texture-mapping channel from the selected objects. Cleans up mapping setups that have accumulated unused channels.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Texture Mapping"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "MappingWidget",
+      "MatchMapping"
+    ]
+  },
+  "RemoveMultiKnot": {
+    "description": "Removes stacked multiple knots from curves and surfaces, restoring smooth continuity where kinks were held. An advanced clean-up for geometry destined for high-quality surfacing.",
+    "menu": "Edit",
+    "tags": [
+      "Curve",
+      "Surface",
+      "Editing"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "smooth"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "RemoveKnot",
+      "InsertKnot"
+    ]
+  },
+  "RemovePerFaceColors": {
+    "description": "Strips per-face display colours from meshes and SubDs, returning them to their object colour. Undoes face-painting used during design studies.",
+    "menu": "Mesh",
+    "tags": [
+      "Mesh",
+      "SubD",
+      "Display"
+    ],
+    "intent_categories": [
+      "edit",
+      "visualise"
+    ],
+    "object_types": [
+      "mesh",
+      "subd"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": []
+  },
+  "RemoveSymmetry": {
+    "description": "Removes the symmetry constraint from a SubD so its mirrored halves can be edited independently. Use it once a symmetric form needs asymmetric refinement.",
+    "menu": "SubD",
+    "tags": [
+      "SubD",
+      "Symmetry"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "subd"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Reflect"
+    ]
+  },
+  "RenderAssignMaterialToLayer": {
+    "description": "Assigns a render material to chosen layers so everything on them inherits it. The layer-based approach that keeps large models' materials manageable.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Materials"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Materials",
+      "RenderAssignMaterialToObjects"
+    ]
+  },
+  "RenderAssignMaterialToLayersOfObjects": {
+    "description": "Assigns a render material to the layers that the selected objects sit on. A shortcut for layer-based materials when it is easier to pick objects than layer names.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Materials"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [
+      "layer"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Materials",
+      "RenderAssignMaterialToLayer"
+    ]
+  },
+  "RenderAssignMaterialToObjects": {
+    "description": "Assigns a render material directly to the selected objects, overriding their layer material. Use it for one-off material changes on individual elements.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Materials"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Materials",
+      "RenderAssignMaterialToLayer"
+    ]
+  },
+  "RenderBlowup": {
+    "description": "Renders a picked region of the viewport enlarged, giving a high-resolution look at part of the frame. Useful for inspecting a detail without rendering the whole image at huge size.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RenderInWindow",
+      "Render"
+    ]
+  },
+  "Rendering": {
+    "description": "Opens the Rendering panel with the current renderer's settings, including resolution, quality and lighting options. Set things up here before pressing Render.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Panels"
+    ],
+    "intent_categories": [
+      "visualise",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Render",
+      "Materials"
+    ]
+  },
+  "RenderInWindow": {
+    "description": "Renders only a rectangle of the view that you drag out. Saves time when you are iterating on one part of an image.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Render",
+      "RenderBlowup"
+    ]
+  },
+  "RenderMergeIdenticalMaterials": {
+    "description": "Merges duplicate identical render materials in the document into one. Declutters material lists bloated by imports and copy-pasting between files.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Materials"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Materials",
+      "Purge"
+    ]
+  },
+  "RenderOpenLastRendering": {
+    "description": "Reopens the most recent rendering saved with the file in the render window. Handy for revisiting the last result without re-rendering.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "RenderWindow",
+      "RenderOpenRenderImage"
+    ]
+  },
+  "RenderOpenRenderImage": {
+    "description": "Opens a saved render image file in Rhino's render window, where post-effects and adjustments are available. Lets you revisit and tweak older renders.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RenderOpenLastRendering",
+      "SaveRenderWindowAs"
+    ]
+  },
+  "RenderPreview": {
+    "description": "Renders the current view at draft quality for a fast check of composition, lighting and materials. Iterate here before committing to a full-quality render.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Render",
+      "RenderPreviewInWindow"
+    ]
+  },
+  "RenderPreviewInWindow": {
+    "description": "Renders a selected region of the view at draft quality. The quickest possible feedback loop when tuning one area of an image.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "RenderPreview",
+      "RenderInWindow"
+    ]
+  },
+  "RenderPreviewWindow": {
+    "description": "Runs a draft-quality render in the render window. A quicker stand-in for Render while a scene is still evolving.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "RenderPreview",
+      "RenderWindow"
+    ]
+  },
+  "RenderReportImageFiles": {
+    "description": "Lists all the image and texture files the document references. Useful for auditing linked assets before archiving or sending a file to someone else.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Textures"
+    ],
+    "intent_categories": [
+      "analyse",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RenderReportMissingImageFiles"
+    ]
+  },
+  "RenderReportMissingImageFiles": {
+    "description": "Lists referenced texture and image files that cannot be found on disk. The first step in fixing renders full of missing-texture pink.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "Textures"
+    ],
+    "intent_categories": [
+      "analyse",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RenderReportImageFiles",
+      "RefreshAllTextures"
+    ]
+  },
+  "RenderWindow": {
+    "description": "Opens the render window showing the most recent render. Where render results live, along with save and post-effect options.",
+    "menu": "Render",
+    "tags": [
+      "Rendering"
+    ],
+    "intent_categories": [
+      "visualise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Render",
+      "SaveRenderWindowAs"
+    ]
+  },
+  "RepairSubD": {
+    "description": "Checks a SubD object for damaged or invalid structure and attempts to fix it. Reach for it when a SubD starts misbehaving after heavy editing or import.",
+    "menu": "SubD",
+    "tags": [
+      "SubD",
+      "Repair"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "subd"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Check",
+      "MeshRepair"
+    ]
+  },
+  "Reparameterize": {
+    "description": "Changes the parameter domain of a curve or surface, for example to a 0-to-1 range, without altering its shape. Mostly matters for scripting, texture flow and flow-along-surface operations.",
+    "menu": "Edit",
+    "tags": [
+      "Curve",
+      "Surface",
+      "Advanced"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": []
+  },
+  "ReplaceBlock": {
+    "description": "Swaps selected block instances over to a different block definition. Perfect for replacing placeholder components, such as swapping massing trees for detailed ones.",
+    "menu": "Edit",
+    "tags": [
+      "Blocks"
+    ],
+    "intent_categories": [
+      "edit",
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Block",
+      "BlockManager",
+      "Insert"
+    ]
+  },
+  "Rescue3dmFile": {
+    "description": "Attempts to salvage geometry from a damaged or corrupt 3dm file. A last-resort recovery tool when a model will not open normally.",
+    "menu": "File",
+    "tags": [
+      "File",
+      "Recovery"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Audit3dmFile"
+    ]
+  },
+  "Reset": {
+    "description": "Restores Rhino's settings and window arrangement towards factory defaults. A troubleshooting reset for when the interface or behaviour has become unrecognisable.",
+    "menu": "Tools",
+    "tags": [
+      "Settings",
+      "Troubleshooting"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "OptionsExport",
+      "ResetMessageBoxes"
+    ]
+  },
+  "ResetMessageBoxes": {
+    "description": "Re-enables warning dialogs previously dismissed with a do-not-show-again tick. Useful when a suppressed warning turns out to have mattered.",
+    "menu": "Tools",
+    "tags": [
+      "Settings"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Options",
+      "Reset"
+    ]
+  },
+  "Restore": {
+    "description": "Restores the Rhino application window from a maximised or minimised state to its previous size and position. A window-management helper, mainly for scripts.",
+    "menu": "View",
+    "tags": [
+      "Window",
+      "Interface"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Maximize",
+      "Minimize"
+    ]
+  },
+  "RevolvedHole": {
+    "description": "Cuts a hole with a revolved custom profile into a solid, ideal for countersinks, counterbores and chamfered recesses. More control than a plain round hole.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Holes"
+    ],
+    "intent_categories": [
+      "edit"
+    ],
+    "object_types": [
+      "solid"
+    ],
+    "outcomes": [
+      "cut"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "PlaceHole",
+      "RoundHole"
+    ]
+  },
+  "Rib": {
+    "description": "Adds a rib, a thin stiffening slab grown from a curve, onto a solid. A product-design feature tool that also suits fins and brackets in fabrication models.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Features"
+    ],
+    "intent_categories": [
+      "create",
+      "edit"
+    ],
+    "object_types": [
+      "solid",
+      "curve"
+    ],
+    "outcomes": [
+      "thicken"
+    ],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "Slab",
+      "ExtrudeCrv"
+    ]
+  },
+  "Ribbon": {
+    "description": "Creates a ribbon: it offsets a curve and builds the surface between the curve and its offset. An instant flat strip for paths, borders and edging.",
+    "menu": "Surface",
+    "tags": [
+      "Surface",
+      "Offset"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "offset"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "RibbonOffset",
+      "Loft",
+      "Offset"
+    ]
+  },
+  "RibbonOffset": {
+    "description": "Offsets a curve while automatically resolving self-intersections, then builds a clean ribbon surface between curve and offset. Much more reliable than plain Offset around tight, complex outlines.",
+    "menu": "Curve",
+    "tags": [
+      "Curve",
+      "Offset"
+    ],
+    "intent_categories": [
+      "create"
+    ],
+    "object_types": [
+      "curve",
+      "surface"
+    ],
+    "outcomes": [
+      "offset"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Ribbon",
+      "Offset"
+    ]
+  },
+  "RotateHole": {
+    "description": "Rotates an existing hole feature on a solid face to a new orientation without re-cutting it. Part of Rhino's hole-editing family alongside move and mirror.",
+    "menu": "Solid",
+    "tags": [
+      "Solid",
+      "Holes"
+    ],
+    "intent_categories": [
+      "edit",
+      "transform"
+    ],
+    "object_types": [
+      "solid"
+    ],
+    "outcomes": [
+      "rotate"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "MoveHole",
+      "MirrorHole",
+      "PlaceHole"
+    ]
+  },
+  "Run": {
+    "description": "Launches an external program from within Rhino. Occasionally useful in scripted pipelines that hand files to other software.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Utilities"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": []
+  },
+  "RunPythonScript": {
+    "description": "Runs a Python script file, Rhino's main door to Python automation. The command behind most custom toolbar buttons that do clever things.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Python"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "ScriptEditor",
+      "EditPythonScript"
+    ]
+  },
+  "RunScript": {
+    "description": "Runs RhinoScript code or a script file. The classic automation route on Windows Rhino, predating the Python tools.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "LoadScript",
+      "RunPythonScript"
+    ]
+  },
+  "SaveACopy": {
+    "description": "Saves the current model to a new file while you carry on working in the original. Perfect for milestone snapshots and issuing versions without switching files.",
+    "menu": "File",
+    "tags": [
+      "File"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Save",
+      "SaveAs"
+    ]
+  },
+  "SaveAsTemplate": {
+    "description": "Saves the current file as a template, preserving its units, layers, annotation styles and settings for new projects. Build one good template and every project starts properly set up.",
+    "menu": "File",
+    "tags": [
+      "File",
+      "Templates"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "New",
+      "SaveAs"
+    ]
+  },
+  "SaveRenderWindowAs": {
+    "description": "Saves the image in the render window to a file such as PNG or JPEG. The final step of getting a render out of Rhino and into a presentation.",
+    "menu": "Render",
+    "tags": [
+      "Rendering",
+      "File"
+    ],
+    "intent_categories": [
+      "visualise",
+      "document"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "RenderWindow",
+      "Render"
+    ]
+  },
+  "SaveWindowLayout": {
+    "description": "Saves the current arrangement of panels and toolbars as a named window layout. Switch between task-specific setups, such as modelling versus drafting, in one step.",
+    "menu": "View",
+    "tags": [
+      "Interface",
+      "Workspace"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": []
+  },
+  "ScaleEach": {
+    "description": "Scales every selected object individually about its own base point, rather than the whole selection about one origin. Resize a field of repeated elements in place without them drifting apart.",
+    "menu": "Transform",
+    "tags": [
+      "Transform",
+      "Scale"
+    ],
+    "intent_categories": [
+      "transform"
+    ],
+    "object_types": [],
+    "outcomes": [
+      "scale"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Scale",
+      "ScalePositions"
+    ]
+  },
+  "ScalePositions": {
+    "description": "Scales the distances between selected objects without resizing the objects themselves. Spread out or gather an arrangement, such as a furniture layout, while every piece keeps its size.",
+    "menu": "Transform",
+    "tags": [
+      "Transform",
+      "Scale"
+    ],
+    "intent_categories": [
+      "transform"
+    ],
+    "object_types": [],
+    "outcomes": [
+      "move",
+      "scale"
+    ],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "ScaleEach",
+      "Scale"
+    ]
+  },
+  "ScaleTextHeight": {
+    "description": "Scales the text height of selected annotations by a factor. The quick fix when notes and dimensions turn out the wrong size for the drawing scale.",
+    "menu": "Dimension",
+    "tags": [
+      "Annotation",
+      "Text"
+    ],
+    "intent_categories": [
+      "document",
+      "edit"
+    ],
+    "object_types": [
+      "annotation"
+    ],
+    "outcomes": [
+      "scale",
+      "annotate"
+    ],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "Text",
+      "MatchAnnotation"
+    ]
+  },
+  "ScreenCaptureToClipboard": {
+    "description": "Captures the active viewport, as displayed on screen, to the clipboard. The fastest route from model to email or slide deck.",
+    "menu": "View",
+    "tags": [
+      "Capture",
+      "Display"
+    ],
+    "intent_categories": [
+      "visualise",
+      "document"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "ScreenCaptureToFile",
+      "ViewCaptureToClipboard"
+    ]
+  },
+  "ScreenCaptureToFile": {
+    "description": "Captures the active viewport, as displayed on screen, straight to an image file. Good for quick record shots without setting up a render.",
+    "menu": "View",
+    "tags": [
+      "Capture",
+      "Display"
+    ],
+    "intent_categories": [
+      "visualise",
+      "document"
+    ],
+    "object_types": [
+      "view"
+    ],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "ScreenCaptureToClipboard",
+      "ViewCaptureToFile"
+    ]
+  },
+  "ScriptEditor": {
+    "description": "Opens Rhino's script editor for writing, debugging and running Python and C# code. The modern home for automation, introduced alongside Rhino 8's scripting overhaul.",
+    "menu": "Tools",
+    "tags": [
+      "Scripting",
+      "Python"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "advanced",
+    "aliases": [],
+    "related_commands": [
+      "RunPythonScript",
+      "RunScript"
+    ]
+  },
+  "SelAnnotationStyle": {
+    "description": "Selects all annotations that use a given annotation style. Ideal for auditing drawings or updating every note in one style at once.",
+    "menu": "Edit",
+    "tags": [
+      "Selection",
+      "Annotation"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "annotation"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "SelDim",
+      "SelText"
+    ]
+  },
+  "SelBlockInstance": {
+    "description": "Selects block instances in the model. Useful before block-wide operations such as replacing or counting components.",
+    "menu": "Edit",
+    "tags": [
+      "Selection",
+      "Blocks"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "SelBlockInstanceNamed",
+      "BlockManager"
+    ]
+  },
+  "SelBlockInstanceNamed": {
+    "description": "Selects every instance of a specific block definition by name. The quick way to grab all copies of one component, such as a particular window type.",
+    "menu": "Edit",
+    "tags": [
+      "Selection",
+      "Blocks"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "SelBlockInstance",
+      "ReplaceBlock"
+    ]
+  },
+  "SelBoundary": {
+    "description": "Selects objects using a closed boundary curve you pick as the selection region. Lets a drawn outline, such as a site boundary, do the selecting for you.",
+    "menu": "Edit",
+    "tags": [
+      "Selection"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "Lasso",
+      "SelBrush"
+    ]
+  },
+  "SelBrush": {
+    "description": "Selects objects by painting over them with a draggable brush. A natural fit for picking through cluttered areas where window selections grab too much.",
+    "menu": "Edit",
+    "tags": [
+      "Selection"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [],
+    "outcomes": [],
+    "difficulty": "beginner",
+    "aliases": [],
+    "related_commands": [
+      "SelBrushPoints",
+      "Lasso"
+    ]
+  },
+  "SelBrushPoints": {
+    "description": "Selects control points by painting over them with a brush. Invaluable in sculpting workflows on dense point grids and SubD control cages.",
+    "menu": "Edit",
+    "tags": [
+      "Selection",
+      "Control Points"
+    ],
+    "intent_categories": [
+      "organise"
+    ],
+    "object_types": [
+      "point"
+    ],
+    "outcomes": [],
+    "difficulty": "intermediate",
+    "aliases": [],
+    "related_commands": [
+      "SelBrush",
+      "PointsOn"
+    ]
+  }
+}
