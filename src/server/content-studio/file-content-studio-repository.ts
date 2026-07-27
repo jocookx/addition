@@ -58,6 +58,11 @@ type LessonRow = {
 
 // ── Dev-only file fallback ────────────────────────────────────────────────────
 
+// The JSON file store only exists in local development checkouts. In
+// production (read-only serverless FS) falling through to it would mask the
+// real Supabase error with "Could not locate backend-store.json."
+const allowFileFallback = process.env.NODE_ENV !== "production";
+
 async function resolveStorePath(): Promise<string> {
   const candidates = [
     path.join(/*turbopackIgnore: true*/ process.cwd(), "data", "backend-store.json"),
@@ -445,7 +450,8 @@ async function writeSupabaseStudioPayload(payload: StudioPayload): Promise<Studi
 export async function readStudioPayload(): Promise<StudioPayload> {
   try {
     return await readSupabaseStudioPayload();
-  } catch {
+  } catch (error) {
+    if (!allowFileFallback) throw error;
     // Local fallback for development environments without Supabase configured.
   }
 
@@ -491,7 +497,8 @@ export async function readStudioPayload(): Promise<StudioPayload> {
 export async function writeStudioPayload(payload: StudioPayload): Promise<StudioPayload> {
   try {
     return await writeSupabaseStudioPayload(payload);
-  } catch {
+  } catch (error) {
+    if (!allowFileFallback) throw error;
     // Local fallback for development environments without Supabase configured.
   }
 

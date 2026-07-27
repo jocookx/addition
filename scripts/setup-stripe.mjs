@@ -187,7 +187,13 @@ async function main() {
     apiVersion: "2026-02-25.clover",
   });
   const account = await stripe.accounts.retrieve();
-  const expectedAccountId = process.env.STRIPE_EXPECTED_ACCOUNT_ID || "acct_1ToWqPRo8AjbgbCl";
+  const expectedAccountId = process.env.STRIPE_EXPECTED_ACCOUNT_ID;
+  if (!expectedAccountId) {
+    throw new Error(
+      "STRIPE_EXPECTED_ACCOUNT_ID is required so products are never created in the wrong Stripe account. " +
+      `The provided key belongs to ${account.id}.`,
+    );
+  }
   if (account.id !== expectedAccountId) {
     throw new Error(`Stripe key belongs to ${account.id}, expected ${expectedAccountId}.`);
   }

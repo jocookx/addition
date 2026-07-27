@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 
 type FailedSearch = {
   id: string;
@@ -36,29 +37,33 @@ type Analytics = {
 
 // ── API helpers ────────────────────────────────────────────────
 
-async function fetchFailed(): Promise<FailedSearch[]> {
-  const res = await fetch("/api/v1/admin/search/failed");
+function authHeaders(token: string): Record<string, string> {
+  return { Authorization: `Bearer ${token}` };
+}
+
+async function fetchFailed(token: string): Promise<FailedSearch[]> {
+  const res = await fetch("/api/v1/admin/search/failed", { headers: authHeaders(token) });
   return res.ok ? res.json() : [];
 }
-async function fetchRecent(): Promise<SearchLog[]> {
-  const res = await fetch("/api/v1/admin/search/recent");
+async function fetchRecent(token: string): Promise<SearchLog[]> {
+  const res = await fetch("/api/v1/admin/search/recent", { headers: authHeaders(token) });
   return res.ok ? res.json() : [];
 }
-async function fetchAnalytics(): Promise<Analytics | null> {
-  const res = await fetch("/api/v1/admin/search/analytics");
+async function fetchAnalytics(token: string): Promise<Analytics | null> {
+  const res = await fetch("/api/v1/admin/search/analytics", { headers: authHeaders(token) });
   return res.ok ? res.json() : null;
 }
-async function markReviewed(id: string, notes: string, synonym?: string) {
+async function markReviewed(token: string, id: string, notes: string, synonym?: string) {
   return fetch("/api/v1/admin/search/review", {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeaders(token) },
     body: JSON.stringify({ id, reviewed: true, admin_notes: notes, suggested_synonym: synonym }),
   });
 }
-async function addSynonym(phrase: string, commandName: string) {
+async function addSynonym(token: string, phrase: string, commandName: string) {
   return fetch("/api/v1/admin/search/synonyms", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeaders(token) },
     body: JSON.stringify({ user_phrase: phrase, command_name: commandName }),
   });
 }
@@ -73,7 +78,7 @@ const REASON_LABELS: Record<string, string> = {
   no_click:        "No click",
 };
 
-function FailedSearchRow({ item, onReviewed }: { item: FailedSearch; onReviewed: () => void }) {
+function FailedSearchRow({ item, token, onReviewed }: { item: FailedSearch; token: string; onReviewed: () => void }) {
   const [open, setOpen] = useState(false);
   const [notes, setNotes] = useState(item.admin_notes ?? "");
   const [synonym, setSynonym] = useState(item.suggested_synonym ?? "");
@@ -82,8 +87,8 @@ function FailedSearchRow({ item, onReviewed }: { item: FailedSearch; onReviewed:
 
   const handleMarkReviewed = async () => {
     setSaving(true);
-    await markReviewed(item.id, notes, synonym || undefined);
-    if (synonym && commandName) await addSynonym(synonym, commandName);
+    await markReviewed(token, item.id, notes, synonym || undefined);
+    if (synonym && commandName) await addSynonym(token, synonym, commandName);
     setSaving(false);
     onReviewed();
   };
@@ -136,19 +141,75 @@ export default function SearchReviewPage() {
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [loading, setLoading]   = useState(false);
   const [showReviewed, setShowReviewed] = useState(false);
+  const [token, setToken]       = useState<string | null>(null);
+  const [adminStatus, setAdminStatus] = useState<"checking" | "allowed" | "denied">("checking");
+
+  useEffect(() => {
+    const supabase = getBrowserSupabaseClient();
+    if (!supabase) {
+      setAdminStatus("denied");
+      return;
+    }
+    let alive = true;
+    void supabase.auth.getSession().then(({ data }) => {
+      if (!alive) return;
+      const accessToken = data.session?.access_token ?? null;
+      setToken(accessToken);
+      if (!accessToken) setAdminStatus("denied");
+    });
+    const { data } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setToken(nextSession?.access_token ?? null);
+    });
+    return () => {
+      alive = false;
+      data.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!token) return;
+    let alive = true;
+    fetch("/api/v1/admin/me", { headers: authHeaders(token) })
+      .then((res) => {
+        if (alive) setAdminStatus(res.ok ? "allowed" : "denied");
+      })
+      .catch(() => {
+        if (alive) setAdminStatus("denied");
+      });
+    return () => { alive = false; };
+  }, [token]);
 
   const load = useCallback(async () => {
+    if (!token || adminStatus !== "allowed") return;
     setLoading(true);
     try {
-      if (tab === "failed")    setFailed(await fetchFailed());
-      if (tab === "recent")    setRecent(await fetchRecent());
-      if (tab === "analytics") setAnalytics(await fetchAnalytics());
+      if (tab === "failed")    setFailed(await fetchFailed(token));
+      if (tab === "recent")    setRecent(await fetchRecent(token));
+      if (tab === "analytics") setAnalytics(await fetchAnalytics(token));
     } finally { setLoading(false); }
-  }, [tab]);
+  }, [tab, token, adminStatus]);
 
   useEffect(() => { load(); }, [load]);
 
   const displayFailed = showReviewed ? failed : failed.filter(f => !f.reviewed);
+
+  if (adminStatus !== "allowed") {
+    return (
+      <div className="sr-adm-page">
+        <div className="sr-adm-header">
+          <div>
+            <h1 className="sr-adm-title">Search Review</h1>
+            <p className="sr-adm-sub">
+              {adminStatus === "checking"
+                ? "Verifying admin access…"
+                : "Admin access is required for this page. Sign in with an admin account first."}
+            </p>
+          </div>
+          <Link href="/admin" className="ghost-btn">← Admin</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="sr-adm-page">
@@ -185,7 +246,7 @@ export default function SearchReviewPage() {
           {displayFailed.length === 0
             ? <div className="sr-adm-empty">Nothing to review — great work.</div>
             : displayFailed.map(item => (
-                <FailedSearchRow key={item.id} item={item} onReviewed={load} />
+                <FailedSearchRow key={item.id} item={item} token={token ?? ""} onReviewed={load} />
               ))
           }
         </div>

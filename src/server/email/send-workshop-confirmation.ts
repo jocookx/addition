@@ -106,7 +106,10 @@ export async function sendWorkshopConfirmation(
 ): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.info("[email] RESEND_API_KEY not set — skipping workshop confirmation email.");
+    console.error(
+      `[email] RESEND_API_KEY not set — workshop confirmation email to ${data.toEmail} was NOT sent. ` +
+      "Set RESEND_API_KEY in the deployment environment.",
+    );
     return;
   }
 

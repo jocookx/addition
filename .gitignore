@@ -41,9 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*.local
-
 # Capacitor native project folders (generated — do not commit)
 # Run: npx cap add ios / npx cap add android to recreate them
 /ios
@@ -53,11 +50,6 @@ next-env.d.ts
 # Exception: keep the hand-written offline fallback page
 /out/*
 !/out/index.html
-
-.env*
-!.env.example
-
-.env*
 
 # local Claude Code settings
 .claude/settings.local.json
