@@ -61,6 +61,15 @@ SketchUp has no scraper: Trimble publishes its shortcut reference as PDF
 quick-reference cards rather than parseable HTML, so the SketchUp dataset is
 maintained by hand against those cards.
 
+Known limitation — Autodesk shortcut pages: `autodesk.com/shortcuts/maya`
+and `/autocad` are JavaScript-rendered apps, so a static fetch returns no
+shortcut rows (run 30276230749 confirmed: page reachable with a browser UA,
+zero harvestable entries). The Maya and AutoCAD datasets carry their
+shortcuts as authored data instead, and the Maya MEL command index (1,457
+commands) is harvested for aliases. A headless-browser step (Playwright)
+would be the upgrade path if automated Autodesk shortcut sync becomes
+worth it.
+
 The Grasshopper scraper matches on **name + add-on** (same-named components
 exist across libraries) and records component icon URLs as `iconRef` only —
 add-on icon artwork belongs to its authors, so review licensing per add-on
