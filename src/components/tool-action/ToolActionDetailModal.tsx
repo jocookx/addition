@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { SaveButton } from "@/components/legacy/SaveButton";
 import { TagChips } from "@/components/legacy/TagChips";
 import type { CommandListItem } from "@/domain/command";
@@ -344,7 +345,10 @@ export function ToolActionDetailModal({
 
   const hasIntentData = (command.intentCategories?.length ?? 0) > 0 || (command.objectTypes?.length ?? 0) > 0;
 
-  return (
+  // Portal to <body>: rendered inline, the page's sticky toolbar and bottom
+  // nav paint over the modal on iOS — an ancestor stacking-context quirk that
+  // only WebKit exhibits. From <body> no ancestor can trap or cover it.
+  return createPortal(
     <div className="cmd-modal-backdrop" onClick={onClose} role="presentation">
       <section
         className="cmd-modal"
@@ -470,6 +474,7 @@ export function ToolActionDetailModal({
           </div>
         </div>
       </section>
-    </div>
+    </div>,
+    document.body,
   );
 }

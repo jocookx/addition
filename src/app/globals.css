@@ -80,7 +80,7 @@
 
   /* Screen-edge gutter on phones — every full-bleed element must use the
      same value or it overflows the viewport and forces sideways panning. */
-  --mobile-gutter: 16px;
+  --mobile-gutter: 12px;
 
   /* Expose the safe-area env values as CSS custom properties so
      calc() expressions can reference them easily                */
@@ -4232,7 +4232,8 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 .cmd-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 400;
+  /* Above the mobile bottom nav (200) and sticky toolbar (10) */
+  z-index: 500;
   background: rgba(5, 6, 8, 0.7);
   backdrop-filter: blur(8px);
   display: flex;
@@ -16449,7 +16450,8 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 .upgrade-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  /* Above the mobile bottom nav (200) and sticky toolbar (10) */
+  z-index: 500;
   display: grid;
   place-items: center;
   padding: 20px;
