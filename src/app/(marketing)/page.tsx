@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import LandingPage from "./LandingPage";
 import "./landing.css";
 
@@ -9,18 +10,18 @@ export const metadata: Metadata = {
   title: "Addition Academy | AI and Digital Design Learning Platform",
   description,
   alternates: {
-    canonical: "https://addition.design/",
+    canonical: `${SITE_URL}/`,
   },
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     siteName: "ADDITION",
-    url: "https://addition.design/",
+    url: `${SITE_URL}/`,
     title: "Addition Academy | AI and Digital Design Learning Platform",
     description,
     images: [
       {
-        url: "https://addition.design/og-image.png",
+        url: `${SITE_URL}/og-image.svg`,
         width: 1200,
         height: 630,
       },
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Addition Academy | AI and Digital Design Learning Platform",
     description,
-    images: ["https://addition.design/og-image.png"],
+    images: [`${SITE_URL}/og-image.svg`],
   },
 };
 
@@ -43,8 +44,8 @@ export default function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "ADDITION",
-            url: "https://addition.design",
+            name: SITE_NAME,
+            url: SITE_URL,
             description:
               "AI and Digital Design learning platform with courses, searchable commands, guided paths and live workshops.",
             foundingDate: "2025",

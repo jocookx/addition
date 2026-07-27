@@ -29,6 +29,11 @@ function ytEmbedSrc(url: string): string {
   return id ? `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1` : "";
 }
 
+function withAutoplay(src: string): string {
+  if (!src) return "";
+  return `${src}${src.includes("?") ? "&" : "?"}autoplay=1`;
+}
+
 function parseError(e: unknown): string {
   return e instanceof Error ? e.message : "Unexpected error.";
 }
@@ -235,6 +240,8 @@ function LearnPageInner() {
   const [error, setError] = useState("");
   const [watchAgainCount, setWatchAgainCount] = useState(0);
   const [confidenceMap, setConfidenceMap] = useState<Record<string, "confident" | "reviewed">>({});
+  const [videoSrc, setVideoSrc] = useState("");
+  const [videoLoading, setVideoLoading] = useState(false);
 
   // ── auth ─────────────────────────────────────────────────────────────────
 
@@ -372,6 +379,50 @@ function LearnPageInner() {
     ? currentPath.courses[currentCourseIndexInPath + 1]
     : null;
   const courseComplete = pct === 100 && course !== null;
+
+  useEffect(() => {
+    let canceled = false;
+    const token = session?.access_token;
+
+    setVideoSrc("");
+    setVideoLoading(false);
+
+    if (!activeLesson) return () => { canceled = true; };
+
+    if (!activeLesson.videoId) {
+      setVideoSrc(ytEmbedSrc(activeLesson.video ?? ""));
+      return () => { canceled = true; };
+    }
+
+    if (!token || !activeCourseId) return () => { canceled = true; };
+
+    setVideoLoading(true);
+    fetch("/api/v1/learning/video-token", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ courseId: activeCourseId, lessonId: activeLesson.id }),
+    })
+      .then(async (response) => {
+        const payload = await response.json().catch(() => ({})) as { iframeUrl?: string; error?: string };
+        if (!response.ok) throw new Error(payload.error || "Could not load protected video.");
+        if (!payload.iframeUrl) throw new Error("Protected video URL was not returned.");
+        if (!canceled) setVideoSrc(payload.iframeUrl);
+      })
+      .catch((e) => {
+        if (!canceled) {
+          setVideoSrc("");
+          setError(parseError(e));
+        }
+      })
+      .finally(() => {
+        if (!canceled) setVideoLoading(false);
+      });
+
+    return () => { canceled = true; };
+  }, [activeCourseId, activeLesson, session?.access_token]);
 
   // ── catalog filter ────────────────────────────────────────────────────────
   const activePath = activePathId === "all" ? null : pathDetails[activePathId] ?? null;
@@ -555,8 +606,6 @@ function LearnPageInner() {
 
   // ── PLAYER VIEW ───────────────────────────────────────────────────────────
 
-  const videoSrc = ytEmbedSrc(activeLesson?.video ?? "");
-
   return (
     <AppFrame
       title=""
@@ -619,10 +668,16 @@ function LearnPageInner() {
             {videoSrc ? (
               <iframe
                 key={`${videoSrc}-${watchAgainCount}`}
-                src={watchAgainCount > 0 ? `${videoSrc}&autoplay=1` : videoSrc}
+                src={watchAgainCount > 0 ? withAutoplay(videoSrc) : videoSrc}
                 title={activeLesson?.title ?? "Lesson video"}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                referrerPolicy="no-referrer"
                 allowFullScreen
               />
+            ) : videoLoading ? (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--rf-muted)", fontSize: 13 }}>
+                Loading protected video...
+              </div>
             ) : (
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--rf-muted)", fontSize: 13 }}>
                 No video for this lesson

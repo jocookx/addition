@@ -23,7 +23,7 @@ export async function sendWorkshopRecordingAvailable(data: WorkshopRecordingAvai
     return;
   }
 
-  const from = process.env.RESEND_FROM ?? "ADDITION <workshops@addition.design>";
+  const from = process.env.RESEND_FROM ?? "Addition Academy <workshops@addition.academy>";
   const resend = new Resend(apiKey);
   const title = escapeHtml(data.workshopTitle);
   const url = escapeHtml(data.recordingUrl);

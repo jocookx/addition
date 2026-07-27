@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit --incremental false",
+    "stripe:setup": "node scripts/setup-stripe.mjs",
+    "cloudflare:lock-videos": "node scripts/lock-cloudflare-videos.mjs",
     "smoke:launch": "node scripts/launch-smoke.mjs",
     "mobile:sync": "npx cap sync",
     "mobile:ios": "npx cap open ios",

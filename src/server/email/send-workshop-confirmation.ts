@@ -2,7 +2,7 @@
 //
 // Requires: RESEND_API_KEY and RESEND_FROM in environment variables.
 //   RESEND_API_KEY=re_...
-//   RESEND_FROM=ADDITION <workshops@addition.design>
+//   RESEND_FROM=Addition Academy <workshops@addition.academy>
 
 import { Resend } from "resend";
 
@@ -75,7 +75,7 @@ function buildHtml(d: WorkshopConfirmationData): string {
   If you have questions, reply to this email.</p>
 
   <p style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">
-    ADDITION — addition.design
+    Addition Academy — addition.academy
   </p>
 </body>
 </html>`;
@@ -110,7 +110,7 @@ export async function sendWorkshopConfirmation(
     return;
   }
 
-  const from = process.env.RESEND_FROM ?? "ADDITION <workshops@addition.design>";
+  const from = process.env.RESEND_FROM ?? "Addition Academy <workshops@addition.academy>";
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({

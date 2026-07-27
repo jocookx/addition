@@ -28,6 +28,7 @@ const CSP = [
     "https://videodelivery.net",
     "https://cloudflarestream.com",
     "https://*.cloudflarestream.com",
+    "https://i.ytimg.com",
   ].join(" "),
   [
     "connect-src 'self'",
@@ -41,6 +42,8 @@ const CSP = [
     "https://api.cloudflare.com",
     "https://upload.videodelivery.net",
     "https://*.cloudflarestream.com",
+    "https://www.youtube.com",
+    "https://www.youtube-nocookie.com",
   ].join(" "),
   [
     "frame-src",
@@ -50,6 +53,8 @@ const CSP = [
     // Cloudflare Stream player iframe
     "https://iframe.cloudflarestream.com",
     "https://cloudflarestream.com",
+    "https://www.youtube.com",
+    "https://www.youtube-nocookie.com",
   ].join(" "),
   "font-src 'self' data:",
   [
@@ -75,6 +80,8 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   // Restrict browser feature access
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(self)" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
   // Enable browser DNS prefetching for performance (safe)
   { key: "X-DNS-Prefetch-Control", value: "on" },
   // Enforce HTTPS for 2 years; include subdomains

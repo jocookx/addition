@@ -68,7 +68,7 @@ export async function createDirectUpload(
   const response = await fetch(url, {
     method: "POST",
     headers: cfHeaders(),
-    body: JSON.stringify({ maxDurationSeconds, requireSignedURLs: false }),
+    body: JSON.stringify({ maxDurationSeconds, requireSignedURLs: true }),
   });
 
   if (!response.ok) {
@@ -138,6 +138,34 @@ export async function deleteVideo(videoId: string): Promise<void> {
  */
 export function getPublicIframeUrl(videoId: string): string {
   return `https://iframe.cloudflarestream.com/${encodeURIComponent(videoId)}`;
+}
+
+export async function createSignedStreamToken(videoId: string, expiresInSeconds = 3600): Promise<string> {
+  const ttl = Math.max(60, Math.min(expiresInSeconds, 24 * 60 * 60));
+  const url = `${CF_BASE}/${accountId()}/stream/${encodeURIComponent(videoId)}/token`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: cfHeaders(),
+    body: JSON.stringify({
+      exp: Math.floor(Date.now() / 1000) + ttl,
+      downloadable: false,
+    }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Cloudflare Stream token error (${response.status}): ${text.slice(0, 400)}`);
+  }
+
+  type CFTokenResult = { result?: { token?: string } };
+  const json = (await response.json()) as CFTokenResult;
+  const token = json.result?.token;
+  if (!token) throw new Error("Cloudflare Stream did not return a signed token.");
+  return token;
+}
+
+export function getSignedIframeUrl(token: string): string {
+  return `https://iframe.cloudflarestream.com/${encodeURIComponent(token)}`;
 }
 
 /**

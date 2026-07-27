@@ -392,20 +392,36 @@ function FaqSection() {
 
 // ─── CTA Band (V2 "Discover the new era" adapted) ────────────────────────────
 
-function CtaBand() {
+function CtaBand({ hasWorkshops }: { hasWorkshops: boolean }) {
   return (
     <section className="cta-band" aria-labelledby="cta-band-heading">
       <div className="cta-band-inner">
         <p className="eyebrow">Start today</p>
-        <h2 id="cta-band-heading">Join a live workshop.<br />Keep building inside Addition.</h2>
-        <p>
-          Book a single workshop and access recordings, resources and learning paths
-          inside your Addition account.
-        </p>
-        <div className="cta-band-actions">
-          <ArrowLink href="#workshops">View Workshops</ArrowLink>
-          <Link className="btn btn-secondary" href="/auth?mode=signup">Join Free</Link>
-        </div>
+        {hasWorkshops ? (
+          <>
+            <h2 id="cta-band-heading">Join a live workshop.<br />Keep building inside Addition.</h2>
+            <p>
+              Book a single workshop and access recordings, resources and learning paths
+              inside your Addition account.
+            </p>
+            <div className="cta-band-actions">
+              <ArrowLink href="#workshops">View Workshops</ArrowLink>
+              <Link className="btn btn-secondary" href="/auth?mode=signup">Join Free</Link>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 id="cta-band-heading">Start learning today.<br />Keep building inside Addition.</h2>
+            <p>
+              Join free to explore the commands library, starter lessons and Combo previews
+              inside your Addition account.
+            </p>
+            <div className="cta-band-actions">
+              <ArrowLink href="/auth?mode=signup">Join Free</ArrowLink>
+              <Link className="btn btn-secondary" href="/commands">Search Commands</Link>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
@@ -790,16 +806,17 @@ export default function LandingPage() {
                 Live workshops, courses and tools built for architects, designers and creative professionals.
               </p>
               <div className="hero-actions">
-                <ArrowLink href="#workshops">View Live Workshops</ArrowLink>
-                <Link className="btn btn-secondary" href="/auth?mode=signup">Join Free</Link>
-              </div>
-              <div className="hero-social-proof">
-                <div className="hero-avatars" aria-hidden="true">
-                  <span>JD</span>
-                  <span>MR</span>
-                  <span>SK</span>
-                </div>
-                <span>Join designers learning with Addition</span>
+                {workshops.length > 0 ? (
+                  <>
+                    <ArrowLink href="#workshops">View Live Workshops</ArrowLink>
+                    <Link className="btn btn-secondary" href="/auth?mode=signup">Join Free</Link>
+                  </>
+                ) : (
+                  <>
+                    <ArrowLink href="/auth?mode=signup">Join Free</ArrowLink>
+                    <Link className="btn btn-secondary" href="/commands">Search Commands</Link>
+                  </>
+                )}
               </div>
             </div>
 
@@ -1025,7 +1042,7 @@ export default function LandingPage() {
         </section>
 
         {/* ── 8. CTA Band (V2 "Discover the new era") ─────────────────────── */}
-        <CtaBand />
+        <CtaBand hasWorkshops={workshops.length > 0} />
 
         {/* ── 9. Pricing ──────────────────────────────────────────────────── */}
         <section className="section-pad pricing-section" id="pricing" aria-labelledby="pricing-heading">

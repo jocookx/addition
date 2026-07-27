@@ -43,13 +43,12 @@ const config: CapacitorConfig = {
 
   // ── Remote server ─────────────────────────────────────────────────────────
   server: {
-    url: isDev ? "http://localhost:3000" : "https://www.additionacademy.com",
+    url: isDev ? "http://localhost:3000" : "https://addition.academy",
     cleartext: isDev, // allow HTTP in dev, HTTPS-only in prod
     // Allow navigation to auth callback and external payment pages
     allowNavigation: [
-      "www.additionacademy.com",
-      "additionacademy.com",
-      "*.additionacademy.com",
+      "addition.academy",
+      "*.addition.academy",
       "checkout.stripe.com",
       "buy.stripe.com",
       "*.supabase.co",

@@ -9,6 +9,8 @@ export type CourseLesson = {
   id: string;
   title: string;
   video: string;
+  videoId: string;
+  accessLevel: string;
   image: string;
   content: string;
   durationMin: number | null;

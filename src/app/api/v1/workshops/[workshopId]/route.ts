@@ -176,7 +176,7 @@ export async function GET(
       learn:             data.learn ?? [],
       included:          data.included ?? [],
       principles:        data.principles ?? [],
-      recordings:        data.recordings ?? [],
+      recordings:        recordingAccess.canAccess ? (data.recordings ?? []) : [],
       gallery:           data.gallery ?? [],
       tutorId:           data.tutor_id ?? null,
       tutorName:         tutor?.name ?? null,

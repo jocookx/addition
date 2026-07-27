@@ -37,6 +37,20 @@ function cleanString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function extractCloudflareVideoId(value: string): string {
+  if (!value) return "";
+  const patterns = [
+    /iframe\.cloudflarestream\.com\/([^/?#]+)/i,
+    /videodelivery\.net\/([^/?#]+)/i,
+    /cloudflarestream\.com\/([^/?#]+)\/(?:iframe|manifest|watch)/i,
+  ];
+  for (const pattern of patterns) {
+    const match = value.match(pattern);
+    if (match?.[1] && !match[1].includes(".")) return match[1];
+  }
+  return "";
+}
+
 function toStringArray(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
   return value
@@ -86,10 +100,18 @@ export function normalizeCourseModules(rawModules: unknown): CourseModule[] {
         const lesson = asRecord(lessonItem);
         if (!lesson) return null;
         const lessonId = cleanString(lesson.id) || `lesson-${moduleIndex + 1}-${lessonIndex + 1}`;
+        const rawVideo = cleanString(lesson.video);
+        const cloudflareVideoId =
+          cleanString(lesson.videoId) ||
+          cleanString(lesson.video_id) ||
+          extractCloudflareVideoId(rawVideo);
+
         return {
           id: lessonId,
           title: cleanString(lesson.title) || `Lesson ${lessonIndex + 1}`,
-          video: cleanString(lesson.video),
+          video: cloudflareVideoId ? "" : rawVideo,
+          videoId: cloudflareVideoId,
+          accessLevel: cleanString(lesson.accessLevel) || cleanString(lesson.access_level),
           image: cleanString(lesson.image),
           content: cleanString(lesson.content),
           durationMin: toDurationMinutes(lesson.durationMin),

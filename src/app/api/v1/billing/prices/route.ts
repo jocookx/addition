@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { cachedOkResponse, errorResponse } from "@/lib/http";
+import { BILLING_PRICE_CONFIGS, getConfiguredPriceId } from "@/server/billing-plans";
 
 export const dynamic = "force-dynamic";
 
@@ -10,49 +11,32 @@ type PriceInfo = {
   currency: string;
 };
 
-const PRICE_LOOKUP: Array<{
-  names: string[];
-  plan: "pro" | "student";
-  interval: "monthly" | "yearly";
-}> = [
-  {
-    names: ["STRIPE_PRO_PRICE_ID", "STRIPE_PRICE_PRO_MONTH"],
-    plan: "pro",
-    interval: "monthly",
-  },
-  {
-    names: ["STRIPE_PRO_YEARLY_PRICE_ID", "STRIPE_PRICE_PRO_YEAR", "STRIPE_PRICE_PRO_YEARLY"],
-    plan: "pro",
-    interval: "yearly",
-  },
-  {
-    names: ["STRIPE_STUDENT_PRICE_ID", "STRIPE_PRICE_STUDENT_MONTH"],
-    plan: "student",
-    interval: "monthly",
-  },
-  {
-    names: ["STRIPE_STUDENT_YEARLY_PRICE_ID", "STRIPE_PRICE_STUDENT_YEAR", "STRIPE_PRICE_STUDENT_YEARLY"],
-    plan: "student",
-    interval: "yearly",
-  },
-];
-
 export async function GET() {
   const apiKey = process.env.STRIPE_SECRET_KEY;
   if (!apiKey) return errorResponse("Stripe not configured", 503);
 
   const stripe = new Stripe(apiKey, { apiVersion: "2026-02-25.clover" as Stripe.LatestApiVersion });
 
-  // Build map of priceId → { plan, interval }
   const idMeta = new Map<string, { plan: "pro" | "student"; interval: "monthly" | "yearly" }>();
-  for (const { names, plan, interval } of PRICE_LOOKUP) {
-    for (const name of names) {
-      const id = process.env[name];
+  try {
+    for (const config of BILLING_PRICE_CONFIGS) {
+      const id = getConfiguredPriceId(config);
       if (id) {
-        idMeta.set(id, { plan, interval });
-        break;
+        idMeta.set(id, { plan: config.plan, interval: config.interval });
+        continue;
+      }
+      const prices = await stripe.prices.list({
+        active: true,
+        lookup_keys: [config.lookupKey],
+        limit: 1,
+      });
+      const lookupPriceId = prices.data[0]?.id;
+      if (lookupPriceId) {
+        idMeta.set(lookupPriceId, { plan: config.plan, interval: config.interval });
       }
     }
+  } catch (err) {
+    return errorResponse(err instanceof Error ? err.message : "Failed to resolve Stripe prices", 500);
   }
 
   if (!idMeta.size) return errorResponse("No prices configured", 503);

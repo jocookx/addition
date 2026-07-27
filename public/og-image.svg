@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Addition Academy">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#080a10"/>
+      <stop offset="1" stop-color="#241a44"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="76" y="172" fill="#7d5cff" font-family="Arial, Helvetica, sans-serif" font-size="132" font-weight="700">+</text>
+  <text x="190" y="164" fill="#f9faff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700">Addition Academy</text>
+  <text x="194" y="248" fill="#c4cad8" font-family="Arial, Helvetica, sans-serif" font-size="32">AI and Digital Design learning for architecture students and designers</text>
+  <text x="194" y="328" fill="#f9faff" font-family="Arial, Helvetica, sans-serif" font-size="32">Courses / Commands / Workshops / Practice</text>
+</svg>

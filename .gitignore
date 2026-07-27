@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -54,3 +55,9 @@ next-env.d.ts
 !/out/index.html
 
 .env*
+!.env.example
+
+.env*
+
+# local Claude Code settings
+.claude/settings.local.json
