@@ -1,0 +1,3067 @@
+{
+  "meta": {
+    "software": "After Effects",
+    "version": "After Effects 2026",
+    "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+    "provenance": "Authored from model knowledge (cutoff Jan 2026). Original explanations — not copied from Adobe documentation. Shortcuts/menu paths are factual data.",
+    "iconNote": "Adobe icon artwork is proprietary; app renders software chip fallback."
+  },
+  "commands": [
+    {
+      "name": "New Composition",
+      "software": "After Effects",
+      "menu": "Composition > New Composition",
+      "shortcut": "Ctrl+N",
+      "addon": "",
+      "description": "Creates a new composition with chosen resolution, frame rate and duration — the canvas every animation lives in. Start an archviz film by setting comps to your delivery format, typically 3840x2160 at 25 fps.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "composition",
+        "new",
+        "setup"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "new comp"
+      ],
+      "related_commands": [
+        "Composition Settings",
+        "Precompose"
+      ]
+    },
+    {
+      "name": "Composition Settings",
+      "software": "After Effects",
+      "menu": "Composition > Composition Settings",
+      "shortcut": "Ctrl+K",
+      "addon": "",
+      "description": "Edits the current comp's size, duration, frame rate and background colour after creation. Revisit it when a client changes delivery specs mid-project.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "composition",
+        "settings",
+        "frame rate"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "comp settings"
+      ],
+      "related_commands": [
+        "New Composition",
+        "Trim Comp to Work Area"
+      ]
+    },
+    {
+      "name": "Precompose",
+      "software": "After Effects",
+      "menu": "Layer > Pre-compose",
+      "shortcut": "Ctrl+Shift+C",
+      "addon": "",
+      "description": "Wraps the selected layers into a nested composition so they can be treated, animated and effected as one unit. Essential housekeeping — precompose each animated diagram or title block before the timeline becomes unmanageable.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "precompose",
+        "nest",
+        "organise"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "pre-comp"
+      ],
+      "related_commands": [
+        "New Composition",
+        "Duplicate Layer"
+      ]
+    },
+    {
+      "name": "Import File",
+      "software": "After Effects",
+      "menu": "File > Import > File",
+      "shortcut": "Ctrl+I",
+      "addon": "",
+      "description": "Brings footage, image sequences, PSDs and audio into the Project panel. Import rendered archviz sequences as image sequences so dropped frames can be re-rendered individually.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "import",
+        "footage",
+        "project"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Add Footage to Comp",
+        "New Composition"
+      ]
+    },
+    {
+      "name": "Add Footage to Comp",
+      "software": "After Effects",
+      "menu": "File > Add Footage to Comp",
+      "shortcut": "Ctrl+/",
+      "addon": "",
+      "description": "Drops the selected Project panel items into the active composition as new layers. Quicker than dragging when building comps from many rendered passes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "footage",
+        "layer",
+        "add"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Import File",
+        "New Composition"
+      ]
+    },
+    {
+      "name": "Increment and Save",
+      "software": "After Effects",
+      "menu": "File > Increment and Save",
+      "shortcut": "Ctrl+Alt+Shift+S",
+      "addon": "",
+      "description": "Saves the project under an automatically numbered new filename, keeping the previous version intact. Use it before risky restructuring — version discipline saves animation projects.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "save",
+        "version",
+        "project"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Collect Files",
+        "Import File"
+      ]
+    },
+    {
+      "name": "Save Frame As",
+      "software": "After Effects",
+      "menu": "Composition > Save Frame As > File",
+      "shortcut": "Ctrl+Alt+S",
+      "addon": "",
+      "description": "Sends the current frame to the render queue as a still image. Handy for pulling high-quality stills of an animation for portfolio boards or client emails.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "still",
+        "frame",
+        "export"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "export still"
+      ],
+      "related_commands": [
+        "Add to Render Queue",
+        "Take Snapshot"
+      ]
+    },
+    {
+      "name": "New Solid",
+      "software": "After Effects",
+      "menu": "Layer > New > Solid",
+      "shortcut": "Ctrl+Y",
+      "addon": "",
+      "description": "Creates a flat colour layer used as a background, a matte or a host for generated effects like Fractal Noise. Most effect-driven elements in a motion piece start life as a solid.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "solid",
+        "layer",
+        "background"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Solid Settings",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Solid Settings",
+      "software": "After Effects",
+      "menu": "Layer > Solid Settings",
+      "shortcut": "Ctrl+Shift+Y",
+      "addon": "",
+      "description": "Changes the colour and dimensions of an existing solid layer. Use Make Comp Size here when a background solid needs to fill the frame exactly.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "solid",
+        "settings",
+        "colour"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Solid",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "New Adjustment Layer",
+      "software": "After Effects",
+      "menu": "Layer > New > Adjustment Layer",
+      "shortcut": "Ctrl+Alt+Y",
+      "addon": "",
+      "description": "Creates an invisible layer whose effects apply to everything below it. The standard way to grade a whole archviz shot with Lumetri or add global glow without touching individual layers.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "adjustment layer",
+        "grade",
+        "effects"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Lumetri Colour Effect",
+        "New Solid"
+      ]
+    },
+    {
+      "name": "New Null Object",
+      "software": "After Effects",
+      "menu": "Layer > New > Null Object",
+      "shortcut": "Ctrl+Alt+Shift+Y",
+      "addon": "",
+      "description": "Creates an invisible control layer that other layers can be parented to. Animate one null to move a whole cluster of labels, leader lines and highlights together.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "null",
+        "control",
+        "parenting"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "null"
+      ],
+      "related_commands": [
+        "Parent with Pick Whip",
+        "New Camera"
+      ]
+    },
+    {
+      "name": "New Text Layer",
+      "software": "After Effects",
+      "menu": "Layer > New > Text",
+      "shortcut": "Ctrl+Alt+Shift+T",
+      "addon": "",
+      "description": "Creates an empty text layer ready for typing, with full animator controls for per-character animation. The starting point for titles, statistics call-outs and room labels in an archviz film.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "text",
+        "layer",
+        "titles"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layer",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Shape Layer",
+        "New Solid"
+      ]
+    },
+    {
+      "name": "New Shape Layer",
+      "software": "After Effects",
+      "menu": "Layer > New > Shape Layer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Creates a vector layer built from paths, fills and strokes, with procedural operators like Trim Paths and Repeater. The engine behind animated diagrams, growing site outlines and self-drawing linework.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "shape",
+        "vector",
+        "diagram"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layer",
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "New Text Layer",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Pen Tool",
+      "software": "After Effects",
+      "menu": "Toolbar",
+      "shortcut": "G",
+      "addon": "",
+      "description": "Draws Bézier paths that become masks on footage layers or paths on shape layers. Use it to trace a building outline for a reveal or to mask a sky for replacement.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "pen",
+        "mask",
+        "path",
+        "tool"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Shape and Mask Tools",
+        "New Mask"
+      ]
+    },
+    {
+      "name": "Shape and Mask Tools",
+      "software": "After Effects",
+      "menu": "Toolbar",
+      "shortcut": "Q",
+      "addon": "",
+      "description": "Cycles through the rectangle, rounded rectangle, ellipse, polygon and star tools for drawing shapes or masks. Which you get depends on whether a footage or shape layer is selected.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "shape",
+        "mask",
+        "tool",
+        "rectangle"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "rectangle tool"
+      ],
+      "related_commands": [
+        "Pen Tool",
+        "New Shape Layer"
+      ]
+    },
+    {
+      "name": "Duplicate Layer",
+      "software": "After Effects",
+      "menu": "Edit > Duplicate",
+      "shortcut": "Ctrl+D",
+      "addon": "",
+      "description": "Copies the selected layer in place with all its keyframes, effects and masks. The everyday way to build variations — duplicate a label animation and just retype the text.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "duplicate",
+        "layer",
+        "copy"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Split Layer",
+        "Precompose"
+      ]
+    },
+    {
+      "name": "Split Layer",
+      "software": "After Effects",
+      "menu": "Edit > Split Layer",
+      "shortcut": "Ctrl+Shift+D",
+      "addon": "",
+      "description": "Cuts the selected layer at the current time into two independent layers. Use it to change treatment halfway through a shot or remove a bad section of footage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "split",
+        "cut",
+        "layer",
+        "edit"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Duplicate Layer",
+        "Trim Layer In/Out"
+      ]
+    },
+    {
+      "name": "Trim Layer In/Out",
+      "software": "After Effects",
+      "menu": "Alt+[ or Alt+] at the current-time indicator",
+      "shortcut": "Alt+[ / Alt+]",
+      "addon": "",
+      "description": "Trims the selected layer's in or out point to the current time without moving the footage. The fast way to tidy layer bars so the timeline reads like a clean storyboard.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "trim",
+        "in point",
+        "out point",
+        "timeline"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Move Layer to Current Time",
+        "Split Layer"
+      ]
+    },
+    {
+      "name": "Move Layer to Current Time",
+      "software": "After Effects",
+      "menu": "[ or ] with a layer selected",
+      "shortcut": "[ / ]",
+      "addon": "",
+      "description": "Slides the selected layer so its in point ( [ ) or out point ( ] ) lands at the current-time indicator. Useful for choreographing staggered entrances of labels and diagram elements.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "layer",
+        "timing",
+        "move",
+        "timeline"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Trim Layer In/Out",
+        "Sequence Layers"
+      ]
+    },
+    {
+      "name": "Sequence Layers",
+      "software": "After Effects",
+      "menu": "Animation > Keyframe Assistant > Sequence Layers",
+      "shortcut": "",
+      "addon": "",
+      "description": "Arranges the selected layers end to end in time, optionally with overlapping crossfades. Perfect for turning a folder of still renders into a quick animatic slideshow.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "sequence",
+        "stagger",
+        "slideshow",
+        "keyframe assistant"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Move Layer to Current Time",
+        "Precompose"
+      ]
+    },
+    {
+      "name": "Time-Reverse Layer",
+      "software": "After Effects",
+      "menu": "Layer > Time > Time-Reverse Layer",
+      "shortcut": "Ctrl+Alt+R",
+      "addon": "",
+      "description": "Plays the selected layer backwards. A classic trick for build-up animations — animate a structure exploding apart, then reverse it so it assembles.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "reverse",
+        "time",
+        "playback"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Time Stretch",
+        "Enable Time Remapping"
+      ]
+    },
+    {
+      "name": "Lock Layer",
+      "software": "After Effects",
+      "menu": "Timeline lock switch",
+      "shortcut": "Ctrl+L",
+      "addon": "",
+      "description": "Locks the selected layers against selection and edits. Lock finished background plates so late tweaks cannot disturb them.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "lock",
+        "layer",
+        "protect"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Solo Layer",
+        "Shy Layers"
+      ]
+    },
+    {
+      "name": "Solo Layer",
+      "software": "After Effects",
+      "menu": "Timeline solo switch",
+      "shortcut": "",
+      "addon": "",
+      "description": "Displays only the soloed layers in the viewer, hiding everything else. Invaluable for isolating one element of a dense composite while adjusting it.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "solo",
+        "isolate",
+        "layer"
+      ],
+      "intent_categories": [
+        "visualise",
+        "analyse"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Lock Layer",
+        "Shy Layers"
+      ]
+    },
+    {
+      "name": "Shy Layers",
+      "software": "After Effects",
+      "menu": "Timeline shy switches and comp Hide Shy toggle",
+      "shortcut": "",
+      "addon": "",
+      "description": "Marks layers as shy and then hides them from the timeline list without removing them from the render. Use it to collapse dozens of finished background layers and keep only active work visible.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "shy",
+        "timeline",
+        "tidy",
+        "organise"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Lock Layer",
+        "Solo Layer"
+      ]
+    },
+    {
+      "name": "Fit Layer to Comp",
+      "software": "After Effects",
+      "menu": "Layer > Transform > Fit to Comp",
+      "shortcut": "Ctrl+Alt+F",
+      "addon": "",
+      "description": "Scales the selected layer to match the composition frame exactly. Quick framing for full-screen background plates; beware it will stretch mismatched aspect ratios.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "fit",
+        "scale",
+        "comp"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Scale",
+        "New Solid"
+      ]
+    },
+    {
+      "name": "Show Position",
+      "software": "After Effects",
+      "menu": "Press P with layers selected",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Reveals just the Position property of selected layers in the timeline. The property shortcuts (P, S, R, T, A) keep the timeline lean while animating.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "position",
+        "property",
+        "transform"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Scale",
+        "Show Rotation"
+      ]
+    },
+    {
+      "name": "Show Scale",
+      "software": "After Effects",
+      "menu": "Press S with layers selected",
+      "shortcut": "S",
+      "addon": "",
+      "description": "Reveals the Scale property of selected layers. Combine with held Shift to add further properties to the same view.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "scale",
+        "property",
+        "transform"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Position",
+        "Show Opacity"
+      ]
+    },
+    {
+      "name": "Show Rotation",
+      "software": "After Effects",
+      "menu": "Press R with layers selected",
+      "shortcut": "R",
+      "addon": "",
+      "description": "Reveals the Rotation property, plus orientation values on 3D layers. Reach for it when animating turntable-style spins of a model or compass needles on diagrams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "rotation",
+        "property",
+        "transform"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "rotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Position",
+        "3D Layer Switch"
+      ]
+    },
+    {
+      "name": "Show Opacity",
+      "software": "After Effects",
+      "menu": "Press T with layers selected",
+      "shortcut": "T",
+      "addon": "",
+      "description": "Reveals the Opacity property of selected layers. Opacity keyframes are the humble backbone of most fade-based archviz transitions.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "opacity",
+        "property",
+        "fade"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Position",
+        "Easy Ease"
+      ]
+    },
+    {
+      "name": "Show Anchor Point",
+      "software": "After Effects",
+      "menu": "Press A with layers selected",
+      "shortcut": "A",
+      "addon": "",
+      "description": "Reveals the Anchor Point property, the pivot around which scale and rotation act. Move the anchor to a building's base before scaling it up so it grows from the ground.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "anchor point",
+        "pivot",
+        "property"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pan Behind Tool",
+        "Show Rotation"
+      ]
+    },
+    {
+      "name": "Pan Behind Tool",
+      "software": "After Effects",
+      "menu": "Toolbar",
+      "shortcut": "Y",
+      "addon": "",
+      "description": "Drags the anchor point on the canvas without moving the layer's rendered position. The clean way to re-pivot a layer before animating rotation or growth.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "anchor",
+        "pivot",
+        "tool"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "anchor point tool"
+      ],
+      "related_commands": [
+        "Show Anchor Point",
+        "Show Rotation"
+      ]
+    },
+    {
+      "name": "Show Animated Properties",
+      "software": "After Effects",
+      "menu": "Press U with layers selected",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Reveals every property that carries keyframes on the selected layers. Press it twice (UU) to also show any modified properties and expressions — the fastest way to read how someone else's comp works.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "keyframes",
+        "reveal",
+        "uber key"
+      ],
+      "intent_categories": [
+        "analyse",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "uber key",
+        "UU"
+      ],
+      "related_commands": [
+        "Show Position",
+        "Show Effects"
+      ]
+    },
+    {
+      "name": "Show Effects",
+      "software": "After Effects",
+      "menu": "Press E with layers selected",
+      "shortcut": "E",
+      "addon": "",
+      "description": "Reveals the effects applied to selected layers in the timeline; EE reveals expressions only. Handy for tweaking effect keyframes without opening the Effect Controls panel.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "effects",
+        "property",
+        "reveal"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effect Controls Panel",
+        "Show Animated Properties"
+      ]
+    },
+    {
+      "name": "Add Keyframe at Current Time",
+      "software": "After Effects",
+      "menu": "Alt+Shift+property shortcut (e.g. Alt+Shift+P)",
+      "shortcut": "Alt+Shift+P",
+      "addon": "",
+      "description": "Adds a keyframe for a transform property at the current time without touching the mouse, enabling the stopwatch if needed. Part of a fast keyboard-only animation workflow.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "keyframe",
+        "add",
+        "shortcut"
+      ],
+      "intent_categories": [
+        "create",
+        "transform"
+      ],
+      "object_types": [
+        "point",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Show Position",
+        "Easy Ease"
+      ]
+    },
+    {
+      "name": "Easy Ease",
+      "software": "After Effects",
+      "menu": "Animation > Keyframe Assistant > Easy Ease",
+      "shortcut": "F9",
+      "addon": "",
+      "description": "Smooths the selected keyframes so motion accelerates and decelerates naturally instead of starting and stopping abruptly. The single biggest instant upgrade to any camera move or element animation.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "ease",
+        "keyframe",
+        "smooth",
+        "motion"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "point"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Easy Ease In / Out",
+        "Graph Editor"
+      ]
+    },
+    {
+      "name": "Easy Ease In / Out",
+      "software": "After Effects",
+      "menu": "Animation > Keyframe Assistant",
+      "shortcut": "Shift+F9 / Ctrl+Shift+F9",
+      "addon": "",
+      "description": "Applies easing to only the incoming (Shift+F9) or outgoing (Ctrl+Shift+F9) side of the selected keyframes. Use them to make an element ease to a stop but leave sharply.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "ease",
+        "keyframe",
+        "in",
+        "out"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "point"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Easy Ease",
+        "Graph Editor"
+      ]
+    },
+    {
+      "name": "Graph Editor",
+      "software": "After Effects",
+      "menu": "Timeline Graph Editor button",
+      "shortcut": "Shift+F3",
+      "addon": "",
+      "description": "Switches the timeline to value and speed curves you can sculpt directly, giving precise control over acceleration. Where good camera moves become great — flatten the speed curve tails for silky drone-style glides.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "graph editor",
+        "curves",
+        "speed",
+        "easing"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "point",
+        "view"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Easy Ease",
+        "Keyframe Velocity"
+      ]
+    },
+    {
+      "name": "Keyframe Velocity",
+      "software": "After Effects",
+      "menu": "Animation > Keyframe Velocity",
+      "shortcut": "Ctrl+Shift+K",
+      "addon": "",
+      "description": "Sets numeric incoming and outgoing speed and influence for the selected keyframe. Useful when several shots must share identical easing values for a consistent house style.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "keyframe",
+        "velocity",
+        "influence"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "point"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Graph Editor",
+        "Keyframe Interpolation"
+      ]
+    },
+    {
+      "name": "Keyframe Interpolation",
+      "software": "After Effects",
+      "menu": "Animation > Keyframe Interpolation",
+      "shortcut": "Ctrl+Alt+K",
+      "addon": "",
+      "description": "Changes selected keyframes between linear, Bézier and hold interpolation, spatially and temporally. Fix curved position paths that should travel straight by setting spatial interpolation to linear.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "interpolation",
+        "keyframe",
+        "bezier",
+        "linear"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Toggle Hold Keyframe",
+        "Keyframe Velocity"
+      ]
+    },
+    {
+      "name": "Toggle Hold Keyframe",
+      "software": "After Effects",
+      "menu": "Animation > Toggle Hold Keyframe",
+      "shortcut": "Ctrl+Alt+H",
+      "addon": "",
+      "description": "Freezes a keyframe's value until the next keyframe, with no interpolation between. Use holds for stepped diagrams — phasing plans that snap from stage to stage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "hold",
+        "keyframe",
+        "stepped"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Keyframe Interpolation",
+        "Easy Ease"
+      ]
+    },
+    {
+      "name": "Next / Previous Keyframe",
+      "software": "After Effects",
+      "menu": "J and K keys",
+      "shortcut": "J / K",
+      "addon": "",
+      "description": "Jumps the current-time indicator to the previous (J) or next (K) visible keyframe. Keeps you landing exactly on keyframes when adjusting values, avoiding accidental in-between keys.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "keyframe",
+        "navigate",
+        "timeline"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "point",
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Animated Properties",
+        "Go to Time"
+      ]
+    },
+    {
+      "name": "Motion Blur",
+      "software": "After Effects",
+      "menu": "Layer motion blur switch + comp Enable Motion Blur",
+      "shortcut": "",
+      "addon": "",
+      "description": "Renders realistic blur on fast-moving layers when both the layer switch and the comp toggle are on. Enable it on animated labels and fast camera moves so motion feels filmed rather than pasted.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "motion blur",
+        "render",
+        "realism"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Composition Settings",
+        "Easy Ease"
+      ]
+    },
+    {
+      "name": "Parent with Pick Whip",
+      "software": "After Effects",
+      "menu": "Timeline Parent & Link column",
+      "shortcut": "",
+      "addon": "",
+      "description": "Drags the spiral pick whip from one layer to another so the child inherits the parent's transforms. Build rigs this way — parent all annotation layers to one null and move the lot together.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "parent",
+        "pick whip",
+        "rig",
+        "hierarchy"
+      ],
+      "intent_categories": [
+        "organise",
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "parenting"
+      ],
+      "related_commands": [
+        "New Null Object",
+        "Show Position"
+      ]
+    },
+    {
+      "name": "Auto-Orient",
+      "software": "After Effects",
+      "menu": "Layer > Transform > Auto-Orient",
+      "shortcut": "Ctrl+Alt+O",
+      "addon": "",
+      "description": "Makes a layer rotate automatically along its motion path, or a camera face its point of interest. Useful for arrows tracing a route through a site plan.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "auto-orient",
+        "path",
+        "rotation"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "rotate"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Show Rotation",
+        "New Camera"
+      ]
+    },
+    {
+      "name": "Go to Time",
+      "software": "After Effects",
+      "menu": "View > Go to Time",
+      "shortcut": "Alt+Shift+J",
+      "addon": "",
+      "description": "Moves the current-time indicator to an exact timecode you type. Precision matters when syncing animation hits to a music track's beats.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "time",
+        "navigate",
+        "timecode"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Next / Previous Keyframe",
+        "Set Work Area"
+      ]
+    },
+    {
+      "name": "Set Work Area",
+      "software": "After Effects",
+      "menu": "B and N keys at the current time",
+      "shortcut": "B / N",
+      "addon": "",
+      "description": "Sets the start (B) and end (N) of the work area, the range used for previews and optional render trimming. Keep the work area tight around the section you are iterating on to preview faster.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "work area",
+        "preview",
+        "range"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Trim Comp to Work Area",
+        "Preview"
+      ]
+    },
+    {
+      "name": "Trim Comp to Work Area",
+      "software": "After Effects",
+      "menu": "Composition > Trim Comp to Work Area",
+      "shortcut": "Ctrl+Shift+X",
+      "addon": "",
+      "description": "Shortens the composition's duration to match the current work area. Tidy finishing move once a shot's final length is decided.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "trim",
+        "work area",
+        "duration"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Set Work Area",
+        "Composition Settings"
+      ]
+    },
+    {
+      "name": "Preview",
+      "software": "After Effects",
+      "menu": "Preview panel / Spacebar or Numpad 0",
+      "shortcut": "Space",
+      "addon": "",
+      "description": "Plays the composition from the current time, caching frames into RAM as it goes. Watch the green cached bar — once the work area is fully cached, playback is real-time.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "preview",
+        "playback",
+        "ram"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "ram preview"
+      ],
+      "related_commands": [
+        "Set Work Area",
+        "Go to Time"
+      ]
+    },
+    {
+      "name": "Step One Frame",
+      "software": "After Effects",
+      "menu": "Page Down / Page Up (or Ctrl+Right / Ctrl+Left)",
+      "shortcut": "Page Down / Page Up",
+      "addon": "",
+      "description": "Advances or rewinds the current-time indicator a single frame; add Shift to jump ten. Frame-stepping is how you check that an ease lands exactly where intended.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "frame",
+        "step",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Preview",
+        "Next / Previous Keyframe"
+      ]
+    },
+    {
+      "name": "Go to Layer In / Out Point",
+      "software": "After Effects",
+      "menu": "I and O keys with a layer selected",
+      "shortcut": "I / O",
+      "addon": "",
+      "description": "Jumps the current-time indicator to the selected layer's in point (I) or out point (O). Pairs naturally with the trim shortcuts when conforming layers to a beat.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "in point",
+        "out point",
+        "navigate"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Trim Layer In/Out",
+        "Move Layer to Current Time"
+      ]
+    },
+    {
+      "name": "Enable Time Remapping",
+      "software": "After Effects",
+      "menu": "Layer > Time > Enable Time Remapping",
+      "shortcut": "Ctrl+Alt+T",
+      "addon": "",
+      "description": "Adds a keyframeable Time Remap property so you can speed up, slow down, freeze or reverse footage over time. The tool behind elegant speed ramps in walkthrough animations.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "time remap",
+        "speed",
+        "freeze",
+        "ramp"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Time Stretch",
+        "Time-Reverse Layer"
+      ]
+    },
+    {
+      "name": "Time Stretch",
+      "software": "After Effects",
+      "menu": "Layer > Time > Time Stretch",
+      "shortcut": "",
+      "addon": "",
+      "description": "Changes a layer's overall playback speed by a percentage, lengthening or shortening it uniformly. Use it to conform a rendered flythrough to the length the music demands.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "stretch",
+        "speed",
+        "duration"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Enable Time Remapping",
+        "Frame Blending"
+      ]
+    },
+    {
+      "name": "Frame Blending",
+      "software": "After Effects",
+      "menu": "Layer frame blending switch + comp toggle",
+      "shortcut": "",
+      "addon": "",
+      "description": "Synthesises in-between frames when footage is slowed down, using frame mix or the higher-quality pixel motion mode. Turn it on to stop retimed footage stuttering.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "frame blending",
+        "retime",
+        "smooth"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Time Stretch",
+        "Enable Time Remapping"
+      ]
+    },
+    {
+      "name": "New Mask",
+      "software": "After Effects",
+      "menu": "Layer > Mask > New Mask",
+      "shortcut": "Ctrl+Shift+N",
+      "addon": "",
+      "description": "Adds a full-frame rectangular mask to the selected layer, ready to be reshaped. Masks confine a layer to a region — the basis of reveals, split screens and sky replacements.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "mask",
+        "new",
+        "region"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Mask Feather",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Mask Feather",
+      "software": "After Effects",
+      "menu": "Press F with a masked layer selected",
+      "shortcut": "F",
+      "addon": "",
+      "description": "Reveals the Mask Feather property, which softens the mask edge by a settable amount. Feathered masks blend a graded region invisibly into the surrounding footage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "mask",
+        "feather",
+        "soften"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "New Mask",
+        "Show Mask Properties"
+      ]
+    },
+    {
+      "name": "Show Mask Properties",
+      "software": "After Effects",
+      "menu": "Press M or MM with a masked layer selected",
+      "shortcut": "M",
+      "addon": "",
+      "description": "Reveals the mask path (M) or every mask property including feather, opacity and expansion (MM). Keyframe the mask path itself to animate a wipe that follows a building edge.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "mask",
+        "properties",
+        "reveal"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "MM"
+      ],
+      "related_commands": [
+        "New Mask",
+        "Mask Feather"
+      ]
+    },
+    {
+      "name": "Track Matte",
+      "software": "After Effects",
+      "menu": "Timeline Track Matte column",
+      "shortcut": "",
+      "addon": "",
+      "description": "Uses another layer's alpha or luminance to cut the visibility of the layer below, without merging them. The standard mechanism for text-shaped reveals and map-shaped footage windows.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "matte",
+        "alpha",
+        "luma",
+        "reveal"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "TrkMat"
+      ],
+      "related_commands": [
+        "New Mask",
+        "Precompose"
+      ]
+    },
+    {
+      "name": "Roto Brush Tool",
+      "software": "After Effects",
+      "menu": "Toolbar",
+      "shortcut": "Alt+W",
+      "addon": "",
+      "description": "Paints strokes over a subject and lets After Effects propagate the selection through the shot, separating foreground from background. Use it to isolate people walking through footage so graphics can pass behind them.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "roto",
+        "rotoscoping",
+        "selection",
+        "matte"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "layer",
+        "mesh"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "rotobrush"
+      ],
+      "related_commands": [
+        "Track Matte",
+        "New Mask"
+      ]
+    },
+    {
+      "name": "Effects & Presets Panel",
+      "software": "After Effects",
+      "menu": "Window > Effects & Presets",
+      "shortcut": "Ctrl+5",
+      "addon": "",
+      "description": "Searches every effect and animation preset by name and applies them by double-click or drag. Learn to type-search here rather than trawling the Effect menu's categories.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "effects",
+        "presets",
+        "panel",
+        "search"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effect Controls Panel",
+        "Apply Last Effect"
+      ]
+    },
+    {
+      "name": "Effect Controls Panel",
+      "software": "After Effects",
+      "menu": "Window > Effect Controls",
+      "shortcut": "F3",
+      "addon": "",
+      "description": "Shows and edits the parameters of every effect on the selected layer. Your main dashboard while grading, blurring or distorting a shot.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "effects",
+        "parameters",
+        "panel"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effects & Presets Panel",
+        "Show Effects"
+      ]
+    },
+    {
+      "name": "Apply Last Effect",
+      "software": "After Effects",
+      "menu": "Effect > (last effect at top of menu)",
+      "shortcut": "Ctrl+Alt+Shift+E",
+      "addon": "",
+      "description": "Reapplies the most recently used effect to the current selection. Speeds up applying the same treatment across a batch of shots.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "effects",
+        "repeat",
+        "apply"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Effects & Presets Panel",
+        "Remove All Effects"
+      ]
+    },
+    {
+      "name": "Remove All Effects",
+      "software": "After Effects",
+      "menu": "Effect > Remove All",
+      "shortcut": "Ctrl+Shift+E",
+      "addon": "",
+      "description": "Strips every effect from the selected layers in one go. A clean reset when an experimental grading stack has gone muddy.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "effects",
+        "remove",
+        "reset"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Apply Last Effect",
+        "Effect Controls Panel"
+      ]
+    },
+    {
+      "name": "Glow Effect",
+      "software": "After Effects",
+      "menu": "Effect > Stylize > Glow",
+      "shortcut": "",
+      "addon": "",
+      "description": "Brightens and blooms the brightest areas of a layer, simulating light spill. A staple for making evening render windows and light fittings feel luminous.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "glow",
+        "light",
+        "stylize"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Curves Effect",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Curves Effect",
+      "software": "After Effects",
+      "menu": "Effect > Colour Correction > Curves",
+      "shortcut": "",
+      "addon": "",
+      "description": "Remaps tonal values along an editable curve, per channel if needed. The precision tool for lifting shadows in a dark interior render or adding gentle contrast.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "curves",
+        "colour",
+        "contrast",
+        "grade"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Lumetri Colour Effect",
+        "Glow Effect"
+      ]
+    },
+    {
+      "name": "Lumetri Colour Effect",
+      "software": "After Effects",
+      "menu": "Effect > Colour Correction > Lumetri Colour",
+      "shortcut": "",
+      "addon": "",
+      "description": "A full grading suite — exposure, colour wheels, HSL secondaries, LUTs and vignettes — in a single effect. Apply it to an adjustment layer to give a whole sequence a coherent cinematic grade.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "lumetri",
+        "grade",
+        "colour",
+        "lut"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "lumetri"
+      ],
+      "related_commands": [
+        "Curves Effect",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Fractal Noise Effect",
+      "software": "After Effects",
+      "menu": "Effect > Noise & Grain > Fractal Noise",
+      "shortcut": "",
+      "addon": "",
+      "description": "Generates evolving procedural noise used for fog, clouds, water shimmer and animated textures. Animate its Evolution property on a solid to add drifting atmosphere over a static render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "fractal noise",
+        "procedural",
+        "fog",
+        "texture"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Displacement Map Effect",
+        "New Solid"
+      ]
+    },
+    {
+      "name": "Displacement Map Effect",
+      "software": "After Effects",
+      "menu": "Effect > Distort > Displacement Map",
+      "shortcut": "",
+      "addon": "",
+      "description": "Shifts a layer's pixels based on the luminance of another layer. Drive it with fractal noise for heat-haze or rippling water reflections in front of a facade.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "displacement",
+        "distort",
+        "ripple"
+      ],
+      "intent_categories": [
+        "visualise",
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Fractal Noise Effect",
+        "Effect Controls Panel"
+      ]
+    },
+    {
+      "name": "Fast Box Blur Effect",
+      "software": "After Effects",
+      "menu": "Effect > Blur & Sharpen > Fast Box Blur",
+      "shortcut": "",
+      "addon": "",
+      "description": "An efficient blur with iterations for smoother falloff. Blur a duplicated background plate to fake shallow depth of field behind foreground titles.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "blur",
+        "depth",
+        "soften"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Glow Effect",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Gradient Ramp Effect",
+      "software": "After Effects",
+      "menu": "Effect > Generate > Gradient Ramp",
+      "shortcut": "",
+      "addon": "",
+      "description": "Fills a layer with a linear or radial gradient between two colours. Applied to a solid, it makes quick skies, vignettes and background washes for diagram scenes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "gradient",
+        "generate",
+        "background"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "ramp"
+      ],
+      "related_commands": [
+        "New Solid",
+        "Fast Box Blur Effect"
+      ]
+    },
+    {
+      "name": "3D Layer Switch",
+      "software": "After Effects",
+      "menu": "Timeline 3D switch (cube icon)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Converts a 2D layer into a 3D layer with position, rotation and material properties in three axes. Flick it on to arrange plans, sections and photos in space for a parallax fly-through.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "3d",
+        "layer",
+        "switch",
+        "space"
+      ],
+      "intent_categories": [
+        "transform",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "New Camera",
+        "New Light"
+      ]
+    },
+    {
+      "name": "New Camera",
+      "software": "After Effects",
+      "menu": "Layer > New > Camera",
+      "shortcut": "Ctrl+Alt+Shift+C",
+      "addon": "",
+      "description": "Adds a camera layer that views the 3D layers in the comp, with real lens parameters like focal length and depth of field. One animated camera gliding past layered drawings instantly elevates a portfolio film.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "camera",
+        "3d",
+        "lens"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "3D Layer Switch",
+        "Unified Camera Tool"
+      ]
+    },
+    {
+      "name": "Unified Camera Tool",
+      "software": "After Effects",
+      "menu": "Toolbar",
+      "shortcut": "C",
+      "addon": "",
+      "description": "Orbits, pans and dollies the 3D view with the three mouse buttons; pressing C cycles the individual camera tools. Use it to compose 3D shots interactively before keyframing the camera.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "camera",
+        "orbit",
+        "navigate",
+        "3d"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "orbit tool"
+      ],
+      "related_commands": [
+        "New Camera",
+        "3D Layer Switch"
+      ]
+    },
+    {
+      "name": "New Light",
+      "software": "After Effects",
+      "menu": "Layer > New > Light",
+      "shortcut": "Ctrl+Alt+Shift+L",
+      "addon": "",
+      "description": "Adds a point, spot, parallel or ambient light that illuminates 3D layers and can cast shadows. Combine a soft spot with layer shadows to give floating drawings physical presence.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "light",
+        "3d",
+        "shadow"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "New Camera",
+        "Material Options"
+      ]
+    },
+    {
+      "name": "Material Options",
+      "software": "After Effects",
+      "menu": "Press AA with a 3D layer selected",
+      "shortcut": "AA",
+      "addon": "",
+      "description": "Reveals a 3D layer's material properties — whether it casts and accepts shadows, and how it responds to lights. Tune these when a layered 3D collage needs believable shadowing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "material",
+        "3d",
+        "shadows"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "New Light",
+        "3D Layer Switch"
+      ]
+    },
+    {
+      "name": "3D Camera Tracker",
+      "software": "After Effects",
+      "menu": "Effect > Perspective > 3D Camera Tracker (or Animation > Track Camera)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Analyses footage to reconstruct the original camera move, letting you pin 3D text and graphics into the scene. The key to locking project labels onto drone footage of a site.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "tracking",
+        "camera",
+        "match move",
+        "3d"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "track camera"
+      ],
+      "related_commands": [
+        "Track Motion",
+        "New Camera"
+      ]
+    },
+    {
+      "name": "Track Motion",
+      "software": "After Effects",
+      "menu": "Animation > Track Motion (Tracker panel)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Follows a feature through footage and applies its movement to another layer or a stabilisation. Use it to pin a callout to a window that drifts through a handheld shot.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "tracking",
+        "motion",
+        "pin"
+      ],
+      "intent_categories": [
+        "analyse",
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "point tracker"
+      ],
+      "related_commands": [
+        "3D Camera Tracker",
+        "Warp Stabiliser"
+      ]
+    },
+    {
+      "name": "Warp Stabiliser",
+      "software": "After Effects",
+      "menu": "Effect > Distort > Warp Stabilizer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Automatically removes camera shake from footage, with options from smooth motion to a fully locked shot. First aid for handheld site footage before it goes anywhere near a client film.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "stabilise",
+        "shake",
+        "footage"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "warp stabilizer"
+      ],
+      "related_commands": [
+        "Track Motion",
+        "3D Camera Tracker"
+      ]
+    },
+    {
+      "name": "Add Expression",
+      "software": "After Effects",
+      "menu": "Animation > Add Expression (Alt+click a stopwatch)",
+      "shortcut": "Alt+Shift+=",
+      "addon": "",
+      "description": "Attaches a small script to a property so its value is computed rather than keyframed; Alt+clicking the stopwatch does the same. The gateway to procedural animation — start by linking one property to another.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "expression",
+        "script",
+        "procedural"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "point",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "alt-click stopwatch"
+      ],
+      "related_commands": [
+        "Wiggle Expression",
+        "Loop Expression"
+      ]
+    },
+    {
+      "name": "Wiggle Expression",
+      "software": "After Effects",
+      "menu": "Expression: wiggle(frequency, amplitude)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Adds continuous random variation to a property — wiggle(2, 15) on position gives a gentle handheld drift. Sparingly applied to a camera or light, it stops digital moves feeling sterile.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "wiggle",
+        "expression",
+        "random",
+        "handheld"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "point",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "wiggle()"
+      ],
+      "related_commands": [
+        "Add Expression",
+        "Loop Expression"
+      ]
+    },
+    {
+      "name": "Loop Expression",
+      "software": "After Effects",
+      "menu": "Expression: loopOut(\"cycle\")",
+      "shortcut": "",
+      "addon": "",
+      "description": "Repeats a property's keyframes indefinitely — cycle, ping-pong or continue modes — without duplicating them. Ideal for endlessly rotating sun-path diagrams or pulsing highlight markers.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "loop",
+        "expression",
+        "cycle",
+        "repeat"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "point",
+        "layer"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "loopOut"
+      ],
+      "related_commands": [
+        "Add Expression",
+        "Wiggle Expression"
+      ]
+    },
+    {
+      "name": "Add to Render Queue",
+      "software": "After Effects",
+      "menu": "Composition > Add to Render Queue",
+      "shortcut": "Ctrl+M",
+      "addon": "",
+      "description": "Queues the active composition for rendering inside After Effects, with render settings and output modules per item. Use it for lossless masters and image-sequence outputs.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "render",
+        "queue",
+        "output"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Add to Media Encoder Queue",
+        "Output Module Settings"
+      ]
+    },
+    {
+      "name": "Add to Media Encoder Queue",
+      "software": "After Effects",
+      "menu": "Composition > Add to Adobe Media Encoder Queue",
+      "shortcut": "Ctrl+Alt+M",
+      "addon": "",
+      "description": "Sends the comp to Adobe Media Encoder for background encoding to delivery formats like H.264. Lets you keep working in After Effects while client-review MP4s render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "media encoder",
+        "h264",
+        "export",
+        "background"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "AME"
+      ],
+      "related_commands": [
+        "Add to Render Queue",
+        "Output Module Settings"
+      ]
+    },
+    {
+      "name": "Output Module Settings",
+      "software": "After Effects",
+      "menu": "Render Queue > Output Module",
+      "shortcut": "",
+      "addon": "",
+      "description": "Sets the format, codec, channels and post-render actions for a queued render, including alpha output. Choose a format with an alpha channel when rendering overlays destined for an edit.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "output",
+        "codec",
+        "alpha",
+        "render"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Add to Render Queue",
+        "Pre-render"
+      ]
+    },
+    {
+      "name": "Pre-render",
+      "software": "After Effects",
+      "menu": "Composition > Pre-render",
+      "shortcut": "",
+      "addon": "",
+      "description": "Renders a heavy comp to disk and substitutes the movie as a proxy, so downstream comps stop recalculating it. Reach for it when a nested particle or 3D comp is strangling preview speed.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "pre-render",
+        "proxy",
+        "performance"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Create Proxy",
+        "Add to Render Queue"
+      ]
+    },
+    {
+      "name": "Create Proxy",
+      "software": "After Effects",
+      "menu": "File > Create Proxy > Movie",
+      "shortcut": "",
+      "addon": "",
+      "description": "Generates a low-resolution stand-in for heavy footage that After Effects uses for previews but swaps out at render time. Essential when cutting 4K render sequences on a modest workstation.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "proxy",
+        "performance",
+        "footage"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Pre-render",
+        "Import File"
+      ]
+    },
+    {
+      "name": "Collect Files",
+      "software": "After Effects",
+      "menu": "File > Dependencies > Collect Files",
+      "shortcut": "",
+      "addon": "",
+      "description": "Copies the project and every asset it uses into one folder for archiving or handover. The After Effects equivalent of packaging an InDesign document — run it before archiving a finished film.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "collect",
+        "archive",
+        "handover",
+        "dependencies"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Increment and Save",
+        "Import File"
+      ]
+    },
+    {
+      "name": "Zoom Viewer In / Out",
+      "software": "After Effects",
+      "menu": ", and . keys over the Composition panel",
+      "shortcut": ", / .",
+      "addon": "",
+      "description": "Zooms the composition viewer out (,) and in (.) around the view centre. Note this changes your view only — layer scale is untouched.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "zoom",
+        "viewer",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit View",
+        "Hand Tool"
+      ]
+    },
+    {
+      "name": "Fit View",
+      "software": "After Effects",
+      "menu": "Shift+/ over the Composition panel",
+      "shortcut": "Shift+/",
+      "addon": "",
+      "description": "Fits the composition into the viewer at up to 100 percent zoom. The quick reset after working zoomed into a corner of the frame.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "fit",
+        "view",
+        "zoom"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Zoom Viewer In / Out",
+        "Hand Tool"
+      ]
+    },
+    {
+      "name": "Hand Tool",
+      "software": "After Effects",
+      "menu": "Toolbar (or hold Spacebar)",
+      "shortcut": "H",
+      "addon": "",
+      "description": "Pans the view within the Composition panel; holding the spacebar gives the same behaviour temporarily. Everyday navigation while inspecting details of a frame.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "hand",
+        "pan",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "pan"
+      ],
+      "related_commands": [
+        "Zoom Viewer In / Out",
+        "Fit View"
+      ]
+    },
+    {
+      "name": "Take Snapshot",
+      "software": "After Effects",
+      "menu": "Composition panel snapshot button",
+      "shortcut": "Shift+F5",
+      "addon": "",
+      "description": "Stores the current frame in memory; hold F5 to flash it back over the viewer for comparison. Perfect for before-and-after checks while grading a shot.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "snapshot",
+        "compare",
+        "grade"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Save Frame As",
+        "Lumetri Colour Effect"
+      ]
+    },
+    {
+      "name": "Show Rulers",
+      "software": "After Effects",
+      "menu": "View > Show Rulers",
+      "shortcut": "Ctrl+R",
+      "addon": "",
+      "description": "Toggles rulers around the composition viewer, from which guides can be dragged. Useful when aligning lower-third titles to a consistent margin across shots.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "rulers",
+        "guides",
+        "align"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Guides",
+        "Show Grid"
+      ]
+    },
+    {
+      "name": "Show Guides",
+      "software": "After Effects",
+      "menu": "View > Show Guides",
+      "shortcut": "Ctrl+;",
+      "addon": "",
+      "description": "Toggles visibility of guides dragged from the rulers. Set up title-safe margins for text placement and keep every caption on the same lines.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "guides",
+        "align",
+        "layout"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Rulers",
+        "Show Grid"
+      ]
+    },
+    {
+      "name": "Show Grid",
+      "software": "After Effects",
+      "menu": "View > Show Grid",
+      "shortcut": "Ctrl+'",
+      "addon": "",
+      "description": "Overlays a non-rendering grid on the composition viewer for alignment. Helpful when laying out arrays of small diagrams or aligning multi-panel comparisons.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "grid",
+        "align",
+        "overlay"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Guides",
+        "Show Rulers"
+      ]
+    },
+    {
+      "name": "Toggle Transparency Grid",
+      "software": "After Effects",
+      "menu": "Composition panel Toggle Transparency Grid button",
+      "shortcut": "",
+      "addon": "",
+      "description": "Replaces the comp background with a chequerboard so genuine transparency is visible. Check it before rendering overlays with alpha for the edit suite.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "transparency",
+        "alpha",
+        "chequerboard"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Output Module Settings",
+        "Take Snapshot"
+      ]
+    },
+    {
+      "name": "Viewer Resolution",
+      "software": "After Effects",
+      "menu": "Composition panel resolution menu (Full / Half / Quarter)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Drops the preview resolution to speed up interaction and caching without affecting the final render. Work at Half on heavy comps and flick to Full only for quality checks.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "resolution",
+        "preview",
+        "performance"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Preview",
+        "Region of Interest"
+      ]
+    },
+    {
+      "name": "Region of Interest",
+      "software": "After Effects",
+      "menu": "Composition panel Region of Interest button",
+      "shortcut": "",
+      "addon": "",
+      "description": "Restricts rendering to a drawn rectangle of the frame, cutting preview times dramatically. Draw it around the one element you are tweaking in an otherwise heavy shot.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "region",
+        "preview",
+        "performance"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "ROI"
+      ],
+      "related_commands": [
+        "Viewer Resolution",
+        "Preview"
+      ]
+    },
+    {
+      "name": "Project Panel",
+      "software": "After Effects",
+      "menu": "Window > Project",
+      "shortcut": "Ctrl+0",
+      "addon": "",
+      "description": "Toggles the Project panel, where all imported footage, solids and comps live in folders. Keep it ruthlessly organised — a films-worth of unlabelled comps is a maintenance nightmare.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/after-effects/using/keyboard-shortcuts-reference.html",
+      "tags": [
+        "project",
+        "panel",
+        "organise"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Import File",
+        "Add Footage to Comp"
+      ]
+    }
+  ]
+}
