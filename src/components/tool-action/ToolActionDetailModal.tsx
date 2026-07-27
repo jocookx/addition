@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { SaveButton } from "@/components/legacy/SaveButton";
 import { TagChips } from "@/components/legacy/TagChips";
 import type { CommandListItem } from "@/domain/command";
+import { addRecentlyViewed } from "@/lib/recently-viewed";
 import { getSoftwareTerms, type AccessType } from "@/lib/software-terminology";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -313,6 +315,30 @@ export function ToolActionDetailModal({
   const name = cleanName(command.name);
   const isGrasshopper = command.software === "Grasshopper";
 
+  // The phone back gesture / Android back button must close the modal, not
+  // navigate away from the site. Push a history entry while the modal is
+  // open; popping it (back gesture) closes the modal, and closing the modal
+  // any other way consumes the entry.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  // Feed the dashboard "Jump back in" row — every command opened here counts
+  // as viewed, including in-modal navigation to related commands.
+  useEffect(() => {
+    addRecentlyViewed({ id: command.id, label: cleanName(command.name), software: command.software });
+  }, [command.id, command.name, command.software]);
+  useEffect(() => {
+    const handlePop = () => onCloseRef.current();
+    window.history.pushState({ cmdModal: true }, "");
+    window.addEventListener("popstate", handlePop);
+    return () => {
+      window.removeEventListener("popstate", handlePop);
+      if (window.history.state?.cmdModal) window.history.back();
+    };
+  }, []);
+
   // Related: same software, same top-level menu group (or same library for GH/Dynamo)
   const relatedCommands = commands
     .filter((item) => item.id !== command.id && item.software === command.software)
@@ -326,7 +352,10 @@ export function ToolActionDetailModal({
 
   const hasIntentData = (command.intentCategories?.length ?? 0) > 0 || (command.objectTypes?.length ?? 0) > 0;
 
-  return (
+  // Portal to <body>: rendered inline, the page's sticky toolbar and bottom
+  // nav paint over the modal on iOS — an ancestor stacking-context quirk that
+  // only WebKit exhibits. From <body> no ancestor can trap or cover it.
+  return createPortal(
     <div className="cmd-modal-backdrop" onClick={onClose} role="presentation">
       <section
         className="cmd-modal"
@@ -452,6 +481,7 @@ export function ToolActionDetailModal({
           </div>
         </div>
       </section>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -61,3 +61,6 @@ next-env.d.ts
 
 # local Claude Code settings
 .claude/settings.local.json
+
+# Local test artifacts
+shot_*.png

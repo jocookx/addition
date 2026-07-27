@@ -72,6 +72,16 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 :root {
+  /* Tell the browser this is a dark UI. Mobile browsers ignore
+     ::-webkit-scrollbar styling and colour their overlay scrollbars (and
+     native form controls) from color-scheme — without this they assume a
+     light page and draw white scrollbars over the dark content. */
+  color-scheme: dark;
+
+  /* Screen-edge gutter on phones — every full-bleed element must use the
+     same value or it overflows the viewport and forces sideways panning. */
+  --mobile-gutter: 12px;
+
   /* Expose the safe-area env values as CSS custom properties so
      calc() expressions can reference them easily                */
   --safe-top:    env(safe-area-inset-top,    0px);
@@ -596,6 +606,7 @@ a, button, [role="button"] {
 }
 
 html[data-theme="light"] {
+  color-scheme: light;
   --rf-bg:         #f4f5f8;
   --rf-card:       #ffffff;
   --rf-divider:    #e8eaf0;
@@ -1663,7 +1674,25 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 
 @media (max-width: 760px) {
   .directory-toolbar { flex-direction: column; align-items: stretch; gap: 10px; }
-  .directory-toolbar .segment-nav { width: 100%; overflow-x: auto; }
+  .directory-toolbar .segment-nav {
+    width: 100%;
+    overflow-x: auto;
+    /* Swipeable row — no scrollbar over the tabs */
+    scrollbar-width: none;
+  }
+  .directory-toolbar .segment-nav::-webkit-scrollbar { display: none; }
+}
+
+/* Mobile: .main's side padding shrinks to --sp-md, so the full-bleed margins
+   must match it — the desktop -32px margins overflow the 24px gutter and
+   force the page to scroll sideways. */
+@media (max-width: 860px) {
+  .directory-toolbar {
+    margin-left: calc(var(--mobile-gutter) * -1);
+    margin-right: calc(var(--mobile-gutter) * -1);
+    padding-left: var(--mobile-gutter);
+    padding-right: var(--mobile-gutter);
+  }
 }
 
 .segment-nav {
@@ -3475,9 +3504,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 .reference-view {
-  grid-template-columns: minmax(280px, 1fr) auto minmax(340px, max-content);
-  align-items: center;
-  column-gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
   row-gap: 14px;
 }
 
@@ -3486,6 +3513,89 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   display: flex;
   align-items: center;
   min-width: 260px;
+  max-width: 560px;
+}
+
+/* Control bar — intent chips left, view toggle right */
+.commands-controlbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.commands-controlbar-spacer { flex: 1; }
+
+.cmd-intent-chiprow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+.cmd-intent-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.cmd-intent-chip {
+  border: 1px solid var(--rf-border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.03);
+  color: var(--rf-sub);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  padding: 7px 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.cmd-intent-chip:hover { color: var(--rf-white); border-color: rgba(255,255,255,0.3); }
+.cmd-intent-chip.active {
+  background: rgba(124,58,237,0.16);
+  border-color: rgba(124,58,237,0.45);
+  color: #c4b5fd;
+}
+html[data-theme="light"] .cmd-intent-chip { background: rgba(0,0,0,0.03); }
+html[data-theme="light"] .cmd-intent-chip.active {
+  background: rgba(124,58,237,0.10);
+  border-color: rgba(124,58,237,0.35);
+  color: #6d28d9;
+}
+
+.cmd-refine-row { padding: 0; }
+
+/* Text-only command card — no media, so no giant tile; keep the title
+   clear of the absolutely-positioned learned check */
+.cmd-card--text .card-body { padding-right: 40px; }
+
+@media (max-width: 860px) {
+  /* Chips swipe in one line on phones */
+  .cmd-intent-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .cmd-intent-chips::-webkit-scrollbar { display: none; }
+
+  /* Switcher + tabs scroll away; only the search stays pinned — the list
+     is the product, the search is how you drive it. */
+  .directory-toolbar { position: static; }
+  .reference-view .command-discovery-search {
+    position: sticky;
+    top: 0;
+    z-index: 25;
+    max-width: none;
+    margin: 0 calc(-1 * var(--mobile-gutter));
+    padding: 8px var(--mobile-gutter);
+    background: rgba(8,11,17,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  html[data-theme="light"] .reference-view .command-discovery-search {
+    background: rgba(244,245,248,0.92);
+  }
 }
 
 .command-discovery-search .toolbar-search-input {
@@ -3493,30 +3603,16 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 .reference-view > .cmd-sentence-filter {
-  justify-content: flex-end;
   min-width: 0;
   padding: 0;
 }
 
-.reference-view > .commands-toolbar > .commands-toolbar-right,
-.commands-toolbar-right {
-  white-space: nowrap;
-}
-
-@media (max-width: 1260px) {
-  .reference-view {
-    grid-template-columns: minmax(260px, 1fr) auto;
-  }
-
-  .reference-view > .cmd-sentence-filter {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-  }
-}
-
 @media (max-width: 760px) {
   .reference-view {
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr) — a bare 1fr track has an `auto` minimum, so the
+       toolbar's intrinsic width would push the column wider than the
+       screen and clip the whole commands view. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .reference-view > .commands-toolbar {
@@ -3528,6 +3624,17 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   .commands-toolbar-right {
     grid-column: 1 / -1;
     width: 100%;
+  }
+
+  .command-discovery-search {
+    min-width: 0;
+  }
+
+  /* Match the specificity of the desktop nowrap rule above */
+  .reference-view > .commands-toolbar > .commands-toolbar-right,
+  .commands-toolbar-right {
+    white-space: normal;
+    flex-wrap: wrap;
   }
 }
 
@@ -3674,7 +3781,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   top: calc(100% + 10px);
   left: 0;
   z-index: 100;
-  width: 320px;
+  width: min(320px, calc(100vw - 24px));
   max-height: 78vh;
   overflow-y: auto;
   background: var(--rf-card);
@@ -4189,7 +4296,8 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 .cmd-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 400;
+  /* Above the mobile bottom nav (200) and sticky toolbar (10) */
+  z-index: 500;
   background: rgba(5, 6, 8, 0.7);
   backdrop-filter: blur(8px);
   display: flex;
@@ -5235,7 +5343,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   }
 
   .main {
-    padding: var(--sp-md) var(--sp-md) calc(60px + env(safe-area-inset-bottom, 0px) + var(--sp-md));
+    padding: var(--mobile-gutter) var(--mobile-gutter) calc(60px + env(safe-area-inset-bottom, 0px) + var(--sp-md));
   }
 
   .mobile-bottom-nav {
@@ -5331,21 +5439,43 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 @media (max-width: 640px) {
   .sw-prompt-grid,
   .cmd-category-grid,
-  .cmd-subcat-grid,
-  .commands-grid {
+  .cmd-subcat-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Two-up command cards on phones — full-width cards read huge */
+  .commands-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .reference-search {
     min-width: 0;
   }
 
+  /* Full-screen sheet on phones — feels native and the Close control is
+     pinned so there is always a visible way out of a command. */
   .cmd-modal-backdrop {
-    padding: 12px;
+    padding: 0;
+    align-items: stretch;
   }
 
   .cmd-modal {
-    padding: 18px;
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: 0;
+    padding: 0 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cmd-modal-head {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 0 -16px;
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px;
+    background: var(--rf-card);
+    border-bottom: 1px solid var(--rf-divider);
   }
 
   .cmd-modal-title-wrap h3 {
@@ -6014,13 +6144,17 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 .player.video-maximized .lesson-panel,
-.player.video-maximized .player-lesson-bar {
+.player.video-maximized .player-lesson-bar,
+.player.video-maximized .course-complete-banner {
   display: none;
 }
 
 .player.video-maximized .video-wrap {
+  position: relative;
   aspect-ratio: auto;
   min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
   border-radius: 0;
   border: 0;
 }
@@ -6028,6 +6162,13 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 .player.video-maximized .video-wrap iframe {
   position: static;
   height: 100vh;
+  height: 100dvh;
+}
+
+/* Keep the exit-fullscreen button clear of notches / status bars */
+.player.video-maximized .video-max-btn {
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  right: calc(10px + env(safe-area-inset-right, 0px));
 }
 
 /* Lesson panel (sidebar) */
@@ -6329,7 +6470,31 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 /* Responsive: player stacks on tablet/mobile */
 @media (max-width: 900px) {
   .player { grid-template-columns: 1fr; }
-  .lesson-panel { position: static; max-height: none; }
+  .lesson-panel { position: static; max-height: none; overflow: visible; }
+}
+
+/* Phone: pin the video to the top of the screen; the lesson bar and course
+   outline scroll beneath it. The video column is flattened (display:contents)
+   so the video can stick against the page scroll container — a sticky child
+   inside a grid area can only travel within its own row. */
+@media (max-width: 860px) {
+  .player {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .player-video-col { display: contents; }
+  .video-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    /* Full-bleed across the .main gutter so nothing scrolls past its edges */
+    margin: 0 calc(-1 * var(--mobile-gutter));
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 @media (max-width: 640px) {
@@ -9319,14 +9484,166 @@ html[data-theme="light"] .pl-enrolled-badge {
 
 /* ── Home / Dashboard (ported from vanilla app.css) ───────────────────────── */
 
+/* Launcher layout — one prioritised column, ordered by moment frequency */
 .home-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.45fr);
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  align-items: start;
+  max-width: 720px;
 }
-.home-main { display: flex; flex-direction: column; gap: 14px; }
-.home-side { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Daily rep row — streak + due practice, one tap into flashcards ── */
+.home-rep {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+}
+.home-rep-streak {
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(236,236,242,0.35);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.home-rep-streak.is-lit { color: #fbbf24; }
+.home-rep-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.home-rep-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--rf-white);
+}
+.home-rep-sub {
+  font-size: 12px;
+  color: var(--rf-muted);
+}
+.home-rep-cta {
+  flex-shrink: 0;
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
+/* ── Progress snapshot strip ── */
+.home-snapshot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: border-color 0.15s;
+}
+.home-snapshot:hover { border-color: rgba(124,58,237,0.35); }
+.home-snap-item {
+  font-size: 12px;
+  color: var(--rf-muted);
+  white-space: nowrap;
+}
+.home-snap-item strong {
+  font-size: 14px;
+  color: var(--rf-white);
+  margin-right: 3px;
+}
+.home-snap-more {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(167,139,250,0.8);
+  white-space: nowrap;
+}
+
+/* ── Jump back in — recently viewed command chips ── */
+.home-recents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.home-recents-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home-recent-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  text-decoration: none;
+  border: 1px solid var(--rf-border);
+  border-radius: 10px;
+  padding: 9px 13px;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 0.15s, background 0.15s;
+}
+.home-recent-chip:hover {
+  border-color: rgba(124,58,237,0.42);
+  background: rgba(124,58,237,0.08);
+}
+.home-recent-chip-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--rf-white);
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
+.home-recent-chip-sw {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--rf-muted);
+}
+html[data-theme="light"] .home-recent-chip { background: rgba(0,0,0,0.03); }
+html[data-theme="light"] .home-recent-chip:hover { background: rgba(124,58,237,0.06); }
+
+/* ── Quiet explore links ── */
+.home-explore {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 2px 2px 8px;
+}
+.home-explore-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rf-muted);
+  text-decoration: none;
+  border: 1px solid var(--rf-border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.home-explore-link:hover {
+  color: var(--rf-white);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* ── Header upgrade link (quiet, replaces the old header button) ── */
+.dash-upgrade-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 8px;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  color: rgba(167,139,250,0.85);
+  cursor: pointer;
+}
+.dash-upgrade-link:hover { color: #c4b5fd; }
+
+html[data-theme="light"] .home-rep-streak { color: rgba(20,20,40,0.35); }
+html[data-theme="light"] .home-rep-streak.is-lit { color: #d97706; }
+html[data-theme="light"] .home-snap-more,
+html[data-theme="light"] .dash-upgrade-link { color: rgba(109,40,217,0.8); }
 
 /* Continue / Start Learning hero */
 .home-hero {
@@ -9600,7 +9917,7 @@ html[data-theme="light"] .home-tiny--done .home-tiny-label { color: #16a34a; }
 }
 
 @media (max-width: 860px) {
-  .home-layout { grid-template-columns: 1fr; }
+
   .home-hero { grid-template-columns: 140px minmax(0,1fr); }
 }
 @media (max-width: 520px) {
@@ -9874,7 +10191,8 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 @media (max-width: 700px) {
   .dash-shell { padding: 16px; gap: 12px; }
   .dash-header { padding: 14px 16px; flex-direction: column; align-items: flex-start; }
-  .dash-tab-bar { width: 100%; overflow-x: auto; }
+  .dash-tab-bar { width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .dash-tab-bar::-webkit-scrollbar { display: none; }
   .dash-path-card { flex-direction: column; align-items: flex-start; }
   .dash-path-card-cta { width: 100%; justify-content: center; }
 }
@@ -11372,7 +11690,10 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
     height: auto;
     flex-direction: row;
     overflow-x: auto;
+    scrollbar-width: none;
   }
+  .adm-portal-sidebar::-webkit-scrollbar,
+  .adm-portal-nav::-webkit-scrollbar { display: none; }
   .adm-portal-brand {
     border-bottom: none;
     border-right: 1px solid rgba(255,255,255,0.065);
@@ -11388,6 +11709,7 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
     padding: 6px;
     gap: 2px;
     overflow-x: auto;
+    scrollbar-width: none;
   }
   .adm-nav-group { display: contents; }
   .adm-nav-group-label { display: none; }
@@ -13875,7 +14197,8 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
   z-index: 30;
   display: grid;
   gap: 10px;
-  min-width: 300px;
+  min-width: min(300px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
   padding: 12px;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
@@ -16343,7 +16666,8 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 .upgrade-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  /* Above the mobile bottom nav (200) and sticky toolbar (10) */
+  z-index: 500;
   display: grid;
   place-items: center;
   padding: 20px;
@@ -17257,6 +17581,20 @@ html[data-theme="light"] .cmd-preview-media {
   .commands-row-layout {
     display: block;
   }
+
+  /* No preview panel at this width — rows must fit the screen. The desktop
+     template's 120px/180px column minimums add up wider than a phone and
+     were the source of the sideways-panning bug. */
+  .commands-row-layout .cmd-list-row {
+    grid-template-columns: 34px 22px minmax(0, 0.6fr) minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 860px) {
+  /* .cmd-list-meta is hidden at this width — collapse to four tracks */
+  .commands-row-layout .cmd-list-row {
+    grid-template-columns: 34px 22px minmax(0, 1fr) auto;
+  }
 }
 
 /* ── Dashboard path section ─────────────────────────────────────────────── */
@@ -17671,6 +18009,7 @@ html[data-theme="light"] .progress-course-pct   { color: rgba(20,20,40,0.45); }
   position: fixed;
   z-index: 9999;
   width: 292px;
+  max-width: calc(100vw - 24px);
   padding: 18px 18px 14px;
   border-radius: 16px;
   background: #1c1d20;
@@ -17689,15 +18028,20 @@ html[data-theme="light"] .progress-course-pct   { color: rgba(20,20,40,0.45); }
 .fvt--combos    { --fvt-accent: #d97706; }
 .fvt--practice  { --fvt-accent: #db2777; }
 
-/* Entrance / exit animations per arrow direction */
-.fvt--in.fvt--arrow-left   { animation: fvtInLeft  0.28s cubic-bezier(0.34,1.4,0.64,1) both; }
-.fvt--in.fvt--arrow-up     { animation: fvtInUp    0.28s cubic-bezier(0.34,1.4,0.64,1) both; }
-.fvt--in.fvt--arrow-down   { animation: fvtInDown  0.28s cubic-bezier(0.34,1.4,0.64,1) both; }
+/* Entrance / exit animations per arrow direction.
+   The card's top/left are the final measured position, so every keyframe
+   must end at transform:none — a lingering translate would shift the card
+   off its computed spot (and off-screen on small viewports). */
+.fvt--in                   { animation: fvtInCenter 0.28s cubic-bezier(0.34,1.4,0.64,1) both; }
+.fvt--in.fvt--arrow-left   { animation-name: fvtInLeft; }
+.fvt--in.fvt--arrow-up     { animation-name: fvtInUp; }
+.fvt--in.fvt--arrow-down   { animation-name: fvtInDown; }
 .fvt--out { animation: fvtOut 0.22s ease forwards; }
 
-@keyframes fvtInLeft  { from { opacity:0; transform:translateX(-10px) translateY(-50%); } to { opacity:1; transform:translateX(0) translateY(-50%); } }
-@keyframes fvtInUp    { from { opacity:0; transform:translateX(-50%) translateY(-8px); }  to { opacity:1; transform:translateX(-50%) translateY(0); } }
-@keyframes fvtInDown  { from { opacity:0; transform:translateX(-50%) translateY(8px); }   to { opacity:1; transform:translateX(-50%) translateY(0); } }
+@keyframes fvtInLeft   { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:none; } }
+@keyframes fvtInUp     { from { opacity:0; transform:translateY(-8px); }  to { opacity:1; transform:none; } }
+@keyframes fvtInDown   { from { opacity:0; transform:translateY(8px); }   to { opacity:1; transform:none; } }
+@keyframes fvtInCenter { from { opacity:0; transform:scale(0.94); }       to { opacity:1; transform:none; } }
 @keyframes fvtOut     { from { opacity:1; } to { opacity:0; transform:scale(0.94); } }
 
 /* Arrows — each direction */
@@ -18043,6 +18387,59 @@ html[data-theme="light"] .toast-close:hover { color: rgba(20,20,40,0.6); }
     left: 12px;
   }
   .toast {
+    max-width: 100%;
+  }
+}
+
+/* ── Mobile: vertical scrolling only ─────────────────────────────────────────
+   Below the mobile breakpoint the page must never scroll sideways — content
+   always fits the screen width. Components reflow to a single column in
+   their own rules above; this layer enforces the invariant for anything
+   that slips through (long jargon words, wide media, fixed-width strays).
+   Deliberate exceptions are inner chip/tab rows that scroll within their
+   own bounds (.segment-nav, .dash-tab-bar, .ws-filter-group). */
+@media (max-width: 860px) {
+  /* Marketing pages scroll on the body; app pages scroll inside .main.
+     Neither may ever pan horizontally. */
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  .main {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  /* The bulletproof guard: on .main, clip computes to hidden (its y-axis
+     scrolls), and a hidden axis can still be panned programmatically —
+     tapping a focusable element that pokes past the edge scrolls the whole
+     page sideways with no touch gesture to bring it back. #content-slot is
+     not a scroll container, so its clip stays a true clip: no sideways
+     movement is possible at all. */
+  #content-slot {
+    overflow-x: clip;
+  }
+
+  /* Long unbreakable strings (command names, URLs, file names) wrap
+     instead of pushing the layout wider than the screen. Set on body so it
+     inherits through both the app shell and the marketing pages. */
+  body {
+    overflow-wrap: break-word;
+  }
+
+  /* Code / command syntax wraps on phones rather than forcing width */
+  .main pre,
+  .main code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Media can never exceed the screen width */
+  .main img,
+  .main video,
+  .main iframe {
     max-width: 100%;
   }
 }

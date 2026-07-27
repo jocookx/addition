@@ -17,18 +17,44 @@ export type TipDef = {
 type Pos = {
   top: number;
   left: number;
-  arrowDir: "left" | "up" | "down";
+  arrowDir: "left" | "up" | "down" | "none";
   arrowOffset: number; // px from left (up/down) or top (left) for the arrow tip
 };
 
+/**
+ * Finds the first VISIBLE anchor for the given href. The same href exists in
+ * both the desktop sidebar and the mobile bottom nav; whichever is hidden by
+ * the current breakpoint reports a zero-size rect and must be skipped.
+ */
+function findVisibleAnchor(navHref: string): HTMLElement | null {
+  const anchors = document.querySelectorAll<HTMLElement>(`a[href="${navHref}"]`);
+  for (const a of anchors) {
+    const r = a.getBoundingClientRect();
+    if (r.width > 0 && r.height > 0) return a;
+  }
+  return null;
+}
+
 /** Resolves the popup position relative to the given nav anchor element. */
-function resolvePos(anchor: HTMLElement, popupW = 288, popupH = 148): Pos {
-  const r = anchor.getBoundingClientRect();
+function resolvePos(anchor: HTMLElement | null, popupH = 148): Pos {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
+  const popupW = Math.min(292, vw - 24);
+
+  // No visible anchor to point at — centre the card in the viewport.
+  if (!anchor) {
+    return {
+      top: Math.max(vh / 2 - popupH / 2, 12),
+      left: Math.max(vw / 2 - popupW / 2, 12),
+      arrowDir: "none",
+      arrowOffset: 0,
+    };
+  }
+
+  const r = anchor.getBoundingClientRect();
 
   // Sidebar items live in the left ~260 px
-  if (r.left < 260 && r.right < 280) {
+  if (r.left < 260 && r.right < 280 && r.top < vh * 0.8) {
     // Arrow points LEFT, popup sits to the right of the sidebar.
     // Clamp left so the card never starts inside the sidebar column (260px wide).
     const SIDEBAR_W = 260;
@@ -36,7 +62,10 @@ function resolvePos(anchor: HTMLElement, popupW = 288, popupH = 148): Pos {
       Math.max(r.top + r.height / 2 - popupH / 2, 12),
       vh - popupH - 12,
     );
-    const left = Math.max(r.right + 16, SIDEBAR_W + 16);
+    const left = Math.min(
+      Math.max(r.right + 16, SIDEBAR_W + 16),
+      vw - popupW - 12,
+    );
     const arrowOffset = r.top + r.height / 2 - top;
     return { top, left, arrowDir: "left", arrowOffset };
   }
@@ -47,7 +76,7 @@ function resolvePos(anchor: HTMLElement, popupW = 288, popupH = 148): Pos {
       Math.max(r.left + r.width / 2 - popupW / 2, 12),
       vw - popupW - 12,
     );
-    const top = r.top - popupH - 16;
+    const top = Math.max(r.top - popupH - 16, 12);
     const arrowOffset = r.left + r.width / 2 - left;
     return { top, left, arrowDir: "down", arrowOffset };
   }
@@ -83,8 +112,9 @@ export function FirstVisitTip({ section, tip }: { section: string; tip: TipDef }
     if (!visible) return;
 
     function measure() {
-      const anchor = document.querySelector<HTMLElement>(`a[href="${tip.navHref}"]`);
-      if (anchor) setPos(resolvePos(anchor));
+      // Always sets a position — falls back to a centred card when the
+      // nav anchor is hidden at this breakpoint (e.g. mobile).
+      setPos(resolvePos(findVisibleAnchor(tip.navHref)));
     }
 
     measure();
@@ -118,7 +148,7 @@ export function FirstVisitTip({ section, tip }: { section: string; tip: TipDef }
       )}
 
       <div
-        className={`fvt fvt--${tip.accent}${pos ? ` fvt--arrow-${pos.arrowDir}` : ""}${leaving ? " fvt--out" : " fvt--in"}`}
+        className={`fvt fvt--${tip.accent}${pos && pos.arrowDir !== "none" ? ` fvt--arrow-${pos.arrowDir}` : ""}${leaving ? " fvt--out" : " fvt--in"}`}
         style={{
           ...style,
           ...(pos?.arrowDir !== "left"
