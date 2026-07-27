@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import { AppFrame } from "@/components/legacy/AppFrame";
@@ -105,6 +105,24 @@ export default function CommandsPage() {
     mediaQuery.addEventListener("change", update);
     return () => mediaQuery.removeEventListener("change", update);
   }, []);
+
+  // Deep link: /commands?cmd=<id> opens that command's detail directly —
+  // used by the dashboard "Jump back in" chips. Read from location (not
+  // useSearchParams) to avoid a Suspense boundary, and only once per load.
+  const deepLinkHandled = useRef(false);
+  useEffect(() => {
+    if (deepLinkHandled.current || !allCommands.length || typeof window === "undefined") return;
+    const cmdId = new URLSearchParams(window.location.search).get("cmd");
+    if (!cmdId) { deepLinkHandled.current = true; return; }
+    const command = allCommands.find((c) => c.id === cmdId);
+    if (command) {
+      window.setTimeout(() => {
+        setSelected(command);
+        setFullDetailCommand(command);
+      }, 0);
+    }
+    deepLinkHandled.current = true;
+  }, [allCommands]);
 
   useEffect(() => {
     if (!supabase) return;

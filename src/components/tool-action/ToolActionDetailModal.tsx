@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import { SaveButton } from "@/components/legacy/SaveButton";
 import { TagChips } from "@/components/legacy/TagChips";
 import type { CommandListItem } from "@/domain/command";
+import { addRecentlyViewed } from "@/lib/recently-viewed";
 import { getSoftwareTerms, type AccessType } from "@/lib/software-terminology";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -322,6 +323,12 @@ export function ToolActionDetailModal({
   useEffect(() => {
     onCloseRef.current = onClose;
   }, [onClose]);
+
+  // Feed the dashboard "Jump back in" row — every command opened here counts
+  // as viewed, including in-modal navigation to related commands.
+  useEffect(() => {
+    addRecentlyViewed({ id: command.id, label: cleanName(command.name), software: command.software });
+  }, [command.id, command.name, command.software]);
   useEffect(() => {
     const handlePop = () => onCloseRef.current();
     window.history.pushState({ cmdModal: true }, "");

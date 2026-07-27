@@ -19,6 +19,7 @@ import { getLearningSummary } from "@/lib/api/learning-summary";
 import { UpgradeModal } from "@/components/upgrade/UpgradeModal";
 import { getPaths, getPathDetail, getMyEnrolments, enrolInPath } from "@/lib/api/paths";
 import { getMyRegisteredWorkshops } from "@/lib/api/workshops";
+import { getRecentlyViewed, type RecentItem } from "@/lib/recently-viewed";
 import { getBrowserSupabaseClient } from "@/lib/supabase/browser-client";
 import { AppFrame } from "@/components/legacy/AppFrame";
 import { useToast } from "@/components/toast/ToastContext";
@@ -262,6 +263,38 @@ function ProgressSnapshot({ summary, onOpen }: { summary: LearningSummary | null
       <span className="home-snap-item"><strong>{t.masteredCommands}</strong> commands learned</span>
       <span className="home-snap-more">My Progress →</span>
     </button>
+  );
+}
+
+/**
+ * Jump back in — the last commands the user looked up, as one-tap chips.
+ * This is what makes the dashboard useful in reference mode: the command
+ * you needed at your desk yesterday is right here today.
+ */
+function JumpBackIn() {
+  const [recents, setRecents] = useState<RecentItem[]>([]);
+  useEffect(() => {
+    // Deferred so the client-only localStorage read happens after hydration
+    const t = window.setTimeout(() => setRecents(getRecentlyViewed().slice(0, 5)), 0);
+    return () => window.clearTimeout(t);
+  }, []);
+  if (!recents.length) return null;
+  return (
+    <div className="home-recents">
+      <h3 className="dash-section-title">Jump back in</h3>
+      <div className="home-recents-chips">
+        {recents.map((r) => (
+          <Link
+            key={r.id}
+            href={`/commands?cmd=${encodeURIComponent(r.id)}`}
+            className="home-recent-chip"
+          >
+            <span className="home-recent-chip-label">{r.label}</span>
+            {r.software && <span className="home-recent-chip-sw">{r.software}</span>}
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -1165,7 +1198,9 @@ function DashboardPageInner() {
               }
               {/* 2. Daily rep — streak + what's due, one tap into flashcards */}
               <DailyRep lessonsToday={lessonsToday} streak={streakDays} practiseCount={practiseCount} />
-              {/* 3. This week — only when something is actually booked */}
+              {/* 3. Jump back in — recently viewed commands (reference mode) */}
+              <JumpBackIn />
+              {/* 4. This week — only when something is actually booked */}
               <MyWorkshopsSection workshops={upcomingWorkshops} />
               {/* 4. Progress at a glance */}
               <ProgressSnapshot summary={summary} onOpen={() => handleTabChange("progress")} />

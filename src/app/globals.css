@@ -9498,6 +9498,48 @@ html[data-theme="light"] .pl-enrolled-badge {
   white-space: nowrap;
 }
 
+/* ── Jump back in — recently viewed command chips ── */
+.home-recents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.home-recents-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home-recent-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  text-decoration: none;
+  border: 1px solid var(--rf-border);
+  border-radius: 10px;
+  padding: 9px 13px;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 0.15s, background 0.15s;
+}
+.home-recent-chip:hover {
+  border-color: rgba(124,58,237,0.42);
+  background: rgba(124,58,237,0.08);
+}
+.home-recent-chip-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--rf-white);
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
+.home-recent-chip-sw {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--rf-muted);
+}
+html[data-theme="light"] .home-recent-chip { background: rgba(0,0,0,0.03); }
+html[data-theme="light"] .home-recent-chip:hover { background: rgba(124,58,237,0.06); }
+
 /* ── Quiet explore links ── */
 .home-explore {
   display: flex;
