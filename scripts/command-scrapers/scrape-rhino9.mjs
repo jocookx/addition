@@ -107,14 +107,15 @@ async function main() {
         name: c.name,
         mcneelUrl: c.icon,
         suggestedAssetPath: `rhino9/${file}`,
-        appIconPath: `/api/v1/rhino-asset/rhino9/${file}`,
+        // Served statically from public/rhino9-icons — no bucket upload needed.
+        appIconPath: `/rhino9-icons/${file}`,
       };
     });
   writeJson(resolve(OUT, "rhino9-icons.json"), icons);
   console.log(`${icons.length} commands have Rhino 9 toolbar icons.`);
 
   if (args.has("--download")) {
-    const dir = resolve(OUT, "icons/rhino9");
+    const dir = resolve(__dir, "../../public/rhino9-icons");
     mkdirSync(dir, { recursive: true });
     let ok = 0;
     await mapConcurrent(icons, async (i) => {
@@ -124,7 +125,7 @@ async function main() {
       writeFileSync(resolve(dir, i.suggestedAssetPath.split("/").pop()), buf);
       ok++;
     }, { concurrency: 6, delayMs: 150 });
-    console.log(`Downloaded ${ok}/${icons.length} icons → ${dir} (upload to Supabase assets bucket under rhino9/).`);
+    console.log(`Downloaded ${ok}/${icons.length} icons → ${dir} (served statically at /rhino9-icons/).`);
   }
 
   if (args.has("--merge")) {

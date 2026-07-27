@@ -18,8 +18,9 @@ scripts/export-commands-csv.mjs ← emit Admin → CSV importable files
 - **Facts are synced.** Command names, keyboard shortcuts, menu locations and
   icon URLs are factual data, harvested from the official references.
 - **Icons.** Rhino icons are Rhino 9 artwork referenced from McNeel's Rhino 9
-  help; we mirror them in our own Supabase assets bucket (served via
-  `/api/v1/rhino-asset/rhino9/…`), same as the existing Rhino 8 set. Autodesk
+  help; we mirror them in `public/rhino9-icons/` so they deploy statically
+  with the app (no storage bucket involved), same purpose as the existing
+  Rhino 8 set served via `/api/v1/rhino-asset/`. Autodesk
   and Adobe icon artwork is proprietary — the UI falls back to the software
   chip for those until licensed artwork is sourced. Blender's icon set ships
   under GPL with Blender; chip fallback there too.

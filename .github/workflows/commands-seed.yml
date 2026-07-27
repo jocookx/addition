@@ -52,13 +52,5 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/seed-commands.mjs ${{ github.event.inputs.softwares }}
 
-      - name: Upload Rhino 9 icons to assets bucket (if present)
-        env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: |
-          if [ -d scripts/command-scrapers/output/icons/rhino9 ]; then
-            node scripts/upload-rhino-icons.mjs
-          else
-            echo "No downloaded icons found — run the scrape workflow first if you want Rhino 9 icons."
-          fi
+      # Rhino 9 icons ship statically from public/rhino9-icons with the app
+      # deploy — no storage upload step needed.
