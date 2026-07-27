@@ -1,0 +1,4106 @@
+{
+  "meta": {
+    "software": "Illustrator",
+    "version": "Illustrator 2026",
+    "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+    "provenance": "Authored from model knowledge (cutoff Jan 2026). Original explanations - not copied from Adobe documentation. Shortcuts/menu paths are factual data.",
+    "iconNote": "Adobe icon artwork is proprietary; app renders software chip fallback."
+  },
+  "commands": [
+    {
+      "name": "Selection Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "V",
+      "addon": "",
+      "description": "Selects, moves and scales whole objects and groups with a bounding box. The default resting tool when assembling plan graphics and diagram elements on an artboard.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "move",
+        "scale",
+        "rotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Black Arrow"
+      ],
+      "related_commands": [
+        "Direct Selection Tool",
+        "Group"
+      ]
+    },
+    {
+      "name": "Direct Selection Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "A",
+      "addon": "",
+      "description": "Selects individual anchor points, handles and path segments inside objects and groups. Essential for tweaking a traced site boundary or nudging one corner of a plan outline.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "anchors"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "White Arrow"
+      ],
+      "related_commands": [
+        "Selection Tool",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Group Selection Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Selects one object within a group, then progressively larger parent groups with further clicks. Useful for picking a single tree symbol out of a heavily grouped landscape plan.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "groups"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Direct Selection Tool",
+        "Isolation Mode"
+      ]
+    },
+    {
+      "name": "Magic Wand Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Y",
+      "addon": "",
+      "description": "Selects all objects sharing an attribute such as fill colour or stroke weight in one click. Brilliant for grabbing every wall poche or every red annotation across a busy drawing at once.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "attributes"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Wand"
+      ],
+      "related_commands": [
+        "Select Same Fill Colour",
+        "Recolour Artwork"
+      ]
+    },
+    {
+      "name": "Lasso Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Q",
+      "addon": "",
+      "description": "Selects objects and anchor points by dragging a freehand loop around them. Quick for gathering a scatter of points or small elements that a rectangular drag would miss.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "freehand"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Direct Selection Tool"
+      ]
+    },
+    {
+      "name": "Pen Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Draws precise paths from anchor points and bezier handles. The fundamental Illustrator skill for tracing site plans, drawing bespoke symbols and constructing clean diagram geometry.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "bezier"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Bezier Pen"
+      ],
+      "related_commands": [
+        "Curvature Tool",
+        "Anchor Point Tool"
+      ]
+    },
+    {
+      "name": "Add Anchor Point Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "+",
+      "addon": "",
+      "description": "Adds an anchor point wherever you click on an existing path. Used when a straight boundary needs a new kink or a curve needs an extra control point.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "anchors"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Delete Anchor Point Tool",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Delete Anchor Point Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "-",
+      "addon": "",
+      "description": "Removes the anchor point you click, letting the path re-flow through its neighbours. Handy for cleaning up over-noded paths produced by Image Trace or CAD imports.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "anchors"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Add Anchor Point Tool",
+        "Simplify"
+      ]
+    },
+    {
+      "name": "Anchor Point Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+C",
+      "addon": "",
+      "description": "Converts anchors between sharp corners and smooth curves, and adjusts handles independently. The tool for turning a boxy traced outline into flowing landscape curves, or vice versa.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "corners"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "Convert Anchor Point"
+      ],
+      "related_commands": [
+        "Pen Tool",
+        "Direct Selection Tool"
+      ]
+    },
+    {
+      "name": "Curvature Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+~",
+      "addon": "",
+      "description": "Draws smooth curves by simply placing points, with corners on a double-click. A friendlier route than the Pen for sweeping masterplan paths, roads and organic diagram lines.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "curves"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Anchor Point Tool"
+      ]
+    },
+    {
+      "name": "Type Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "T",
+      "addon": "",
+      "description": "Creates point text with a click or area text with a drag. Everything from board titles to plan labels and key notes starts here.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "type",
+        "annotation"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Text Tool"
+      ],
+      "related_commands": [
+        "Character Panel",
+        "Create Outlines"
+      ]
+    },
+    {
+      "name": "Type on a Path Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Flows text along any drawn path. Used for labelling curved roads and rivers on masterplans, or running a title around a circular diagram.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "type",
+        "path"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "annotation",
+        "curve"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Path Type"
+      ],
+      "related_commands": [
+        "Type Tool",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Line Segment Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "\\",
+      "addon": "",
+      "description": "Draws individual straight lines; hold Shift for exact horizontals, verticals and 45-degree angles. The staple for leader lines, section markers and hatching bases in diagrams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "line"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Line Tool"
+      ],
+      "related_commands": [
+        "Pen Tool",
+        "Stroke Panel"
+      ]
+    },
+    {
+      "name": "Rectangle Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "M",
+      "addon": "",
+      "description": "Draws rectangles and squares as live shapes with editable corner radii. The starting point for room blocks, bar-chart diagrams and panel frames on portfolio layouts.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ellipse Tool",
+        "Shape Builder Tool"
+      ]
+    },
+    {
+      "name": "Rounded Rectangle Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Draws rectangles with pre-rounded corners; the arrow keys adjust the radius while dragging. Useful for soft-edged diagram cards and button-like labels in presentation graphics.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "corners"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool"
+      ]
+    },
+    {
+      "name": "Ellipse Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "L",
+      "addon": "",
+      "description": "Draws ellipses and, with Shift, perfect circles. Constantly used for bubble diagrams, tree canopies in plan and circulation nodes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool",
+        "Polygon Tool"
+      ]
+    },
+    {
+      "name": "Polygon Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Draws regular polygons, with arrow keys changing the number of sides mid-drag. Reached for when a hexagonal grid or triangular annotation marker is needed.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "polygon"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ellipse Tool",
+        "Star Tool"
+      ]
+    },
+    {
+      "name": "Star Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Draws stars with adjustable point counts and radii. Occasionally useful for map markers, ratings graphics or decorative diagram accents.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "star"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Polygon Tool"
+      ]
+    },
+    {
+      "name": "Paintbrush Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "B",
+      "addon": "",
+      "description": "Draws paths that carry a brush stroke, from calligraphic nibs to art brushes. Used to give diagram linework a hand-drawn warmth or apply textured edges to plan graphics.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "brush",
+        "stroke"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Brush"
+      ],
+      "related_commands": [
+        "Pencil Tool",
+        "Blob Brush Tool"
+      ]
+    },
+    {
+      "name": "Pencil Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "N",
+      "addon": "",
+      "description": "Draws freehand paths that follow your drag, with adjustable smoothing. Good for loose concept-sketch linework over a plan without the formality of the Pen.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "freehand",
+        "sketch"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Smooth Tool",
+        "Paintbrush Tool"
+      ]
+    },
+    {
+      "name": "Smooth Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Drag along a wobbly path to relax it and remove excess anchor points. The quick fix for jittery hand-traced contours and sketchy diagram lines.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "smoothing"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Pencil Tool",
+        "Simplify"
+      ]
+    },
+    {
+      "name": "Blob Brush Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+B",
+      "addon": "",
+      "description": "Paints strokes that become filled, merged shapes rather than stroked paths. Ideal for chunky freehand poche, shadow blocks and marker-style diagram fills.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "brush",
+        "filled shapes"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Paintbrush Tool",
+        "Eraser Tool"
+      ]
+    },
+    {
+      "name": "Eraser Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+E",
+      "addon": "",
+      "description": "Rubs away vector artwork, cutting and reshaping the underlying paths. Useful for carving openings out of filled diagram shapes without Pathfinder gymnastics.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "erase",
+        "vector"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Scissors Tool",
+        "Knife Tool"
+      ]
+    },
+    {
+      "name": "Scissors Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "C",
+      "addon": "",
+      "description": "Cuts a path at the point you click, leaving open ends. Used to break a plan outline so one segment can take a different lineweight or dashed style.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "cut",
+        "path"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Knife Tool",
+        "Join"
+      ]
+    },
+    {
+      "name": "Knife Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Slices through filled objects along a freehand or straight drag, producing closed shapes on both sides. Handy for splitting a site plan area into phased zones.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "cut",
+        "shapes"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Scissors Tool",
+        "Divide Objects Below"
+      ]
+    },
+    {
+      "name": "Rotate Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "R",
+      "addon": "",
+      "description": "Rotates the selection around a movable reference point; Alt-click sets the point and opens the dialogue for exact angles and copies. Rotating copies around a centre is the classic way to array seats or trees around a focal space.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "transform",
+        "rotate"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "rotate",
+        "array",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Transform Again",
+        "Reflect Tool"
+      ]
+    },
+    {
+      "name": "Reflect Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "O",
+      "addon": "",
+      "description": "Mirrors the selection across an axis through a chosen reference point, optionally as a copy. Perfect for symmetrical plan elements - draw half a facade diagram and mirror the rest.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "transform",
+        "mirror"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "mirror",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Mirror"
+      ],
+      "related_commands": [
+        "Rotate Tool",
+        "Transform Again"
+      ]
+    },
+    {
+      "name": "Scale Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "S",
+      "addon": "",
+      "description": "Resizes the selection about a reference point, with a dialogue for exact percentages and the choice of scaling strokes too. Useful for rescaling drawing content to a new metric scale while controlling lineweight behaviour.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "transform",
+        "scale"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Selection Tool",
+        "Transform Each"
+      ]
+    },
+    {
+      "name": "Shear Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Skews the selection along an axis around a reference point. Used to fake quick axonometric projections of plan shapes for exploded diagrams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "transform",
+        "skew"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Skew"
+      ],
+      "related_commands": [
+        "Scale Tool",
+        "Free Transform Tool"
+      ]
+    },
+    {
+      "name": "Free Transform Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "E",
+      "addon": "",
+      "description": "Combines scale, rotate, distort and perspective distortion in one widget. Reached for when an image or graphic must be pushed into a rough perspective on a board.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "transform"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "scale",
+        "rotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Scale Tool",
+        "Shear Tool"
+      ]
+    },
+    {
+      "name": "Width Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+W",
+      "addon": "",
+      "description": "Varies a stroke's width along its length by dragging at any point. Gives plan and section linework calligraphic emphasis, thickening cut lines and tapering leader ends.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "stroke",
+        "width"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "thicken"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Variable Width"
+      ],
+      "related_commands": [
+        "Stroke Panel",
+        "Paintbrush Tool"
+      ]
+    },
+    {
+      "name": "Shape Builder Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+M",
+      "addon": "",
+      "description": "Merges or subtracts overlapping shapes by simply dragging across the regions you want, or Alt-dragging to delete. The intuitive alternative to Pathfinder for composing plan poche and diagram geometry.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "boolean",
+        "shapes"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "join",
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pathfinder: Unite",
+        "Pathfinder: Minus Front"
+      ]
+    },
+    {
+      "name": "Live Paint Bucket Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "K",
+      "addon": "",
+      "description": "Fills any enclosed region formed by overlapping paths, treating linework like a colouring book. Excellent for colouring imported CAD plans where rooms are bounded but not closed shapes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "fill",
+        "live paint"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Live Paint"
+      ],
+      "related_commands": [
+        "Shape Builder Tool",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Mesh Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Adds a gradient mesh to a shape so colour can be blended freely across its surface. An advanced technique for soft site-plan shading or painterly sky panels in vector.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "gradient",
+        "mesh"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "curve",
+        "mesh"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Gradient Mesh"
+      ],
+      "related_commands": [
+        "Gradient Tool"
+      ]
+    },
+    {
+      "name": "Gradient Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "G",
+      "addon": "",
+      "description": "Applies and adjusts linear, radial and freeform gradients directly on the object. Used for graded diagram fills, subtle depth on plan figures and sky bands in vector visuals.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "gradient",
+        "fill"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Mesh Tool",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Eyedropper Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "I",
+      "addon": "",
+      "description": "Samples and applies complete appearance attributes - fill, stroke, type styling - from one object to another. The fastest way to make a new element match the drawing's established graphic language.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "sampling",
+        "appearance"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Appearance Panel",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Blend Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "W",
+      "addon": "",
+      "description": "Generates intermediate steps between two or more objects, blending shape and colour. Useful for contour-like transitions, arrayed steps along a path and smooth colour ramps in diagrams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "blend",
+        "interpolation"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Transform Again",
+        "Gradient Tool"
+      ]
+    },
+    {
+      "name": "Symbol Sprayer Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+S",
+      "addon": "",
+      "description": "Sprays instances of a symbol across the artboard, with companion tools to shift, size and tint them. An efficient way to scatter trees or people symbols over a masterplan while keeping the file light.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "symbols",
+        "scatter"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "array",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Symbols Panel"
+      ]
+    },
+    {
+      "name": "Artboard Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+O",
+      "addon": "",
+      "description": "Creates, resizes and rearranges artboards within the document. Used to set up a suite of board sizes or one artboard per diagram for tidy multi-page export.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "artboards",
+        "layout"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Artboards Panel",
+        "Export for Screens"
+      ]
+    },
+    {
+      "name": "Hand Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "H",
+      "addon": "",
+      "description": "Pans around the canvas; hold the spacebar to borrow it from any tool. Second nature when working across a large masterplan at high zoom.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "navigation"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Pan"
+      ],
+      "related_commands": [
+        "Zoom Tool",
+        "Fit Artboard in Window"
+      ]
+    },
+    {
+      "name": "Zoom Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Z",
+      "addon": "",
+      "description": "Zooms the view in with a click or scrubby drag, and out with Alt held. Constantly used to swing between whole-board composition and anchor-level path editing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "navigation",
+        "zoom"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Artboard in Window",
+        "Actual Size"
+      ]
+    },
+    {
+      "name": "Rotate View Tool",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+H",
+      "addon": "",
+      "description": "Tilts the canvas view without rotating the artwork itself. Comfortable for drawing along an angled street grid or annotating a rotated site plan.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "navigation",
+        "rotation"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "rotate",
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hand Tool"
+      ]
+    },
+    {
+      "name": "Toggle Fill and Stroke",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "X",
+      "addon": "",
+      "description": "Switches whether the fill or the stroke swatch is active for editing. A tiny key press that prevents endlessly recolouring the wrong attribute.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "appearance",
+        "fill",
+        "stroke"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Swap Fill and Stroke",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Swap Fill and Stroke",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+X",
+      "addon": "",
+      "description": "Exchanges the current fill and stroke colours on the selection. Quick when flipping between outlined and solid versions of diagram elements.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "appearance",
+        "fill",
+        "stroke"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Toggle Fill and Stroke"
+      ]
+    },
+    {
+      "name": "Default Fill and Stroke",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "D",
+      "addon": "",
+      "description": "Resets the selection to a white fill with a black stroke. A clean starting state before styling new construction lines or test shapes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "appearance",
+        "reset"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Toggle Fill and Stroke"
+      ]
+    },
+    {
+      "name": "None (No Fill or Stroke)",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "/",
+      "addon": "",
+      "description": "Sets the active fill or stroke attribute to none. Used constantly to strip fills from boundary lines or strokes from colour blocks in plan graphics.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "appearance",
+        "none"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "No Colour"
+      ],
+      "related_commands": [
+        "Toggle Fill and Stroke",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Join",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "Ctrl+J",
+      "addon": "",
+      "description": "Connects the endpoints of open paths, closing gaps with a straight segment or fusing coincident ends. Constantly needed to close boundaries in imported CAD linework before filling.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "join"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Average",
+        "Scissors Tool"
+      ]
+    },
+    {
+      "name": "Average",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "Ctrl+Alt+J",
+      "addon": "",
+      "description": "Moves selected anchor points onto a shared horizontal, vertical or central position. Paired with Join to snap two loose line ends exactly on top of each other before fusing them.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "anchors",
+        "align"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "point"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Join"
+      ]
+    },
+    {
+      "name": "Outline Stroke",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "",
+      "addon": "",
+      "description": "Converts a stroked line into a filled closed shape of the same visible width. Essential before booleans on lineweights, and for freezing stroke widths ahead of scaling or laser-cutting exports.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "stroke",
+        "convert"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "thicken"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Expand Stroke"
+      ],
+      "related_commands": [
+        "Offset Path",
+        "Expand"
+      ]
+    },
+    {
+      "name": "Offset Path",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "",
+      "addon": "",
+      "description": "Creates a new path a set distance inside or outside the original. Directly useful for wall thicknesses, setback lines and concentric diagram rings at exact spacings.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "offset"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "offset",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Outline Stroke",
+        "Transform Again"
+      ]
+    },
+    {
+      "name": "Simplify",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "",
+      "addon": "",
+      "description": "Reduces the number of anchor points on a path while preserving its shape as closely as possible. The remedy for bloated paths from Image Trace or GIS and CAD imports.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "cleanup",
+        "anchors"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Smooth Tool",
+        "Image Trace"
+      ]
+    },
+    {
+      "name": "Add Anchor Points",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "",
+      "addon": "",
+      "description": "Inserts a new anchor point midway along every selected segment. Useful before distortions or scripts that need denser geometry to work with.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "anchors"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Add Anchor Point Tool"
+      ]
+    },
+    {
+      "name": "Divide Objects Below",
+      "software": "Illustrator",
+      "menu": "Object > Path",
+      "shortcut": "",
+      "addon": "",
+      "description": "Uses the selected path as a cookie cutter to slice everything beneath it. A quick way to cut a masterplan graphic along a phase line or site boundary.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "cut"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Knife Tool",
+        "Pathfinder: Divide"
+      ]
+    },
+    {
+      "name": "Make Compound Path",
+      "software": "Illustrator",
+      "menu": "Object > Compound Path",
+      "shortcut": "Ctrl+8",
+      "addon": "",
+      "description": "Combines paths so overlapping areas become holes, like the counter of a letter O. How you punch courtyard voids through a building footprint while keeping it one object.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "path",
+        "compound",
+        "holes"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "join",
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Compound Path"
+      ],
+      "related_commands": [
+        "Pathfinder: Minus Front",
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Pathfinder Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Shift+Ctrl+F9",
+      "addon": "",
+      "description": "Hosts the boolean shape operations: unite, subtract, intersect, exclude and the divider modes. The engine room for constructing plan poche and diagram geometry from overlapping primitives.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "boolean",
+        "shapes"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "join",
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Pathfinder"
+      ],
+      "related_commands": [
+        "Pathfinder: Unite",
+        "Shape Builder Tool"
+      ]
+    },
+    {
+      "name": "Pathfinder: Unite",
+      "software": "Illustrator",
+      "menu": "Pathfinder Panel",
+      "shortcut": "",
+      "addon": "",
+      "description": "Merges the selected shapes into one combined outline. Used to fuse overlapping room blocks into a single building footprint.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "boolean",
+        "merge"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Union",
+        "Merge Shapes"
+      ],
+      "related_commands": [
+        "Pathfinder: Minus Front",
+        "Shape Builder Tool"
+      ]
+    },
+    {
+      "name": "Pathfinder: Minus Front",
+      "software": "Illustrator",
+      "menu": "Pathfinder Panel",
+      "shortcut": "",
+      "addon": "",
+      "description": "Subtracts the front shape from the one behind it. The standard move for cutting openings, courtyards and notches out of plan shapes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "boolean",
+        "subtract"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Subtract"
+      ],
+      "related_commands": [
+        "Pathfinder: Unite",
+        "Make Compound Path"
+      ]
+    },
+    {
+      "name": "Pathfinder: Intersect",
+      "software": "Illustrator",
+      "menu": "Pathfinder Panel",
+      "shortcut": "",
+      "addon": "",
+      "description": "Keeps only the area where the selected shapes overlap. Handy for trimming a hatch or colour field precisely to a site boundary.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "boolean",
+        "intersect"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pathfinder: Unite",
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Pathfinder: Divide",
+      "software": "Illustrator",
+      "menu": "Pathfinder Panel",
+      "shortcut": "",
+      "addon": "",
+      "description": "Slices all selected shapes into separate faces along every overlap. Useful for splitting a plan into individually colourable zones defined by crossing boundary lines.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "boolean",
+        "divide"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "split",
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Divide Objects Below",
+        "Live Paint Bucket Tool"
+      ]
+    },
+    {
+      "name": "Group",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "Ctrl+G",
+      "addon": "",
+      "description": "Binds the selected objects so they select and transform as one. Grouping each tree symbol, each key entry and each diagram element keeps complex plans manageable.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "groups"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Group Objects"
+      ],
+      "related_commands": [
+        "Ungroup",
+        "Isolation Mode"
+      ]
+    },
+    {
+      "name": "Ungroup",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "Ctrl+Shift+G",
+      "addon": "",
+      "description": "Releases the selected group back into independent objects. Often applied repeatedly to dismantle deeply nested imports from CAD or PDF.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "groups"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Group"
+      ]
+    },
+    {
+      "name": "Lock Selection",
+      "software": "Illustrator",
+      "menu": "Object > Lock",
+      "shortcut": "Ctrl+2",
+      "addon": "",
+      "description": "Locks the selected objects so they cannot be selected or moved. Lock the base plan underlay before drawing over it and nothing shifts by accident.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "lock"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Lock"
+      ],
+      "related_commands": [
+        "Unlock All",
+        "Hide Selection"
+      ]
+    },
+    {
+      "name": "Unlock All",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "Ctrl+Alt+2",
+      "addon": "",
+      "description": "Unlocks every locked object in the document. The counterpart to habitual locking when it is finally time to move the underlay.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "lock"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Lock Selection"
+      ]
+    },
+    {
+      "name": "Hide Selection",
+      "software": "Illustrator",
+      "menu": "Object > Hide",
+      "shortcut": "Ctrl+3",
+      "addon": "",
+      "description": "Hides the selected objects from view and selection. Useful for temporarily clearing annotation clutter while composing the underlying drawing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "visibility"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Hide"
+      ],
+      "related_commands": [
+        "Show All",
+        "Lock Selection"
+      ]
+    },
+    {
+      "name": "Show All",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "Ctrl+Alt+3",
+      "addon": "",
+      "description": "Reveals every hidden object again. Worth pressing before export - hidden elements are easy to forget entirely.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "visibility"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hide Selection"
+      ]
+    },
+    {
+      "name": "Bring to Front",
+      "software": "Illustrator",
+      "menu": "Object > Arrange",
+      "shortcut": "Ctrl+Shift+]",
+      "addon": "",
+      "description": "Moves the selection above everything else in its layer. Keeps labels and leader lines reading clearly over dense plan graphics.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "stacking",
+        "arrange"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Send to Back",
+        "Bring Forward"
+      ]
+    },
+    {
+      "name": "Bring Forward",
+      "software": "Illustrator",
+      "menu": "Object > Arrange",
+      "shortcut": "Ctrl+]",
+      "addon": "",
+      "description": "Raises the selection one step in the stacking order. For fine-tuning which diagram element overlaps which.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "stacking",
+        "arrange"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Send Backward",
+        "Bring to Front"
+      ]
+    },
+    {
+      "name": "Send Backward",
+      "software": "Illustrator",
+      "menu": "Object > Arrange",
+      "shortcut": "Ctrl+[",
+      "addon": "",
+      "description": "Lowers the selection one step in the stacking order. Used when a colour block should sit just beneath its outline but above the base map.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "stacking",
+        "arrange"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Bring Forward",
+        "Send to Back"
+      ]
+    },
+    {
+      "name": "Send to Back",
+      "software": "Illustrator",
+      "menu": "Object > Arrange",
+      "shortcut": "Ctrl+Shift+[",
+      "addon": "",
+      "description": "Drops the selection beneath everything else in its layer. Typically applied to background tints and base-map imagery.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "stacking",
+        "arrange"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Bring to Front"
+      ]
+    },
+    {
+      "name": "Align Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Shift+F7",
+      "addon": "",
+      "description": "Aligns and distributes selected objects relative to each other, a key object or the artboard. Indispensable for regimenting legends, image grids and repeated diagram frames.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "align",
+        "distribute"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layout"
+      ],
+      "outcomes": [
+        "move",
+        "array"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Align"
+      ],
+      "related_commands": [
+        "Group",
+        "Transform Each"
+      ]
+    },
+    {
+      "name": "Transform Again",
+      "software": "Illustrator",
+      "menu": "Object > Transform",
+      "shortcut": "Ctrl+D",
+      "addon": "",
+      "description": "Repeats the last move, rotation, scale or reflection, including its copy option. Move-copy once then hammer Ctrl+D to array fence posts, grid lines or parking bays at perfect spacing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "repeat",
+        "array"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "array",
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Step and Repeat"
+      ],
+      "related_commands": [
+        "Move (Transform)",
+        "Rotate Tool"
+      ]
+    },
+    {
+      "name": "Transform Each",
+      "software": "Illustrator",
+      "menu": "Object > Transform",
+      "shortcut": "Ctrl+Alt+Shift+D",
+      "addon": "",
+      "description": "Transforms every selected object around its own centre rather than a shared one, with optional random variation. Perfect for resizing or jittering a field of tree symbols so they stop looking stamped.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "individual",
+        "random"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "scale",
+        "rotate",
+        "move"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Transform Again",
+        "Symbol Sprayer Tool"
+      ]
+    },
+    {
+      "name": "Move (Transform)",
+      "software": "Illustrator",
+      "menu": "Object > Transform",
+      "shortcut": "Shift+Ctrl+M",
+      "addon": "",
+      "description": "Opens a dialogue for numeric movement by exact distance and angle, with a copy option. The precise way to shift drawing elements a known site dimension, scaled to the drawing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "move",
+        "numeric"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "move",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Move Dialogue"
+      ],
+      "related_commands": [
+        "Transform Again"
+      ]
+    },
+    {
+      "name": "Paste in Front",
+      "software": "Illustrator",
+      "menu": "Edit",
+      "shortcut": "Ctrl+F",
+      "addon": "",
+      "description": "Pastes the clipboard at its exact original position, directly in front of the selection. Vital for stacking duplicate boundaries in perfect registration, such as a clipping copy over its source.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "clipboard",
+        "paste",
+        "registration"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Paste in Back",
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Paste in Back",
+      "software": "Illustrator",
+      "menu": "Edit",
+      "shortcut": "Ctrl+B",
+      "addon": "",
+      "description": "Pastes the clipboard at its original position but behind the selection. Useful for slipping a tint or halo shape exactly beneath existing linework.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "clipboard",
+        "paste",
+        "registration"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Paste in Front"
+      ]
+    },
+    {
+      "name": "Paste in Place",
+      "software": "Illustrator",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Shift+V",
+      "addon": "",
+      "description": "Pastes at the same coordinates as the source, including across documents. Keeps registration when moving drawing content between board files sharing an artboard size.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "clipboard",
+        "paste"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Paste in Front"
+      ]
+    },
+    {
+      "name": "Isolation Mode",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "",
+      "addon": "",
+      "description": "Double-click a group to edit its contents alone while everything else dims and locks. The sanest way to adjust one element inside a densely grouped masterplan.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "organisation",
+        "editing",
+        "groups"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Isolate"
+      ],
+      "related_commands": [
+        "Group",
+        "Group Selection Tool"
+      ]
+    },
+    {
+      "name": "Swatches Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "",
+      "addon": "",
+      "description": "Stores fills, strokes, gradients and patterns for reuse, including global swatches that update every use when edited. Define your plan palette as global colours and a whole drawing recolours in one edit.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "colour",
+        "swatches"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Global Colours"
+      ],
+      "related_commands": [
+        "Recolour Artwork",
+        "Eyedropper Tool"
+      ]
+    },
+    {
+      "name": "Recolour Artwork",
+      "software": "Illustrator",
+      "menu": "Edit > Edit Colours",
+      "shortcut": "",
+      "addon": "",
+      "description": "Remaps every colour in the selection through a single dialogue, with harmonies and reduction options. Transforms a whole diagram to a new palette in minutes - ideal for matching office brand colours or testing schemes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "colour",
+        "palette",
+        "remap"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Recolor Artwork"
+      ],
+      "related_commands": [
+        "Swatches Panel",
+        "Magic Wand Tool"
+      ]
+    },
+    {
+      "name": "Transparency Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Shift+Ctrl+F10",
+      "addon": "",
+      "description": "Controls opacity and blend modes, and creates opacity masks for gradual fades. Multiply here is the everyday mode for layering colour zones over base plans without hiding linework.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "opacity",
+        "blend modes"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Opacity"
+      ],
+      "related_commands": [
+        "Appearance Panel",
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Appearance Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Shift+F6",
+      "addon": "",
+      "description": "Lists and edits every fill, stroke and effect stacked on the selected object, in order. Lets one path carry a double lineweight or a casing-and-centreline road style without duplicate geometry.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "appearance",
+        "styles"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Graphic Styles Panel",
+        "Stroke Panel"
+      ]
+    },
+    {
+      "name": "Stroke Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Ctrl+F10",
+      "addon": "",
+      "description": "Controls stroke weight, caps, corners, dashes and arrowheads. Where drawing conventions live: dashed setback lines, section arrows and consistent lineweight hierarchies.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "stroke",
+        "lineweight"
+      ],
+      "intent_categories": [
+        "edit",
+        "document"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "thicken"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Width Tool",
+        "Appearance Panel"
+      ]
+    },
+    {
+      "name": "Graphic Styles Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Shift+F5",
+      "addon": "",
+      "description": "Saves complete appearance recipes that can be applied to any object with one click. Build styles for cut walls, glazing and vegetation once, then keep every drawing in the set consistent.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "styles",
+        "consistency"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Graphic Styles"
+      ],
+      "related_commands": [
+        "Appearance Panel",
+        "Swatches Panel"
+      ]
+    },
+    {
+      "name": "Create Outlines",
+      "software": "Illustrator",
+      "menu": "Type",
+      "shortcut": "Ctrl+Shift+O",
+      "addon": "",
+      "description": "Converts live text into vector shapes, freezing it against font substitution. Standard practice before sending board files to print bureaus or cutting text on a laser - keep an editable copy first.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "outlines",
+        "print"
+      ],
+      "intent_categories": [
+        "edit",
+        "document"
+      ],
+      "object_types": [
+        "annotation",
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Outline Text"
+      ],
+      "related_commands": [
+        "Type Tool",
+        "Package"
+      ]
+    },
+    {
+      "name": "Character Panel",
+      "software": "Illustrator",
+      "menu": "Window > Type",
+      "shortcut": "Ctrl+T",
+      "addon": "",
+      "description": "Sets typeface, size, leading, tracking and other character attributes. The control centre for a coherent typographic hierarchy across labels, titles and key notes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "type",
+        "typography"
+      ],
+      "intent_categories": [
+        "document",
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Paragraph Panel",
+        "Type Tool"
+      ]
+    },
+    {
+      "name": "Paragraph Panel",
+      "software": "Illustrator",
+      "menu": "Window > Type",
+      "shortcut": "Ctrl+Alt+T",
+      "addon": "",
+      "description": "Controls alignment, justification, indents and spacing for paragraphs. Used to keep blocks of narrative text and long key lists tidy on presentation boards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "type",
+        "paragraph"
+      ],
+      "intent_categories": [
+        "document",
+        "edit"
+      ],
+      "object_types": [
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Character Panel",
+        "Area Type"
+      ]
+    },
+    {
+      "name": "Area Type",
+      "software": "Illustrator",
+      "menu": "Type",
+      "shortcut": "",
+      "addon": "",
+      "description": "Flows text inside any closed shape, created by clicking a path with the Type Tool. Lets project descriptions wrap neatly within irregular panel shapes on a board layout.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "text frame"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "annotation",
+        "curve"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Area Type Options"
+      ],
+      "related_commands": [
+        "Type Tool",
+        "Paragraph Panel"
+      ]
+    },
+    {
+      "name": "Layers Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "F7",
+      "addon": "",
+      "description": "Organises artwork into layers and sublayers with visibility, locking and selection controls. Structure masterplans like CAD - base, buildings, landscape, annotation - and navigation stays painless.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "layers",
+        "organisation"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Layer",
+        "Lock Selection"
+      ]
+    },
+    {
+      "name": "New Layer",
+      "software": "Illustrator",
+      "menu": "Layers Panel",
+      "shortcut": "",
+      "addon": "",
+      "description": "Adds a fresh layer to the document from the Layers Panel. Give each drawing system its own named, coloured layer before the file grows unwieldy.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "create"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Layers Panel"
+      ]
+    },
+    {
+      "name": "Make Clipping Mask",
+      "software": "Illustrator",
+      "menu": "Object > Clipping Mask",
+      "shortcut": "Ctrl+7",
+      "addon": "",
+      "description": "Uses the topmost shape to crop everything selected beneath it, non-destructively. The standard way to trim a map, hatch or image neatly to a site boundary or board frame.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "mask",
+        "crop",
+        "clip"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Clip"
+      ],
+      "related_commands": [
+        "Release Clipping Mask",
+        "Paste in Front"
+      ]
+    },
+    {
+      "name": "Release Clipping Mask",
+      "software": "Illustrator",
+      "menu": "Object > Clipping Mask",
+      "shortcut": "Ctrl+Alt+7",
+      "addon": "",
+      "description": "Undoes a clipping mask, restoring the full extent of the clipped artwork. Needed when the crop boundary itself has to be redrawn or the hidden content retrieved.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "mask",
+        "release"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Cycle Drawing Modes",
+      "software": "Illustrator",
+      "menu": "Toolbar",
+      "shortcut": "Shift+D",
+      "addon": "",
+      "description": "Switches between Draw Normal, Draw Behind and Draw Inside modes. Draw Inside clips new strokes to a shape as you draw - useful for hatching directly within a plan zone.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "drawing modes",
+        "clip"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Draw Inside"
+      ],
+      "related_commands": [
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Symbols Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "Shift+Ctrl+F11",
+      "addon": "",
+      "description": "Stores reusable artwork as symbols whose instances all update when the master is edited. Define a tree or person symbol once and revise hundreds of placements across a masterplan in one go.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "symbols",
+        "reuse"
+      ],
+      "intent_categories": [
+        "organise",
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Symbol Sprayer Tool"
+      ]
+    },
+    {
+      "name": "Make Pattern",
+      "software": "Illustrator",
+      "menu": "Object > Pattern",
+      "shortcut": "",
+      "addon": "",
+      "description": "Turns selected artwork into a repeating pattern swatch, with live preview of tiling options. Purpose-built for creating hatch fills - paving, planting, brick - that tile cleanly across plan areas.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "pattern",
+        "hatch",
+        "fill"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "Pattern Editor"
+      ],
+      "related_commands": [
+        "Swatches Panel",
+        "Expand"
+      ]
+    },
+    {
+      "name": "Image Trace",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "",
+      "addon": "",
+      "description": "Converts placed raster images into editable vector paths, with presets from line art to full colour. Useful for vectorising scanned hand sketches or logos; expect a clean-up pass with Simplify afterwards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "trace",
+        "raster to vector"
+      ],
+      "intent_categories": [
+        "create",
+        "transform"
+      ],
+      "object_types": [
+        "curve",
+        "mesh"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Trace"
+      ],
+      "related_commands": [
+        "Expand",
+        "Simplify"
+      ]
+    },
+    {
+      "name": "Expand",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "",
+      "addon": "",
+      "description": "Converts live effects, symbols, strokes or traced results into plain editable paths. The necessary step before hand-editing Image Trace output or sending artwork to cutting machines.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "expand",
+        "convert",
+        "paths"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Expand Appearance"
+      ],
+      "related_commands": [
+        "Image Trace",
+        "Outline Stroke"
+      ]
+    },
+    {
+      "name": "Effect: Drop Shadow",
+      "software": "Illustrator",
+      "menu": "Effect > Stylise",
+      "shortcut": "",
+      "addon": "",
+      "description": "Adds a live, editable shadow behind objects via the Appearance stack. A restrained drop shadow lifts building footprints off a site plan and gives figure-ground diagrams gentle depth.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "effect",
+        "shadow",
+        "depth"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Drop Shadow"
+      ],
+      "related_commands": [
+        "Appearance Panel",
+        "Apply Last Effect"
+      ]
+    },
+    {
+      "name": "Effect: 3D and Materials",
+      "software": "Illustrator",
+      "menu": "Effect > 3D and Materials",
+      "shortcut": "",
+      "addon": "",
+      "description": "Extrudes, revolves or inflates flat artwork into rendered 3D with lighting and materials. Quick for turning a plan shape into a simple massing axonometric without opening a modelling package.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "effect",
+        "3d",
+        "extrude"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "curve",
+        "solid"
+      ],
+      "outcomes": [
+        "thicken"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "3D Effect"
+      ],
+      "related_commands": [
+        "Expand",
+        "Effect: Transform"
+      ]
+    },
+    {
+      "name": "Effect: Transform",
+      "software": "Illustrator",
+      "menu": "Effect > Distort & Transform",
+      "shortcut": "",
+      "addon": "",
+      "description": "Applies a live, editable transform - including multiple copies - as an effect. Elegant for parametric-feeling arrays: one balustrade module becomes fifty, all still driven by the original.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "effect",
+        "transform",
+        "array"
+      ],
+      "intent_categories": [
+        "transform",
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "array",
+        "copy",
+        "move"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "Transform Effect"
+      ],
+      "related_commands": [
+        "Transform Again",
+        "Appearance Panel"
+      ]
+    },
+    {
+      "name": "Apply Last Effect",
+      "software": "Illustrator",
+      "menu": "Effect",
+      "shortcut": "Shift+Ctrl+E",
+      "addon": "",
+      "description": "Re-applies the most recent effect with identical settings to the current selection. Keeps a family of diagram objects visually consistent without reopening dialogues.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "effect",
+        "repeat"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effect: Drop Shadow"
+      ]
+    },
+    {
+      "name": "Rasterise",
+      "software": "Illustrator",
+      "menu": "Object",
+      "shortcut": "",
+      "addon": "",
+      "description": "Converts vector artwork into a pixel image at a chosen resolution inside the document. Sometimes needed to tame files where heavy effects or meshes slow every redraw.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "rasterise",
+        "convert"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "curve",
+        "mesh"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Rasterize"
+      ],
+      "related_commands": [
+        "Expand",
+        "Document Setup"
+      ]
+    },
+    {
+      "name": "Artboards Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "",
+      "addon": "",
+      "description": "Lists, reorders, renames and duplicates the document's artboards. Naming artboards properly pays off at export, when files inherit those names automatically.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "artboards",
+        "layout"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Artboard Tool",
+        "Export for Screens"
+      ]
+    },
+    {
+      "name": "Export for Screens",
+      "software": "Illustrator",
+      "menu": "File > Export",
+      "shortcut": "Ctrl+Alt+E",
+      "addon": "",
+      "description": "Batch-exports artboards or assets to PNG, JPEG, SVG or PDF at multiple scales in one pass. The fastest route from a multi-artboard diagram file to a complete set of named deliverables.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "export",
+        "batch",
+        "artboards"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Asset Export Panel",
+        "Artboards Panel"
+      ]
+    },
+    {
+      "name": "Asset Export Panel",
+      "software": "Illustrator",
+      "menu": "Window",
+      "shortcut": "",
+      "addon": "",
+      "description": "Collects dragged-in artwork as named assets for repeated one-click export. Ideal for icon sets and diagram elements that get re-exported every time they are tweaked.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "panel",
+        "export",
+        "assets"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout",
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export for Screens"
+      ]
+    },
+    {
+      "name": "Save As",
+      "software": "Illustrator",
+      "menu": "File",
+      "shortcut": "Ctrl+Shift+S",
+      "addon": "",
+      "description": "Saves the document under a new name or format, including PDF with editing capability retained. Saving as PDF straight from Illustrator is the usual route for issuing review sets of boards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "file",
+        "save",
+        "pdf"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Export As",
+        "Package"
+      ]
+    },
+    {
+      "name": "Export As",
+      "software": "Illustrator",
+      "menu": "File > Export",
+      "shortcut": "",
+      "addon": "",
+      "description": "Exports to formats such as PNG, JPEG, TIFF, SVG or DWG, optionally per artboard. The DWG option is a handy bridge when vector diagram work needs to travel back into CAD.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "export",
+        "formats"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Export for Screens",
+        "Save As"
+      ]
+    },
+    {
+      "name": "Place",
+      "software": "Illustrator",
+      "menu": "File",
+      "shortcut": "Shift+Ctrl+P",
+      "addon": "",
+      "description": "Imports images, PDFs or other files, either linked to the source or embedded. Linked placement keeps board files light and lets an updated render flow through automatically.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "import",
+        "linked",
+        "images"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Package",
+        "Make Clipping Mask"
+      ]
+    },
+    {
+      "name": "Document Setup",
+      "software": "Illustrator",
+      "menu": "File",
+      "shortcut": "Ctrl+Alt+P",
+      "addon": "",
+      "description": "Edits document-wide settings including units, bleed and transparency options. Where you confirm millimetres and add printer's bleed before boards go anywhere near a print bureau.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "document",
+        "units",
+        "bleed"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Artboard Tool",
+        "Preferences"
+      ]
+    },
+    {
+      "name": "Package",
+      "software": "Illustrator",
+      "menu": "File",
+      "shortcut": "",
+      "addon": "",
+      "description": "Gathers the document with all linked images and fonts into one folder for handover. The safe way to pass a board file to a colleague or printer without missing-link surprises.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "file",
+        "handover",
+        "links"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Place",
+        "Create Outlines"
+      ]
+    },
+    {
+      "name": "Outline Mode",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+Y",
+      "addon": "",
+      "description": "Toggles a wireframe view showing bare paths without fills, strokes or effects. Invaluable for finding stray points, hidden duplicates and unclosed boundaries in a complex plan file.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "wireframe",
+        "debug"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view",
+        "curve"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Outline View"
+      ],
+      "related_commands": [
+        "Preview on CPU",
+        "Hide Edges"
+      ]
+    },
+    {
+      "name": "Preview on CPU",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+E",
+      "addon": "",
+      "description": "Toggles between GPU-accelerated and CPU rendering of the canvas. Worth switching when GPU preview shows hairline artefacts on dense linework or the display misbehaves.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "gpu",
+        "performance"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "GPU Preview Toggle"
+      ],
+      "related_commands": [
+        "Outline Mode"
+      ]
+    },
+    {
+      "name": "Pixel Preview",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+Alt+Y",
+      "addon": "",
+      "description": "Previews artwork as it will rasterise, revealing anti-aliased edges at pixel level. Check diagrams destined for screens or web portfolios here before exporting fuzzy linework.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "pixels",
+        "web"
+      ],
+      "intent_categories": [
+        "analyse",
+        "document"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export for Screens"
+      ]
+    },
+    {
+      "name": "Smart Guides",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+U",
+      "addon": "",
+      "description": "Toggles the dynamic magenta alignment hints that snap to edges, centres and angles while you draw and move. Keep them on for diagram assembly; switch off when they fight a dense drawing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "snapping",
+        "alignment"
+      ],
+      "intent_categories": [
+        "organise",
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Snap to Point",
+        "Align Panel"
+      ]
+    },
+    {
+      "name": "Rulers",
+      "software": "Illustrator",
+      "menu": "View > Rulers",
+      "shortcut": "Ctrl+R",
+      "addon": "",
+      "description": "Toggles rulers along the window edges, the source for dragged guides. First stop when setting up margins and a grid for a portfolio board.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "rulers",
+        "layout"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hide Guides",
+        "Make Guides"
+      ]
+    },
+    {
+      "name": "Hide Guides",
+      "software": "Illustrator",
+      "menu": "View > Guides",
+      "shortcut": "Ctrl+;",
+      "addon": "",
+      "description": "Toggles guide visibility without deleting them. Flick guides away to judge the board composition, then bring them back to continue aligning.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "guides"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Toggle Guides"
+      ],
+      "related_commands": [
+        "Rulers",
+        "Lock Guides"
+      ]
+    },
+    {
+      "name": "Make Guides",
+      "software": "Illustrator",
+      "menu": "View > Guides",
+      "shortcut": "Ctrl+5",
+      "addon": "",
+      "description": "Converts any selected path into a non-printing guide. Powerful for setting up angled or curved construction guides that match a site geometry, not just verticals and horizontals.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "construction"
+      ],
+      "intent_categories": [
+        "organise",
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Release Guides",
+        "Rulers"
+      ]
+    },
+    {
+      "name": "Release Guides",
+      "software": "Illustrator",
+      "menu": "View > Guides",
+      "shortcut": "Ctrl+Alt+5",
+      "addon": "",
+      "description": "Turns guides back into ordinary editable paths. Useful when a construction guide should become real drawn geometry after all.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "convert"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Make Guides"
+      ]
+    },
+    {
+      "name": "Lock Guides",
+      "software": "Illustrator",
+      "menu": "View > Guides",
+      "shortcut": "Ctrl+Alt+;",
+      "addon": "",
+      "description": "Locks all guides so they cannot be nudged while drawing. Sensible default once a board grid is set, sparing you mysteriously drifting margins.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "lock"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hide Guides",
+        "Make Guides"
+      ]
+    },
+    {
+      "name": "Show Grid",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+\"",
+      "addon": "",
+      "description": "Displays the document grid behind the artwork. A useful armature for modular diagram layouts and consistent spacing across a board set.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "grid"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Toggle Grid"
+      ],
+      "related_commands": [
+        "Snap to Grid",
+        "Rulers"
+      ]
+    },
+    {
+      "name": "Snap to Grid",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+Shift+\"",
+      "addon": "",
+      "description": "Makes drawing and moving operations snap to the document grid. Turn it on for strictly modular diagrams; leave it off for freeform plan tracing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "snapping",
+        "grid"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Grid",
+        "Snap to Point"
+      ]
+    },
+    {
+      "name": "Snap to Point",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+Alt+\"",
+      "addon": "",
+      "description": "Snaps dragged objects onto nearby anchor points and guides. The accuracy habit that keeps plan linework genuinely connected rather than nearly touching.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "snapping",
+        "precision"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "view",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Smart Guides",
+        "Snap to Grid"
+      ]
+    },
+    {
+      "name": "Fit Artboard in Window",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+0",
+      "addon": "",
+      "description": "Zooms so the current artboard fills the window. The reflex reset after detailed path editing deep inside a board.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom",
+        "fit"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit All in Window",
+        "Actual Size"
+      ]
+    },
+    {
+      "name": "Fit All in Window",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+Alt+0",
+      "addon": "",
+      "description": "Zooms out until every artboard is visible at once. The overview shot when juggling a document that holds a whole set of presentation boards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom",
+        "overview"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit Artboard in Window"
+      ]
+    },
+    {
+      "name": "Actual Size",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+1",
+      "addon": "",
+      "description": "Shows the artwork at 100 percent, which Illustrator maps to real-world print size on most displays. A useful sanity check that lineweights and type will read at the board's true scale.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom",
+        "100%"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate",
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "100%"
+      ],
+      "related_commands": [
+        "Fit Artboard in Window"
+      ]
+    },
+    {
+      "name": "Hide Edges",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+H",
+      "addon": "",
+      "description": "Hides the coloured selection highlights on paths while keeping the selection active. Lets you judge a colour or lineweight tweak without glowing anchor clutter in the way.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "selection",
+        "preview"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Hide Bounding Box",
+        "Outline Mode"
+      ]
+    },
+    {
+      "name": "Hide Bounding Box",
+      "software": "Illustrator",
+      "menu": "View",
+      "shortcut": "Ctrl+Shift+B",
+      "addon": "",
+      "description": "Hides the transform bounding box around selections. Helpful when the handles keep inviting accidental scaling during delicate plan editing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "bounding box"
+      ],
+      "intent_categories": [
+        "analyse",
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Hide Edges",
+        "Selection Tool"
+      ]
+    },
+    {
+      "name": "Undo",
+      "software": "Illustrator",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Z",
+      "addon": "",
+      "description": "Steps back through recent edits, with a deep history. The safety net that makes experimental diagram styling cheap.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "history",
+        "undo"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Redo"
+      ]
+    },
+    {
+      "name": "Redo",
+      "software": "Illustrator",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Shift+Z",
+      "addon": "",
+      "description": "Reinstates edits you have just undone. Handy for toggling a change on and off to compare versions of a graphic decision.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "history",
+        "redo"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Undo"
+      ]
+    },
+    {
+      "name": "Select All",
+      "software": "Illustrator",
+      "menu": "Select",
+      "shortcut": "Ctrl+A",
+      "addon": "",
+      "description": "Selects every unlocked object in the document, or all text when in a text frame. Usual first step before a global transform or a document-wide recolour.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "all"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Deselect",
+        "Recolour Artwork"
+      ]
+    },
+    {
+      "name": "Deselect",
+      "software": "Illustrator",
+      "menu": "Select",
+      "shortcut": "Ctrl+Shift+A",
+      "addon": "",
+      "description": "Clears the current selection. Worth the habit before checking the drawing, since selection highlights can mask true colours and weights.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "clear"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Select All",
+        "Hide Edges"
+      ]
+    },
+    {
+      "name": "Select Same Fill Colour",
+      "software": "Illustrator",
+      "menu": "Select > Same",
+      "shortcut": "",
+      "addon": "",
+      "description": "Selects every object in the document sharing the current fill colour; siblings cover stroke colour, weight and more. The menu counterpart to the Magic Wand for sweeping graphic clean-ups.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "attributes",
+        "colour"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Select Same"
+      ],
+      "related_commands": [
+        "Magic Wand Tool",
+        "Recolour Artwork"
+      ]
+    },
+    {
+      "name": "Preferences",
+      "software": "Illustrator",
+      "menu": "Edit > Preferences",
+      "shortcut": "Ctrl+K",
+      "addon": "",
+      "description": "Opens application settings including units, keyboard increment and scaling behaviour. Setting units to millimetres and a sensible arrow-key nudge distance makes drawing work far less fiddly.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/illustrator/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "settings",
+        "units"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Document Setup"
+      ]
+    }
+  ]
+}

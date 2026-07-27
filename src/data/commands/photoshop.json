@@ -1,0 +1,4922 @@
+{
+  "meta": {
+    "software": "Photoshop",
+    "version": "Photoshop 2026",
+    "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+    "provenance": "Authored from model knowledge (cutoff Jan 2026). Original explanations - not copied from Adobe documentation. Shortcuts/menu paths are factual data.",
+    "iconNote": "Adobe icon artwork is proprietary; app renders software chip fallback."
+  },
+  "commands": [
+    {
+      "name": "Move Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "V",
+      "addon": "",
+      "description": "Drags layers, selections and guides around the canvas, and doubles as the hub for aligning and distributing layers via the options bar. The first tool architects reach for when repositioning trees, people and other entourage in a render collage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "layers",
+        "positioning"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Move"
+      ],
+      "related_commands": [
+        "Align Layers",
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Artboard Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "V",
+      "addon": "",
+      "description": "Creates and resizes artboards so several presentation boards or drawing sheets can live in one document. Handy for laying out a portfolio spread or a set of diagram variants side by side.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "artboards",
+        "layout"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Canvas Size",
+        "Export As"
+      ]
+    },
+    {
+      "name": "Rectangular Marquee Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "M",
+      "addon": "",
+      "description": "Draws rectangular pixel selections; hold Shift for a square. Useful for isolating a facade bay or cropping a clean strip of sky before adjustment.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Marquee"
+      ],
+      "related_commands": [
+        "Elliptical Marquee Tool",
+        "Deselect"
+      ]
+    },
+    {
+      "name": "Elliptical Marquee Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "M",
+      "addon": "",
+      "description": "Draws oval and circular selections; hold Shift to constrain to a circle. Reached for when masking round elements such as sun discs, vignettes or circular diagram callouts.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangular Marquee Tool",
+        "Feather"
+      ]
+    },
+    {
+      "name": "Lasso Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "L",
+      "addon": "",
+      "description": "Freehand selection tool for quickly ringing an irregular area. Good for rough masks around foliage or loose regions you intend to refine or feather afterwards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "freehand"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Polygonal Lasso Tool",
+        "Select and Mask"
+      ]
+    },
+    {
+      "name": "Polygonal Lasso Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "L",
+      "addon": "",
+      "description": "Builds a selection from straight-edged clicks, which suits the hard geometry of buildings. The go-to for cutting a facade or roofline cleanly out of a photograph.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "straight edges"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Poly Lasso"
+      ],
+      "related_commands": [
+        "Lasso Tool",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Magnetic Lasso Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "L",
+      "addon": "",
+      "description": "Snaps a selection edge to contrast boundaries as you trace, useful where a building meets sky. Works best on clean, high-contrast edges; noisy textures may need manual clicks.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "edge detection"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Select Subject",
+        "Select and Mask"
+      ]
+    },
+    {
+      "name": "Object Selection Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "W",
+      "addon": "",
+      "description": "Drag a rough box around an object and Photoshop finds its edges automatically. A fast way to isolate a person, tree or vehicle for masking into a render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "ai"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Select Subject",
+        "Quick Selection Tool"
+      ]
+    },
+    {
+      "name": "Quick Selection Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "W",
+      "addon": "",
+      "description": "Paints a selection that grows along similar tones and edges as you drag. Useful for grabbing large coherent areas such as a lawn, a wall plane or a stretch of paving.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "brush"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Object Selection Tool",
+        "Magic Wand Tool"
+      ]
+    },
+    {
+      "name": "Magic Wand Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "W",
+      "addon": "",
+      "description": "Selects contiguous pixels of similar colour in one click, controlled by a tolerance value. Ideal for lifting flat-colour areas out of exported CAD elevations or diagram fills.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "selection",
+        "colour"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Wand"
+      ],
+      "related_commands": [
+        "Quick Selection Tool",
+        "Colour Range"
+      ]
+    },
+    {
+      "name": "Crop Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "C",
+      "addon": "",
+      "description": "Trims or extends the canvas, with ratio presets, overlay guides and straightening built in. Essential for composing final render crops to a consistent board format.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "crop",
+        "composition"
+      ],
+      "intent_categories": [
+        "edit",
+        "document"
+      ],
+      "object_types": [
+        "layout",
+        "view"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Perspective Crop Tool",
+        "Canvas Size"
+      ]
+    },
+    {
+      "name": "Perspective Crop Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "C",
+      "addon": "",
+      "description": "Crops while remapping a skewed plane to a straight-on rectangle. Perfect for rectifying photographs of drawings, site boards or facades shot at an angle.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "crop",
+        "perspective"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Crop Tool",
+        "Perspective Warp"
+      ]
+    },
+    {
+      "name": "Frame Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "K",
+      "addon": "",
+      "description": "Draws rectangular or elliptical placeholder frames that images drop into and auto-mask, much like InDesign frames. Useful for building portfolio board templates directly in Photoshop.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "placeholder",
+        "layout"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Place Embedded",
+        "Create Clipping Mask"
+      ]
+    },
+    {
+      "name": "Eyedropper Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "I",
+      "addon": "",
+      "description": "Samples a colour from the canvas into the foreground swatch. Reach for it when matching material tones across a render or picking a palette from a reference photograph.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "colour",
+        "sampling"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Brush Tool",
+        "Switch Foreground and Background Colours"
+      ]
+    },
+    {
+      "name": "Ruler Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "I",
+      "addon": "",
+      "description": "Measures distances and angles on the canvas and can straighten a tilted layer from the options bar. Useful for checking proportions or levelling a skewed site photograph.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "measure"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rulers",
+        "Crop Tool"
+      ]
+    },
+    {
+      "name": "Spot Healing Brush Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "J",
+      "addon": "",
+      "description": "Removes small blemishes in one dab by sampling the surroundings automatically. The quickest fix for sensor dust, stray cables or minor render artefacts.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "retouch",
+        "healing"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Healing Brush Tool",
+        "Remove Tool"
+      ]
+    },
+    {
+      "name": "Healing Brush Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "J",
+      "addon": "",
+      "description": "Paints with texture from an Alt-clicked source point while blending tone and lighting from the destination. Gives more control than the spot version when repairing brick, render or concrete textures.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "retouch",
+        "healing"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Spot Healing Brush Tool",
+        "Clone Stamp Tool"
+      ]
+    },
+    {
+      "name": "Patch Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "J",
+      "addon": "",
+      "description": "Drag a selected problem area onto clean texture and Photoshop blends the repair in. Efficient for erasing large distractions such as skips, signage or parked cars from site photographs.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "retouch"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Content-Aware Fill",
+        "Healing Brush Tool"
+      ]
+    },
+    {
+      "name": "Remove Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "J",
+      "addon": "",
+      "description": "Brush over an unwanted object and machine learning reconstructs the background behind it. Faster than manual cloning for clearing wires, bins and people from context photographs.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "retouch",
+        "ai"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Content-Aware Fill",
+        "Generative Fill"
+      ]
+    },
+    {
+      "name": "Content-Aware Move Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "J",
+      "addon": "",
+      "description": "Moves a selected object to a new position while filling the hole it leaves and blending it into its new surroundings. Useful for nudging entourage or street furniture to improve a composition.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "retouch",
+        "recompose"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Patch Tool",
+        "Content-Aware Fill"
+      ]
+    },
+    {
+      "name": "Brush Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "B",
+      "addon": "",
+      "description": "The core painting tool, with pressure-sensitive size and opacity control. Architects use it constantly for painting layer masks, adding shadow washes and hand-rendered texture over line drawings.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "paint",
+        "masking"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Paintbrush"
+      ],
+      "related_commands": [
+        "Eraser Tool",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Pencil Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "B",
+      "addon": "",
+      "description": "Paints hard-edged, aliased strokes with no soft falloff. Suits crisp pixel-precise work such as tidying exported linework or drawing on very low-resolution diagrams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "paint",
+        "hard edge"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Brush Tool"
+      ]
+    },
+    {
+      "name": "Mixer Brush Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "B",
+      "addon": "",
+      "description": "Blends colours on the canvas like wet paint, mixing what is already there with the loaded colour. Used for painterly render overpainting and softening harsh CG material transitions.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "paint",
+        "blending"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Brush Tool",
+        "Smudge Tool"
+      ]
+    },
+    {
+      "name": "Clone Stamp Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "S",
+      "addon": "",
+      "description": "Paints an exact copy of pixels from an Alt-clicked source point. The classic tool for extending brick coursing, duplicating window bays or patching texture where healing tools blend too much.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "retouch",
+        "clone"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Clone"
+      ],
+      "related_commands": [
+        "Healing Brush Tool",
+        "Patch Tool"
+      ]
+    },
+    {
+      "name": "History Brush Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "Y",
+      "addon": "",
+      "description": "Paints a chosen earlier history state back into the image. Lets you apply a filter or adjustment globally, then brush it away selectively - for example restoring sharpness only on the building.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "history",
+        "selective"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "History Panel",
+        "Undo"
+      ]
+    },
+    {
+      "name": "Eraser Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "E",
+      "addon": "",
+      "description": "Deletes pixels from a layer, or paints the background colour on a locked Background layer. On masked workflows it is often better to paint the mask instead, keeping edits reversible.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "erase"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Brush Tool",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Background Eraser Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "E",
+      "addon": "",
+      "description": "Erases sampled colours under the brush centre while protecting differing edge colours, leaving transparency. Occasionally useful for stripping sky from behind complex roof silhouettes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "erase",
+        "extraction"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Select Sky",
+        "Select and Mask"
+      ]
+    },
+    {
+      "name": "Gradient Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "G",
+      "addon": "",
+      "description": "Drags a smooth blend between colours or transparency, now applied as an editable on-canvas gradient. Constantly used for graded skies, ground-plane fades and atmospheric depth in render post-production.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "gradient",
+        "atmosphere"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Fill Layer",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Paint Bucket Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "G",
+      "addon": "",
+      "description": "Fills contiguous areas of similar colour with the foreground colour or a pattern. Quick for blocking flat colour into diagram regions or exported plan drawings.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "fill"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Bucket Fill"
+      ],
+      "related_commands": [
+        "Fill",
+        "Magic Wand Tool"
+      ]
+    },
+    {
+      "name": "Blur Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Softens pixels locally as you brush. Handy for knocking back a distracting background detail or easing a hard cut-out edge without touching the whole layer.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "blur",
+        "local"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Gaussian Blur",
+        "Sharpen Tool"
+      ]
+    },
+    {
+      "name": "Sharpen Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Increases local contrast under the brush to crisp up detail. Useful for selectively emphasising material texture or foreground edges in a render without global sharpening.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "sharpen",
+        "local"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Smart Sharpen",
+        "Blur Tool"
+      ]
+    },
+    {
+      "name": "Smudge Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "",
+      "addon": "",
+      "description": "Pushes pixels around as if dragging a finger through wet paint. Occasionally used to pull wisps into skies or blend painted entourage edges into a scene.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "smudge",
+        "paint"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Mixer Brush Tool",
+        "Blur Tool"
+      ]
+    },
+    {
+      "name": "Dodge Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "O",
+      "addon": "",
+      "description": "Brightens the area you brush, with separate control over shadows, midtones and highlights. Used to lift light onto facades, pick out sunlit surfaces and add sparkle to glazing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "lighting",
+        "brighten"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Burn Tool",
+        "Curves"
+      ]
+    },
+    {
+      "name": "Burn Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "O",
+      "addon": "",
+      "description": "Darkens the brushed area, targeting shadows, midtones or highlights. The natural partner to dodging for grounding objects with contact shadows and deepening recesses in a render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "lighting",
+        "darken"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Dodge Tool",
+        "Curves"
+      ]
+    },
+    {
+      "name": "Sponge Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "O",
+      "addon": "",
+      "description": "Saturates or desaturates colour locally as you brush. Useful for calming an over-vivid car or sign that competes with the architecture in a visual.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "saturation"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Hue/Saturation",
+        "Vibrance"
+      ]
+    },
+    {
+      "name": "Pen Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Draws precise vector paths with bezier handles, convertible to selections, masks or shapes. The most accurate way to cut out hard-edged architecture for compositing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "vector"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Bezier Pen"
+      ],
+      "related_commands": [
+        "Curvature Pen Tool",
+        "Direct Selection Tool"
+      ]
+    },
+    {
+      "name": "Freeform Pen Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Draws a path freehand and fits anchor points to your stroke, with an optional magnetic mode. A looser alternative to the Pen for organic outlines such as tree canopies.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "freehand"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Curvature Pen Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Places points and fits smooth curves through them automatically, no handle-dragging required. An easier entry to path drawing when tracing arches, curved roofs or road edges.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "curves"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Direct Selection Tool"
+      ]
+    },
+    {
+      "name": "Horizontal Type Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "T",
+      "addon": "",
+      "description": "Creates point or paragraph text as an editable type layer. Used for titling boards, labelling diagrams and annotating renders before export.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "text",
+        "annotation"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "annotation",
+        "layer"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Type Tool"
+      ],
+      "related_commands": [
+        "Character Panel",
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Path Selection Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "A",
+      "addon": "",
+      "description": "Selects and moves whole paths or shape components. Used when repositioning vector callouts, cut-out paths or shape-layer elements on a board.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "selection"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Black Arrow"
+      ],
+      "related_commands": [
+        "Direct Selection Tool",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Direct Selection Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "A",
+      "addon": "",
+      "description": "Selects individual anchor points and handles so you can reshape a path after drawing it. Essential for refining a Pen cut-out around tricky architectural details.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "path",
+        "anchors"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "curve",
+        "point"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "White Arrow"
+      ],
+      "related_commands": [
+        "Pen Tool",
+        "Path Selection Tool"
+      ]
+    },
+    {
+      "name": "Rectangle Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Draws rectangular vector shapes with live corner radius controls. Useful for diagram frames, colour blocks and masking panels on presentation boards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "vector"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ellipse Tool",
+        "Line Tool"
+      ]
+    },
+    {
+      "name": "Ellipse Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Draws elliptical and circular vector shapes. Reached for when adding key-plan markers, bubble diagrams or circular crops to a layout.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "vector"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool"
+      ]
+    },
+    {
+      "name": "Line Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Draws straight vector lines with adjustable weight and optional arrowheads. Ideal for leader lines, section markers and dimension-style callouts over images.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "line"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "curve",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool",
+        "Horizontal Type Tool"
+      ]
+    },
+    {
+      "name": "Custom Shape Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Stamps predefined vector shapes, including arrows and symbols, from a shape library. A quick source of north arrows and diagram glyphs without leaving Photoshop.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "shape",
+        "symbols"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "curve",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Rectangle Tool"
+      ]
+    },
+    {
+      "name": "Hand Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "H",
+      "addon": "",
+      "description": "Pans the view around a zoomed-in image; hold the spacebar to invoke it temporarily from any tool. Constant companion when retouching large renders at pixel level.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "navigation"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Pan"
+      ],
+      "related_commands": [
+        "Zoom Tool",
+        "Fit on Screen"
+      ]
+    },
+    {
+      "name": "Rotate View Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "R",
+      "addon": "",
+      "description": "Rotates the on-screen view non-destructively, like turning a sheet of paper, without altering pixels. Useful when painting masks or strokes at a comfortable wrist angle.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "navigation",
+        "rotation"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "rotate",
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hand Tool"
+      ]
+    },
+    {
+      "name": "Zoom Tool",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "Z",
+      "addon": "",
+      "description": "Zooms in with a click or scrubby drag; hold Alt to zoom out. Fundamental for flipping between whole-image composition checks and pixel-level retouching.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "tool",
+        "navigation",
+        "zoom"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Fit on Screen",
+        "Actual Size"
+      ]
+    },
+    {
+      "name": "Default Foreground and Background Colours",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "D",
+      "addon": "",
+      "description": "Resets the swatches to black foreground over white background. Worth pressing before mask work so you know exactly which tone the brush will paint.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "colour",
+        "swatches"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Default Colours"
+      ],
+      "related_commands": [
+        "Switch Foreground and Background Colours",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Switch Foreground and Background Colours",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "X",
+      "addon": "",
+      "description": "Swaps the foreground and background swatches. Used constantly while painting layer masks to flip between concealing with black and revealing with white.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "colour",
+        "swatches",
+        "masking"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Swap Colours"
+      ],
+      "related_commands": [
+        "Default Foreground and Background Colours",
+        "Brush Tool"
+      ]
+    },
+    {
+      "name": "Decrease/Increase Brush Size",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "[ / ]",
+      "addon": "",
+      "description": "The square-bracket keys shrink or enlarge the current brush tip; add Shift to change hardness. Keeps mask painting fluid without visiting the brush picker.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "brush",
+        "shortcut"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Bracket Keys"
+      ],
+      "related_commands": [
+        "Brush Tool"
+      ]
+    },
+    {
+      "name": "Quick Mask Mode",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "Q",
+      "addon": "",
+      "description": "Toggles a mode where you paint a selection as a red overlay with any brush, then exit to convert it into marching ants. A forgiving way to build soft, painterly selections for atmospheric adjustments.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "masking",
+        "mode"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Quick Mask"
+      ],
+      "related_commands": [
+        "Brush Tool",
+        "Select and Mask"
+      ]
+    },
+    {
+      "name": "Cycle Screen Modes",
+      "software": "Photoshop",
+      "menu": "Toolbar",
+      "shortcut": "F",
+      "addon": "",
+      "description": "Cycles between standard, full screen with menu bar and full screen views. Useful for judging a finished render against a clean neutral surround before presenting.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "screen mode"
+      ],
+      "intent_categories": [
+        "analyse",
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Full Screen Toggle"
+      ],
+      "related_commands": [
+        "Fit on Screen"
+      ]
+    },
+    {
+      "name": "New Layer",
+      "software": "Photoshop",
+      "menu": "Layer > New",
+      "shortcut": "Ctrl+Shift+N",
+      "addon": "",
+      "description": "Creates an empty layer above the current one, with options for name, blend mode and opacity. Disciplined layer-making is the backbone of a non-destructive render post-production file.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "create"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Layer via Copy",
+        "Group Layers"
+      ]
+    },
+    {
+      "name": "New Layer via Copy",
+      "software": "Photoshop",
+      "menu": "Layer > New",
+      "shortcut": "Ctrl+J",
+      "addon": "",
+      "description": "Copies the current selection, or the whole layer if nothing is selected, onto a fresh layer. The reflex move before any risky edit, and the fastest way to duplicate an element for arraying entourage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "duplicate"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Duplicate to New Layer"
+      ],
+      "related_commands": [
+        "Duplicate Layer",
+        "New Layer via Cut"
+      ]
+    },
+    {
+      "name": "New Layer via Cut",
+      "software": "Photoshop",
+      "menu": "Layer > New",
+      "shortcut": "Ctrl+Shift+J",
+      "addon": "",
+      "description": "Moves the selected pixels onto their own layer, leaving a hole behind. Useful for separating a building from its background so each can be adjusted independently.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "cut"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "New Layer via Copy"
+      ]
+    },
+    {
+      "name": "Duplicate Layer",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Duplicates the active layer or group, optionally into another open document. Handy for carrying a graded sky or a set of adjustment layers between render files.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "duplicate"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Layer via Copy"
+      ]
+    },
+    {
+      "name": "Group Layers",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "Ctrl+G",
+      "addon": "",
+      "description": "Collects the selected layers into a folder that can be moved, masked and blended as one. Keeping vegetation, people and sky in named groups keeps large visualisation files navigable.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "organisation",
+        "groups"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Group"
+      ],
+      "related_commands": [
+        "Ungroup Layers",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Ungroup Layers",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "Ctrl+Shift+G",
+      "addon": "",
+      "description": "Dissolves the selected group, returning its layers to the main stack. Used when a grouping no longer reflects how you want to structure the file.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "organisation"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Group Layers"
+      ]
+    },
+    {
+      "name": "Merge Layers",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "Ctrl+E",
+      "addon": "",
+      "description": "Flattens the selected layers, or the layer into the one below, into a single layer. Reduces file weight once a passage of work is final, at the cost of later editability.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "merge"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Merge Down"
+      ],
+      "related_commands": [
+        "Merge Visible",
+        "Stamp Visible"
+      ]
+    },
+    {
+      "name": "Merge Visible",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "Ctrl+Shift+E",
+      "addon": "",
+      "description": "Combines every visible layer into one, discarding hidden ones. Useful just before a final sharpen when you no longer need the layered structure.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "merge"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Merge Layers",
+        "Flatten Image"
+      ]
+    },
+    {
+      "name": "Stamp Visible",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "Ctrl+Alt+Shift+E",
+      "addon": "",
+      "description": "Creates a new merged copy of everything visible while leaving all the original layers intact. The standard move before applying Camera Raw or sharpening to a finished composite without losing the stack.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "merge",
+        "non-destructive"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy",
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Stamp Merge"
+      ],
+      "related_commands": [
+        "Merge Visible",
+        "Camera Raw Filter"
+      ]
+    },
+    {
+      "name": "Flatten Image",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Collapses the entire document to a single Background layer. Only sensible on a copy destined for delivery, since all layered editability is lost.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "flatten"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Merge Visible",
+        "Save a Copy"
+      ]
+    },
+    {
+      "name": "Create Clipping Mask",
+      "software": "Photoshop",
+      "menu": "Layer",
+      "shortcut": "Ctrl+Alt+G",
+      "addon": "",
+      "description": "Clips the current layer so it only shows where the layer below has pixels. Perfect for confining a texture, tone or adjustment to a single building cut-out.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "masking",
+        "clipping"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Clip to Layer"
+      ],
+      "related_commands": [
+        "Add Layer Mask",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Add Layer Mask",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "",
+      "addon": "",
+      "description": "Attaches a greyscale mask to the layer: paint black to hide, white to reveal. The cornerstone of non-destructive compositing, from blending skies to fading materials on a facade study.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "masking"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Layer Mask"
+      ],
+      "related_commands": [
+        "Brush Tool",
+        "Create Clipping Mask"
+      ]
+    },
+    {
+      "name": "Add Vector Mask",
+      "software": "Photoshop",
+      "menu": "Layer > Vector Mask",
+      "shortcut": "",
+      "addon": "",
+      "description": "Masks a layer with a resolution-independent path instead of pixels. Gives perfectly crisp edges for hard architectural cut-outs that may be rescaled later.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "masking",
+        "vector"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "curve"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Pen Tool",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "New Adjustment Layer",
+      "software": "Photoshop",
+      "menu": "Layer > New Adjustment Layer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Adds an editable adjustment, such as Curves or Hue/Saturation, that affects all layers below without changing their pixels. The professional way to grade renders so every decision stays reversible.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "adjustment",
+        "non-destructive"
+      ],
+      "intent_categories": [
+        "create",
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Adjustment Layer"
+      ],
+      "related_commands": [
+        "Curves",
+        "Create Clipping Mask"
+      ]
+    },
+    {
+      "name": "New Fill Layer",
+      "software": "Photoshop",
+      "menu": "Layer > New Fill Layer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Creates a layer filled with a solid colour, gradient or pattern, complete with its own mask. Ideal for tone washes, graded skies and consistent background colours across board sets.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "fill",
+        "non-destructive"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Fill Layer"
+      ],
+      "related_commands": [
+        "Gradient Tool",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Convert to Smart Object",
+      "software": "Photoshop",
+      "menu": "Layer > Smart Objects",
+      "shortcut": "",
+      "addon": "",
+      "description": "Wraps a layer so transforms and filters apply non-destructively and the source can be re-edited. Place renders as smart objects so repeated scaling on a board never degrades them.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "smart object",
+        "non-destructive"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Smart Object"
+      ],
+      "related_commands": [
+        "Place Embedded",
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Rasterise Layer",
+      "software": "Photoshop",
+      "menu": "Layer > Rasterise",
+      "shortcut": "",
+      "addon": "",
+      "description": "Converts a type, shape or smart object layer into plain pixels. Needed before pixel-level painting or filters that refuse to run on vector or smart content.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "rasterise"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Rasterize Layer"
+      ],
+      "related_commands": [
+        "Convert to Smart Object"
+      ]
+    },
+    {
+      "name": "Layer Opacity Keys",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "1-0",
+      "addon": "",
+      "description": "With a non-painting tool active, tapping a number key sets the layer opacity in ten-percent steps. A fast way to fade an overlay drawing over a photograph while tracing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "opacity",
+        "shortcut"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Opacity Shortcut"
+      ],
+      "related_commands": [
+        "Cycle Blend Modes"
+      ]
+    },
+    {
+      "name": "Cycle Blend Modes",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "Shift++ / Shift+-",
+      "addon": "",
+      "description": "Steps the active layer through blend modes one by one. Invaluable for auditioning how a shadow pass, texture or light glow sits over a render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "blend modes"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Blend Mode Cycling"
+      ],
+      "related_commands": [
+        "Set Blend Mode: Multiply",
+        "Set Blend Mode: Screen"
+      ]
+    },
+    {
+      "name": "Set Blend Mode: Multiply",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "Shift+Alt+M",
+      "addon": "",
+      "description": "Jumps the layer straight to Multiply, which darkens by multiplying tones. The classic mode for laying line drawings or shadow passes over a base image with whites turning transparent.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "blend modes",
+        "multiply"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Cycle Blend Modes",
+        "Set Blend Mode: Screen"
+      ]
+    },
+    {
+      "name": "Set Blend Mode: Screen",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "Shift+Alt+S",
+      "addon": "",
+      "description": "Sets the layer to Screen, which lightens by inverting and multiplying, making black transparent. Ideal for compositing glows, light fixtures and night-render highlights.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "blend modes",
+        "screen"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Set Blend Mode: Multiply",
+        "Cycle Blend Modes"
+      ]
+    },
+    {
+      "name": "Lock Transparent Pixels",
+      "software": "Photoshop",
+      "menu": "Layers Panel",
+      "shortcut": "/",
+      "addon": "",
+      "description": "Locks the layer's transparency so painting only affects existing pixels. Lets you recolour a tree or figure cut-out without ever straying past its silhouette.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "lock",
+        "transparency"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Transparency Lock"
+      ],
+      "related_commands": [
+        "Brush Tool"
+      ]
+    },
+    {
+      "name": "Select All Layers",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "Ctrl+Alt+A",
+      "addon": "",
+      "description": "Selects every layer in the panel at once. Useful before grouping an unruly file or transforming an entire board's contents together.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "selection"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Group Layers",
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Bring to Front",
+      "software": "Photoshop",
+      "menu": "Layer > Arrange",
+      "shortcut": "Ctrl+Shift+]",
+      "addon": "",
+      "description": "Moves the active layer to the top of the stack. Used when foreground entourage or annotation must sit above everything else.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "stacking"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Send to Back",
+        "Bring Forward"
+      ]
+    },
+    {
+      "name": "Bring Forward",
+      "software": "Photoshop",
+      "menu": "Layer > Arrange",
+      "shortcut": "Ctrl+]",
+      "addon": "",
+      "description": "Moves the active layer one step up the stack. A quick nudge when a person should stand in front of a bollard but behind a tree.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "stacking"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Send Backward",
+        "Bring to Front"
+      ]
+    },
+    {
+      "name": "Send Backward",
+      "software": "Photoshop",
+      "menu": "Layer > Arrange",
+      "shortcut": "Ctrl+[",
+      "addon": "",
+      "description": "Moves the active layer one step down the stack. Useful for slotting new entourage behind existing foreground elements.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "stacking"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Bring Forward",
+        "Send to Back"
+      ]
+    },
+    {
+      "name": "Send to Back",
+      "software": "Photoshop",
+      "menu": "Layer > Arrange",
+      "shortcut": "Ctrl+Shift+[",
+      "addon": "",
+      "description": "Drops the active layer to the bottom of the stack. Typically used for pushing a replacement sky behind every other element of a composite.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "stacking"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Bring to Front"
+      ]
+    },
+    {
+      "name": "Align Layers",
+      "software": "Photoshop",
+      "menu": "Layer > Align",
+      "shortcut": "",
+      "addon": "",
+      "description": "Aligns the selected layers by their edges or centres, also available from the Move Tool options bar. Keeps rows of images and captions ruler-straight on portfolio boards.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "alignment",
+        "layout"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Align"
+      ],
+      "related_commands": [
+        "Distribute Layers",
+        "Move Tool"
+      ]
+    },
+    {
+      "name": "Distribute Layers",
+      "software": "Photoshop",
+      "menu": "Layer > Distribute",
+      "shortcut": "",
+      "addon": "",
+      "description": "Spaces three or more selected layers evenly by edges or centres. The quickest way to set a run of thumbnails or diagram panels at equal intervals.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "distribution",
+        "layout"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [
+        "move",
+        "array"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Distribute"
+      ],
+      "related_commands": [
+        "Align Layers",
+        "Move Tool"
+      ]
+    },
+    {
+      "name": "Layer Style: Drop Shadow",
+      "software": "Photoshop",
+      "menu": "Layer > Layer Style",
+      "shortcut": "",
+      "addon": "",
+      "description": "Adds an editable shadow effect behind the layer's content. Useful for lifting cut-out plans or photos off the page on a presentation board, or faking quick contact shadows.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "effects",
+        "shadow"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Drop Shadow"
+      ],
+      "related_commands": [
+        "Blending Options",
+        "Copy Layer Style"
+      ]
+    },
+    {
+      "name": "Blending Options",
+      "software": "Photoshop",
+      "menu": "Layer > Layer Style",
+      "shortcut": "",
+      "addon": "",
+      "description": "Opens the layer style dialogue with advanced controls including Blend If sliders. Blend If is a hidden gem for dropping a texture only into the highlights or shadows of a render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "effects",
+        "blend if"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Blend If"
+      ],
+      "related_commands": [
+        "Layer Style: Drop Shadow"
+      ]
+    },
+    {
+      "name": "Copy Layer Style",
+      "software": "Photoshop",
+      "menu": "Layer > Layer Style",
+      "shortcut": "",
+      "addon": "",
+      "description": "Copies the active layer's effects so they can be pasted onto other layers. Keeps shadows and strokes consistent across every image frame on a board set.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "layers",
+        "effects",
+        "workflow"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Paste Layer Style"
+      ],
+      "related_commands": [
+        "Layer Style: Drop Shadow"
+      ]
+    },
+    {
+      "name": "Select All",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "Ctrl+A",
+      "addon": "",
+      "description": "Selects the entire canvas. Commonly the first step before Copy Merged when lifting a whole composite into another document.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "basics"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Copy Merged",
+        "Deselect"
+      ]
+    },
+    {
+      "name": "Deselect",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "Ctrl+D",
+      "addon": "",
+      "description": "Drops the current selection so edits apply everywhere again. Worth pressing habitually - a forgotten selection is the classic reason an adjustment mysteriously does nothing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "basics"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Reselect",
+        "Select All"
+      ]
+    },
+    {
+      "name": "Reselect",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "Ctrl+Shift+D",
+      "addon": "",
+      "description": "Restores the most recently dropped selection. A lifesaver when you deselect a painstaking building cut-out a moment too soon.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "basics"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Deselect",
+        "Save Selection"
+      ]
+    },
+    {
+      "name": "Inverse Selection",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "Ctrl+Shift+I",
+      "addon": "",
+      "description": "Flips the selection to cover everything that was not selected. Standard practice after selecting a sky: invert to work on the building instead.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "invert"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Invert Selection"
+      ],
+      "related_commands": [
+        "Select Sky",
+        "Deselect"
+      ]
+    },
+    {
+      "name": "Feather",
+      "software": "Photoshop",
+      "menu": "Select > Modify",
+      "shortcut": "Shift+F6",
+      "addon": "",
+      "description": "Softens the selection edge by a pixel radius so subsequent edits fade out gently. Essential for blending tonal adjustments into a render without visible seams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "soften",
+        "edges"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth",
+        "offset"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Feather Selection"
+      ],
+      "related_commands": [
+        "Select and Mask",
+        "Expand Selection"
+      ]
+    },
+    {
+      "name": "Expand Selection",
+      "software": "Photoshop",
+      "menu": "Select > Modify",
+      "shortcut": "",
+      "addon": "",
+      "description": "Grows the selection outwards by a set number of pixels. Useful for closing tiny gaps around a cut-out before filling or deleting the background.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "modify"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "offset"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Grow Selection Edge"
+      ],
+      "related_commands": [
+        "Contract Selection",
+        "Feather"
+      ]
+    },
+    {
+      "name": "Contract Selection",
+      "software": "Photoshop",
+      "menu": "Select > Modify",
+      "shortcut": "",
+      "addon": "",
+      "description": "Shrinks the selection inwards by a set number of pixels. Often used to pull a selection just inside a building edge so no background halo survives the cut-out.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "modify"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "offset"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Expand Selection",
+        "Feather"
+      ]
+    },
+    {
+      "name": "Select Subject",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "",
+      "addon": "",
+      "description": "Uses machine learning to select the most prominent subject in one click. A strong starting point for cutting people and objects out for render entourage, refined afterwards in Select and Mask.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "ai",
+        "subject"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Select and Mask",
+        "Object Selection Tool"
+      ]
+    },
+    {
+      "name": "Select Sky",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "",
+      "addon": "",
+      "description": "Automatically selects the sky region of a photograph or render, including around fiddly tree lines. The usual first step before grading a sky or swapping it entirely.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "ai",
+        "sky"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Sky Replacement",
+        "Inverse Selection"
+      ]
+    },
+    {
+      "name": "Select and Mask",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "Ctrl+Alt+R",
+      "addon": "",
+      "description": "Opens a dedicated workspace for refining selection edges, with the Refine Hair brush for wispy detail. Where rough tree and figure selections become convincing, halo-free masks.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "refine",
+        "edges"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Refine Edge"
+      ],
+      "related_commands": [
+        "Select Subject",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Colour Range",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "",
+      "addon": "",
+      "description": "Builds a selection from sampled colours or tonal ranges such as highlights and shadows across the whole image. Useful for grabbing every patch of sky between leaves, or all the glazing on a facade at once.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "colour",
+        "tonal"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Color Range"
+      ],
+      "related_commands": [
+        "Magic Wand Tool",
+        "Select and Mask"
+      ]
+    },
+    {
+      "name": "Transform Selection",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "",
+      "addon": "",
+      "description": "Scales, rotates or skews the selection boundary itself without touching any pixels. Handy for adapting one window selection to fit the next bay along a facade.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "transform"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale",
+        "rotate",
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Free Transform",
+        "Reselect"
+      ]
+    },
+    {
+      "name": "Save Selection",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "",
+      "addon": "",
+      "description": "Stores the current selection as an alpha channel for later reuse. Worth doing for any laborious cut-out, so the building mask survives to the next working session.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "channels",
+        "workflow"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Load Selection",
+        "Reselect"
+      ]
+    },
+    {
+      "name": "Load Selection",
+      "software": "Photoshop",
+      "menu": "Select",
+      "shortcut": "",
+      "addon": "",
+      "description": "Recalls a saved selection, or loads any layer or channel as one; Ctrl-clicking a layer thumbnail does the same. Brings a stored facade mask back instantly for further grading passes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "selection",
+        "channels",
+        "workflow"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Save Selection"
+      ]
+    },
+    {
+      "name": "Copy Merged",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Shift+C",
+      "addon": "",
+      "description": "Copies the selected area as it appears on screen, flattening all visible layers into the clipboard. The way to lift a finished detail from a layered composite into another document.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "clipboard",
+        "merge"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Select All",
+        "Paste in Place"
+      ]
+    },
+    {
+      "name": "Paste in Place",
+      "software": "Photoshop",
+      "menu": "Edit > Paste Special",
+      "shortcut": "Ctrl+Shift+V",
+      "addon": "",
+      "description": "Pastes clipboard content at its original coordinates rather than the view centre. Keeps elements perfectly registered when moving them between same-sized render iterations.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "clipboard",
+        "paste",
+        "registration"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy",
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Copy Merged",
+        "Paste Into"
+      ]
+    },
+    {
+      "name": "Paste Into",
+      "software": "Photoshop",
+      "menu": "Edit > Paste Special",
+      "shortcut": "Ctrl+Alt+Shift+V",
+      "addon": "",
+      "description": "Pastes the clipboard inside the active selection, automatically creating a layer mask from it. A neat one-step way to drop a new sky into a selected sky region.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "clipboard",
+        "paste",
+        "masking"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Select Sky",
+        "Add Layer Mask"
+      ]
+    },
+    {
+      "name": "Fill",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Shift+F5",
+      "addon": "",
+      "description": "Fills the selection or layer with a colour, pattern or content-aware result; Alt+Backspace and Ctrl+Backspace fill with foreground or background colour directly. Everyday workhorse for backgrounds, masks and quick patch repairs.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "fill",
+        "edit"
+      ],
+      "intent_categories": [
+        "edit",
+        "create"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Fill Dialogue"
+      ],
+      "related_commands": [
+        "Content-Aware Fill",
+        "Paint Bucket Tool"
+      ]
+    },
+    {
+      "name": "Content-Aware Fill",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "",
+      "addon": "",
+      "description": "Opens a workspace that synthesises new texture to fill the selection, with control over which areas it samples. The heavyweight option for removing large objects such as vehicles or scaffolding from site photography.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "retouch",
+        "fill",
+        "ai"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Remove Tool",
+        "Generative Fill"
+      ]
+    },
+    {
+      "name": "Stroke (Outline Selection)",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "",
+      "addon": "",
+      "description": "Draws a coloured border along the current selection or layer edge at a chosen width. Useful for quickly outlining a highlighted zone on a plan or aerial photograph.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "edit",
+        "outline",
+        "diagram"
+      ],
+      "intent_categories": [
+        "edit",
+        "document"
+      ],
+      "object_types": [
+        "layer",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Stroke Selection"
+      ],
+      "related_commands": [
+        "Fill",
+        "Rectangular Marquee Tool"
+      ]
+    },
+    {
+      "name": "Levels",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "Ctrl+L",
+      "addon": "",
+      "description": "Remaps shadows, midtones and highlights with three sliders under a histogram. The quick tool for punching up a flat render export or cleaning grey backgrounds out of scanned sketches.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "tonal",
+        "histogram"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Curves",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Curves",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "Ctrl+M",
+      "addon": "",
+      "description": "Adjusts tone and colour by reshaping a curve, offering the finest control of any adjustment. The core grading tool for render post-production, from gentle S-curve contrast to per-channel colour casts.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "tonal",
+        "grading"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Levels",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Hue/Saturation",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "Ctrl+U",
+      "addon": "",
+      "description": "Shifts hue, saturation and lightness globally or per colour range. Constantly used to retune grass greens, mute competing colours or test alternative material tints on a facade.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "colour"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Hue Saturation"
+      ],
+      "related_commands": [
+        "Vibrance",
+        "New Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Black & White",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "Ctrl+Alt+Shift+B",
+      "addon": "",
+      "description": "Converts to monochrome with per-colour luminance sliders, so a blue sky can go moody-dark while brickwork stays light. Ideal for elegant greyscale portfolio imagery and massing studies.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "monochrome"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Black and White"
+      ],
+      "related_commands": [
+        "Hue/Saturation",
+        "Curves"
+      ]
+    },
+    {
+      "name": "Invert",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "Ctrl+I",
+      "addon": "",
+      "description": "Flips every tone to its negative. Most used on layer masks to reverse what is hidden, or to turn white-on-black CAD exports into black-on-white linework.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "invert"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Add Layer Mask",
+        "Levels"
+      ]
+    },
+    {
+      "name": "Shadows/Highlights",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "",
+      "addon": "",
+      "description": "Recovers detail by lifting shadows and taming highlights independently, based on local context. Rescues site photographs where the building is silhouetted against a bright sky.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "recovery",
+        "exposure"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Camera Raw Filter",
+        "Curves"
+      ]
+    },
+    {
+      "name": "Vibrance",
+      "software": "Photoshop",
+      "menu": "Image > Adjustments",
+      "shortcut": "",
+      "addon": "",
+      "description": "Boosts muted colours more than already-saturated ones, protecting skin tones. A safer general saturation lift for renders than the blunt Saturation slider.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "colour",
+        "saturation"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Hue/Saturation"
+      ]
+    },
+    {
+      "name": "Camera Raw Filter",
+      "software": "Photoshop",
+      "menu": "Filter",
+      "shortcut": "Ctrl+Shift+A",
+      "addon": "",
+      "description": "Opens the full raw-processing toolset - exposure, colour grading, clarity, dehaze, optics - as a filter on any layer. Many visualisers run their entire final grade here on a stamped composite.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "adjustment",
+        "raw",
+        "grading"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "ACR"
+      ],
+      "related_commands": [
+        "Stamp Visible",
+        "Curves"
+      ]
+    },
+    {
+      "name": "Free Transform",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Ctrl+T",
+      "addon": "",
+      "description": "Scales, rotates, skews and distorts the layer or selection with on-screen handles; right-click for extra modes and hold Ctrl to drag corners freely. The everyday tool for fitting entourage and textures into a scene's perspective.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "scale",
+        "rotate"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale",
+        "rotate",
+        "move",
+        "mirror"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Transform"
+      ],
+      "related_commands": [
+        "Transform Again",
+        "Warp"
+      ]
+    },
+    {
+      "name": "Transform Again",
+      "software": "Photoshop",
+      "menu": "Edit > Transform",
+      "shortcut": "Ctrl+Shift+T",
+      "addon": "",
+      "description": "Repeats the last transform; add Alt to repeat onto a duplicate. Chaining duplicates with a fixed offset is a quick way to array balusters, lamp posts or facade modules.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "repeat",
+        "array"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "array",
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Step and Repeat"
+      ],
+      "related_commands": [
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Warp",
+      "software": "Photoshop",
+      "menu": "Edit > Transform",
+      "shortcut": "",
+      "addon": "",
+      "description": "Bends the layer over an editable grid with adjustable control points. Used to wrap a poster onto a curved hoarding or ease a texture around a rounded form.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "warp",
+        "distort"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Warp Transform"
+      ],
+      "related_commands": [
+        "Free Transform",
+        "Puppet Warp"
+      ]
+    },
+    {
+      "name": "Perspective Warp",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "",
+      "addon": "",
+      "description": "Defines planes over an image then lets you reshape its perspective, straightening converging verticals or adjusting viewpoint. Tailor-made for correcting keystoning in architectural photography.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "perspective",
+        "correction"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Perspective Crop Tool",
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Content-Aware Scale",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Alt+Shift+C",
+      "addon": "",
+      "description": "Rescales an image while protecting detected important content, stretching mainly the bland areas. Useful for widening a sky or foreground to fit a board format without distorting the building.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "scale",
+        "ai"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Seam Carving"
+      ],
+      "related_commands": [
+        "Free Transform",
+        "Generative Expand"
+      ]
+    },
+    {
+      "name": "Puppet Warp",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "",
+      "addon": "",
+      "description": "Pins a mesh over the layer so parts can be bent around fixed points. Handy for adjusting a cut-out figure's pose or curving a tree branch away from a facade.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "transform",
+        "mesh",
+        "pose"
+      ],
+      "intent_categories": [
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "mesh"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Warp",
+        "Free Transform"
+      ]
+    },
+    {
+      "name": "Image Rotation",
+      "software": "Photoshop",
+      "menu": "Image",
+      "shortcut": "",
+      "addon": "",
+      "description": "Rotates or flips the entire canvas, including by arbitrary angles. Used for squaring up scanned hand drawings before tracing or presentation.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "canvas",
+        "rotate"
+      ],
+      "intent_categories": [
+        "transform",
+        "document"
+      ],
+      "object_types": [
+        "layout",
+        "view"
+      ],
+      "outcomes": [
+        "rotate",
+        "mirror"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Rotate Canvas"
+      ],
+      "related_commands": [
+        "Crop Tool",
+        "Ruler Tool"
+      ]
+    },
+    {
+      "name": "Generative Fill",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "",
+      "addon": "",
+      "description": "Fills a selection with AI-generated content from a text prompt, or seamlessly removes and replaces what was there. Increasingly used for quick context, foreground foliage or patching gaps in site photography - check outputs critically before client issue.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "generative",
+        "ai",
+        "fill"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Gen Fill"
+      ],
+      "related_commands": [
+        "Generative Expand",
+        "Content-Aware Fill"
+      ]
+    },
+    {
+      "name": "Generative Expand",
+      "software": "Photoshop",
+      "menu": "Crop Tool Options",
+      "shortcut": "",
+      "addon": "",
+      "description": "Extends the canvas with the Crop Tool and lets AI invent plausible surroundings in the new space. Useful when a render is framed too tightly for the board proportion it must fill.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "generative",
+        "ai",
+        "canvas"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Generative Fill",
+        "Crop Tool"
+      ]
+    },
+    {
+      "name": "Sky Replacement",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "",
+      "addon": "",
+      "description": "Swaps the sky for one from a library or your own image, automatically masking edges and relighting the foreground to match. A minutes-not-hours route to consistent skies across a set of visuals.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "sky",
+        "ai",
+        "compositing"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Select Sky",
+        "Paste Into"
+      ]
+    },
+    {
+      "name": "Last Filter",
+      "software": "Photoshop",
+      "menu": "Filter",
+      "shortcut": "Ctrl+Alt+F",
+      "addon": "",
+      "description": "Re-applies the most recently used filter with the same settings. Speeds up repeating an identical blur or sharpen across several layers of a composite.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "repeat"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Repeat Filter"
+      ],
+      "related_commands": [
+        "Gaussian Blur",
+        "Smart Sharpen"
+      ]
+    },
+    {
+      "name": "Gaussian Blur",
+      "software": "Photoshop",
+      "menu": "Filter > Blur",
+      "shortcut": "",
+      "addon": "",
+      "description": "Applies an even, controllable softening across the layer. A staple for atmospheric depth, soft shadows under entourage and knocking back backgrounds in diagrams.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "blur"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Blur Gallery",
+        "High Pass"
+      ]
+    },
+    {
+      "name": "Smart Sharpen",
+      "software": "Photoshop",
+      "menu": "Filter > Sharpen",
+      "shortcut": "",
+      "addon": "",
+      "description": "Sharpens with control over radius, noise reduction and separate shadow and highlight fading. The usual final-output sharpen for renders headed to print or portfolio.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "sharpen",
+        "output"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Unsharp Mask",
+        "High Pass"
+      ]
+    },
+    {
+      "name": "Unsharp Mask",
+      "software": "Photoshop",
+      "menu": "Filter > Sharpen",
+      "shortcut": "",
+      "addon": "",
+      "description": "The classic edge-contrast sharpener with amount, radius and threshold controls. Still a dependable choice for crisping scanned drawings and lineweights.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "sharpen"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "USM"
+      ],
+      "related_commands": [
+        "Smart Sharpen"
+      ]
+    },
+    {
+      "name": "High Pass",
+      "software": "Photoshop",
+      "menu": "Filter > Other",
+      "shortcut": "",
+      "addon": "",
+      "description": "Isolates edge detail on a grey layer; set that layer to Overlay for precise, controllable sharpening. A favourite finishing trick because the effect can be masked or faded at will.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "sharpen",
+        "technique"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "High Pass Sharpening"
+      ],
+      "related_commands": [
+        "Set Blend Mode: Screen",
+        "Smart Sharpen"
+      ]
+    },
+    {
+      "name": "Blur Gallery",
+      "software": "Photoshop",
+      "menu": "Filter > Blur Gallery",
+      "shortcut": "",
+      "addon": "",
+      "description": "A set of on-canvas blur effects including Field Blur, Iris Blur and Tilt-Shift with placeable pins. Tilt-Shift is popular for giving aerial photographs and masterplan views a model-like depth of field.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "blur",
+        "depth of field"
+      ],
+      "intent_categories": [
+        "edit",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Tilt-Shift"
+      ],
+      "related_commands": [
+        "Gaussian Blur"
+      ]
+    },
+    {
+      "name": "Liquify",
+      "software": "Photoshop",
+      "menu": "Filter",
+      "shortcut": "Ctrl+Shift+X",
+      "addon": "",
+      "description": "Opens a workspace for pushing, bulging and reshaping pixels with pressure-like brushes. Occasionally rescues a slightly wonky cut-out or reshapes foliage to frame a view better.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "distort",
+        "retouch"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "mesh"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Puppet Warp",
+        "Warp"
+      ]
+    },
+    {
+      "name": "Vanishing Point",
+      "software": "Photoshop",
+      "menu": "Filter",
+      "shortcut": "Ctrl+Alt+V",
+      "addon": "",
+      "description": "Lets you define perspective planes and then clone, paint and paste in correct foreshortening along them. Powerful for extending facades, paving or repeating window bays convincingly in perspective photographs.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "filter",
+        "perspective",
+        "clone"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [
+        "copy",
+        "array"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Clone Stamp Tool",
+        "Perspective Warp"
+      ]
+    },
+    {
+      "name": "New Document",
+      "software": "Photoshop",
+      "menu": "File",
+      "shortcut": "Ctrl+N",
+      "addon": "",
+      "description": "Creates a document from presets or custom size, resolution and colour mode. Setting correct print resolution and dimensions here saves repeated grief at board printing time.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "file",
+        "document setup"
+      ],
+      "intent_categories": [
+        "create",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Image Size",
+        "Canvas Size"
+      ]
+    },
+    {
+      "name": "Save",
+      "software": "Photoshop",
+      "menu": "File",
+      "shortcut": "Ctrl+S",
+      "addon": "",
+      "description": "Saves the working document, keeping layers when saved as PSD or TIFF. Save early and often - large render composites and crashes are old acquaintances.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "file",
+        "save"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Save As",
+        "Save a Copy"
+      ]
+    },
+    {
+      "name": "Save As",
+      "software": "Photoshop",
+      "menu": "File",
+      "shortcut": "Ctrl+Shift+S",
+      "addon": "",
+      "description": "Saves the document under a new name, location or format. Useful for versioning milestone states of a visual so earlier directions can be revisited.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "file",
+        "save",
+        "versioning"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Save",
+        "Save a Copy"
+      ]
+    },
+    {
+      "name": "Save a Copy",
+      "software": "Photoshop",
+      "menu": "File",
+      "shortcut": "Ctrl+Alt+S",
+      "addon": "",
+      "description": "Writes a copy in formats such as JPEG or PNG while your layered working file stays open and untouched. The tidy way to issue a flattened review image mid-session.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "file",
+        "save",
+        "export"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Export As",
+        "Save As"
+      ]
+    },
+    {
+      "name": "Export As",
+      "software": "Photoshop",
+      "menu": "File > Export",
+      "shortcut": "Ctrl+Alt+Shift+W",
+      "addon": "",
+      "description": "Exports the document or individual artboards with format, scale and resampling options and a preview. The main route for issuing web-resolution versions of boards and visuals.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "export",
+        "output"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Quick Export as PNG",
+        "Save for Web (Legacy)"
+      ]
+    },
+    {
+      "name": "Quick Export as PNG",
+      "software": "Photoshop",
+      "menu": "File > Export",
+      "shortcut": "",
+      "addon": "",
+      "description": "Exports the document or selected layers straight to PNG with no dialogue. Perfect for firing off a quick diagram or work-in-progress render to the project team.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "export",
+        "png",
+        "speed"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout",
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Export As"
+      ]
+    },
+    {
+      "name": "Save for Web (Legacy)",
+      "software": "Photoshop",
+      "menu": "File > Export",
+      "shortcut": "Ctrl+Alt+Shift+S",
+      "addon": "",
+      "description": "The older export dialogue with fine control over compression, palette and file size preview. Still favoured when squeezing portfolio images under strict upload size limits.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "export",
+        "web",
+        "compression"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export As"
+      ]
+    },
+    {
+      "name": "Place Embedded",
+      "software": "Photoshop",
+      "menu": "File",
+      "shortcut": "",
+      "addon": "",
+      "description": "Imports an image or vector file as a smart object stored inside the document. The safe way to bring renders and logos onto a board so they can be rescaled without quality loss.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "import",
+        "smart object"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Place Linked",
+        "Convert to Smart Object"
+      ]
+    },
+    {
+      "name": "Place Linked",
+      "software": "Photoshop",
+      "menu": "File",
+      "shortcut": "",
+      "addon": "",
+      "description": "Imports a file as a smart object that stays linked to the original on disk, updating when it changes. Ideal when the same masterplan or key render appears across several board documents.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "import",
+        "linked",
+        "workflow"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Place Embedded"
+      ]
+    },
+    {
+      "name": "Image Size",
+      "software": "Photoshop",
+      "menu": "Image",
+      "shortcut": "Ctrl+Alt+I",
+      "addon": "",
+      "description": "Resamples or re-labels the image's pixel dimensions and print resolution. Where you check a render really will hold up at 300 ppi on an A1 board.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "image",
+        "resolution",
+        "print"
+      ],
+      "intent_categories": [
+        "document",
+        "analyse"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale",
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Canvas Size",
+        "New Document"
+      ]
+    },
+    {
+      "name": "Canvas Size",
+      "software": "Photoshop",
+      "menu": "Image",
+      "shortcut": "Ctrl+Alt+C",
+      "addon": "",
+      "description": "Grows or trims the canvas around the existing image from a chosen anchor point. Used to add margin for titles or extend working space beyond a render's edge.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "canvas",
+        "dimensions"
+      ],
+      "intent_categories": [
+        "document",
+        "edit"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Image Size",
+        "Crop Tool"
+      ]
+    },
+    {
+      "name": "Zoom In",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl++",
+      "addon": "",
+      "description": "Steps the view magnification up. Paired with its opposite constantly while alternating between detail retouching and whole-image judgement.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Zoom Out",
+        "Fit on Screen"
+      ]
+    },
+    {
+      "name": "Zoom Out",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl+-",
+      "addon": "",
+      "description": "Steps the view magnification down. Zooming right out regularly is the best defence against over-retouching detail nobody will see at print size.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Zoom In",
+        "Fit on Screen"
+      ]
+    },
+    {
+      "name": "Fit on Screen",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl+0",
+      "addon": "",
+      "description": "Zooms so the whole canvas fits the window. The instant reset after deep zoomed-in work on a large visual.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom",
+        "fit"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "Fit to Window"
+      ],
+      "related_commands": [
+        "Actual Size",
+        "Zoom Tool"
+      ]
+    },
+    {
+      "name": "Actual Size",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl+1",
+      "addon": "",
+      "description": "Displays the image at 100 percent, one image pixel per screen pixel. The honest zoom level for judging sharpness and noise before export.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "zoom",
+        "100%"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "100%"
+      ],
+      "related_commands": [
+        "Fit on Screen"
+      ]
+    },
+    {
+      "name": "Rulers",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl+R",
+      "addon": "",
+      "description": "Toggles rulers along the canvas edges, from which guides can be dragged. First step in setting up margin and grid guides for a portfolio board.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "rulers",
+        "layout"
+      ],
+      "intent_categories": [
+        "document",
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Show Guides",
+        "New Guide Layout"
+      ]
+    },
+    {
+      "name": "Show Guides",
+      "software": "Photoshop",
+      "menu": "View > Show",
+      "shortcut": "Ctrl+;",
+      "addon": "",
+      "description": "Toggles visibility of ruler guides. Flick them off to judge the composition clean, back on to keep aligning.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "guides"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Toggle Guides"
+      ],
+      "related_commands": [
+        "Rulers",
+        "Snap"
+      ]
+    },
+    {
+      "name": "New Guide Layout",
+      "software": "Photoshop",
+      "menu": "View > Guides",
+      "shortcut": "",
+      "addon": "",
+      "description": "Generates a full grid of guides from column, row, gutter and margin values. Builds a proper layout grid for presentation boards in seconds.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "guides",
+        "grid",
+        "layout"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layout",
+        "view"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Guide Grid"
+      ],
+      "related_commands": [
+        "Show Guides",
+        "Rulers"
+      ]
+    },
+    {
+      "name": "Snap",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl+Shift+;",
+      "addon": "",
+      "description": "Toggles snapping to guides, grids and layer edges. Keep it on for board layout accuracy; switch it off when nudging pixels freely in a retouch.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "snapping"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Toggle Snapping"
+      ],
+      "related_commands": [
+        "Show Guides",
+        "Show Grid"
+      ]
+    },
+    {
+      "name": "Show Grid",
+      "software": "Photoshop",
+      "menu": "View > Show",
+      "shortcut": "Ctrl+'",
+      "addon": "",
+      "description": "Displays a customisable document-wide grid. Useful as a temporary armature when composing multi-image boards or checking proportions.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "grid"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Toggle Grid"
+      ],
+      "related_commands": [
+        "Snap",
+        "New Guide Layout"
+      ]
+    },
+    {
+      "name": "Extras",
+      "software": "Photoshop",
+      "menu": "View",
+      "shortcut": "Ctrl+H",
+      "addon": "",
+      "description": "Hides or shows all non-printing helpers at once: guides, grids, selection edges and more. Best-known for temporarily hiding the marching ants while judging an edit inside a selection.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "view",
+        "helpers"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "Hide Extras"
+      ],
+      "related_commands": [
+        "Show Guides",
+        "Show Grid"
+      ]
+    },
+    {
+      "name": "Undo",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Z",
+      "addon": "",
+      "description": "Steps backwards through recent edits, one per press. Combined with the History Panel it makes experimentation in render post-production essentially free.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "history",
+        "undo"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Redo",
+        "History Panel"
+      ]
+    },
+    {
+      "name": "Redo",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Shift+Z",
+      "addon": "",
+      "description": "Steps forward again through edits you have undone. Useful for flicking back and forth to compare before and after states of a grade.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "history",
+        "redo"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Undo",
+        "History Panel"
+      ]
+    },
+    {
+      "name": "History Panel",
+      "software": "Photoshop",
+      "menu": "Window",
+      "shortcut": "",
+      "addon": "",
+      "description": "Lists recent states so you can jump back multiple steps or take snapshots to return to. Take a snapshot before a risky experiment on a deadline render.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "history",
+        "panel",
+        "safety"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Undo",
+        "History Brush Tool"
+      ]
+    },
+    {
+      "name": "Actions Panel",
+      "software": "Photoshop",
+      "menu": "Window",
+      "shortcut": "Alt+F9",
+      "addon": "",
+      "description": "Records sequences of commands for one-click replay. Record your standard sharpen-and-export routine once and apply it to every visual in a set.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "automation",
+        "actions"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "Actions"
+      ],
+      "related_commands": [
+        "Batch",
+        "Export As"
+      ]
+    },
+    {
+      "name": "Batch",
+      "software": "Photoshop",
+      "menu": "File > Automate",
+      "shortcut": "",
+      "addon": "",
+      "description": "Runs a recorded action across a whole folder of files. The way to resize, watermark or grade forty competition images while you make coffee.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "automation",
+        "batch"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "array"
+      ],
+      "difficulty": "advanced",
+      "aliases": [
+        "Batch Processing"
+      ],
+      "related_commands": [
+        "Actions Panel",
+        "Image Size"
+      ]
+    },
+    {
+      "name": "Character Panel",
+      "software": "Photoshop",
+      "menu": "Window",
+      "shortcut": "",
+      "addon": "",
+      "description": "Controls typeface, size, tracking, leading and other type attributes for text layers. Where board titles and annotation labels get typographically consistent.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "type",
+        "panel",
+        "typography"
+      ],
+      "intent_categories": [
+        "document",
+        "edit"
+      ],
+      "object_types": [
+        "annotation",
+        "layer"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Horizontal Type Tool"
+      ]
+    },
+    {
+      "name": "Preferences",
+      "software": "Photoshop",
+      "menu": "Edit > Preferences",
+      "shortcut": "Ctrl+K",
+      "addon": "",
+      "description": "Opens application settings covering performance, scratch disks, units and cursors. Setting units to millimetres and assigning a fast scratch disk pays off on large board files.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "settings",
+        "configuration"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Colour Settings"
+      ]
+    },
+    {
+      "name": "Colour Settings",
+      "software": "Photoshop",
+      "menu": "Edit",
+      "shortcut": "Ctrl+Shift+K",
+      "addon": "",
+      "description": "Sets the working colour spaces and profile policies for the application. Getting sRGB versus Adobe RGB right here prevents prints and screen exports drifting from what you approved.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/photoshop/using/default-keyboard-shortcuts.html",
+      "tags": [
+        "colour management",
+        "settings"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "Color Settings"
+      ],
+      "related_commands": [
+        "Preferences",
+        "Export As"
+      ]
+    }
+  ]
+}
