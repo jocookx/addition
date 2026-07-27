@@ -3504,9 +3504,7 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 .reference-view {
-  grid-template-columns: minmax(280px, 1fr) auto minmax(340px, max-content);
-  align-items: center;
-  column-gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
   row-gap: 14px;
 }
 
@@ -3515,6 +3513,89 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
   display: flex;
   align-items: center;
   min-width: 260px;
+  max-width: 560px;
+}
+
+/* Control bar — intent chips left, view toggle right */
+.commands-controlbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.commands-controlbar-spacer { flex: 1; }
+
+.cmd-intent-chiprow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+.cmd-intent-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.cmd-intent-chip {
+  border: 1px solid var(--rf-border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.03);
+  color: var(--rf-sub);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  padding: 7px 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.cmd-intent-chip:hover { color: var(--rf-white); border-color: rgba(255,255,255,0.3); }
+.cmd-intent-chip.active {
+  background: rgba(124,58,237,0.16);
+  border-color: rgba(124,58,237,0.45);
+  color: #c4b5fd;
+}
+html[data-theme="light"] .cmd-intent-chip { background: rgba(0,0,0,0.03); }
+html[data-theme="light"] .cmd-intent-chip.active {
+  background: rgba(124,58,237,0.10);
+  border-color: rgba(124,58,237,0.35);
+  color: #6d28d9;
+}
+
+.cmd-refine-row { padding: 0; }
+
+/* Text-only command card — no media, so no giant tile; keep the title
+   clear of the absolutely-positioned learned check */
+.cmd-card--text .card-body { padding-right: 40px; }
+
+@media (max-width: 860px) {
+  /* Chips swipe in one line on phones */
+  .cmd-intent-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .cmd-intent-chips::-webkit-scrollbar { display: none; }
+
+  /* Switcher + tabs scroll away; only the search stays pinned — the list
+     is the product, the search is how you drive it. */
+  .directory-toolbar { position: static; }
+  .reference-view .command-discovery-search {
+    position: sticky;
+    top: 0;
+    z-index: 25;
+    max-width: none;
+    margin: 0 calc(-1 * var(--mobile-gutter));
+    padding: 8px var(--mobile-gutter);
+    background: rgba(8,11,17,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  html[data-theme="light"] .reference-view .command-discovery-search {
+    background: rgba(244,245,248,0.92);
+  }
 }
 
 .command-discovery-search .toolbar-search-input {
@@ -3522,25 +3603,8 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 }
 
 .reference-view > .cmd-sentence-filter {
-  justify-content: flex-end;
   min-width: 0;
   padding: 0;
-}
-
-.reference-view > .commands-toolbar > .commands-toolbar-right,
-.commands-toolbar-right {
-  white-space: nowrap;
-}
-
-@media (max-width: 1260px) {
-  .reference-view {
-    grid-template-columns: minmax(260px, 1fr) auto;
-  }
-
-  .reference-view > .cmd-sentence-filter {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-  }
 }
 
 @media (max-width: 760px) {

@@ -106,6 +106,15 @@ export default function CommandsPage() {
     return () => mediaQuery.removeEventListener("change", update);
   }, []);
 
+  // Phones default to the denser list view — a reference tool wants maximum
+  // commands per screen; grid cards earn their space only on wide layouts.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 860px)").matches) return;
+    const t = window.setTimeout(() => setViewMode("row"), 0);
+    return () => window.clearTimeout(t);
+  }, []);
+
   // Deep link: /commands?cmd=<id> opens that command's detail directly —
   // used by the dashboard "Jump back in" chips. Read from location (not
   // useSearchParams) to avoid a Suspense boundary, and only once per load.
@@ -291,10 +300,19 @@ export default function CommandsPage() {
     const isLearned = Boolean(learned[command.name]);
     const media = command.icon || command.gif;
 
+    // Menu breadcrumb minus the noise: no software prefix when already
+    // filtered to one, and no trailing segment that repeats the title.
+    const crumb = (() => {
+      const parts = (command.menu || "").split(">").map((s) => s.trim()).filter(Boolean);
+      if (parts.length && parts[parts.length - 1].toLowerCase() === cleanName.toLowerCase()) parts.pop();
+      const path = parts.join(" › ");
+      return activeSoftware ? path : [command.software, path].filter(Boolean).join(" · ");
+    })();
+
     return (
       <article
         key={command.id}
-        className="card cmd-card"
+        className={`card cmd-card${media ? "" : " cmd-card--text"}`}
         role="button"
         tabIndex={0}
         onClick={() => {
@@ -316,27 +334,27 @@ export default function CommandsPage() {
           aria-pressed={isLearned}
           onClick={(e) => { e.stopPropagation(); toggleLearned(command); }}
         />
-        <div className="cmd-card-icon-wrap">
-          {media?.startsWith("sprite:") ? (() => {
-            const parts = media.slice(7).split("|");
-            const [url, x, y] = parts;
-            return (
-              <span
-                className="cmd-card-icon-sprite"
-                style={{ backgroundImage: `url(${url})`, backgroundPosition: `${x} ${y}` }}
-                aria-hidden="true"
-              />
-            );
-          })() : media
-            ? <Image className="cmd-card-icon" src={media} alt={cleanName} width={220} height={220} unoptimized />
-            : <span className="cmd-card-icon-placeholder">{cleanName.slice(0, 2)}</span>}
-        </div>
+        {/* Media only when it exists — a giant placeholder tile is dead space */}
+        {media ? (
+          <div className="cmd-card-icon-wrap">
+            {media.startsWith("sprite:") ? (() => {
+              const parts = media.slice(7).split("|");
+              const [url, x, y] = parts;
+              return (
+                <span
+                  className="cmd-card-icon-sprite"
+                  style={{ backgroundImage: `url(${url})`, backgroundPosition: `${x} ${y}` }}
+                  aria-hidden="true"
+                />
+              );
+            })() : (
+              <Image className="cmd-card-icon" src={media} alt={cleanName} width={220} height={220} unoptimized />
+            )}
+          </div>
+        ) : null}
         <div className="card-body">
           <h3>{cleanName}</h3>
-          <div className="meta">
-            {command.software}
-            {command.menu ? ` | ${command.menu}` : ""}
-          </div>
+          {crumb ? <div className="meta">{crumb}</div> : null}
           {(() => {
             const cardTerms = getSoftwareTerms(command.software);
             if (cardTerms.accessType === "library") {
@@ -494,7 +512,7 @@ export default function CommandsPage() {
     >
       <div className="reference-view">
 
-        {/* Toolbar */}
+        {/* Toolbar — search carries the live count; status only while loading */}
         <div className="commands-toolbar">
           <div className="command-discovery-search">
             <svg className="toolbar-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -505,72 +523,81 @@ export default function CommandsPage() {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search commands, menus, tags..."
+              placeholder={allCommands.length
+                ? `Search ${filteredCommands.length} ${activeSoftware ? `${activeSoftware} ` : ""}${terms.countLabel}…`
+                : "Search commands, menus, tags…"}
             />
             {query ? (
               <button type="button" className="toolbar-search-clear" onClick={() => setQuery("")} aria-label="Clear search">×</button>
             ) : null}
           </div>
+          {!allCommands.length && <span className="meta">{status}</span>}
+        </div>
 
-          <div className="commands-toolbar-right">
-            <span className="meta">
-              {allCommands.length ? `${filteredCommands.length} ${terms.countLabel}` : status}
-            </span>
-            <div className="view-toggle" role="group" aria-label="View mode">
-              <button
-                type="button"
-                className={`view-toggle-btn${viewMode === "grid" ? " active" : ""}`}
-                aria-label="Grid view"
-                aria-pressed={viewMode === "grid"}
-                onClick={() => setViewMode("grid")}
-              >
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
-                  <rect x="9" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
-                  <rect x="1" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
-                  <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
-                </svg>
-              </button>
-              <button
-                type="button"
-                className={`view-toggle-btn${viewMode === "row" ? " active" : ""}`}
-                aria-label="List view"
-                aria-pressed={viewMode === "row"}
-                onClick={() => setViewMode("row")}
-              >
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <rect x="1" y="2" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
-                  <rect x="1" y="7" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
-                  <rect x="1" y="12" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
-                </svg>
-              </button>
+        {/* Control bar — intent chips ("I want to…") + view toggle */}
+        <div className="commands-controlbar">
+          {activeSoftware && !!allCommands.length && intentOptions.length > 0 ? (
+            <div className="cmd-intent-chiprow" role="group" aria-label="Filter by what you want to do">
+              <span className="cmd-sentence-word">I want to</span>
+              <div className="cmd-intent-chips">
+                {intentOptions.map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    className={`cmd-intent-chip${intent === v ? " active" : ""}`}
+                    aria-pressed={intent === v}
+                    onClick={() => {
+                      setIntent(intent === v ? "All" : v);
+                      setObjectType("All");
+                      setInputType("All");
+                      setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware);
+                    }}
+                  >
+                    {v}
+                  </button>
+                ))}
+              </div>
             </div>
+          ) : (
+            <span className="commands-controlbar-spacer" />
+          )}
+          <div className="view-toggle" role="group" aria-label="View mode">
+            <button
+              type="button"
+              className={`view-toggle-btn${viewMode === "grid" ? " active" : ""}`}
+              aria-label="Grid view"
+              aria-pressed={viewMode === "grid"}
+              onClick={() => setViewMode("grid")}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                <rect x="9" y="1" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                <rect x="1" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+                <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
+              </svg>
+            </button>
+            <button
+              type="button"
+              className={`view-toggle-btn${viewMode === "row" ? " active" : ""}`}
+              aria-label="List view"
+              aria-pressed={viewMode === "row"}
+              onClick={() => setViewMode("row")}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="1" y="2" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                <rect x="1" y="7" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                <rect x="1" y="12" width="14" height="3" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+              </svg>
+            </button>
           </div>
         </div>
 
-        {/* Intent sentence filter — "I want to [verb] [object] from [input]" */}
-        {activeSoftware && !!allCommands.length && (intentOptions.length > 0 || objectTypeOptions.length > 0) && (
-          <div className="cmd-sentence-filter">
-            <span className="cmd-sentence-word">I want to</span>
-
-            {/* Verb — cascades based on objectType */}
-            <select
-              id="cmd-intent-select"
-              className="cmd-sentence-select"
-              value={intent}
-              onChange={(e) => {
-                setIntent(e.target.value);
-                setInputType("All");
-                setTopCat("All"); setSubCat("All"); setPrevSoftware(activeSoftware);
-              }}
-            >
-              <option value="All">— anything —</option>
-              {intentOptions.map((v) => (
-                <option key={v} value={v}>{v}</option>
-              ))}
-            </select>
-
-            {/* Object/output — cascades based on intent */}
+        {/* Refine row — object / input appear only after an intent is chosen
+            (progressive disclosure; most users never need them) */}
+        {activeSoftware && !!allCommands.length
+          && (intent !== "All" || intentOptions.length === 0)
+          && (objectTypeOptions.length > 0 || inputTypeOptions.length > 0) && (
+          <div className="cmd-sentence-filter cmd-refine-row">
             {objectTypeOptions.length > 0 && (
               <select
                 id="cmd-object-select"
@@ -589,7 +616,7 @@ export default function CommandsPage() {
               </select>
             )}
 
-            {/* Input/source — only shown when the verb+object combination has distinct input sources */}
+            {/* Input/source — only when the verb+object combination has distinct sources */}
             {inputTypeOptions.length > 0 && (
               <>
                 <span className="cmd-sentence-word">from</span>
@@ -607,7 +634,6 @@ export default function CommandsPage() {
               </>
             )}
 
-            {/* Reset — shown when any filter is active */}
             {(intent !== "All" || objectType !== "All" || inputType !== "All") && (
               <button
                 type="button"
