@@ -42,7 +42,7 @@ const GOALS = [
   { value: "career_development", label: "Career development" },
 ];
 
-const SOFTWARE = ["Rhino", "Grasshopper", "Revit", "Blender", "Maya", "AI"];
+const SOFTWARE = ["Rhino", "Grasshopper", "Revit", "Blender", "Maya", "AutoCAD", "SketchUp", "AI"];
 
 const ROLES = [
   "Architecture student",

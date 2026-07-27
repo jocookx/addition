@@ -12,6 +12,8 @@ export const LAUNCH_SOFTWARE = [
   "After Effects",
   "Premiere Pro",
   "Maya",
+  "AutoCAD",
+  "SketchUp",
   "AI",
 ] as const;
 
@@ -110,7 +112,6 @@ export const AI_CATEGORIES = [
 ] as const;
 
 export const FUTURE_SOFTWARE = [
-  "SketchUp",
   "D5 Render",
   "Enscape",
   "V-Ray",
@@ -119,7 +120,6 @@ export const FUTURE_SOFTWARE = [
   "Vectorworks",
   "3ds Max",
   "Cinema 4D",
-  "AutoCAD",
 ] as const;
 
 export const SOFTWARE_WORKFLOW_MAP: Record<LaunchSoftware, string[]> = {
@@ -136,6 +136,8 @@ export const SOFTWARE_WORKFLOW_MAP: Record<LaunchSoftware, string[]> = {
   "After Effects": ["Present", "Animate"],
   "Premiere Pro": ["Present", "Animate"],
   Maya: ["Model", "Animate", "Render"],
+  AutoCAD: ["Document", "Model"],
+  SketchUp: ["Model", "Present"],
   AI: ["Optimise"],
 };
 

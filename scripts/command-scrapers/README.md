@@ -51,7 +51,15 @@ node scripts/command-scrapers/scrape-blender.mjs --merge
 # https://grasshopperdocs.com/completeIndex.html
 node scripts/command-scrapers/scrape-grasshopper.mjs
 node scripts/command-scrapers/scrape-grasshopper.mjs --merge
+
+# AutoCAD — current command aliases and key combinations
+node scripts/command-scrapers/scrape-autocad.mjs
+node scripts/command-scrapers/scrape-autocad.mjs --merge
 ```
+
+SketchUp has no scraper: Trimble publishes its shortcut reference as PDF
+quick-reference cards rather than parseable HTML, so the SketchUp dataset is
+maintained by hand against those cards.
 
 The Grasshopper scraper matches on **name + add-on** (same-named components
 exist across libraries) and records component icon URLs as `iconRef` only —

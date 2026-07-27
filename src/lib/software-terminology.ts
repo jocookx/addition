@@ -220,6 +220,36 @@ const TERMINOLOGY: Record<SoftwareId, SoftwareTerms> = {
     countLabel:       "commands",
   },
 
+  // ── AutoCAD ──────────────────────────────────────────────────────────────
+  // Source: Autodesk docs — operations are typed commands with short aliases
+  AutoCAD: {
+    itemSingular:     "Command",
+    itemPlural:       "Commands",
+    pageTitle:        "Commands",
+    accessLabel:      "Command alias",
+    accessType:       "command-line",
+    menuGroupLabel:   "Ribbon",
+    menuSubLabel:     "Panel",
+    addonLabel:       null,
+    searchPlaceholder: "Search commands…",
+    countLabel:       "commands",
+  },
+
+  // ── SketchUp ─────────────────────────────────────────────────────────────
+  // Source: SketchUp quick reference cards — tools invoked via shortcuts/menus
+  SketchUp: {
+    itemSingular:     "Tool",
+    itemPlural:       "Tools",
+    pageTitle:        "Tools",
+    accessLabel:      "Shortcut",
+    accessType:       "shortcut",
+    menuGroupLabel:   "Menu",
+    menuSubLabel:     "Toolbar",
+    addonLabel:       "Extension",
+    searchPlaceholder: "Search tools…",
+    countLabel:       "tools",
+  },
+
   // ── AI ───────────────────────────────────────────────────────────────────
   AI: {
     itemSingular:     "Tool",

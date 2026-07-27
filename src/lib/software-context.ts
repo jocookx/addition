@@ -33,6 +33,8 @@ export const SOFTWARE_LIST: SoftwareMeta[] = [
   { id: "After Effects", label: "Adobe After Effects", abbr: "Ae", color: "#9999ff", category: "present" },
   { id: "Premiere Pro", label: "Adobe Premiere Pro", abbr: "Pr", color: "#b47cff", category: "present" },
   { id: "Maya",       label: "Maya",               abbr: "Ma", color: "#3fb6b0", category: "3d" },
+  { id: "AutoCAD",    label: "AutoCAD",            abbr: "Ac", color: "#e2574c", category: "bim" },
+  { id: "SketchUp",   label: "SketchUp",           abbr: "Su", color: "#8fbf4d", category: "3d" },
   { id: "AI",         label: "AI",                 abbr: "AI", color: "#a8dadc", category: "ai" },
 ];
 
@@ -62,6 +64,10 @@ const LABEL_MAP: Record<string, SoftwareId> = {
   "adobe premiere pro": "Premiere Pro",
   "maya":              "Maya",
   "autodesk maya":     "Maya",
+  "autocad":           "AutoCAD",
+  "auto cad":          "AutoCAD",
+  "sketchup":          "SketchUp",
+  "sketch up":         "SketchUp",
   "ai":                "AI",
   "artificial intelligence": "AI",
 };
