@@ -16,7 +16,7 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
-import { readFileSync, readdirSync } from "fs";
+import { existsSync, readFileSync, readdirSync } from "fs";
 import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
@@ -28,12 +28,20 @@ const dryRun = cliArgs.includes("--dry-run");
 const only = cliArgs.filter((a) => !a.startsWith("--")).map((a) => a.toLowerCase());
 
 // ── Env ──────────────────────────────────────────────────────────────────────
+// Reads .env.local when present; otherwise falls back to already-set
+// environment variables (CI runners provide them as secrets).
 let supabase = null;
 if (!dryRun) {
   const envPath = resolve(__dir, "../.env.local");
-  for (const line of readFileSync(envPath, "utf8").split("\n")) {
-    const m = line.match(/^([^#=]+)=(.*)$/);
-    if (m) process.env[m[1].trim()] ??= m[2].trim();
+  if (existsSync(envPath)) {
+    for (const line of readFileSync(envPath, "utf8").split("\n")) {
+      const m = line.match(/^([^#=]+)=(.*)$/);
+      if (m) process.env[m[1].trim()] ??= m[2].trim();
+    }
+  }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    console.error("Missing NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY (via .env.local or environment).");
+    process.exit(1);
   }
   supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,

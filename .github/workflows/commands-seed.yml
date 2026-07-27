@@ -1,0 +1,61 @@
+name: Seed commands to Supabase
+
+# Seeds src/data/commands/*.json into the addition_commands table, and
+# uploads any downloaded Rhino 9 icons to the assets storage bucket.
+#
+# Requires two repository secrets (Settings → Secrets and variables → Actions):
+#   NEXT_PUBLIC_SUPABASE_URL   — the project URL
+#   SUPABASE_SERVICE_ROLE_KEY  — the service-role key
+#
+# Seeding UPSERTS on (name, software): existing rows are updated, new rows
+# added, nothing is deleted.
+
+on:
+  workflow_dispatch:
+    inputs:
+      softwares:
+        description: "Space-separated dataset names to seed (e.g. 'rhino maya') or empty for all"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: commands-seed
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Dry-run validation
+        run: node scripts/seed-commands.mjs --dry-run ${{ github.event.inputs.softwares }}
+
+      - name: Seed
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/seed-commands.mjs ${{ github.event.inputs.softwares }}
+
+      - name: Upload Rhino 9 icons to assets bucket (if present)
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -d scripts/command-scrapers/output/icons/rhino9 ]; then
+            node scripts/upload-rhino-icons.mjs
+          else
+            echo "No downloaded icons found — run the scrape workflow first if you want Rhino 9 icons."
+          fi

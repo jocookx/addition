@@ -1,0 +1,75 @@
+name: Scrape command references
+
+# Harvests factual data (command names, shortcuts, menus, icon URLs) from
+# the official references and merges it into src/data/commands/*.json.
+# Our own explanations are never overwritten; unknown commands arrive as
+# needsExplanation stubs. Runs on GitHub-hosted runners because managed
+# Claude sessions may have restricted outbound network policies.
+
+on:
+  workflow_dispatch:
+    inputs:
+      scrapers:
+        description: "Space-separated scrapers to run (rhino9 maya blender grasshopper autocad) or 'all'"
+        required: false
+        default: "all"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commands-scrape-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run scrapers
+        run: |
+          set +e
+          PICK="${{ github.event.inputs.scrapers }}"
+          [ -z "$PICK" ] && PICK="all"
+          run_one () {
+            echo "::group::$1"
+            shift
+            node "$@"
+            status=$?
+            [ $status -ne 0 ] && echo "::warning::scraper failed (continuing): $*"
+            echo "::endgroup::"
+          }
+          case " $PICK " in *" all "*|*" rhino9 "*)     run_one rhino9      scripts/command-scrapers/scrape-rhino9.mjs --download --merge ;; esac
+          case " $PICK " in *" all "*|*" maya "*)       run_one maya        scripts/command-scrapers/scrape-maya.mjs --merge ;; esac
+          case " $PICK " in *" all "*|*" blender "*)    run_one blender     scripts/command-scrapers/scrape-blender.mjs --merge ;; esac
+          case " $PICK " in *" all "*|*" grasshopper "*) run_one grasshopper scripts/command-scrapers/scrape-grasshopper.mjs --merge ;; esac
+          case " $PICK " in *" all "*|*" autocad "*)    run_one autocad     scripts/command-scrapers/scrape-autocad.mjs --merge ;; esac
+          exit 0
+
+      - name: Upload harvest artifacts (icons + raw JSON)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scrape-output
+          path: scripts/command-scrapers/output/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Commit merged datasets
+        run: |
+          git config user.name "addition-command-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/data/commands scripts/command-scrapers/output || true
+          if git diff --cached --quiet; then
+            echo "No dataset changes."
+            exit 0
+          fi
+          git commit -m "Sync command datasets from official references (scrape run ${{ github.run_id }})"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
