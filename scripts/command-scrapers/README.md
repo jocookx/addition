@@ -46,7 +46,18 @@ node scripts/command-scrapers/scrape-maya.mjs --merge
 # Blender — default keymap from the manual
 node scripts/command-scrapers/scrape-blender.mjs
 node scripts/command-scrapers/scrape-blender.mjs --merge
+
+# Grasshopper — complete component index (native + add-ons)
+# https://grasshopperdocs.com/completeIndex.html
+node scripts/command-scrapers/scrape-grasshopper.mjs
+node scripts/command-scrapers/scrape-grasshopper.mjs --merge
 ```
+
+The Grasshopper scraper matches on **name + add-on** (same-named components
+exist across libraries) and records component icon URLs as `iconRef` only —
+add-on icon artwork belongs to its authors, so review licensing per add-on
+before mirroring anything into the assets bucket (`grasshopperdocs.com` also
+needs allowing in the network policy to run it from a web session).
 
 Merging adds unknown scraped commands as **stubs** with
 `"needsExplanation": true` and an empty description. Stubs are excluded from
