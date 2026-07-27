@@ -72,6 +72,12 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 :root {
+  /* Tell the browser this is a dark UI. Mobile browsers ignore
+     ::-webkit-scrollbar styling and colour their overlay scrollbars (and
+     native form controls) from color-scheme — without this they assume a
+     light page and draw white scrollbars over the dark content. */
+  color-scheme: dark;
+
   /* Expose the safe-area env values as CSS custom properties so
      calc() expressions can reference them easily                */
   --safe-top:    env(safe-area-inset-top,    0px);
@@ -596,6 +602,7 @@ a, button, [role="button"] {
 }
 
 html[data-theme="light"] {
+  color-scheme: light;
   --rf-bg:         #f4f5f8;
   --rf-card:       #ffffff;
   --rf-divider:    #e8eaf0;
@@ -1663,7 +1670,13 @@ html[data-theme="light"] .sidebar-upgrade-btn:hover:not(:disabled) {
 
 @media (max-width: 760px) {
   .directory-toolbar { flex-direction: column; align-items: stretch; gap: 10px; }
-  .directory-toolbar .segment-nav { width: 100%; overflow-x: auto; }
+  .directory-toolbar .segment-nav {
+    width: 100%;
+    overflow-x: auto;
+    /* Swipeable row — no scrollbar over the tabs */
+    scrollbar-width: none;
+  }
+  .directory-toolbar .segment-nav::-webkit-scrollbar { display: none; }
 }
 
 /* Mobile: .main's side padding shrinks to --sp-md, so the full-bleed margins
@@ -9933,7 +9946,8 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
 @media (max-width: 700px) {
   .dash-shell { padding: 16px; gap: 12px; }
   .dash-header { padding: 14px 16px; flex-direction: column; align-items: flex-start; }
-  .dash-tab-bar { width: 100%; overflow-x: auto; }
+  .dash-tab-bar { width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .dash-tab-bar::-webkit-scrollbar { display: none; }
   .dash-path-card { flex-direction: column; align-items: flex-start; }
   .dash-path-card-cta { width: 100%; justify-content: center; }
 }
@@ -11431,7 +11445,10 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
     height: auto;
     flex-direction: row;
     overflow-x: auto;
+    scrollbar-width: none;
   }
+  .adm-portal-sidebar::-webkit-scrollbar,
+  .adm-portal-nav::-webkit-scrollbar { display: none; }
   .adm-portal-brand {
     border-bottom: none;
     border-right: 1px solid rgba(255,255,255,0.065);
@@ -11447,6 +11464,7 @@ html[data-theme="light"] .dash-nudge-pill--streak { color: #c2410c; border-color
     padding: 6px;
     gap: 2px;
     overflow-x: auto;
+    scrollbar-width: none;
   }
   .adm-nav-group { display: contents; }
   .adm-nav-group-label { display: none; }
