@@ -1,0 +1,2670 @@
+{
+  "meta": {
+    "software": "Premiere Pro",
+    "version": "Premiere Pro 2026",
+    "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+    "provenance": "Authored from model knowledge (cutoff Jan 2026). Original explanations — not copied from Adobe documentation. Shortcuts/menu paths are factual data.",
+    "iconNote": "Adobe icon artwork is proprietary; app renders software chip fallback."
+  },
+  "commands": [
+    {
+      "name": "New Project",
+      "software": "Premiere Pro",
+      "menu": "File > New > Project",
+      "shortcut": "Ctrl+Alt+N",
+      "addon": "",
+      "description": "Creates a new project and opens the import view for selecting initial media. Start each film-of-the-project here, and keep one project per film to avoid media chaos.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "project",
+        "new",
+        "setup"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Sequence",
+        "Import"
+      ]
+    },
+    {
+      "name": "New Sequence",
+      "software": "Premiere Pro",
+      "menu": "File > New > Sequence",
+      "shortcut": "Ctrl+N",
+      "addon": "",
+      "description": "Creates a timeline with chosen resolution, frame rate and audio track layout. Easier still: drag a clip onto the New Item button to make a sequence that matches the footage exactly.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "sequence",
+        "timeline",
+        "settings"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Project",
+        "Sequence Settings"
+      ]
+    },
+    {
+      "name": "Sequence Settings",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Sequence Settings",
+      "shortcut": "",
+      "addon": "",
+      "description": "Edits the active sequence's frame size, frame rate and preview format after creation. Check it first when renders come out the wrong shape.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "sequence",
+        "settings",
+        "frame rate"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "New Sequence",
+        "Export"
+      ]
+    },
+    {
+      "name": "Import",
+      "software": "Premiere Pro",
+      "menu": "File > Import",
+      "shortcut": "Ctrl+I",
+      "addon": "",
+      "description": "Brings video, image sequences, audio and graphics into the project. Import rendered archviz shots and site footage into clearly named bins from day one.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "import",
+        "media",
+        "footage"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Media Browser",
+        "New Bin"
+      ]
+    },
+    {
+      "name": "Media Browser",
+      "software": "Premiere Pro",
+      "menu": "Window > Media Browser",
+      "shortcut": "Shift+8",
+      "addon": "",
+      "description": "Browses drives and card structures with previews, importing media without leaving Premiere. Safer than Explorer for camera cards because it understands their folder formats.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "media browser",
+        "import",
+        "panel"
+      ],
+      "intent_categories": [
+        "organise",
+        "create"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Import",
+        "New Bin"
+      ]
+    },
+    {
+      "name": "New Bin",
+      "software": "Premiere Pro",
+      "menu": "File > New > Bin",
+      "shortcut": "Ctrl+B",
+      "addon": "",
+      "description": "Creates a folder in the Project panel for organising clips. A disciplined bin structure — footage, renders, audio, graphics, sequences — pays off on every project.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "bin",
+        "folder",
+        "organise"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Import",
+        "Label Colours"
+      ]
+    },
+    {
+      "name": "Create Proxies",
+      "software": "Premiere Pro",
+      "menu": "Right-click clips > Proxy > Create Proxies",
+      "shortcut": "",
+      "addon": "",
+      "description": "Generates lightweight copies of heavy footage that Premiere can switch to during editing, then swaps back for export. Essential for cutting 4K renders smoothly on a laptop; toggle them with the monitor's proxy button.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "proxy",
+        "performance",
+        "footage"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "proxy workflow"
+      ],
+      "related_commands": [
+        "Import",
+        "Export"
+      ]
+    },
+    {
+      "name": "Selection Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "V",
+      "addon": "",
+      "description": "Selects, moves and trims clips directly in the timeline. The default tool — return to it after every specialist tool so stray clicks stay harmless.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "select",
+        "timeline"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Track Select Forward Tool",
+        "Razor Tool"
+      ]
+    },
+    {
+      "name": "Track Select Forward Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "A",
+      "addon": "",
+      "description": "Selects every clip from the click point to the end of the sequence; Shift+A selects backwards instead. Use it to shove the whole back half of an edit along when inserting a new scene.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "track select",
+        "move"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Selection Tool",
+        "Insert"
+      ]
+    },
+    {
+      "name": "Ripple Edit Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "B",
+      "addon": "",
+      "description": "Trims a cut and automatically closes the gap, shifting everything downstream. The workhorse trimming tool — tighten shots without ever leaving black holes in the timeline.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "ripple",
+        "trim"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Rolling Edit Tool",
+        "Ripple Delete"
+      ]
+    },
+    {
+      "name": "Rolling Edit Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "N",
+      "addon": "",
+      "description": "Moves the cut point between two clips without changing the overall duration — one clip gets longer, the other shorter. Perfect for retiming a cut to land on a music beat.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "rolling",
+        "cut point"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Ripple Edit Tool",
+        "Slip Tool"
+      ]
+    },
+    {
+      "name": "Rate Stretch Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "R",
+      "addon": "",
+      "description": "Drags a clip's edge to change its playback speed so it fills exactly the space available. Quick for stretching a short flythrough to cover a voiceover line.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "speed",
+        "stretch"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Speed/Duration",
+        "Slip Tool"
+      ]
+    },
+    {
+      "name": "Razor Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "C",
+      "addon": "",
+      "description": "Cuts a clip into two at the point you click; Shift-click cuts through all tracks. Most editors prefer Add Edit at the playhead, but the razor is direct and visual.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "razor",
+        "cut"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "blade"
+      ],
+      "related_commands": [
+        "Add Edit",
+        "Ripple Delete"
+      ]
+    },
+    {
+      "name": "Slip Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "Y",
+      "addon": "",
+      "description": "Changes which portion of the source footage plays inside a clip without moving the clip or changing its length. Use it to catch the best moment of a camera move while keeping the cut rhythm intact.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "slip",
+        "timing"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Slide Tool",
+        "Rolling Edit Tool"
+      ]
+    },
+    {
+      "name": "Slide Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "U",
+      "addon": "",
+      "description": "Moves a clip earlier or later in the sequence while its neighbours trim to absorb the change, keeping total duration fixed. For nudging one shot's position within a locked montage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "slide",
+        "position"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Slip Tool",
+        "Rolling Edit Tool"
+      ]
+    },
+    {
+      "name": "Pen Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "P",
+      "addon": "",
+      "description": "Adds and adjusts keyframes on timeline rubber bands, such as audio volume and opacity, and draws freeform graphics. Click a clip's volume line with it to keyframe a music dip under narration.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "pen",
+        "keyframes",
+        "volume"
+      ],
+      "intent_categories": [
+        "edit",
+        "create"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Audio Gain",
+        "Effect Controls Panel"
+      ]
+    },
+    {
+      "name": "Hand Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "H",
+      "addon": "",
+      "description": "Drags the timeline view left and right without moving any clips. Middle-mouse drag does the same from any tool.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "hand",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "pan"
+      ],
+      "related_commands": [
+        "Zoom Tool",
+        "Zoom Timeline In / Out"
+      ]
+    },
+    {
+      "name": "Zoom Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "Z",
+      "addon": "",
+      "description": "Zooms the timeline in where you click, or out with Alt held. Most editors use the plus and minus keys instead, but the tool allows marquee-zooming to an exact region.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "tool",
+        "zoom",
+        "timeline"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Zoom Timeline In / Out",
+        "Zoom to Sequence"
+      ]
+    },
+    {
+      "name": "Mark In",
+      "software": "Premiere Pro",
+      "menu": "Markers > Mark In",
+      "shortcut": "I",
+      "addon": "",
+      "description": "Sets the in point on the source monitor or sequence, defining where an edit range begins. The first half of three-point editing — mark the usable part of a shot before cutting it in.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "in point",
+        "mark",
+        "three-point"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Mark Out",
+        "Insert"
+      ]
+    },
+    {
+      "name": "Mark Out",
+      "software": "Premiere Pro",
+      "menu": "Markers > Mark Out",
+      "shortcut": "O",
+      "addon": "",
+      "description": "Sets the out point, completing the range for an insert, overwrite or export. With in and out set on the source, one keystroke drops exactly the shot you chose into the cut.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "out point",
+        "mark",
+        "three-point"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Mark In",
+        "Overwrite"
+      ]
+    },
+    {
+      "name": "Go to In / Out",
+      "software": "Premiere Pro",
+      "menu": "Markers > Go to In Point / Go to Out Point",
+      "shortcut": "Shift+I / Shift+O",
+      "addon": "",
+      "description": "Jumps the playhead straight to the marked in or out point. Keeps three-point editing entirely on the keyboard.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "in point",
+        "out point",
+        "navigate"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Mark In",
+        "Clear In and Out"
+      ]
+    },
+    {
+      "name": "Clear In and Out",
+      "software": "Premiere Pro",
+      "menu": "Markers > Clear In and Out",
+      "shortcut": "Ctrl+Shift+X",
+      "addon": "",
+      "description": "Removes the current in and out points in one stroke. Clear stale ranges before exporting, or you may accidentally export only a fragment.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "in point",
+        "out point",
+        "clear"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Mark In",
+        "Export"
+      ]
+    },
+    {
+      "name": "Insert",
+      "software": "Premiere Pro",
+      "menu": "Clip > Insert",
+      "shortcut": ",",
+      "addon": "",
+      "description": "Places the source clip at the playhead and pushes existing material later to make room. Use it when adding a shot mid-sequence without overwriting anything.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "insert",
+        "edit",
+        "three-point"
+      ],
+      "intent_categories": [
+        "edit",
+        "create"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Overwrite",
+        "Mark In"
+      ]
+    },
+    {
+      "name": "Overwrite",
+      "software": "Premiere Pro",
+      "menu": "Clip > Overwrite",
+      "shortcut": ".",
+      "addon": "",
+      "description": "Places the source clip at the playhead on top of whatever is there, without shifting the sequence. The standard edit when laying shots over a locked music bed.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "overwrite",
+        "edit",
+        "three-point"
+      ],
+      "intent_categories": [
+        "edit",
+        "create"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Insert",
+        "Mark Out"
+      ]
+    },
+    {
+      "name": "Lift",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Lift",
+      "shortcut": ";",
+      "addon": "",
+      "description": "Removes the material between the sequence in and out points, leaving a gap. Use it when timing elsewhere must not move.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "lift",
+        "remove",
+        "range"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Extract",
+        "Mark In"
+      ]
+    },
+    {
+      "name": "Extract",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Extract",
+      "shortcut": "'",
+      "addon": "",
+      "description": "Removes the material between in and out and ripples the gap closed. The range-based sibling of ripple delete, ideal for cutting a flabby section out of a draft.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "extract",
+        "remove",
+        "ripple"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Lift",
+        "Ripple Delete"
+      ]
+    },
+    {
+      "name": "Add Edit",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Add Edit",
+      "shortcut": "Ctrl+K",
+      "addon": "",
+      "description": "Cuts the clips on targeted tracks at the playhead — a keyboard razor. Add Ctrl+Shift+K to cut through every track at once.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "add edit",
+        "cut",
+        "playhead"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "split"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "cut at playhead"
+      ],
+      "related_commands": [
+        "Razor Tool",
+        "Ripple Delete"
+      ]
+    },
+    {
+      "name": "Ripple Delete",
+      "software": "Premiere Pro",
+      "menu": "Right-click clip or gap > Ripple Delete",
+      "shortcut": "Shift+Delete",
+      "addon": "",
+      "description": "Deletes a clip or gap and closes the hole by pulling everything after it forward. The fastest way to keep a rough cut gapless as you strip out weak shots.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "ripple delete",
+        "gap",
+        "remove"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "move"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ripple Edit Tool",
+        "Extract"
+      ]
+    },
+    {
+      "name": "Snap",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Snap",
+      "shortcut": "S",
+      "addon": "",
+      "description": "Toggles magnetic snapping of clip edges to other edits, markers and the playhead. Leave it on for assembly; flick it off for delicate frame-level nudges.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "snap",
+        "magnet",
+        "timeline"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Selection Tool",
+        "Add Marker"
+      ]
+    },
+    {
+      "name": "Add Marker",
+      "software": "Premiere Pro",
+      "menu": "Markers > Add Marker",
+      "shortcut": "M",
+      "addon": "",
+      "description": "Drops a marker on the clip or sequence at the playhead, with optional notes and colours. Tap it on every music beat first, then cut shots to the markers.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "marker",
+        "beat",
+        "note"
+      ],
+      "intent_categories": [
+        "organise",
+        "document"
+      ],
+      "object_types": [
+        "layer",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Go to Next Marker",
+        "Snap"
+      ]
+    },
+    {
+      "name": "Go to Next Marker",
+      "software": "Premiere Pro",
+      "menu": "Markers > Go to Next Marker",
+      "shortcut": "Shift+M",
+      "addon": "",
+      "description": "Jumps the playhead to the next marker; Ctrl+Shift+M goes back to the previous one. Turns beat markers into a navigation system for the whole edit.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "marker",
+        "navigate",
+        "timeline"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "view",
+        "annotation"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Add Marker",
+        "Go to In / Out"
+      ]
+    },
+    {
+      "name": "Match Frame",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Match Frame",
+      "shortcut": "F",
+      "addon": "",
+      "description": "Loads the source clip into the Source Monitor parked on the exact frame under the playhead. Use it to grab an alternative take or extend a shot from its original footage.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "match frame",
+        "source",
+        "find"
+      ],
+      "intent_categories": [
+        "analyse",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Mark In",
+        "Replace with Clip"
+      ]
+    },
+    {
+      "name": "Select Clip at Playhead",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Selection Follows Playhead context",
+      "shortcut": "D",
+      "addon": "",
+      "description": "Selects whatever clip sits under the playhead on targeted tracks. Combined with property shortcuts it enables rapid keyboard-only clip adjustments.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "select",
+        "playhead",
+        "clip"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Selection Tool",
+        "Enable Clip"
+      ]
+    },
+    {
+      "name": "Ripple Trim Previous Edit",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Ripple Trim Previous Edit Point to Playhead",
+      "shortcut": "Q",
+      "addon": "",
+      "description": "Trims from the previous cut up to the playhead and ripples the sequence closed. Park the playhead where the shot should start and tap Q — brutal, fast top-trimming.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "trim",
+        "ripple",
+        "top"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "top trim"
+      ],
+      "related_commands": [
+        "Ripple Trim Next Edit",
+        "Extend Selected Edit"
+      ]
+    },
+    {
+      "name": "Ripple Trim Next Edit",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Ripple Trim Next Edit Point to Playhead",
+      "shortcut": "W",
+      "addon": "",
+      "description": "Trims from the playhead forward to the next cut and closes the gap. The tail-trimming twin of Q — together they make rough cuts astonishingly quick.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "trim",
+        "ripple",
+        "tail"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "cut",
+        "move"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "tail trim"
+      ],
+      "related_commands": [
+        "Ripple Trim Previous Edit",
+        "Extend Selected Edit"
+      ]
+    },
+    {
+      "name": "Extend Selected Edit",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Extend Selected Edit to Playhead",
+      "shortcut": "E",
+      "addon": "",
+      "description": "Rolls the selected edit point to the playhead position, lengthening one clip and shortening its neighbour. Select a cut, park the playhead on the beat, press E.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "extend",
+        "edit point",
+        "roll"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "move"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Rolling Edit Tool",
+        "Ripple Trim Previous Edit"
+      ]
+    },
+    {
+      "name": "Toggle Trim Type",
+      "software": "Premiere Pro",
+      "menu": "Double-click an edit point to enter trim mode; Shift+T cycles trim type",
+      "shortcut": "Shift+T",
+      "addon": "",
+      "description": "Cycles the selected edit point between regular, ripple and rolling trims, shown by red or yellow brackets. Double-clicking a cut opens the dedicated trim view for refining it while looping playback.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "trim mode",
+        "edit point",
+        "cycle"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "trim mode"
+      ],
+      "related_commands": [
+        "Ripple Edit Tool",
+        "Extend Selected Edit"
+      ]
+    },
+    {
+      "name": "Speed/Duration",
+      "software": "Premiere Pro",
+      "menu": "Clip > Speed/Duration",
+      "shortcut": "Ctrl+R",
+      "addon": "",
+      "description": "Sets a clip's playback speed by percentage or target duration, with reverse and frame-blending options. Slow a 50 fps site clip to 50 percent for smooth half-speed motion.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "speed",
+        "duration",
+        "retime"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "scale"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Rate Stretch Tool",
+        "Time Remapping"
+      ]
+    },
+    {
+      "name": "Time Remapping",
+      "software": "Premiere Pro",
+      "menu": "Clip > Show Clip Keyframes > Time Remapping > Speed",
+      "shortcut": "",
+      "addon": "",
+      "description": "Keyframes a clip's speed over time directly on the timeline rubber band, allowing ramps between fast and slow. Use it to glide quickly through a corridor then linger in the main space.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "time remap",
+        "speed ramp",
+        "keyframes"
+      ],
+      "intent_categories": [
+        "transform",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [
+        "speed ramp"
+      ],
+      "related_commands": [
+        "Speed/Duration",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Nest",
+      "software": "Premiere Pro",
+      "menu": "Right-click selected clips > Nest",
+      "shortcut": "",
+      "addon": "",
+      "description": "Collapses selected clips into a single nested sequence that can be trimmed and effected as one. Nest a finished montage section before applying a unified grade or transition.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "nest",
+        "sequence",
+        "group"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "layout"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Group",
+        "New Sequence"
+      ]
+    },
+    {
+      "name": "Group",
+      "software": "Premiere Pro",
+      "menu": "Clip > Group",
+      "shortcut": "Ctrl+G",
+      "addon": "",
+      "description": "Links selected clips so they select and move together, without creating a new sequence. Lighter-weight than nesting for keeping a title and its backing plate in sync.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "group",
+        "clips",
+        "organise"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Ungroup",
+        "Nest"
+      ]
+    },
+    {
+      "name": "Ungroup",
+      "software": "Premiere Pro",
+      "menu": "Clip > Ungroup",
+      "shortcut": "Ctrl+Shift+G",
+      "addon": "",
+      "description": "Releases grouped clips back to independent selection. Necessary before trimming one member differently from the rest.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "ungroup",
+        "clips"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "split"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Group",
+        "Link / Unlink"
+      ]
+    },
+    {
+      "name": "Link / Unlink",
+      "software": "Premiere Pro",
+      "menu": "Clip > Link (or Unlink)",
+      "shortcut": "Ctrl+L",
+      "addon": "",
+      "description": "Joins or separates a clip's video and audio so they move together or independently. Unlink to delete scratch audio from renders, or to slip sound against picture for a J-cut.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "link",
+        "unlink",
+        "audio",
+        "video"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join",
+        "split"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Group",
+        "Synchronise Clips"
+      ]
+    },
+    {
+      "name": "Enable Clip",
+      "software": "Premiere Pro",
+      "menu": "Clip > Enable",
+      "shortcut": "Shift+E",
+      "addon": "",
+      "description": "Toggles a clip on or off without deleting it — disabled clips render black and silent. Useful for comparing versions of a shot or muting an overlay during review.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "enable",
+        "disable",
+        "clip"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Label Colours",
+        "Select Clip at Playhead"
+      ]
+    },
+    {
+      "name": "Label Colours",
+      "software": "Premiere Pro",
+      "menu": "Edit > Label",
+      "shortcut": "",
+      "addon": "",
+      "description": "Assigns colours to clips in the project and timeline. Colour-code by content — renders, drone footage, graphics, audio — so the timeline reads at a glance.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "label",
+        "colour",
+        "organise"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "New Bin",
+        "Enable Clip"
+      ]
+    },
+    {
+      "name": "Replace with Clip",
+      "software": "Premiere Pro",
+      "menu": "Right-click timeline clip > Replace With Clip > From Source Monitor",
+      "shortcut": "",
+      "addon": "",
+      "description": "Swaps a timeline clip for the Source Monitor clip while keeping its position, duration and applied effects. Ideal for dropping in an updated render over an old placeholder version.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "replace",
+        "swap",
+        "update"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "replace footage"
+      ],
+      "related_commands": [
+        "Match Frame",
+        "Paste Attributes"
+      ]
+    },
+    {
+      "name": "Synchronise Clips",
+      "software": "Premiere Pro",
+      "menu": "Clip > Synchronize",
+      "shortcut": "",
+      "addon": "",
+      "description": "Aligns selected clips by their audio waveforms or timecode. The rescue for interview or walkthrough footage where camera audio and a separate recorder must line up.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "sync",
+        "audio",
+        "align"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "synchronize"
+      ],
+      "related_commands": [
+        "Merge Clips",
+        "Link / Unlink"
+      ]
+    },
+    {
+      "name": "Merge Clips",
+      "software": "Premiere Pro",
+      "menu": "Clip > Merge Clips",
+      "shortcut": "",
+      "addon": "",
+      "description": "Combines a video clip with separately recorded audio into a single new clip for editing. Merge once in the project so every future cut uses the good sound automatically.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "merge",
+        "audio",
+        "dual system"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "join"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Synchronise Clips",
+        "Link / Unlink"
+      ]
+    },
+    {
+      "name": "Paste Attributes",
+      "software": "Premiere Pro",
+      "menu": "Edit > Paste Attributes",
+      "shortcut": "Ctrl+Alt+V",
+      "addon": "",
+      "description": "Pastes chosen properties — motion, opacity, effects, colour — from a copied clip onto others. Grade one shot, then paste its Lumetri settings across the whole scene.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "paste",
+        "attributes",
+        "effects",
+        "copy"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "copy"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Effect Controls Panel",
+        "Lumetri Colour Panel"
+      ]
+    },
+    {
+      "name": "Audio Gain",
+      "software": "Premiere Pro",
+      "menu": "Clip > Audio Options > Audio Gain",
+      "shortcut": "G",
+      "addon": "",
+      "description": "Adjusts a clip's audio level before it reaches the mixer, with a normalise option to a target loudness. Set music and voiceover gains here first, then fine-tune with keyframes.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "audio",
+        "gain",
+        "level",
+        "normalise"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Audio Track Mixer",
+        "Pen Tool"
+      ]
+    },
+    {
+      "name": "Audio Track Mixer",
+      "software": "Premiere Pro",
+      "menu": "Window > Audio Track Mixer",
+      "shortcut": "Shift+6",
+      "addon": "",
+      "description": "A mixing-desk view with faders, pans and effects per track rather than per clip. Balance the music, ambience and narration tracks of a film here as a whole.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "audio",
+        "mixer",
+        "tracks",
+        "faders"
+      ],
+      "intent_categories": [
+        "edit",
+        "organise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Audio Gain",
+        "Essential Sound Panel"
+      ]
+    },
+    {
+      "name": "Essential Sound Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Essential Sound",
+      "shortcut": "",
+      "addon": "",
+      "description": "Tags audio as dialogue, music, SFX or ambience and offers plain-language tools — loudness matching, ducking, repair. Auto-ducking music under a voiceover takes seconds here.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "audio",
+        "essential sound",
+        "ducking",
+        "loudness"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Audio Track Mixer",
+        "Audio Gain"
+      ]
+    },
+    {
+      "name": "Mute / Solo Track",
+      "software": "Premiere Pro",
+      "menu": "Timeline track header M and S buttons",
+      "shortcut": "",
+      "addon": "",
+      "description": "Silences a track (M) or isolates it (S) during playback. Solo the narration to check clarity, mute the music to hear what the ambience is really doing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "mute",
+        "solo",
+        "track",
+        "audio"
+      ],
+      "intent_categories": [
+        "analyse",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Audio Track Mixer",
+        "Enable Clip"
+      ]
+    },
+    {
+      "name": "Show Audio Waveforms",
+      "software": "Premiere Pro",
+      "menu": "Timeline wrench menu > Show Audio Waveform",
+      "shortcut": "",
+      "addon": "",
+      "description": "Displays waveforms on audio clips in the timeline. Expand the music track's height and cut visually to the drum hits.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "waveform",
+        "audio",
+        "timeline",
+        "display"
+      ],
+      "intent_categories": [
+        "visualise",
+        "analyse"
+      ],
+      "object_types": [
+        "layer",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Add Marker",
+        "Audio Gain"
+      ]
+    },
+    {
+      "name": "Effect Controls Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Effect Controls",
+      "shortcut": "Shift+5",
+      "addon": "",
+      "description": "Edits the selected clip's built-in motion, opacity and speed properties plus any applied effects, with keyframing. Where you scale a render to punch in, or keyframe a slow push on a still.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "effect controls",
+        "keyframes",
+        "motion",
+        "panel"
+      ],
+      "intent_categories": [
+        "edit",
+        "transform"
+      ],
+      "object_types": [
+        "layer",
+        "point"
+      ],
+      "outcomes": [
+        "move",
+        "scale",
+        "rotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effects Panel",
+        "Paste Attributes"
+      ]
+    },
+    {
+      "name": "Effects Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Effects",
+      "shortcut": "Shift+7",
+      "addon": "",
+      "description": "Searches all video and audio effects and transitions for dragging onto clips. Type-search it rather than browsing — the folder tree is deep.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "effects",
+        "transitions",
+        "panel",
+        "search"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Effect Controls Panel",
+        "Apply Video Transition"
+      ]
+    },
+    {
+      "name": "Apply Video Transition",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Apply Video Transition",
+      "shortcut": "Ctrl+D",
+      "addon": "",
+      "description": "Adds the default transition — normally a cross dissolve — to the selected edit points. Set your preferred duration in preferences, and resist using anything fancier without a reason.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "transition",
+        "dissolve",
+        "default"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "cross dissolve"
+      ],
+      "related_commands": [
+        "Apply Audio Transition",
+        "Effects Panel"
+      ]
+    },
+    {
+      "name": "Apply Audio Transition",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Apply Audio Transition",
+      "shortcut": "Ctrl+Shift+D",
+      "addon": "",
+      "description": "Adds the default constant-power crossfade to selected audio edits. A short crossfade on every music and ambience cut removes clicks and bumps instantly.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "audio",
+        "crossfade",
+        "transition"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "crossfade"
+      ],
+      "related_commands": [
+        "Apply Video Transition",
+        "Audio Gain"
+      ]
+    },
+    {
+      "name": "Lumetri Colour Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Lumetri Colour",
+      "shortcut": "",
+      "addon": "",
+      "description": "The main grading interface — basic correction, creative LUTs, curves, colour wheels, HSL secondaries and vignette. Grade shot-matched sections on adjustment layers to keep the film's look coherent.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "lumetri",
+        "grade",
+        "colour",
+        "lut"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "lumetri"
+      ],
+      "related_commands": [
+        "Lumetri Scopes",
+        "Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Lumetri Scopes",
+      "software": "Premiere Pro",
+      "menu": "Window > Lumetri Scopes",
+      "shortcut": "",
+      "addon": "",
+      "description": "Displays waveform, vectorscope and histogram readouts of the programme image. Trust the scopes over your monitor when checking exposure and skin tones for delivery.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "scopes",
+        "waveform",
+        "vectorscope",
+        "grade"
+      ],
+      "intent_categories": [
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "measure"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Lumetri Colour Panel",
+        "Adjustment Layer"
+      ]
+    },
+    {
+      "name": "Adjustment Layer",
+      "software": "Premiere Pro",
+      "menu": "File > New > Adjustment Layer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Creates a transparent layer whose effects apply to every track beneath it. Lay one across a scene and grade it once instead of clip by clip.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "adjustment layer",
+        "grade",
+        "effects"
+      ],
+      "intent_categories": [
+        "create",
+        "visualise"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Lumetri Colour Panel",
+        "Effects Panel"
+      ]
+    },
+    {
+      "name": "Warp Stabiliser",
+      "software": "Premiere Pro",
+      "menu": "Effects > Video Effects > Distort > Warp Stabilizer",
+      "shortcut": "",
+      "addon": "",
+      "description": "Analyses and smooths shaky footage directly in the timeline. Apply it to handheld site walkthroughs; use Smooth Motion rather than No Motion to keep some life in the shot.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "stabilise",
+        "shake",
+        "footage"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [
+        "smooth"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [
+        "warp stabilizer"
+      ],
+      "related_commands": [
+        "Effects Panel",
+        "Speed/Duration"
+      ]
+    },
+    {
+      "name": "Masking and Tracking",
+      "software": "Premiere Pro",
+      "menu": "Effect Controls > effect mask (ellipse, rectangle, pen) + tracker",
+      "shortcut": "",
+      "addon": "",
+      "description": "Draws a mask on any effect so it applies only inside the shape, then tracks the mask to follow movement through the shot. Use it to brighten just the building facade or blur a passer-by's face.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "mask",
+        "tracking",
+        "effect",
+        "isolate"
+      ],
+      "intent_categories": [
+        "edit",
+        "analyse"
+      ],
+      "object_types": [
+        "layer",
+        "curve"
+      ],
+      "outcomes": [
+        "cut"
+      ],
+      "difficulty": "advanced",
+      "aliases": [],
+      "related_commands": [
+        "Effect Controls Panel",
+        "Lumetri Colour Panel"
+      ]
+    },
+    {
+      "name": "Essential Graphics Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Essential Graphics",
+      "shortcut": "",
+      "addon": "",
+      "description": "Builds and edits titles, shapes and layered graphics, and browses installed Motion Graphics templates. Design a consistent lower-third for project captions once and reuse it throughout.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "graphics",
+        "titles",
+        "panel",
+        "templates"
+      ],
+      "intent_categories": [
+        "create",
+        "edit"
+      ],
+      "object_types": [
+        "layer",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Type Tool",
+        "Install Motion Graphics Template"
+      ]
+    },
+    {
+      "name": "Type Tool",
+      "software": "Premiere Pro",
+      "menu": "Toolbar",
+      "shortcut": "T",
+      "addon": "",
+      "description": "Creates text directly in the Programme Monitor as a graphic clip on the timeline. Fine for quick captions; style the result properly in the Essential Graphics panel.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "type",
+        "text",
+        "titles",
+        "tool"
+      ],
+      "intent_categories": [
+        "create"
+      ],
+      "object_types": [
+        "layer",
+        "annotation"
+      ],
+      "outcomes": [
+        "annotate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "text tool"
+      ],
+      "related_commands": [
+        "Essential Graphics Panel",
+        "Install Motion Graphics Template"
+      ]
+    },
+    {
+      "name": "Install Motion Graphics Template",
+      "software": "Premiere Pro",
+      "menu": "Graphics and Titles > Install Motion Graphics Template (.mogrt)",
+      "shortcut": "",
+      "addon": "",
+      "description": "Adds a .mogrt file — often built in After Effects — to the Essential Graphics library for drag-and-drop use. Package your studio's animated titles as MOGRTs so every film shares the same identity.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "mogrt",
+        "template",
+        "graphics",
+        "reuse"
+      ],
+      "intent_categories": [
+        "create",
+        "organise"
+      ],
+      "object_types": [
+        "layer",
+        "annotation"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "mogrt"
+      ],
+      "related_commands": [
+        "Essential Graphics Panel",
+        "Type Tool"
+      ]
+    },
+    {
+      "name": "Export",
+      "software": "Premiere Pro",
+      "menu": "File > Export > Media",
+      "shortcut": "Ctrl+M",
+      "addon": "",
+      "description": "Opens the export view for choosing format, preset, range and destination. H.264 with a high-bitrate preset covers most client review and web delivery needs.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "export",
+        "render",
+        "delivery",
+        "h264"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [
+        "export media"
+      ],
+      "related_commands": [
+        "Send to Media Encoder Queue",
+        "Export In to Out Range"
+      ]
+    },
+    {
+      "name": "Export In to Out Range",
+      "software": "Premiere Pro",
+      "menu": "Export view > Range > Sequence In/Out",
+      "shortcut": "",
+      "addon": "",
+      "description": "Exports only the section between the sequence in and out points. Perfect for sending a single revised scene rather than re-rendering the whole film.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "export",
+        "range",
+        "in out"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export",
+        "Mark In"
+      ]
+    },
+    {
+      "name": "Send to Media Encoder Queue",
+      "software": "Premiere Pro",
+      "menu": "Export view > Send to Media Encoder",
+      "shortcut": "",
+      "addon": "",
+      "description": "Queues the export in Adobe Media Encoder so rendering happens in the background. Stack multiple formats — a 4K master and a compressed review copy — and keep editing meanwhile.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "media encoder",
+        "queue",
+        "background",
+        "export"
+      ],
+      "intent_categories": [
+        "document"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [
+        "AME"
+      ],
+      "related_commands": [
+        "Export",
+        "Export In to Out Range"
+      ]
+    },
+    {
+      "name": "Render In to Out",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Render In to Out",
+      "shortcut": "Enter",
+      "addon": "",
+      "description": "Pre-renders the effects-heavy sections of the marked range so the timeline plays back smoothly, turning the render bar green. Do it before client playback sessions to avoid stutters.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "render",
+        "preview",
+        "playback"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "layout",
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "Export",
+        "Play/Stop"
+      ]
+    },
+    {
+      "name": "Play/Stop",
+      "software": "Premiere Pro",
+      "menu": "Spacebar",
+      "shortcut": "Space",
+      "addon": "",
+      "description": "Starts and stops playback in the active monitor. The most-pressed key in editing; pair it with JKL for speed control.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "play",
+        "stop",
+        "playback"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "JKL Playback",
+        "Play Around"
+      ]
+    },
+    {
+      "name": "JKL Playback",
+      "software": "Premiere Pro",
+      "menu": "J (reverse), K (pause), L (forward)",
+      "shortcut": "J / K / L",
+      "addon": "",
+      "description": "Shuttle controls: L plays forward and speeds up on repeat presses, J does the same in reverse, K pauses. The professional way to scrub footage while logging site material.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "jkl",
+        "shuttle",
+        "playback",
+        "scrub"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "shuttle"
+      ],
+      "related_commands": [
+        "Play/Stop",
+        "Step One Frame"
+      ]
+    },
+    {
+      "name": "Play Around",
+      "software": "Premiere Pro",
+      "menu": "Shift+K plays around the playhead",
+      "shortcut": "Shift+K",
+      "addon": "",
+      "description": "Plays a few seconds either side of the playhead and stops. The quickest way to judge a trim in context without manually rewinding.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "play around",
+        "review",
+        "trim"
+      ],
+      "intent_categories": [
+        "visualise",
+        "analyse"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "intermediate",
+      "aliases": [],
+      "related_commands": [
+        "JKL Playback",
+        "Toggle Trim Type"
+      ]
+    },
+    {
+      "name": "Step One Frame",
+      "software": "Premiere Pro",
+      "menu": "Left / Right arrow keys",
+      "shortcut": "Left / Right",
+      "addon": "",
+      "description": "Nudges the playhead a single frame backwards or forwards; Shift+arrow jumps five frames. Frame-stepping is how you find the exact cut point on a beat.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "frame",
+        "step",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise",
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "JKL Playback",
+        "Go to Next Edit Point"
+      ]
+    },
+    {
+      "name": "Go to Next Edit Point",
+      "software": "Premiere Pro",
+      "menu": "Down arrow (Up arrow for previous)",
+      "shortcut": "Down / Up",
+      "addon": "",
+      "description": "Jumps the playhead to the next or previous cut on targeted tracks. Combined with Q, W and E it makes trimming an entirely keyboard-driven rhythm.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "edit point",
+        "navigate",
+        "timeline"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "view",
+        "layer"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Step One Frame",
+        "Ripple Trim Previous Edit"
+      ]
+    },
+    {
+      "name": "Toggle Full Screen",
+      "software": "Premiere Pro",
+      "menu": "Ctrl+` toggles full-screen playback of the active monitor",
+      "shortcut": "Ctrl+`",
+      "addon": "",
+      "description": "Expands the active monitor to fill the screen for distraction-free review. Use it when showing a work-in-progress cut to colleagues at your desk.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "full screen",
+        "review",
+        "monitor"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Maximise Frame",
+        "Play/Stop"
+      ]
+    },
+    {
+      "name": "Maximise Frame",
+      "software": "Premiere Pro",
+      "menu": "Press ` with the pointer over a panel",
+      "shortcut": "`",
+      "addon": "",
+      "description": "Temporarily expands the panel under the cursor to fill the workspace; press again to restore. Maximise the timeline for complex multi-track passages, then pop back.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "panel",
+        "maximise",
+        "workspace"
+      ],
+      "intent_categories": [
+        "visualise",
+        "organise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Toggle Full Screen",
+        "Timeline Panel"
+      ]
+    },
+    {
+      "name": "Zoom Timeline In / Out",
+      "software": "Premiere Pro",
+      "menu": "= and - keys (main keyboard)",
+      "shortcut": "= / -",
+      "addon": "",
+      "description": "Zooms the timeline view in and out around the playhead. Zoom in for frame-accurate trims, out for judging overall pacing.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "zoom",
+        "timeline",
+        "navigate"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Zoom to Sequence",
+        "Hand Tool"
+      ]
+    },
+    {
+      "name": "Zoom to Sequence",
+      "software": "Premiere Pro",
+      "menu": "Sequence > Zoom to Sequence",
+      "shortcut": "\\",
+      "addon": "",
+      "description": "Fits the entire sequence into the timeline window. Tap it whenever you are lost deep in a zoomed view.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "zoom",
+        "fit",
+        "sequence"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "fit sequence"
+      ],
+      "related_commands": [
+        "Zoom Timeline In / Out",
+        "Timeline Panel"
+      ]
+    },
+    {
+      "name": "Project Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Projects (Shift+1 focuses it)",
+      "shortcut": "Shift+1",
+      "addon": "",
+      "description": "Focuses the Project panel, home of all bins, clips and sequences. Keyboard panel-switching (Shift+1 to Shift+9) keeps hands off the mouse during assembly.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "project",
+        "panel",
+        "focus"
+      ],
+      "intent_categories": [
+        "organise"
+      ],
+      "object_types": [
+        "layout"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Source Monitor",
+        "Timeline Panel"
+      ]
+    },
+    {
+      "name": "Source Monitor",
+      "software": "Premiere Pro",
+      "menu": "Window > Source Monitor (Shift+2 focuses it)",
+      "shortcut": "Shift+2",
+      "addon": "",
+      "description": "Focuses the Source Monitor, where raw clips are reviewed and marked before editing into the sequence. Load, mark in and out, then insert or overwrite — the classic loop.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "source monitor",
+        "review",
+        "panel"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Mark In",
+        "Project Panel"
+      ]
+    },
+    {
+      "name": "Timeline Panel",
+      "software": "Premiere Pro",
+      "menu": "Window > Timelines (Shift+3 focuses it)",
+      "shortcut": "Shift+3",
+      "addon": "",
+      "description": "Focuses the timeline, where the film is actually built. Panel focus matters — many shortcuts act on whichever panel is active.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "timeline",
+        "panel",
+        "focus"
+      ],
+      "intent_categories": [
+        "organise",
+        "edit"
+      ],
+      "object_types": [
+        "view",
+        "layout"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Project Panel",
+        "Programme Monitor"
+      ]
+    },
+    {
+      "name": "Programme Monitor",
+      "software": "Premiere Pro",
+      "menu": "Window > Program Monitor (Shift+4 focuses it)",
+      "shortcut": "Shift+4",
+      "addon": "",
+      "description": "Focuses the Programme Monitor, showing the sequence at the playhead. Its safe margins, playback resolution and comparison view all live in its settings menu.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "programme monitor",
+        "playback",
+        "panel"
+      ],
+      "intent_categories": [
+        "visualise"
+      ],
+      "object_types": [
+        "view"
+      ],
+      "outcomes": [
+        "navigate"
+      ],
+      "difficulty": "beginner",
+      "aliases": [
+        "program monitor"
+      ],
+      "related_commands": [
+        "Timeline Panel",
+        "Toggle Full Screen"
+      ]
+    },
+    {
+      "name": "Deselect All",
+      "software": "Premiere Pro",
+      "menu": "Edit > Deselect All",
+      "shortcut": "Ctrl+Shift+A",
+      "addon": "",
+      "description": "Clears the current selection in the active panel. Worth internalising because several commands behave differently when clips are selected versus not.",
+      "icon": "",
+      "gif": "",
+      "source": "https://helpx.adobe.com/uk/premiere-pro/using/default-keyboard-shortcuts-cc.html",
+      "tags": [
+        "deselect",
+        "selection",
+        "clips"
+      ],
+      "intent_categories": [
+        "edit"
+      ],
+      "object_types": [
+        "layer"
+      ],
+      "outcomes": [],
+      "difficulty": "beginner",
+      "aliases": [],
+      "related_commands": [
+        "Selection Tool",
+        "Select Clip at Playhead"
+      ]
+    }
+  ]
+}
