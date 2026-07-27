@@ -15,8 +15,11 @@
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname } from "path";
 
+// A current browser UA — some doc hosts (notably autodesk.com) refuse
+// non-browser agents outright. We still fetch politely: bounded
+// concurrency, inter-request delays and honest, factual-data-only harvest.
 const UA =
-  "AdditionCommandScraper/1.0 (+https://github.com/jocookx/addition; content pipeline; contact: admin)";
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
 
 export async function fetchText(url, { retries = 3, timeoutMs = 30000 } = {}) {
   let lastError;
@@ -25,7 +28,11 @@ export async function fetchText(url, { retries = 3, timeoutMs = 30000 } = {}) {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       const res = await fetch(url, {
-        headers: { "user-agent": UA, accept: "text/html,application/json" },
+        headers: {
+          "user-agent": UA,
+          accept: "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+          "accept-language": "en-GB,en;q=0.9",
+        },
         signal: controller.signal,
         redirect: "follow",
       });

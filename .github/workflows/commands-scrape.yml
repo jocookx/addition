@@ -39,6 +39,9 @@ jobs:
         run: |
           set +e
           PICK="${{ github.event.inputs.scrapers }}"
+          # Push-triggered runs carry the scraper selection on the second
+          # line of the sentinel file (first line is the run stamp).
+          [ -z "$PICK" ] && [ -f .github/scrape-trigger ] && PICK="$(sed -n 2p .github/scrape-trigger)"
           [ -z "$PICK" ] && PICK="all"
           run_one () {
             echo "::group::$1"
