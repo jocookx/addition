@@ -13,6 +13,9 @@ on:
         description: "Space-separated scrapers to run (rhino9 maya blender grasshopper autocad) or 'all'"
         required: false
         default: "all"
+  push:
+    paths:
+      - ".github/scrape-trigger"
 
 permissions:
   contents: write
