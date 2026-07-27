@@ -11,6 +11,7 @@ export const LAUNCH_SOFTWARE = [
   "InDesign",
   "After Effects",
   "Premiere Pro",
+  "Maya",
   "AI",
 ] as const;
 
@@ -117,7 +118,6 @@ export const FUTURE_SOFTWARE = [
   "Archicad",
   "Vectorworks",
   "3ds Max",
-  "Maya",
   "Cinema 4D",
   "AutoCAD",
 ] as const;
@@ -135,6 +135,7 @@ export const SOFTWARE_WORKFLOW_MAP: Record<LaunchSoftware, string[]> = {
   InDesign: ["Present"],
   "After Effects": ["Present", "Animate"],
   "Premiere Pro": ["Present", "Animate"],
+  Maya: ["Model", "Animate", "Render"],
   AI: ["Optimise"],
 };
 

@@ -1,214 +1,167 @@
 /**
- * Seed addition_commands from rhino_commands_enriched.js (primary)
- * merged with rhino_commands_3dd.csv (icon URLs from McNeel docs)
+ * Seed addition_commands from the in-repo command repository:
+ *   src/data/commands/*.json  →  Supabase table addition_commands
  *
- * Usage (from apps/web/):
- *   node scripts/seed-commands.mjs
+ * Every software the app teaches has one dataset file. Records carry our
+ * own explanations plus factual data (shortcuts, menus, icons) that the
+ * scrapers in scripts/command-scrapers/ keep in sync with the official
+ * references.
+ *
+ * Usage (repo root):
+ *   node scripts/seed-commands.mjs                 # seed everything
+ *   node scripts/seed-commands.mjs rhino maya      # seed selected softwares
+ *   node scripts/seed-commands.mjs --dry-run       # validate + count only
+ *
+ * Requires .env.local with NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.
  */
 
 import { createClient } from "@supabase/supabase-js";
-import { readFileSync } from "fs";
-import { resolve, dirname } from "path";
+import { readFileSync, readdirSync } from "fs";
+import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
-const envPath = resolve(__dir, "../.env.local");
-const envLines = readFileSync(envPath, "utf8").split("\n");
-for (const line of envLines) {
-  const m = line.match(/^([^#=]+)=(.*)$/);
-  if (m) process.env[m[1].trim()] = m[2].trim();
-}
+const DATA_DIR = resolve(__dir, "../src/data/commands");
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+const cliArgs = process.argv.slice(2);
+const dryRun = cliArgs.includes("--dry-run");
+const only = cliArgs.filter((a) => !a.startsWith("--")).map((a) => a.toLowerCase());
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
-function decode(s) {
-  return (s || "")
-    .replace(/&#160;/g, " ").replace(/&#8209;/g, "-")
-    .replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").trim();
-}
-
-function clean(name) {
-  return (name || "").replace(/\s*\|\s*Rhino 3-D modeling\s*$/i, "").trim();
-}
-
-function tagIntents(name) {
-  const n = name.toLowerCase();
-  const out = [];
-  if (/^(extrude|revolve|loft|sweep|patch|curve|line|circle|arc|polyline|box|sphere|cylinder|cone|torus|pipe|text|point|surface|plane|solid|mesh|subd|block|hatch|picture|leader|dim|clipping|section|contour|silhouette|duplicate)|create|make|build|draw|add|insert|place/i.test(n)) out.push("create");
-  if (/edit|modify|change|adjust|chamfer|fillet|blend|fair|smooth|rebuild|refit|simplify|convert|cap|close|open|delete|remove|purge|undo|redo|replace|reconstruct/i.test(n)) out.push("edit");
-  if (/move|rotate|scale|mirror|array|copy|orient|align|flow|bend|twist|taper|shear|project|pull|remap|stretch|smash|unroll|squish|makelength|setpt/i.test(n)) out.push("transform");
-  if (/layer|group|block|hide|show|lock|unlock|select|deselect|invert|filter|sort|name|rename|organis|visibility/i.test(n)) out.push("organise");
-  if (/dim|dimension|text|leader|hatch|print|layout|page|sheet|make2d|silhouette|detail|annotation/i.test(n)) out.push("document");
-  if (/measure|length|area|volume|angle|distance|check|evaluate|analyse|analyze|audit|mass|centroid|bounding|dir|what|list|properties/i.test(n)) out.push("analyse");
-  if (/display|render|shade|view|camera|zoom|pan|perspective|isometric|wireframe|shaded|ghosted|mode|background|environment|turntable/i.test(n)) out.push("visualise");
-  if (out.length === 0) out.push("create");
-  return out;
-}
-
-function tagObjectTypes(name, toolbars) {
-  const n = name.toLowerCase();
-  const t = (toolbars || []).join(" ").toLowerCase();
-  const out = [];
-  if (/curve|line|arc|circle|polyline|spline|helix|spiral|crv/.test(n) || /curve/.test(t)) out.push("curve");
-  if (/surface|srf|patch|plane|loft|sweep|revolve|networksrf/.test(n) || /surface/.test(t)) out.push("surface");
-  if (/solid|polysurface|box|sphere|cylinder|cone|torus|boolean|cap/.test(n) || /solid/.test(t)) out.push("solid");
-  if (/subd|subdivision/.test(n) || /subd/.test(t)) out.push("subd");
-  if (/mesh|ngon|facet|polygon/.test(n) || /mesh/.test(t)) out.push("mesh");
-  if (/point|cloud|dot/.test(n)) out.push("point");
-  if (/dim|dimension|text|leader|hatch|annotation|note/.test(n)) out.push("annotation");
-  if (/layout|page|sheet|print|detail/.test(n)) out.push("layout");
-  if (/layer|group|block|visibility/.test(n)) out.push("layer");
-  if (/view|camera|display|shade|render|zoom|pan|perspective|viewport/.test(n)) out.push("view");
-  return out;
-}
-
-function tagOutcomes(name) {
-  const n = name.toLowerCase();
-  const out = [];
-  if (/move|relocate/.test(n)) out.push("move");
-  if (/copy|duplicate|clone/.test(n)) out.push("copy");
-  if (/scale|resize/.test(n)) out.push("scale");
-  if (/rotate|spin|orient/.test(n)) out.push("rotate");
-  if (/boolean.*diff|subtract|trim|split|cut|delete|remove|purge/.test(n)) out.push("cut");
-  if (/join|merge|weld|connect|boolean.*union|boolean.*intersect|stitch/.test(n)) out.push("join");
-  if (/offset|shell|inset|parallel/.test(n)) out.push("offset");
-  if (/extrude|thicken|solidify|cap/.test(n)) out.push("thicken");
-  if (/split|divide|explode|separate/.test(n)) out.push("split");
-  if (/smooth|fair|blend|soften|relax/.test(n)) out.push("smooth");
-  if (/mirror|flip|reflect|symmetr/.test(n)) out.push("mirror");
-  if (/array|pattern|distribute|repeat/.test(n)) out.push("array");
-  if (/dim|annotate|text|leader|note|label/.test(n)) out.push("annotate");
-  if (/measure|length|area|volume|distance|angle|check|mass/.test(n)) out.push("measure");
-  if (/zoom|pan|view|camera|navigate|perspective/.test(n)) out.push("navigate");
-  return out;
-}
-
-function difficulty(name) {
-  const adv = /boolean|networksrf|patch|cage|flow|twist|bend|taper|shear|squish|smash|unroll|remap|subd|pullback|make2d|contour|section|clipping|drape|heightfield|silhouette|loft|sweep2|blend|match|merge.*srf|cplane|orient.*on.*surface/i;
-  const mid = /fillet|chamfer|offset|sweep|revolve|shell|extrude|trim|split|join|explode|group|block|layer|align|orient|mirror|array|dim|hatch|layout|detail/i;
-  if (adv.test(name)) return "advanced";
-  if (mid.test(name)) return "intermediate";
-  return "beginner";
-}
-
-// ── Load enriched JS ─────────────────────────────────────────────────────────
-const enrichedPath = resolve(__dir, "../../../../ADDITION/data/rhino_commands_enriched.js");
-const enrichedText = readFileSync(enrichedPath, "utf8");
-const enrichedMatch = enrichedText.match(/=\s*(\[[\s\S]*\])\s*;?\s*$/);
-const enrichedRaw = JSON.parse(enrichedMatch[1]);
-
-// ── Load CSV for McNeel icon URLs ────────────────────────────────────────────
-const csvPath = resolve(__dir, "../../../../rhino_commands_3dd.csv");
-const csvText = readFileSync(csvPath, "utf8");
-const csvLines = csvText.split("\n").filter(Boolean);
-const csvHeaders = csvLines[0].split(",");
-const csvRows = csvLines.slice(1).map((line) => {
-  const cols = [];
-  let cur = "", inQ = false;
-  for (const ch of line) {
-    if (ch === '"') { inQ = !inQ; continue; }
-    if (ch === "," && !inQ) { cols.push(cur); cur = ""; }
-    else cur += ch;
+// ── Env ──────────────────────────────────────────────────────────────────────
+let supabase = null;
+if (!dryRun) {
+  const envPath = resolve(__dir, "../.env.local");
+  for (const line of readFileSync(envPath, "utf8").split("\n")) {
+    const m = line.match(/^([^#=]+)=(.*)$/);
+    if (m) process.env[m[1].trim()] ??= m[2].trim();
   }
-  cols.push(cur);
-  return Object.fromEntries(csvHeaders.map((h, i) => [h, (cols[i] ?? "").trim()]));
-});
-
-// Build icon map: name (lowercase) → McNeel icon URL
-const csvIconMap = new Map();
-for (const r of csvRows) {
-  const name = r.command_title.replace(/\s*\|.*$/, "").trim().toLowerCase();
-  if (r.icon_url && !r.icon_url.includes("_no_toolbar_button")) {
-    csvIconMap.set(name, r.icon_url);
-  }
+  supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
+  );
 }
 
-console.log(`Enriched commands: ${enrichedRaw.length}`);
-console.log(`CSV icon map: ${csvIconMap.size} icons`);
+// ── Fallback taggers (used only when a record's arrays are empty) ────────────
+const INTENTS = ["create", "edit", "transform", "organise", "document", "analyse", "visualise"];
+const OBJECT_TYPES = ["curve", "surface", "solid", "subd", "mesh", "point", "annotation", "layout", "layer", "view"];
+const OUTCOMES = ["move", "copy", "scale", "rotate", "cut", "join", "offset", "thicken", "split", "smooth", "mirror", "array", "annotate", "measure", "navigate"];
+const DIFFICULTIES = new Set(["beginner", "intermediate", "advanced"]);
 
-// ── Build records ─────────────────────────────────────────────────────────────
-const seen = new Set();
+function fallbackIntents(name) {
+  const n = name.toLowerCase();
+  const out = [];
+  if (/create|make|build|draw|add|insert|place|new/.test(n)) out.push("create");
+  if (/edit|modify|adjust|fillet|blend|rebuild|convert|delete|remove|undo|redo/.test(n)) out.push("edit");
+  if (/move|rotate|scale|mirror|array|copy|orient|align|flow|bend|twist/.test(n)) out.push("transform");
+  if (/layer|group|hide|show|lock|select|filter|rename/.test(n)) out.push("organise");
+  if (/dim|text|leader|hatch|print|layout|sheet|annotat/.test(n)) out.push("document");
+  if (/measure|length|area|volume|angle|distance|check|analys|analyz/.test(n)) out.push("analyse");
+  if (/display|render|shade|view|camera|zoom|pan|mode/.test(n)) out.push("visualise");
+  return out.length ? out : ["create"];
+}
+
+// ── Load + validate datasets ─────────────────────────────────────────────────
+const files = readdirSync(DATA_DIR)
+  .filter((f) => f.endsWith(".json"))
+  .filter((f) => only.length === 0 || only.includes(basename(f, ".json")));
+
+if (files.length === 0) {
+  console.error(`No dataset files matched in ${DATA_DIR}`);
+  process.exit(1);
+}
+
 const records = [];
+const problems = [];
+const seen = new Set();
 
-for (const r of enrichedRaw) {
-  const name = clean(r.name);
-  if (!name) continue;
-  if (/\btoolbar\b$/i.test(name)) continue; // skip "Arc toolbar" etc.
-
-  const key = name.toLowerCase();
-  if (seen.has(key)) continue;
-  seen.add(key);
-
-  const toolbars = (r.toolbars || []).map(decode).filter((t) => t && t !== "Not on toolbars.");
-  const menuPath = decode(r.menuPath || "");
-
-  // Icon: prefer local path (served via /api/v1/rhino-asset/), fall back to McNeel CDN
-  const rawIcon = (r.icon || "").trim();
-  const localIcon = rawIcon && rawIcon !== "nan"
-    ? rawIcon.replace(/^\.\/data\/images\//, "/api/v1/rhino-asset/")
-    : "";
-  const cdnIcon = csvIconMap.get(key) || "";
-  const icon = localIcon || cdnIcon;
-
-  const rawGif = (r.gif || "").trim();
-  const gif = rawGif && rawGif !== "nan"
-    ? rawGif.replace(/^\.\/data\/images\//, "/api/v1/rhino-asset/")
-    : "";
-
-  const desc = (r.description || "").trim() === "nan" ? "" : (r.description || "").trim();
-
-  // menuPath format: "TopMenu SubGroup > CommandLabel"
-  // e.g. "Curve Blend Curves > Arc Blend" → topMenu="Curve", group="Blend Curves"
-  let topMenu = "";
-  let menuGroup = "";
-  if (menuPath && !menuPath.includes("Not on menus")) {
-    const beforeArrow = menuPath.split(">")[0].trim();
-    const parts = beforeArrow.split(" ");
-    topMenu = parts[0] || "";
-    menuGroup = parts.slice(1).join(" ").trim() || parts[0] || "";
+for (const file of files) {
+  const raw = JSON.parse(readFileSync(resolve(DATA_DIR, file), "utf8"));
+  const software = raw.meta?.software;
+  if (!software || !Array.isArray(raw.commands)) {
+    problems.push(`${file}: missing meta.software or commands[]`);
+    continue;
   }
 
-  records.push({
-    name,
-    software:          "Rhino",
-    description:       desc,
-    menu:              menuGroup || toolbars[0] || "",  // used as the sub-group header
-    icon,
-    gif,
-    source:            r.source || "",
-    video:             "",
-    tags:              [topMenu, ...toolbars].filter(Boolean), // top menu + toolbar names
-    intent_categories: tagIntents(name),
-    object_types:      tagObjectTypes(name, toolbars),
-    outcomes:          tagOutcomes(name),
-    difficulty:        difficulty(name),
-    aliases:           [],
-    related_commands:  [],
-  });
+  let count = 0;
+  for (const c of raw.commands) {
+    if (!c.name?.trim()) {
+      problems.push(`${file}: record with empty name skipped`);
+      continue;
+    }
+    if (c.needsExplanation || !c.description?.trim()) {
+      problems.push(`${file}: "${c.name}" has no explanation yet — skipped (write ours, then reseed)`);
+      continue;
+    }
+    const key = `${software}::${c.name.toLowerCase()}`;
+    if (seen.has(key)) {
+      problems.push(`${file}: duplicate "${c.name}" skipped`);
+      continue;
+    }
+    seen.add(key);
+
+    records.push({
+      name: c.name.trim(),
+      software,
+      menu: c.menu || "",
+      description: c.description.trim(),
+      shortcut: c.shortcut || "",
+      addon: c.addon || "",
+      icon: c.icon || "",
+      gif: c.gif || "",
+      source: c.source || raw.meta?.source || "",
+      video: c.video || "",
+      tags: (c.tags || []).filter(Boolean),
+      intent_categories: (c.intent_categories || []).filter((i) => INTENTS.includes(i)).length
+        ? c.intent_categories.filter((i) => INTENTS.includes(i))
+        : fallbackIntents(c.name),
+      object_types: (c.object_types || []).filter((o) => OBJECT_TYPES.includes(o)),
+      outcomes: (c.outcomes || []).filter((o) => OUTCOMES.includes(o)),
+      difficulty: DIFFICULTIES.has(c.difficulty) ? c.difficulty : "beginner",
+      aliases: (c.aliases || []).filter(Boolean),
+      related_commands: (c.related_commands || []).filter(Boolean),
+    });
+    count++;
+  }
+  console.log(`${file}: ${count} records ready (${software})`);
 }
 
-console.log(`${records.length} unique records to upsert`);
+if (problems.length) {
+  console.log(`\n${problems.length} notes:`);
+  for (const p of problems.slice(0, 40)) console.log(`  - ${p}`);
+  if (problems.length > 40) console.log(`  … and ${problems.length - 40} more`);
+}
 
-// ── Upsert ────────────────────────────────────────────────────────────────────
+console.log(`\nTotal: ${records.length} commands across ${files.length} dataset files.`);
+if (dryRun) process.exit(0);
+
+// ── Upsert ───────────────────────────────────────────────────────────────────
 const BATCH = 100;
-let inserted = 0;
-for (let i = 0; i < records.length; i += BATCH) {
-  const batch = records.slice(i, i + BATCH);
-  const { error } = await supabase
+let upserted = 0;
+
+async function upsertBatch(batch) {
+  let { error } = await supabase
     .from("addition_commands")
     .upsert(batch, { onConflict: "name,software" });
 
+  // Legacy schema fallback (pre-shortcut/addon/video columns)
+  if (error && /column .* does not exist/i.test(error.message)) {
+    const slim = batch.map(({ shortcut, addon, video, aliases, related_commands, ...rest }) => rest);
+    ({ error } = await supabase
+      .from("addition_commands")
+      .upsert(slim, { onConflict: "name,software" }));
+  }
+  return error;
+}
+
+for (let i = 0; i < records.length; i += BATCH) {
+  const batch = records.slice(i, i + BATCH);
+  const error = await upsertBatch(batch);
   if (error) {
-    console.error(`Batch ${i}–${i + BATCH} failed:`, error.message);
+    console.error(`\nBatch ${i}–${i + batch.length} failed: ${error.message}`);
   } else {
-    inserted += batch.length;
-    process.stdout.write(`\r${inserted}/${records.length}...`);
+    upserted += batch.length;
+    process.stdout.write(`\r${upserted}/${records.length}…`);
   }
 }
 
-console.log(`\nDone. ${inserted} commands upserted.`);
+console.log(`\nDone. ${upserted} commands upserted.`);

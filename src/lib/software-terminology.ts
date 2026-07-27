@@ -205,6 +205,21 @@ const TERMINOLOGY: Record<SoftwareId, SoftwareTerms> = {
     countLabel:       "shortcuts",
   },
 
+  // ── Maya ─────────────────────────────────────────────────────────────────
+  // Source: Autodesk Maya docs — menu tools invoked via hotkeys / marking menus
+  Maya: {
+    itemSingular:     "Command",
+    itemPlural:       "Commands",
+    pageTitle:        "Commands",
+    accessLabel:      "Hotkey",
+    accessType:       "shortcut",
+    menuGroupLabel:   "Menu",
+    menuSubLabel:     "Menu set",
+    addonLabel:       null,
+    searchPlaceholder: "Search commands…",
+    countLabel:       "commands",
+  },
+
   // ── AI ───────────────────────────────────────────────────────────────────
   AI: {
     itemSingular:     "Tool",

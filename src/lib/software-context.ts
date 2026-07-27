@@ -32,6 +32,7 @@ export const SOFTWARE_LIST: SoftwareMeta[] = [
   { id: "InDesign",   label: "Adobe InDesign",     abbr: "Id", color: "#ff3366", category: "present" },
   { id: "After Effects", label: "Adobe After Effects", abbr: "Ae", color: "#9999ff", category: "present" },
   { id: "Premiere Pro", label: "Adobe Premiere Pro", abbr: "Pr", color: "#b47cff", category: "present" },
+  { id: "Maya",       label: "Maya",               abbr: "Ma", color: "#3fb6b0", category: "3d" },
   { id: "AI",         label: "AI",                 abbr: "AI", color: "#a8dadc", category: "ai" },
 ];
 
@@ -59,6 +60,8 @@ const LABEL_MAP: Record<string, SoftwareId> = {
   "adobe after effects": "After Effects",
   "premiere pro":      "Premiere Pro",
   "adobe premiere pro": "Premiere Pro",
+  "maya":              "Maya",
+  "autodesk maya":     "Maya",
   "ai":                "AI",
   "artificial intelligence": "AI",
 };
