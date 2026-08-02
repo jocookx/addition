@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { uploadViaSignedUrl, type UploadKind } from "@/lib/upload-client";
 
-type UploadResponse = {
-  url: string;
-  path: string;
-};
+const IMAGE_ACCEPT = "image/png,image/jpeg,image/webp,image/gif,image/svg+xml,image/avif";
+const FILE_ACCEPT = ".pdf,.zip,.txt,.md,.csv,.srt,.vtt,.3dm,.gh,.ghx,.dyn,.dwg,.dxf,.skp,.blend,.obj,.fbx,.stl,.ifc,.usdz,.glb,.gltf,.psd,.ai,.indd,.aep,.prproj,.pptx,.docx,.xlsx,.key,.mp3,.wav,.aac,image/*";
 
 export function ImageUploadField({
   accessToken,
@@ -14,6 +13,7 @@ export function ImageUploadField({
   label = "Image",
   folder = "general",
   placeholder = "https://...",
+  kind = "image",
 }: {
   accessToken: string;
   value: string;
@@ -21,6 +21,8 @@ export function ImageUploadField({
   label?: string;
   folder?: string;
   placeholder?: string;
+  /** "image" for artwork fields; "file" also accepts documents and design files */
+  kind?: UploadKind;
 }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -30,17 +32,10 @@ export function ImageUploadField({
     setUploading(true);
     setError("");
     try {
-      const form = new FormData();
-      form.set("file", file);
-      form.set("folder", folder);
-      const response = await fetch("/api/v1/admin/uploads", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${accessToken}` },
-        body: form,
-      });
-      if (!response.ok) throw new Error(await response.text());
-      const payload = (await response.json()) as UploadResponse;
-      onChange(payload.url);
+      // Direct-to-storage: not subject to the serverless body cap, so large
+      // PDFs/design files work and images above ~4MB stop failing on Vercel.
+      const { url } = await uploadViaSignedUrl(accessToken, file, { kind, folder });
+      onChange(url);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
     } finally {
@@ -57,7 +52,7 @@ export function ImageUploadField({
         <input
           ref={inputRef}
           type="file"
-          accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+          accept={kind === "file" ? FILE_ACCEPT : IMAGE_ACCEPT}
           className="st-upload-native"
           onChange={(event) => {
             const file = event.target.files?.[0];

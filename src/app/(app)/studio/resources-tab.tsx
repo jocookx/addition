@@ -175,7 +175,7 @@ export function ResourcesTab({ accessToken }: { accessToken: string }) {
                   <label><span>Access</span><select value={selected.access_level} onChange={(event) => patch({ access_level: event.target.value })}>{ACCESS.map((item) => <option key={item}>{item}</option>)}</select></label>
                   <label><span>Status</span><select value={selected.status} onChange={(event) => patch({ status: event.target.value })}>{STATUS.map((item) => <option key={item}>{item}</option>)}</select></label>
                   <label><span>External URL</span><input value={selected.external_url} onChange={(event) => patch({ external_url: event.target.value })} /></label>
-                  <div className="span-2"><ImageUploadField accessToken={accessToken} label="Upload file / image" folder="resources" value={selected.file_url} onChange={(value) => patch({ file_url: value })} /></div>
+                  <div className="span-2"><ImageUploadField accessToken={accessToken} label="Upload file / image" folder="resources" kind="file" value={selected.file_url} onChange={(value) => patch({ file_url: value })} /></div>
                   <label className="span-2"><span>Description</span><textarea rows={4} value={selected.description} onChange={(event) => patch({ description: event.target.value })} /></label>
                   <label><span>Linked lessons</span><input value={selected.linked_lessons.join(", ")} onChange={(event) => patch({ linked_lessons: splitCsv(event.target.value) })} /></label>
                   <label><span>Linked courses</span><input value={selected.linked_courses.join(", ")} onChange={(event) => patch({ linked_courses: splitCsv(event.target.value) })} /></label>

@@ -68,7 +68,13 @@ export async function createDirectUpload(
   const response = await fetch(url, {
     method: "POST",
     headers: cfHeaders(),
-    body: JSON.stringify({ maxDurationSeconds, requireSignedURLs: true }),
+    body: JSON.stringify({
+      maxDurationSeconds,
+      requireSignedURLs: true,
+      // Maximum Cloudflare allows — big files over slow connections can pause
+      // and resume for up to six hours against the same upload URL.
+      expiry: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
+    }),
   });
 
   if (!response.ok) {
@@ -165,7 +171,18 @@ export async function createSignedStreamToken(videoId: string, expiresInSeconds 
 }
 
 export function getSignedIframeUrl(token: string): string {
-  return `https://iframe.cloudflarestream.com/${encodeURIComponent(token)}`;
+  // preload=metadata: the player fetches the manifest immediately so first
+  // frame starts as soon as the learner presses play; poster paints instantly.
+  const poster = encodeURIComponent(getSignedPosterUrl(token));
+  return `https://iframe.cloudflarestream.com/${encodeURIComponent(token)}?preload=metadata&poster=${poster}`;
+}
+
+/**
+ * Signed thumbnail for a gated video — the plain thumbnail URL 403s when
+ * requireSignedURLs is on, so the poster must carry the token too.
+ */
+export function getSignedPosterUrl(token: string): string {
+  return `https://cloudflarestream.com/${encodeURIComponent(token)}/thumbnails/thumbnail.jpg?time=2s&height=720`;
 }
 
 /**

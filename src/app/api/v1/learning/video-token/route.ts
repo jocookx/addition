@@ -1,6 +1,6 @@
 import { errorResponse, okResponse } from "@/lib/http";
 import { getAccessDecision } from "@/domain/access";
-import { createSignedStreamToken, getSignedIframeUrl } from "@/lib/cloudflare-stream";
+import { createSignedStreamToken, getSignedIframeUrl, getSignedPosterUrl } from "@/lib/cloudflare-stream";
 import { ensureUserProfile } from "@/server/auth/ensure-user-profile";
 import { requireUserFromRequest } from "@/server/auth/require-user";
 import { consumeRateLimit } from "@/server/rate-limit";
@@ -109,6 +109,7 @@ export async function POST(request: Request) {
     return okResponse(
       {
         iframeUrl: getSignedIframeUrl(token),
+        posterUrl: getSignedPosterUrl(token),
         expiresInSeconds: 3600,
       },
       200,

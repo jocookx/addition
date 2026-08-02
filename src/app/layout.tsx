@@ -65,6 +65,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Warm the video CDN connections before the player mounts — saves a
+            DNS + TLS round-trip on first play of any lesson video. */}
+        <link rel="preconnect" href="https://iframe.cloudflarestream.com" />
+        <link rel="preconnect" href="https://cloudflarestream.com" />
+      </head>
       <body>
         <MobileShell />
         {children}

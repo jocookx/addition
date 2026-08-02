@@ -5,7 +5,11 @@ import { validateUploadMime, validateSvgContent } from "@/server/upload/validate
 import { createSupabaseServiceClient } from "@/server/supabase/clients";
 
 const BUCKET = "cms-images";
-const MAX_BYTES = 8 * 1024 * 1024;
+// Serverless platforms cap request bodies around 4.5MB — larger uploads must
+// use the signed direct-to-storage flow (/api/v1/admin/uploads/sign), which
+// the studio fields now do by default. This multipart route stays for
+// backwards compatibility with small images only.
+const MAX_BYTES = 4 * 1024 * 1024;
 // Magic-byte-validatable types (JPEG, PNG, WebP, GIF)
 const BINARY_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const ALLOWED_TYPES = new Set([...BINARY_IMAGE_TYPES, "image/svg+xml"]);
@@ -46,7 +50,9 @@ export async function POST(request: Request) {
     const folder = typeof form.get("folder") === "string" ? String(form.get("folder")) : "general";
 
     if (!(file instanceof File)) return errorResponse("Image file is required.", 400);
-    if (file.size > MAX_BYTES) return errorResponse("Image must be smaller than 8MB.", 400);
+    if (file.size > MAX_BYTES) {
+      return errorResponse("Image is larger than 4MB — the studio's direct upload handles this automatically; refresh the studio and try again.", 400);
+    }
 
     // Read bytes first so we can validate content, not just the client header
     const bytes = Buffer.from(await file.arrayBuffer());

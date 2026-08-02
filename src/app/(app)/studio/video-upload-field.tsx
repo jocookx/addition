@@ -191,16 +191,42 @@ export function VideoUploadField({
     setProgress(0);
 
     try {
-      // 1 — Ask our server for a one-time CF Stream upload URL
-      const slotRes = await fetch("/api/v1/admin/upload-video", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-      if (!slotRes.ok) {
-        const msg = (await slotRes.json() as { error?: string }).error ?? "Could not create upload slot.";
-        throw new Error(msg);
+      // Resume support: if this exact file was mid-upload recently (tab
+      // closed, connection dropped), reuse its upload URL — TUS continues
+      // from the last confirmed byte instead of starting over.
+      const fingerprint = `vuf/${file.name}/${file.size}/${file.lastModified}`;
+      let uploadUrl = "";
+      let newVideoId = "";
+      try {
+        const stored = JSON.parse(window.localStorage.getItem(fingerprint) ?? "null") as
+          | { uploadUrl: string; videoId: string; createdAt: number }
+          | null;
+        // Direct-upload URLs are valid for 6 hours; leave a safety margin.
+        if (stored && Date.now() - stored.createdAt < 5.5 * 60 * 60 * 1000) {
+          uploadUrl = stored.uploadUrl;
+          newVideoId = stored.videoId;
+        }
+      } catch {
+        // corrupt entry — ignore
       }
-      const { uploadUrl, videoId: newVideoId } = (await slotRes.json()) as { uploadUrl: string; videoId: string };
+
+      if (!uploadUrl) {
+        // 1 — Ask our server for a one-time CF Stream upload URL
+        const slotRes = await fetch("/api/v1/admin/upload-video", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (!slotRes.ok) {
+          const msg = (await slotRes.json() as { error?: string }).error ?? "Could not create upload slot.";
+          throw new Error(msg);
+        }
+        ({ uploadUrl, videoId: newVideoId } = (await slotRes.json()) as { uploadUrl: string; videoId: string });
+        try {
+          window.localStorage.setItem(fingerprint, JSON.stringify({ uploadUrl, videoId: newVideoId, createdAt: Date.now() }));
+        } catch {
+          // storage full/blocked — resume just won't be available
+        }
+      }
 
       // Store the video ID immediately so the lesson record holds it even if the
       // user navigates away before transcoding completes.
@@ -220,6 +246,7 @@ export function VideoUploadField({
           setProgress(Math.round((bytesUploaded / bytesTotal) * 100));
         },
         onSuccess() {
+          try { window.localStorage.removeItem(fingerprint); } catch { /* noop */ }
           startPolling(newVideoId);
         },
         onError(err) {
