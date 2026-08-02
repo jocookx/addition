@@ -194,6 +194,8 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [syncing, setSyncing] = useState(false);
+  const [syncProgress, setSyncProgress] = useState("");
   const [query, setQuery] = useState("");
   const [softwareFilter, setSoftwareFilter] = useState("All");
   const [levelFilter, setLevelFilter] = useState("All");
@@ -365,6 +367,36 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
     }
   }
 
+  async function syncLibrary() {
+    setSyncing(true);
+    setError("");
+    setSyncProgress("Preparing…");
+    try {
+      const manifest = await fetchJson<{ datasets: Array<{ dataset: string; software: string; ready: number }>; total: number }>(
+        "/api/v1/admin/commands/seed",
+        { headers },
+      );
+      let done = 0;
+      let upserted = 0;
+      for (const entry of manifest.datasets) {
+        setSyncProgress(`${entry.software} (${done + 1}/${manifest.datasets.length})…`);
+        const result = await fetchJson<{ upserted: number }>("/api/v1/admin/commands/seed", {
+          method: "POST",
+          headers: { ...headers, "Content-Type": "application/json" },
+          body: JSON.stringify({ dataset: entry.dataset }),
+        });
+        upserted += result.upserted;
+        done += 1;
+      }
+      flash(`Library synced — ${upserted} commands published across ${done} softwares.`);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Library sync failed — safe to try again; already-synced softwares are simply re-checked.");
+    } finally {
+      setSyncing(false);
+      setSyncProgress("");
+    }
+  }
+
   const activeCommandFilters = [
     softwareFilter !== "All",
     levelFilter !== "All",
@@ -453,6 +485,15 @@ export function CommandsTab({ accessToken }: { accessToken: string }) {
         </div>
         <div className="aa-curriculum-import-actions">
           <CsvBulkActions entity="commands" accessToken={accessToken} templateLabel="Download Commands CSV" importLabel="Import Commands CSV" />
+          <button
+            type="button"
+            className="st-create-btn"
+            disabled={syncing}
+            onClick={() => void syncLibrary()}
+            title="Publish the command datasets shipped with this release into the live library"
+          >
+            {syncing ? syncProgress || "Syncing…" : "Sync library from repo"}
+          </button>
         </div>
       </section>
 
